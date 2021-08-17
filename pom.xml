@@ -57,7 +57,7 @@
 	<modules>
 		<module>userservice</module>
 		<module>searchservice</module>
-		<module>favoriteservice</module>
+		<module>productservice</module>
 	</modules>
 
 	<build>
