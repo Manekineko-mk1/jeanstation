@@ -1,4 +1,4 @@
-package com.stackroute.service;
+package com.stackroute.test.service;
 
 import com.stackroute.domain.Product;
 import com.stackroute.repository.ProductRepository;
