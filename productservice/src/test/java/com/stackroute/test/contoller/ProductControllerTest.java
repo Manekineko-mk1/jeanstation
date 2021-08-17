@@ -3,6 +3,8 @@ package com.stackroute.test.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.controller.ProductController;
 import com.stackroute.domain.Product;
+import com.stackroute.exceptions.ProductAlreadyExistException;
+import com.stackroute.exceptions.ProductNotFoundException;
 import com.stackroute.service.ProductService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -105,6 +107,16 @@ public class ProductControllerTest {
         when(productService.updateProduct(any())).thenReturn(product);
         mockMvc.perform(put("/api/v1/product").contentType(MediaType.APPLICATION_JSON).content(asJsonString(product)))
                 .andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void givenProductAlreadyExistToSaveThenShouldThrowException() throws ProductAlreadyExistException {
+
+    }
+
+    @Test
+    public void givenProductIdNotExistThenShouldThrowException() throws ProductNotFoundException {
+
     }
 
     public static String asJsonString(final Object obj) {
