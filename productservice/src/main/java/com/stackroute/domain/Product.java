@@ -7,9 +7,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.transaction.TransactionScoped;
 import java.util.ArrayList;
 
 @Slf4j
@@ -26,7 +25,8 @@ public class Product {
     private String productDescription;
     private String picture;
     private float priceCAD;
-    ArrayList<String> productCategories;
+    @Transient
+    ArrayList<String> productCategories;// = new ArrayList<String>();
 
     public Product(Long id, String productName, String productDescription, String picture, float priceCAD, ArrayList<String> productCategories) {
         this.id = id;

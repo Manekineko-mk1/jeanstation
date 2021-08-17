@@ -86,7 +86,7 @@ public class ProductControllerTest {
 
     @Test
     void givenProductIdThenShouldReturnRespectiveProduct() throws Exception {
-        when(productService.getProductById(product.getId())).thenReturn(product);
+        when(productService.getProductById(product.getId().intValue())).thenReturn(product);
         mockMvc.perform(get("/api/v1/product/1"))
                 .andExpect(MockMvcResultMatchers.status()
                         .isFound())
@@ -95,7 +95,7 @@ public class ProductControllerTest {
 
     @Test
     public void givenProductIdToDeleteThenShouldNotReturnDeletedProduct() throws Exception {
-        when(productService.deleteProduct(product.getId())).thenReturn(product);
+        when(productService.deleteProduct(product.getId().intValue())).thenReturn(product);
         mockMvc.perform(delete("/api/v1/product/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
     }

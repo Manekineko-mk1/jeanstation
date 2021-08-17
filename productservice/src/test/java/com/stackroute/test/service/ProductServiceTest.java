@@ -13,6 +13,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,9 +36,11 @@ class ProductServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-
-        product = new Product(1, "SampleProduct", "Imneet", "SampleProductforTesting");
-        product1 = new Product(2, "Product 1", "John", "Sample Product 1 for Testing");
+        ArrayList<String> categories = new ArrayList<>();
+        categories.add("cat1");
+        categories.add("cat2");
+        product = new Product(1L, "Product", "description", "picture", 42, categories);
+        product1 = new Product(2L, "Product2", "description2", "picture2", 43, categories);
         optional = Optional.of(product);
     }
 
@@ -75,36 +79,36 @@ class ProductServiceTest {
     @Test
     public void givenProductIdThenShouldReturnRespectiveProduct() {
         when(productRepository.findById(anyInt())).thenReturn(Optional.of(product));
-        Product retrievedProduct = productService.getProductById(product.getProductId());
+        Product retrievedProduct = productService.getProductById(product.getId().intValue());
         verify(productRepository, times(1)).findById(anyInt());
 
     }
 
     @Test
     void givenProductIdToDeleteThenShouldReturnDeletedProduct() {
-        when(productRepository.findById(product.getProductId())).thenReturn(optional);
+        when(productRepository.findById(product.getId().intValue())).thenReturn(optional);
         Product deletedProduct = productService.deleteProduct(1);
-        assertEquals(1, deletedProduct.getProductId());
+        assertEquals(1, deletedProduct.getId());
 
-        verify(productRepository, times(2)).findById(product.getProductId());
-        verify(productRepository, times(1)).deleteById(product.getProductId());
+        verify(productRepository, times(2)).findById(product.getId().intValue());
+        verify(productRepository, times(1)).deleteById(product.getId().intValue());
     }
 
     @Test
     void givenProductIdToDeleteThenShouldNotReturnDeletedProduct() {
-        when(productRepository.findById(product.getProductId())).thenReturn(Optional.empty());
+        when(productRepository.findById(product.getId().intValue())).thenReturn(Optional.empty());
         Product deletedProduct = productService.deleteProduct(1);
-        verify(productRepository, times(1)).findById(product.getProductId());
+        verify(productRepository, times(1)).findById(product.getId().intValue());
     }
 
     @Test
     public void givenProductToUpdateThenShouldReturnUpdatedProduct() {
-        when(productRepository.findById(product.getProductId())).thenReturn(optional);
+        when(productRepository.findById(product.getId().intValue())).thenReturn(optional);
         when(productRepository.save(product)).thenReturn(product);
-        product.setProductContent("SampleProductforTesting");
+        product.setProductDescription("SampleProductforTesting");
         Product product1 = productService.updateProduct(product);
-        assertEquals(product1.getProductContent(), "SampleProductforTesting");
+        assertEquals(product1.getProductDescription(), "SampleProductforTesting");
         verify(productRepository, times(1)).save(product);
-        verify(productRepository, times(2)).findById(product.getProductId());
+        verify(productRepository, times(2)).findById(product.getId().intValue());
     }
 }
