@@ -1,4 +1,4 @@
-package com.stackroute.controller;
+package com.stackroute.test.controller;
 
 import com.stackroute.domain.Product;
 import com.stackroute.service.ProductService;
@@ -11,12 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1")
-public class ProductController {
+public class ProductControllerIntegrationTest {
 
     private ProductService productService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductControllerIntegrationTest(ProductService productService) {
         this.productService = productService;
     }
 
