@@ -1,21 +1,38 @@
+package com.stackroute.test.repository;
+
+import com.stackroute.domain.Product;
+import com.stackroute.repository.ProductRepository;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 public class ProductRepositoryIntegrationTest {
 
     @Autowired
     private ProductRepository productRepository;
     private Product product;
+    private ArrayList categories;
 
     @BeforeEach
     public void setUp() {
-        List<Product> reviews = new ArrayList<>();
+        categories = new ArrayList();
         product = new Product();
-        product.setId(1);
-        product.setName("product1");
-        product.setPrice(10.00);
-        product.setDiscount(0.1);
-        product.setDimension("1x1x1");
+        product.setId(1l);
+        product.setProductName("product1");
+        product.setProductDescription("Description");
+        product.setPicture("picture");
+        product.setPriceCAD(10.00f);
+        product.setDiscount(0.1f);
         product.setQuantity(20);
-        product.setReview(reviews);
+        product.setProductCategories(categories);
     }
 
     @AfterEach
@@ -27,41 +44,41 @@ public class ProductRepositoryIntegrationTest {
     @Test
     public void givenProductToSaveThenShouldReturnSavedProduct() {
         productRepository.save(product);
-        Product fetchedproduct = productRepository.findById(product.getId()).get();
+        Product fetchedproduct = productRepository.findById(product.getId().intValue()).get();
         assertEquals(1, fetchedproduct.getId());
     }
 
 
     @Test
     public void givenGetAllProductsThenShouldReturnListOfAllProducts() {
-        Product product = new Product(2, "product2", 20.05, 0.0, "2x2x2", 10, reviews);
-        Product product1 = new Product(3, "product3", 15.99, 0.25, "3x3x3", 15, reviews);
+        Product product = new Product(2l, "product2", "description", "picture", 10.99f, 0.0f, 10, categories);
+        Product product1 = new Product(3l, "product3", "description", "picture", 1.99f, 0.05f, 100, categories);
         productRepository.save(product);
         productRepository.save(product1);
 
         List<Product> productList = (List<Product>) productRepository.findAll();
-        assertEquals("product3", productList.get(1).getName());
+        assertEquals("product3", productList.get(1).getProductName());
     }
 
     @Test
     public void givenProductIdThenShouldReturnRespectiveProduct() {
-        Product product = new Product(9, "product9", 30.25, 0.12, "9x9x9", 56, reviews);
+        Product product = new Product(9l, "product9", "description", "picture", 5.50f, 0.25f, 56, categories);
         Product product1 = productRepository.save(product);
-        Optional<Product> optional = productRepository.findById(product1.getId());
+        Optional<Product> optional = productRepository.findById(product1.getId().intValue());
         assertEquals(product1.getId(), optional.get().getId());
-        assertEquals(product1.getName(), optional.get().getName());
-        assertEquals(product1.getPrice(), optional.get().getPrice());
+        assertEquals(product1.getProductName(), optional.get().getProductName());
+        assertEquals(product1.getProductDescription(), optional.get().getProductDescription());
+        assertEquals(product1.getPriceCAD(), optional.get().getPriceCAD());
         assertEquals(product1.getDiscount(), optional.get().getDiscount());
-        assertEquals(product1.getDimension(), optional.get().getDimension());
         assertEquals(product1.getQuantity(), optional.get().getQuantity());
     }
 
     @Test
     public void givenProductIdToDeleteThenShouldReturnDeletedProduct() {
-        Product product = new Product(4, "product4", 1.99, 0.05 , "4x4x4", 106, reviews);
+        Product product = new Product(4l, "product4", "description", "picture", 2.31f, 0.01f, 23, categories);
         productRepository.save(product);
-        productRepository.deleteById(product.getId());
-        Optional optional = productRepository.findById(product.getId());
+        productRepository.deleteById(product.getId().intValue());
+        Optional optional = productRepository.findById(product.getId().intValue());
         assertEquals(Optional.empty(), optional);
     }
     
