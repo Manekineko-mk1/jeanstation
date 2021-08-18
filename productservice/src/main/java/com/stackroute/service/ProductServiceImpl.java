@@ -28,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public Product saveProduct(Product product) {
+        boolean isProductExist = productRepository.findById(product.getId()).isPresent();
         Product savedProduct = productRepository.save(product);
         return savedProduct;
     }
@@ -44,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
      * Implementation of getProductById method
      */
     @Override
-    public Product getProductById(int id) {
+    public Product getProductById(String id) {
         Product product = null;
         product = productRepository.findById(id).get();
         return product;
@@ -54,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
      * Implementation of deleteProductById method
      */
     @Override
-    public Product deleteProduct(int id) {
+    public Product deleteProduct(String id) {
         Product product = null;
         Optional optional = productRepository.findById(id);
         if (optional.isPresent()) {
@@ -70,9 +71,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProduct(Product product) {
         Product updatedProduct = null;
-        Optional optional = productRepository.findById(product.getId().intValue());
+        Optional optional = productRepository.findById(product.getId());
         if (optional.isPresent()) {
-            Product getProduct = productRepository.findById(product.getId().intValue()).get();
+            Product getProduct = productRepository.findById(product.getId()).get();
             getProduct.setProductName(product.getProductName());
             getProduct.setProductDescription(product.getProductDescription());
             getProduct.setPriceCAD(product.getPriceCAD());

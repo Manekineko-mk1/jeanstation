@@ -17,12 +17,12 @@ public interface ProductService {
     /**
      * AbstractMethod to get product by id
      */
-    Product getProductById(int id);
+    Product getProductById(String id);
 
     /**
      * AbstractMethod to delete product by id
      */
-    Product deleteProduct(int id);
+    Product deleteProduct(String id);
 
     /**
      * AbstractMethod to update a product
