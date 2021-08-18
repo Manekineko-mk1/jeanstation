@@ -1,1 +1,84 @@
-<p>admin works!</p>
+<div id = "Dashboard">
+    <div class="container">
+        <div class="logout">
+            <button (click)="logout()" type="submit">Logout</button>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="add" *ngIf="!toAdd">
+            <button (click)="showAdd()" type="submit">Add Product</button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)=" onSubmit()" *ngIf="toAdd">
+        
+        <div class="row">
+          <div class="col-25">
+            <label>ID</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="id" type="number"  placeholder="Enter the id of the product">
+          </div>
+        </div>
+            
+        <div class="row">
+          <div class="col-25">
+            <label>Name</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="productname" type="text"  placeholder="Enter the name of the product">
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label>Quantity</label>
+            </div>
+            <div class="col-75">
+              <input formControlName="qty" type="number"  placeholder="Enter the quantity of the product">
+            </div>
+          </div>
+
+          <br>
+
+        <div class="row">
+          <input class="btn" type="submit" value="Add Product">
+        </div>
+
+      </form>    
+
+        <div class="alert" >
+          {{message}}
+        </div>
+
+        <br>
+        
+
+    <br>
+
+    </div>
+
+    <div class="container">  
+        <div class="row" *ngFor="let product of products" style="display: inline-flex;">
+            <div class="column">
+                <div class="card">
+                    <div class="card-block">
+                            <h4 class="card-title">{{product.productname}}</h4>
+                            <div class="card-text">ID : {{product.id}}</div>
+                            <div class="card-text">Quantity: {{product.qty}}</div>
+                     </div>
+                </div>
+            <div>
+        </div>
+    </div>
+
+
+
+</div>
+    
+    
+    
+
+

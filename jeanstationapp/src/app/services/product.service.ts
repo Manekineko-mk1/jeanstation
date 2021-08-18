@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../model/Product';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':' http://localhost:8080' })
 };
 
 @Injectable({
