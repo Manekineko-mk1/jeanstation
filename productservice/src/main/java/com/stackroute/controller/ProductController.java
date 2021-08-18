@@ -46,7 +46,6 @@ public class ProductController {
             "if any entry is found.", response = Entity.class)
     public ResponseEntity<List<Product>> getAllProducts() {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
-
     }
 
     /**
