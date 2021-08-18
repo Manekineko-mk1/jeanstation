@@ -39,8 +39,8 @@ class ProductServiceTest {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat1");
         categories.add("cat2");
-        product = new Product(1L, "Product", "description", "picture", 42, 10, 10, categories);
-        product1 = new Product(2L, "Product2", "description2", "picture2", 43, 10, 10, categories);
+        product = new Product("Product1", "description1", "picture1", 42, 10, 10, categories);
+        product1 = new Product("Product2", "description2", "picture2", 43, 10, 10, categories);
         optional = Optional.of(product);
     }
 
@@ -78,37 +78,37 @@ class ProductServiceTest {
 
     @Test
     public void givenProductIdThenShouldReturnRespectiveProduct() {
-        when(productRepository.findById(anyInt())).thenReturn(Optional.of(product));
-        Product retrievedProduct = productService.getProductById(product.getId().intValue());
-        verify(productRepository, times(1)).findById(anyInt());
+        when(productRepository.findById(any())).thenReturn(Optional.of(product));
+        Product retrievedProduct = productService.getProductById(product.getId());
+        verify(productRepository, times(1)).findById(any());
 
     }
 
     @Test
     void givenProductIdToDeleteThenShouldReturnDeletedProduct() {
-        when(productRepository.findById(product.getId().intValue())).thenReturn(optional);
-        Product deletedProduct = productService.deleteProduct(1);
+        when(productRepository.findById(product.getId())).thenReturn(optional);
+        Product deletedProduct = productService.deleteProduct("1");
         assertEquals(1, deletedProduct.getId());
 
-        verify(productRepository, times(2)).findById(product.getId().intValue());
-        verify(productRepository, times(1)).deleteById(product.getId().intValue());
+        verify(productRepository, times(2)).findById(product.getId());
+        verify(productRepository, times(1)).deleteById(product.getId());
     }
 
     @Test
     void givenProductIdToDeleteThenShouldNotReturnDeletedProduct() {
-        when(productRepository.findById(product.getId().intValue())).thenReturn(Optional.empty());
-        Product deletedProduct = productService.deleteProduct(1);
-        verify(productRepository, times(1)).findById(product.getId().intValue());
+        when(productRepository.findById(product.getId())).thenReturn(Optional.empty());
+        Product deletedProduct = productService.deleteProduct("1");
+        verify(productRepository, times(1)).findById(product.getId());
     }
 
     @Test
     public void givenProductToUpdateThenShouldReturnUpdatedProduct() {
-        when(productRepository.findById(product.getId().intValue())).thenReturn(optional);
+        when(productRepository.findById(product.getId())).thenReturn(optional);
         when(productRepository.save(product)).thenReturn(product);
-        product.setProductDescription("SampleProductforTesting");
+        product.setProductDescription("SampleProductForTesting");
         Product product1 = productService.updateProduct(product);
-        assertEquals(product1.getProductDescription(), "SampleProductforTesting");
+        assertEquals(product1.getProductDescription(), "SampleProductForTesting");
         verify(productRepository, times(1)).save(product);
-        verify(productRepository, times(2)).findById(product.getId().intValue());
+        verify(productRepository, times(2)).findById(product.getId());
     }
 }

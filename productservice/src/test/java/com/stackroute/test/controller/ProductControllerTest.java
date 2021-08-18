@@ -47,7 +47,7 @@ public class ProductControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
         ArrayList categories = new ArrayList();
         product = new Product();
-        product.setId(1l);
+        product.setId("1l");
         product.setProductName("product1");
         product.setProductDescription("Description");
         product.setPicture("picture");
@@ -88,7 +88,7 @@ public class ProductControllerTest {
 
     @Test
     void givenProductIdThenShouldReturnRespectiveProduct() throws Exception {
-        when(productService.getProductById(product.getId().intValue())).thenReturn(product);
+        when(productService.getProductById(product.getId())).thenReturn(product);
         mockMvc.perform(get("/api/v1/product/1"))
                 .andExpect(MockMvcResultMatchers.status()
                         .isFound())
@@ -97,7 +97,7 @@ public class ProductControllerTest {
 
     @Test
     public void givenProductIdToDeleteThenShouldNotReturnDeletedProduct() throws Exception {
-        when(productService.deleteProduct(product.getId().intValue())).thenReturn(product);
+        when(productService.deleteProduct(product.getId())).thenReturn(product);
         mockMvc.perform(delete("/api/v1/product/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
     }
@@ -109,13 +109,45 @@ public class ProductControllerTest {
                 .andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
     }
 
+    /**
+     * Test POST with ProductAlreadyExistException
+     * @throws ProductAlreadyExistException
+     */
     @Test
-    public void givenProductAlreadyExistToSaveThenShouldThrowException() throws ProductAlreadyExistException {
+    public void givenProductAlreadyExistThenTryToSaveThenShouldThrowException() throws ProductAlreadyExistException {
+//        when(productService.saveProduct(any())).thenReturn(product);
+//        mockMvc.perform(post("/api/v1/product")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(asJsonString(product)))
+//                .andExpect(status().isCreated())
+//                .andDo(MockMvcResultHandlers.print());
+//        verify(productService).saveProduct(any());
+    }
+
+    /**
+     * Test GET Product by ID with ProductNotFoundException
+     * @throws ProductNotFoundException
+     */
+    @Test
+    public void givenNoProductExistThenGetProductByIDShouldThrowException() throws ProductNotFoundException {
 
     }
 
+    /**
+     * Test DELETE Product by ID with ProductNotFoundException
+     * @throws ProductNotFoundException
+     */
     @Test
-    public void givenProductIdNotExistThenShouldThrowException() throws ProductNotFoundException {
+    public void givenNoProductExistThenDeleteProductByIDShouldThrowException() throws ProductNotFoundException {
+
+    }
+
+    /**
+     * Test UPDATE Product with ProductNotFoundException
+     * @throws ProductNotFoundException
+     */
+    @Test
+    public void givenNoProductExistThenUpdateProductShouldThrowException() throws ProductNotFoundException {
 
     }
 

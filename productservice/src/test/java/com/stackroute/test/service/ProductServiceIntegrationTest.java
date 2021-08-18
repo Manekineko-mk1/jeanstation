@@ -33,9 +33,9 @@ public class ProductServiceIntegrationTest {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat1");
         categories.add("cat2");
-        product1 = new Product(1L, "Product", "description", "picture", 42, 10, 10, categories);
-        product2 = new Product(2L, "Product2", "description2", "picture2", 43,10, 10,categories);
-        product3 = new Product(3L, "Product3", "description3", "picture3", 44,10, 10,categories);
+        product1 = new Product("Product1", "description1", "picture1", 42, 10, 10, categories);
+        product2 = new Product("Product2", "description2", "picture2", 43, 10, 10, categories);
+        product3 = new Product("Product3", "description3", "picture3", 44, 10, 10, categories);
         productList.add(product1);
         productList.add(product2);
         productList.add(product3);
@@ -51,7 +51,7 @@ public class ProductServiceIntegrationTest {
     public void givenProductToSaveThenShouldReturnSavedProduct() {
         Product savedProduct = productRepository.save(product1);
         assertNotNull(savedProduct);
-        assertEquals(product1.getId().intValue(), savedProduct.getId().intValue());
+        assertEquals(product1.getId(), savedProduct.getId());
     }
 
     @Test
