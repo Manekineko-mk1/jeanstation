@@ -15,23 +15,14 @@ import java.util.ArrayList;
 public class Cart {
     @Id
     private String id;
-    private String cartName;
-    private String cartDescription;
-    private String picture;
-    private float priceCAD;
-    private float discount;
-    private int quantity;
-    ArrayList<String> cartCategories;
+    private float priceTotal;
+    ArrayList<String> cartItems;
+//    ArrayList<Product> cartItems;
 
-    public Cart(String cartName, String cartDescription, String picture, float priceCAD, float discount, int quantity, ArrayList<String> cartCategories) {
-        this.cartName = cartName;
-        this.cartDescription = cartDescription;
-        this.picture = picture;
-        this.priceCAD = priceCAD;
-        this.discount = discount;
-        this.quantity = quantity;
-        this.cartCategories = cartCategories;
+    public Cart(float priceTotal, ArrayList<String> cartItems) {
+        this.priceTotal = priceTotal;
+        this.cartItems = cartItems;
 
-        log.info("A new cart is created: {} | {}", this.id, this.cartName);
+        log.info("A new cart is created: {} | {}", this.id);
     }
 }

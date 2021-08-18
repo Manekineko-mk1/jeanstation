@@ -42,8 +42,8 @@ public class CartController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Added a cart to carts collection | Cart ID: {} | Cart name: {} | Timestamp(EST): {}",
-                cart.getId(), cart.getCartName(), timeStamp);
+        log.info("Added a cart to carts collection | Cart ID: {} | Timestamp(EST): {}",
+                cart.getId(), timeStamp);
 
         return new ResponseEntity<>(savedCart, HttpStatus.CREATED);
     }
@@ -112,8 +112,7 @@ public class CartController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Request to UPDATE a cart | Cart Name: {} | Cart ID: {} | Timestamp: {}",
-                cart.getCartName() ,cart.getId() ,timeStamp);
+        log.info("Request to UPDATE a cart| Cart ID: {} | Timestamp: {}",cart.getId() ,timeStamp);
 
         return new ResponseEntity<>(updatedCart, HttpStatus.OK);
     }

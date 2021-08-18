@@ -33,9 +33,9 @@ public class CartServiceIntegrationTest {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat1");
         categories.add("cat2");
-        cart1 = new Cart("Cart1", "description1", "picture1", 42, 10, 10, categories);
-        cart2 = new Cart("Cart2", "description2", "picture2", 43, 10, 10, categories);
-        cart3 = new Cart("Cart3", "description3", "picture3", 44, 10, 10, categories);
+        cart1 = new Cart(10, categories);
+        cart2 = new Cart(20, categories);
+        cart3 = new Cart(30, categories);
         cartList.add(cart1);
         cartList.add(cart2);
         cartList.add(cart3);

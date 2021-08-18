@@ -39,8 +39,8 @@ class CartServiceTest {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat1");
         categories.add("cat2");
-        cart = new Cart("Cart1", "description1", "picture1", 42, 10, 10, categories);
-        cart1 = new Cart("Cart2", "description2", "picture2", 43, 10, 10, categories);
+        cart = new Cart(10, categories);
+        cart1 = new Cart(20, categories);
         optional = Optional.of(cart);
     }
 
@@ -105,9 +105,12 @@ class CartServiceTest {
     public void givenCartToUpdateThenShouldReturnUpdatedCart() {
         when(cartRepository.findById(cart.getId())).thenReturn(optional);
         when(cartRepository.save(cart)).thenReturn(cart);
-        cart.setCartDescription("SampleCartForTesting");
+        ArrayList<String> categories = new ArrayList<>();
+        categories.add("cat3");
+        categories.add("cat4");
+        cart.setCartItems(categories);
         Cart cart1 = cartService.updateCart(cart);
-        assertEquals(cart1.getCartDescription(), "SampleCartForTesting");
+        assertEquals(cart1.getCartItems(), categories);
         verify(cartRepository, times(1)).save(cart);
         verify(cartRepository, times(2)).findById(cart.getId());
     }

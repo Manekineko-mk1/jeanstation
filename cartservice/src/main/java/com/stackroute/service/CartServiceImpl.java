@@ -71,11 +71,7 @@ public class CartServiceImpl implements CartService {
         Optional<Cart> optional = cartRepository.findById(cart.getId());
         if (optional.isPresent()) {
             Cart getCart = cartRepository.findById(cart.getId()).get();
-            getCart.setCartName(cart.getCartName());
-            getCart.setCartDescription(cart.getCartDescription());
-            getCart.setPriceCAD(cart.getPriceCAD());
-            getCart.setPicture(cart.getPicture());
-            getCart.setCartCategories(cart.getCartCategories());
+            getCart.setPriceTotal(cart.getPriceTotal());
             updatedCart = saveCart(getCart);
             System.out.println(updatedCart);
         }

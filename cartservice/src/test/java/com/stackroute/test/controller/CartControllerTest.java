@@ -48,13 +48,7 @@ public class CartControllerTest {
         ArrayList categories = new ArrayList();
         cart = new Cart();
         cart.setId("1l");
-        cart.setCartName("cart1");
-        cart.setCartDescription("Description");
-        cart.setPicture("picture");
-        cart.setPriceCAD(10.00f);
-        cart.setDiscount(0.1f);
-        cart.setQuantity(20);
-        cart.setCartCategories(categories);
+        cart.setPriceTotal(420);
         cartList = new ArrayList<>();
         cartList.add(cart);
     }
