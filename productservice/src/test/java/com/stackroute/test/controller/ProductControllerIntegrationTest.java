@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping(value = "/api/v1")
 public class ProductControllerIntegrationTest {
 
-    private ProductService productService;
+    private final ProductService productService;
 
     @Autowired
     public ProductControllerIntegrationTest(ProductService productService) {
@@ -36,7 +36,7 @@ public class ProductControllerIntegrationTest {
      */
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts() {
-        return new ResponseEntity<List<Product>>((List<Product>) productService.getAllProducts(), HttpStatus.OK);
+        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
 
     }
 
@@ -44,7 +44,7 @@ public class ProductControllerIntegrationTest {
      * retrieve Product by id
      */
     @GetMapping("product/{productId}")
-    public ResponseEntity<Product> getProductById(@PathVariable("productId") int productId) {
+    public ResponseEntity<Product> getProductById(@PathVariable("productId") String productId) {
         return new ResponseEntity<>(productService.getProductById(productId), HttpStatus.FOUND);
     }
 
@@ -52,7 +52,7 @@ public class ProductControllerIntegrationTest {
      * delete Product by id
      */
     @DeleteMapping("product/{productId}")
-    public ResponseEntity<Product> getProductAfterDeleting(@PathVariable("ProductId") int productId) {
+    public ResponseEntity<Product> getProductAfterDeleting(@PathVariable("ProductId") String productId) {
         return new ResponseEntity<>(productService.deleteProduct(productId), HttpStatus.OK);
     }
 

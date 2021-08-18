@@ -8,12 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-/**
- * @Service indicates annotated class is a service which hold business logic in the Service layer
- */
+
 @Service
 public class ProductServiceImpl implements ProductService {
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     /**
      * Constructor based Dependency injection to inject ProductRepository here
@@ -29,8 +27,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product saveProduct(Product product) {
         boolean isProductExist = productRepository.findById(product.getId()).isPresent();
-        Product savedProduct = productRepository.save(product);
-        return savedProduct;
+        return productRepository.save(product);
     }
 
     /**
@@ -38,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public List<Product> getAllProducts() {
-        return (List<Product>) productRepository.findAll();
+        return productRepository.findAll();
     }
 
     /**
@@ -46,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public Product getProductById(String id) {
-        Product product = null;
+        Product product;
         product = productRepository.findById(id).get();
         return product;
     }
@@ -57,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product deleteProduct(String id) {
         Product product = null;
-        Optional optional = productRepository.findById(id);
+        Optional<Product> optional = productRepository.findById(id);
         if (optional.isPresent()) {
             product = productRepository.findById(id).get();
             productRepository.deleteById(id);
@@ -71,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProduct(Product product) {
         Product updatedProduct = null;
-        Optional optional = productRepository.findById(product.getId());
+        Optional<Product> optional = productRepository.findById(product.getId());
         if (optional.isPresent()) {
             Product getProduct = productRepository.findById(product.getId()).get();
             getProduct.setProductName(product.getProductName());

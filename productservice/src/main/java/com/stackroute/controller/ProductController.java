@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,8 +20,8 @@ import java.util.List;
 @Slf4j
 public class ProductController {
 
-    private ProductService productService;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
+    private final ProductService productService;
+    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
 
     @Autowired
     public ProductController(ProductService productService) {
@@ -73,7 +72,7 @@ public class ProductController {
     @GetMapping("product/{productId}")
     @ApiOperation(value = "GET a Product by ID", notes = "GET a Product entry from the Product database " +
             "by a provided Product ID. Returns a Product object if found.", response = ResponseEntity.class)
-    public ResponseEntity<Product> getProductById(@PathVariable("productId") int productId) {
+    public ResponseEntity<Product> getProductById(@PathVariable("productId") String productId) {
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
@@ -90,7 +89,7 @@ public class ProductController {
     @ApiOperation(value = "DELETE an existing Product", notes = "Remove a Product entry from the Product database " +
             "by a provided Product ID. Returns the deleted Product object " +
             "if the operation is successful.", response = ResponseEntity.class)
-    public ResponseEntity<Product> getProductAfterDeleting(@PathVariable("ProductId") int productId) {
+    public ResponseEntity<Product> getProductAfterDeleting(@PathVariable("ProductId") String productId) {
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
