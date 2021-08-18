@@ -23,7 +23,7 @@ public class ProductRepositoryIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        categories = new ArrayList();
+        categories = new ArrayList<String>();
         product = new Product();
         product.setId("1l");
         product.setProductName("product1");
