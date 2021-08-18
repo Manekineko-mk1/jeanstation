@@ -1,29 +1,16 @@
+<!-- <div class="header_section">
 <div class="header_top">
     <div class="container-fluid">
       <div class="top_nav_container">
-        <div class="contact_nav">
-          <a href="">
-            <i class="fa fa-phone" aria-hidden="true"></i>
-            <span>
-              Call : +01 123455678990
-            </span>
-          </a>
-          <a href="">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-            <span>
-              Email : demo@gmail.com
-            </span>
-          </a>
-        </div>
 
         <div class="user_option_box">
-          <a href="" class="account-link">
+          <a href="../login" routerLink="login" class="account-link">
             <i class="fa fa-user" aria-hidden="true"></i>
             <span>
               My Account
             </span>
           </a>
-          <a href="" class="cart-link">
+          <a href="../cart" routerLink="cart" class="cart-link">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             <span>
               Cart
@@ -37,25 +24,46 @@
   <div class="header_bottom">
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="../home" routerLink="">
           <span>
-            Minics
+            JeanStation
           </span>
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class=""> </span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ">
-            <li class="nav-item active">
-              <a class="nav-link" href="../home" routerLink="">Home <span class="sr-only">(current)</span></a>
+        <div class="nav">
+          <ul class="topnav">
+            <li class="nav-item">
+              <a class="nav-link" href="../home" routerLink="">Home </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../product" routerLink="product">Products</a>
+              <a class="nav-link" href="../products" routerLink="products">Products</a>
           </ul>
         </div>
       </nav>
     </div>
   </div>
+</div>
+<router-outlet></router-outlet> -->
+
+<div class="nav">
+    <h1>JeanStation</h1>
+    <ul class = "topnav">
+        
+        <li *ngIf="!isLoggedIn">
+            <a href="../login" routerLink="login">Login</a>
+        </li>
+        <li *ngIf="isLoggedIn">
+          <a href="../product" routerLink="product">Logout</a>
+      </li>
+        <li>
+            <a href="../cart" routerLink="cart">Cart</a>
+        </li>
+        <li>
+            <a href="../product" routerLink="product">Products</a>
+        </li>
+        <li>
+            <a href="../home" routerLink="">Home</a>
+        </li>
+    </ul>
+</div>
+<router-outlet></router-outlet>

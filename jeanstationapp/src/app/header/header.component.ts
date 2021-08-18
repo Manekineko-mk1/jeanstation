@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApprouteService } from '../services/approute.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  isLoggedIn = false;
+
+  constructor(private approute:ApprouteService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.approute.isLoggedIn;
   }
 
 }
