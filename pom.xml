@@ -24,6 +24,7 @@
     <modules>
         <module>productservice</module>
         <module>cartservice</module>
+        <module>orderservice</module>
     </modules>
 
 	<dependencies>
