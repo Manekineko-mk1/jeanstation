@@ -1,9 +1,6 @@
 package com.stackroute.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,13 +9,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 
 @Slf4j
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Document(collection = "products")
 public class Product {
     @Id
-    private Long id;
+    private String id;
     private String productName;
     private String productDescription;
     private String picture;
@@ -27,8 +23,7 @@ public class Product {
     private int quantity;
     ArrayList<String> productCategories;
 
-    public Product(Long id, String productName, String productDescription, String picture, float priceCAD, float discount, int quantity, ArrayList<String> productCategories) {
-        this.id = id;
+    public Product(String productName, String productDescription, String picture, float priceCAD, float discount, int quantity, ArrayList<String> productCategories) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.picture = picture;
