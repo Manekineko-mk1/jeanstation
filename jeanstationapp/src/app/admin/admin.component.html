@@ -60,19 +60,26 @@
 
     </div>
 
-    <div class="container">  
-        <div class="row" *ngFor="let product of products" style="display: inline-flex;">
-            <div class="column">
-                <div class="card">
-                    <div class="card-block">
-                            <h4 class="card-title">{{product.productname}}</h4>
-                            <div class="card-text">ID : {{product.id}}</div>
-                            <div class="card-text">Quantity: {{product.qty}}</div>
-                     </div>
-                </div>
-            <div>
+    <div id="products" >
+      
+          <div class="container_product" >  
+            <div class="row" *ngFor="let product of products">
+                <div class="column">
+                    <div class="card">
+                      <img class="card-img-top" src={{product.picture}} alt="Card image cap">
+                      <div class="card-body">
+                        <h1 class="card-title">{{product.productName}}</h1>
+                        <h2 class="card-text">${{product.priceCAD}}</h2>
+                        <h2 class="card-text">{{product.discount*100}}% Discount!</h2>
+                        <p class="card-text">Only {{product.quantity}} left!!!</p>
+                        <button (click)="addToCart()">Delete</button>
+                        <button (click)="addToCart()">Update</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
         </div>
-    </div>
+     </div>
 
 
 
