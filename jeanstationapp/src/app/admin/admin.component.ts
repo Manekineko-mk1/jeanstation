@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Product } from '../model/Product';
 import { ApprouteService } from '../services/approute.service';
 import { ProductService } from '../services/product.service';
@@ -25,13 +25,22 @@ export class AdminComponent implements OnInit {
       picture: new FormControl('', Validators.required),
       priceCAD: new FormControl('', Validators.required),
       discount: new FormControl('', Validators.required),
-      quantity: new FormControl('', Validators.required)
+      quantity: new FormControl('', Validators.required),
+      productSize: new FormControl('', Validators.required),
+      productColor: new FormControl('', Validators.required),
+      productCategories: new FormArray([new FormControl()])
     });
   }
 
   ngOnInit(): void {
     this.getProducts();
-    
+    this.approute.showAdd.subscribe(
+      value => {
+        this.toAdd = value;
+        this.toUpdate=false;
+        this.clearForm();
+      }
+    )
   }
 
   getProducts(){
@@ -71,6 +80,8 @@ export class AdminComponent implements OnInit {
       this.product.priceCAD = this.form.value.priceCAD;
       this.product.discount = this.form.value.discount;
       this.product.quantity = this.form.value.quantity;
+      this.product.productSize = this.form.value.productSize;
+      this.product.productColor = this.form.value.productColor;
       this.productservice.updateProduct(this.product).subscribe(
         data => {
           this.message = 'Product updated';
@@ -103,20 +114,17 @@ export class AdminComponent implements OnInit {
 
   clearForm(){
     this.form.reset();
+    this.message = '';
   }
 
   logout(){
     this.approute.openHome();
   }
 
-  showAdd(){
-    this.toAdd = true;
-    this.toUpdate = false;
-  }
-
   showUpdate(product:Product){
     this.toUpdate = true;
     this.toAdd = false;
+    this.message = '';
     this.product = product;
     let top = document.getElementById('Dashboard');
     if(top!=null){
@@ -129,6 +137,16 @@ export class AdminComponent implements OnInit {
     this.form.get('priceCAD').setValue(this.product.priceCAD);
     this.form.get('discount').setValue(this.product.discount);
     this.form.get('quantity').setValue(this.product.quantity);
+    this.form.get('productSize').setValue(this.product.productSize);
+    this.form.get('productColor').setValue(this.product.productColor);
   }
+
+  // addCategory(){
+  //   this.form.productCategories.push(new FormControl());
+  // }
+
+  // deleteCategory(index:number){
+  //   this.form.productCategories.removeAt(index)
+  // }
 
 }

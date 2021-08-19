@@ -6,5 +6,7 @@ export class Product {
     priceCAD?:number;
     discount?:number;
     quantity?:number;
+    productSize?:string;
+    productColor?:string;
     productCategories?:string[];
 }

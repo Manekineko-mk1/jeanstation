@@ -8,12 +8,26 @@ import { ApprouteService } from '../services/approute.service';
 })
 export class HeaderComponent implements OnInit {
 
-  isLoggedIn = false;
+  isLoggedIn:boolean;
+  isAdmin:boolean;
 
   constructor(private approute:ApprouteService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.approute.isLoggedIn;
+    this.approute.isLoggedIn.subscribe(
+      value => {
+        this.isLoggedIn = value;
+      }
+    );
+    this.approute.isAdmin.subscribe(
+      value => {
+        this.isAdmin = value;
+      }
+    )
+  }
+
+  showAdd(){
+    this.approute.showAdd.next(true);
   }
 
 }

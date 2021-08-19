@@ -166,6 +166,10 @@ public class ProductServiceImpl implements ProductService {
             getProduct.setPriceCAD(product.getPriceCAD());
             getProduct.setPicture(product.getPicture());
             getProduct.setProductCategories(product.getProductCategories());
+            getProduct.setDiscount(product.getDiscount());
+            getProduct.setQuantity(product.getQuantity());
+            getProduct.setProductSize(product.getProductSize());
+            getProduct.setProductColor(product.getProductColor());
 
             // Update the existing product to the DB
             productRepository.save(getProduct);

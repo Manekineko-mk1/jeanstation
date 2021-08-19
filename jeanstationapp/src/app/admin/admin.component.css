@@ -1,5 +1,5 @@
 #Dashboard{
-    padding-top: 9rem;
+    padding-top: 12rem;
     padding-bottom: 9rem;
   }
   
@@ -65,14 +65,9 @@
     .container {
       margin: auto;  
       border-radius: 5px;
-      background-color: #f2f2f2;
-      padding: 20px;
+      padding: 10px;
       left: 1rem;
       width: 95%;
-  
-      border-radius: 5px;
-      background-color: #f2f2f2;
-      padding: 20px;
     }
     
     .col-25 {
@@ -101,7 +96,7 @@
         margin-top: 0;
       }
       #Product{
-        padding-top: 11rem;
+        padding-top: 3rem;
         padding-bottom: 6rem;
       }
     }
@@ -117,7 +112,7 @@
 
     
     #products{
-      padding-top: 9rem;
+      padding-top: 3rem;
       padding-bottom: 9rem;
       padding-left: 8%;
       padding-right: 8%;
@@ -178,4 +173,8 @@
       border-radius: 4px;
       cursor: pointer;
       margin: 2%;
+  }
+
+  .clear {
+    clear: both;
   }

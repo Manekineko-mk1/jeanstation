@@ -18,9 +18,12 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', Validators.required),
       role: new FormControl('',Validators.required)
     });
+    this.approute.isLoggedIn.next(false);
+    this.approute.isAdmin.next(false);
   }
 
   ngOnInit(): void {
+    
   }
 
   onSubmit(){
@@ -28,11 +31,11 @@ export class LoginComponent implements OnInit {
       this.message = 'Username and Password should not be empty!!! Please verify details'
     } else {
       if((this.form.value.username=='admin') && (this.form.value.password=='password') && (this.form.value.role=='admin')){
-        this.approute.isLoggedIn = true;
-        this.approute.isAdmin = true;
+        this.approute.isLoggedIn.next(true);
+        this.approute.isAdmin.next(true);
         this.approute.openAdmin();
       } else if((this.form.value.username=='user') && (this.form.value.password=='password') && (this.form.value.role=='user')){
-        this.approute.isLoggedIn = true;
+        this.approute.isLoggedIn.next(true);
         this.approute.openProduct();
       } else {
         this.message = 'Username and Password incorrect!!! Please verify details'

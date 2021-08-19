@@ -1,20 +1,5 @@
 <div id = "Dashboard">
     <div class="container">
-        <div class="logout">
-            <button (click)="logout()" type="submit">Logout</button>
-        </div>
-
-        <br>
-        <br>
-        <br>
-
-        <div class="add" *ngIf="!toAdd">
-            <button (click)="showAdd()" type="submit">Add Product</button>
-        </div>
-
-        <br>
-        <br>
-        <br>
 
         <form [formGroup]="form" (ngSubmit)=" addProduct()" *ngIf="toAdd">
 
@@ -72,6 +57,63 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="col-25">
+                <label>Size</label>
+            </div>
+            <div class="col-75">
+                <input type="radio" formControlName="productSize" value="XS">
+                <label>XS</label>
+                <input type="radio" formControlName="productSize" value="S">
+                <label>S</label>
+                <input type="radio" formControlName="productSize" value="M">
+                <label>M</label>
+                <input type="radio" formControlName="productSize" value="L">
+                <label>L</label>
+                <input type="radio" formControlName="productSize" value="XL">
+                <label>XL</label>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+              <label>Color</label>
+          </div>
+          <div class="col-75">
+              <input type="radio" formControlName="productColor" value="LIGHT_BLUE">
+              <label>Light Blue</label>
+              <input type="radio" formControlName="productColor" value="BLUE">
+              <label>Blue</label>
+              <input type="radio" formControlName="productColor" value="BLACK">
+              <label>Black</label>
+          </div>
+      </div>
+
+      <!-- <div formArrayName="productCategories">
+        <div class="row">
+            <button class="col-md-offset-1 col-md-1 btn btn-default"
+                    type="button"
+                    (click)="addCategory()">Add Category
+            </button>
+        </div>
+        <div class="form-group"
+            *ngFor="let category of productCategories.controls; let i=index" >
+            <label class="col-md-2 control-label" [attr.for]="i">category</label>
+
+            <div class="col-md-8">
+                <input class="form-control" 
+                        [id]="i" 
+                        type="text" 
+                        placeholder="category" 
+                        [formControlName]="i" />
+            </div>
+            <button class="pull-right btn btn-warning"
+                    type="button"
+                (click)="deleteCategory(i)">Delete category
+            </button>
+        </div>
+    </div> -->
+
           <br>
 
         <div class="row">
@@ -87,7 +129,7 @@
             <label>Name</label>
           </div>
           <div class="col-75">
-            <input formControlName="productName" type="text"  value={{product.productName}}>
+            <input formControlName="productName" type="text"  placeholder={{product.productName}}>
           </div>
         </div>
 
@@ -135,6 +177,38 @@
               <input formControlName="quantity" type="number"  placeholder={{product.quantity}}>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-25">
+                <label>Size</label>
+            </div>
+            <div class="col-75">
+                <input type="radio" formControlName="productSize" value="XS">
+                <label>XS</label>
+                <input type="radio" formControlName="productSize" value="S">
+                <label>S</label>
+                <input type="radio" formControlName="productSize" value="M">
+                <label>M</label>
+                <input type="radio" formControlName="productSize" value="L">
+                <label>L</label>
+                <input type="radio" formControlName="productSize" value="XL">
+                <label>XL</label>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+              <label>Color</label>
+          </div>
+          <div class="col-75">
+              <input type="radio" formControlName="productColor" value="LIGHT_BLUE">
+              <label>Light Blue</label>
+              <input type="radio" formControlName="productColor" value="BLUE">
+              <label>Blue</label>
+              <input type="radio" formControlName="productColor" value="BLACK">
+              <label>Black</label>
+          </div>
+      </div>
 
           <br>
 
