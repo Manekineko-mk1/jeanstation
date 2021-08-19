@@ -36,7 +36,7 @@ public class ProductControllerIntegrationTest {
      */
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts() {
-        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
+        return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
 
     }
 
@@ -45,7 +45,7 @@ public class ProductControllerIntegrationTest {
      */
     @GetMapping("product/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable("productId") String productId) {
-        return new ResponseEntity<>(productService.getProductById(productId), HttpStatus.FOUND);
+        return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.FOUND);
     }
 
     /**
@@ -53,7 +53,7 @@ public class ProductControllerIntegrationTest {
      */
     @DeleteMapping("product/{productId}")
     public ResponseEntity<Product> getProductAfterDeleting(@PathVariable("ProductId") String productId) {
-        return new ResponseEntity<>(productService.deleteProduct(productId), HttpStatus.OK);
+        return new ResponseEntity<>(productService.deleteProductById(productId), HttpStatus.OK);
     }
 
     /**
