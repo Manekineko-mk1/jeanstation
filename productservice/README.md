@@ -107,14 +107,15 @@ This is a maven project. Your IDE will need to have Maven enabled.
 3. Let Maven download the dependencies
 4. Run ProductServiceApplication.java
 
+<!-- DOCUMENTATION -->
+## Swagger
 
+Access Swagger at http://localhost:8080/swagger-ui/#/
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+* Postman
 
 
 
