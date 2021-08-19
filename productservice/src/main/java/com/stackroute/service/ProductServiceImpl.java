@@ -81,6 +81,8 @@ public class ProductServiceImpl implements ProductService {
 
                 throw new ProductAlreadyExistsException(product.getId());
             } else {
+                productRepository.save(product);
+
                 log.info("SUCCESS: Add a product to the \"products\" collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
                         product.getId(), product.getProductName(), timeStamp);
             }
