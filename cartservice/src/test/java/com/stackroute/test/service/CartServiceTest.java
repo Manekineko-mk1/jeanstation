@@ -2,6 +2,7 @@ package com.stackroute.test.service;
 
 import com.stackroute.domain.Cart;
 
+import com.stackroute.domain.Product;
 import com.stackroute.repository.CartRepository;
 import com.stackroute.service.CartServiceImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -39,8 +40,10 @@ class CartServiceTest {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat1");
         categories.add("cat2");
-        cart = new Cart(10, categories);
-        cart1 = new Cart(20, categories);
+        ArrayList<Product> itemsList = new ArrayList<>();
+        itemsList.add(new Product("Product1", "description1", "picture1", 42, 10, 10, categories));
+        cart = new Cart(10, itemsList);
+        cart1 = new Cart(20, itemsList);
         optional = Optional.of(cart);
     }
 
@@ -108,7 +111,9 @@ class CartServiceTest {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat3");
         categories.add("cat4");
-        cart.setCartItems(categories);
+        ArrayList<Product> itemsList = new ArrayList<>();
+        itemsList.add(new Product("Product1", "description1", "picture1", 42, 10, 10, categories));
+        cart.setCartItems(itemsList);
         Cart cart1 = cartService.updateCart(cart);
         assertEquals(cart1.getCartItems(), categories);
         verify(cartRepository, times(1)).save(cart);
