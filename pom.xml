@@ -23,6 +23,7 @@
 
     <modules>
         <module>productservice</module>
+        <module>userservice</module>
     </modules>
 
 	<dependencies>
