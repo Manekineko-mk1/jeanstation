@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,23 +20,34 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(ProductAlreadyExistException.class)
-    public ResponseEntity<Object> handleCityNotFoundException(
-            ProductAlreadyExistException ex, WebRequest request) {
+    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
+
+
+    @ExceptionHandler(ProductAlreadyExistsException.class)
+    public ResponseEntity<Object> handleProductAlreadyExistsException(
+            ProductAlreadyExistsException ex, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
+
+        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+        String timeStamp = zonedDateTimeNow.format(formatter);
+
+        body.put("timestamp", timeStamp);
         body.put("message", "Product already exists.");
 
         return new ResponseEntity<>(body, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<Object> handleNodataFoundException(
+    public ResponseEntity<Object> handleNoProductFoundException(
             ProductNotFoundException ex, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
+
+        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+        String timeStamp = zonedDateTimeNow.format(formatter);
+
+        body.put("timestamp", timeStamp);
         body.put("message", "Product not found.");
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
@@ -46,7 +59,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             HttpStatus status, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
+
+        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+        String timeStamp = zonedDateTimeNow.format(formatter);
+
+        body.put("timestamp", timeStamp);
         body.put("status", status.value());
 
         List<String> errors = ex.getBindingResult()
