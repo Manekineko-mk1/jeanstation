@@ -1,5 +1,7 @@
 package com.stackroute.domain;
 
+import com.stackroute.enums.ProductColor;
+import com.stackroute.enums.ProductSize;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
@@ -9,7 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 
 @Slf4j
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Document(collection = "products")
 public class Product {
@@ -21,6 +24,8 @@ public class Product {
     private float priceCAD;
     private float discount;
     private int quantity;
+    private ProductSize productSize;
+    private ProductColor productColor;
     ArrayList<String> productCategories;
 
     public Product(String productName, String productDescription, String picture, float priceCAD, float discount, int quantity, ArrayList<String> productCategories) {
@@ -32,6 +37,19 @@ public class Product {
         this.quantity = quantity;
         this.productCategories = productCategories;
 
-        log.info("A new product is created: {} | {}", this.id, this.productName);
+        log.info("A new product is created: {} | {}", this.getId(), this.productName);
+    }
+
+    public Product(String id, String productName, String productDescription, String picture, float priceCAD, float discount, int quantity, ArrayList<String> productCategories) {
+        this.id = id;
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.picture = picture;
+        this.priceCAD = priceCAD;
+        this.discount = discount;
+        this.quantity = quantity;
+        this.productCategories = productCategories;
+
+        log.info("A new product is created: {} | {}", this.getId(), this.productName);
     }
 }
