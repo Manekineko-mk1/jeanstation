@@ -1,6 +1,8 @@
 package com.stackroute.service;
 
 import com.stackroute.domain.Product;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ProductService {
@@ -10,19 +12,24 @@ public interface ProductService {
     Product saveProduct(Product product);
 
     /**
+     * AbstractMethod to save a list of products
+     */
+    List<Product> saveProducts(List<Product> products);
+
+    /**
      * AbstractMethod to get all products
      */
-    List<Product> getAllProducts();
+    List<Product> findAllProducts();
 
     /**
      * AbstractMethod to get product by id
      */
-    Product getProductById(String id);
+    Product findProductById(String id);
 
     /**
      * AbstractMethod to delete product by id
      */
-    Product deleteProduct(String id);
+    Product deleteProductById(String id);
 
     /**
      * AbstractMethod to update a product
