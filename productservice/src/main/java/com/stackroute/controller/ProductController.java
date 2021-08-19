@@ -16,11 +16,10 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/api/v1/")
 @Slf4j
 public class ProductController {
-
-    private final ProductService productService;
+    private ProductService productService;
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
 
     @Autowired
@@ -32,7 +31,7 @@ public class ProductController {
     /**
      * save a new Product
      */
-    @PostMapping("/product")
+    @PostMapping("product")
     @ApiOperation(value = "POST a new Product", notes = "Add a new Product entry to the Product database " +
             "using a provided JSON Product object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
@@ -48,11 +47,29 @@ public class ProductController {
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
 
+    /**
+     * save a new Product
+     */
+    @PostMapping("products")
+    @ApiOperation(value = "POST a list of new Product", notes = "Add a list of new Product entries " +
+            "to the Product database using a provided JSON Product object. Returns the newly created entry " +
+            "if the operation is a success.", response = ResponseEntity.class)
+    public ResponseEntity<List<Product>> saveProducts(@RequestBody List<Product> products) {
+        List<Product> savedProduct = productService.saveProducts(products);
+
+        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+        String timeStamp = zonedDateTimeNow.format(formatter);
+
+        log.info("Added the list of products to the products collection | Timestamp(EST): {}", timeStamp);
+
+        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
+    }
+
 
     /**
      * retrieve all Products
      */
-    @GetMapping("/products")
+    @GetMapping("products")
     @ApiOperation(value = "GET all Products", notes = "GET all Product entries from the Product database. " +
             "Returns the result as a List of Product object in JSON format " +
             "if any entry is found.", response = ResponseEntity.class)
@@ -63,7 +80,7 @@ public class ProductController {
 
         log.info("Query to get all product entries | Timestamp: {}", timeStamp);
 
-        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
+        return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
     }
 
     /**
@@ -79,7 +96,7 @@ public class ProductController {
 
         log.info("Query to get a product | Product ID: {} | Timestamp: {}" ,productId ,timeStamp);
 
-        return new ResponseEntity<>(productService.getProductById(productId), HttpStatus.FOUND);
+        return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.FOUND);
     }
 
     /**
@@ -89,14 +106,14 @@ public class ProductController {
     @ApiOperation(value = "DELETE an existing Product", notes = "Remove a Product entry from the Product database " +
             "by a provided Product ID. Returns the deleted Product object " +
             "if the operation is successful.", response = ResponseEntity.class)
-    public ResponseEntity<Product> getProductAfterDeleting(@PathVariable("ProductId") String productId) {
+    public ResponseEntity<Product> getProductAfterDeleting(@PathVariable("productId") String productId) {
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Request to DELETE a product | Product ID: {} | Timestamp: {}" ,productId ,timeStamp);
+        log.info("Request to DELETE a product | Product ID: {} | Timestamp: {}", productId,timeStamp);
 
-        return new ResponseEntity<>(productService.deleteProduct(productId), HttpStatus.OK);
+        return new ResponseEntity<>(productService.deleteProductById(productId), HttpStatus.OK);
     }
 
     /**
