@@ -12,23 +12,54 @@
             <button (click)="showAdd()" type="submit">Add Product</button>
         </div>
 
-        <form [formGroup]="form" (ngSubmit)=" onSubmit()" *ngIf="toAdd">
-        
-        <div class="row">
-          <div class="col-25">
-            <label>ID</label>
-          </div>
-          <div class="col-75">
-            <input formControlName="id" type="number"  placeholder="Enter the id of the product">
-          </div>
-        </div>
-            
+        <br>
+        <br>
+        <br>
+
+        <form [formGroup]="form" (ngSubmit)=" addProduct()" *ngIf="toAdd">
+
         <div class="row">
           <div class="col-25">
             <label>Name</label>
           </div>
           <div class="col-75">
-            <input formControlName="productname" type="text"  placeholder="Enter the name of the product">
+            <input formControlName="productName" type="text"  placeholder="Enter the name of the product">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Description</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="productDescription" type="text"  placeholder="Enter the description of the product">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Picture</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="picture" type="text"  placeholder="Enter the picture link of the product">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Price in CAD</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="priceCAD" type="number"  placeholder="Enter the price of the product">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Discount</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="discount" type="number"  placeholder="Enter the discount of the product">
           </div>
         </div>
 
@@ -37,7 +68,7 @@
               <label>Quantity</label>
             </div>
             <div class="col-75">
-              <input formControlName="qty" type="number"  placeholder="Enter the quantity of the product">
+              <input formControlName="quantity" type="number"  placeholder="Enter the quantity of the product">
             </div>
           </div>
 
@@ -47,22 +78,86 @@
           <input class="btn" type="submit" value="Add Product">
         </div>
 
-      </form>    
+      </form>
+
+      <form [formGroup]="form" (ngSubmit)=" updateProduct()" *ngIf="toUpdate">
+
+        <div class="row">
+          <div class="col-25">
+            <label>Name</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="productName" type="text"  value={{product.productName}}>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Description</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="productDescription" type="text"  placeholder={{product.productDescription}}>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Picture</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="picture" type="text"  placeholder={{product.picture}}>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Price in CAD</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="priceCAD" type="number"  placeholder={{product.priceCAD}}>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Discount</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="discount" type="number"  placeholder={{product.discount}}>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label>Quantity</label>
+            </div>
+            <div class="col-75">
+              <input formControlName="quantity" type="number"  placeholder={{product.quantity}}>
+            </div>
+          </div>
+
+          <br>
+
+        <div class="row">
+          <input class="btn" type="submit" value="Update Product">
+        </div>
+
+      </form>
 
         <div class="alert" >
           {{message}}
         </div>
 
         <br>
-        
+
 
     <br>
 
     </div>
 
     <div id="products" >
-      
-          <div class="container_product" >  
+
+          <div class="container_product" >
             <div class="row" *ngFor="let product of products">
                 <div class="column">
                     <div class="card">
@@ -72,8 +167,8 @@
                         <h2 class="card-text">${{product.priceCAD}}</h2>
                         <h2 class="card-text">{{product.discount*100}}% Discount!</h2>
                         <p class="card-text">Only {{product.quantity}} left!!!</p>
-                        <button (click)="addToCart()">Delete</button>
-                        <button (click)="addToCart()">Update</button>
+                        <button (click)="deleteProduct(product.id)">Delete</button>
+                        <button (click)="showUpdate(product)">Update</button>
                       </div>
                     </div>
                   </div>
@@ -84,8 +179,8 @@
 
 
 </div>
-    
-    
-    
+
+
+
 
 
