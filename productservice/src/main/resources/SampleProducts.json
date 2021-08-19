@@ -3,12 +3,72 @@
     "productName": "Mens Straight Fit Jeans",
     "productDescription": "100% Cotton, Machine Wash, Super comfortable",
     "picture": null,
+    "priceCAD": 70.00,
+    "discount": 1,
+    "quantity": 30,
+    "productCategories": ["Mens", "Jean", "Straight Fit"],
+    "productColors": "Blue",
+    "productSize": "XS"
+
+  },
+  {
+    "productName": "Mens Straight Fit Jeans",
+    "productDescription": "100% Cotton, Machine Wash, Super comfortable",
+    "picture": null,
+    "priceCAD": 65.00,
+    "discount": 1,
+    "quantity": 50,
+    "productCategories": ["Mens", "Jean", "Straight Fit"],
+    "productColors": "Blue",
+    "productSize": "S"
+
+  },
+  {
+    "productName": "Mens Straight Fit Jeans",
+    "productDescription": "100% Cotton, Machine Wash, Super comfortable",
+    "picture": null,
     "priceCAD": 60.00,
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Mens", "Jean", "Straight Fit"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "M"
+
+  },
+  {
+    "productName": "Mens Straight Fit Jeans",
+    "productDescription": "100% Cotton, Machine Wash, Super comfortable",
+    "picture": null,
+    "priceCAD": 60.00,
+    "discount": 1,
+    "quantity": 200,
+    "productCategories": ["Mens", "Jean", "Straight Fit"],
+    "productColors": "Black",
+    "productSize": "L"
+
+  },
+  {
+    "productName": "Mens Straight Fit Jeans",
+    "productDescription": "100% Cotton, Machine Wash, Super comfortable",
+    "picture": null,
+    "priceCAD": 60.00,
+    "discount": 1,
+    "quantity": 200,
+    "productCategories": ["Mens", "Jean", "Straight Fit"],
+    "productColors": "Blue",
+    "productSize": "XL"
+
+  },
+  {
+    "productName": "Mens Straight Fit Jeans",
+    "productDescription": "100% Cotton, Machine Wash, Super comfortable",
+    "picture": null,
+    "priceCAD": 60.00,
+    "discount": 1,
+    "quantity": 200,
+    "productCategories": ["Mens", "Jean", "Straight Fit"],
+    "productColors": "Black",
+    "productSize": "XL"
 
   },
   {
@@ -19,8 +79,8 @@
     "discount": 1,
     "quantity": 300,
     "productCategories": ["Mens", "Jean", "Regular Fit", "Classic"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "M"
   },
   {
     "productName": "Mens Relaxed Fit CloudsFeels Jeans",
@@ -30,8 +90,8 @@
     "discount": 1,
     "quantity": 400,
     "productCategories": ["Mens", "Jean", "Relaxed Fit", "CloudsFeels"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "M"
   },
   {
     "productName": "Mens 1010 Original Fit Jeans",
@@ -41,8 +101,8 @@
     "discount": 1,
     "quantity": 500,
     "productCategories": ["Mens", "Jean", "Original Fit"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "L"
   },
   {
     "productName": "Mens Regular Blanket Lined Denim Jacket",
@@ -52,8 +112,8 @@
     "discount": 1,
     "quantity": 100,
     "productCategories": ["Mens", "Jacket", "Traditional Western Style"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Black",
+    "productSize": "L"
   },
   {
     "productName": "Mens Regular Fit Denim Jacket",
@@ -63,8 +123,8 @@
     "discount": 1,
     "quantity": 150,
     "productCategories": ["Male", "Jacket"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Black",
+    "productSize": "M"
   },
   {
     "productName": "Mens Hooded Trucker Denim Jacket",
@@ -74,8 +134,8 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Male", "Jacket"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "M"
   },
   {
     "productName": "Mens Fleece Faux Fur Collar Denim Jacket",
@@ -85,8 +145,8 @@
     "discount": 1,
     "quantity": 50,
     "productCategories": ["Male", "Jacket", "Winter"],
-    "productColors": ["Black"],
-    "productSize": ["M", "L", "XL"]
+    "productColors": "Black",
+    "productSize": "XL"
   },
   {
     "productName": "Womens Straight Fit Jeans",
@@ -96,8 +156,8 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Womens", "Jean", "Straight Fit"],
-    "productColors": ["Blue", "LIGHT_BLUE", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "LIGHT_BLUE",
+    "productSize": "S"
 
   },
   {
@@ -108,8 +168,8 @@
     "discount": 1,
     "quantity": 300,
     "productCategories": ["Womens", "Jean", "Regular Fit", "Classic"],
-    "productColors": ["Blue", "LIGHT_BLUE", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "LIGHT_BLUE",
+    "productSize": "M"
   },
   {
     "productName": "Womens Relaxed Fit CloudsFeels Jeans",
@@ -119,8 +179,8 @@
     "discount": 1,
     "quantity": 400,
     "productCategories": ["Womens", "Jean", "Relaxed Fit", "CloudsFeels"],
-    "productColors": ["Blue", "LIGHT_BLUE", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "S"
   },
   {
     "productName": "Womens 1010 Original Fit Jeans",
@@ -130,8 +190,8 @@
     "discount": 1,
     "quantity": 500,
     "productCategories": ["Womens", "Jean", "Original Fit"],
-    "productColors": ["Blue", "LIGHT_BLUE", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "LIGHT_BLUE",
+    "productSize": "M"
   },
   {
     "productName": "Womens Regular Blanket Lined Denim Jacket",
@@ -141,8 +201,8 @@
     "discount": 1,
     "quantity": 100,
     "productCategories": ["Womens", "Jacket", "Traditional Western Style"],
-    "productColors": ["Blue", "LIGHT_BLUE", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Black",
+    "productSize": "XL"
   },
   {
     "productName": "Womens Regular Fit Denim Jacket",
@@ -152,8 +212,8 @@
     "discount": 1,
     "quantity": 150,
     "productCategories": ["Male", "Jacket"],
-    "productColors": ["Blue", "LIGHT_BLUE", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "LIGHT_BLUE",
+    "productSize": "XS"
   },
   {
     "productName": "Womens Hooded Trucker Denim Jacket",
@@ -163,8 +223,8 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Male", "Jacket"],
-    "productColors": ["Blue", "LIGHT_BLUE", "Black"],
-    "productSize": ["S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "M"
   },
   {
     "productName": "Womens Fleece Faux Fur Collar Denim Jacket",
@@ -174,8 +234,8 @@
     "discount": 1,
     "quantity": 50,
     "productCategories": ["Male", "Jacket", "Winter"],
-    "productColors": ["LIGHT_BLUE","Black"],
-    "productSize": ["M", "L", "XL"]
+    "productColors": "LIGHT_BLUE",
+    "productSize": "M"
   },
   {
     "productName": "Boys Straight Fit Jeans",
@@ -185,9 +245,8 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Boys", "Jean", "Straight Fit"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
-
+    "productColors": "Blue",
+    "productSize": "S"
   },
   {
     "productName": "Boys Classic Regular Fit Jeans",
@@ -197,8 +256,8 @@
     "discount": 1,
     "quantity": 300,
     "productCategories": ["Boys", "Jean", "Regular Fit", "Classic"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "S"
   },
   {
     "productName": "Boys Relaxed Fit CloudsFeels Jeans",
@@ -208,8 +267,8 @@
     "discount": 1,
     "quantity": 400,
     "productCategories": ["Boys", "Jean", "Relaxed Fit", "CloudsFeels"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Black",
+    "productSize": "S"
   },
   {
     "productName": "Boys 1010 Original Fit Jeans",
@@ -219,8 +278,8 @@
     "discount": 1,
     "quantity": 500,
     "productCategories": ["Boys", "Jean", "Original Fit"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "XS"
   },
   {
     "productName": "Boys Regular Blanket Lined Denim Jacket",
@@ -230,8 +289,8 @@
     "discount": 1,
     "quantity": 100,
     "productCategories": ["Boys", "Jacket", "Traditional Western Style"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "M"
   },
   {
     "productName": "Boys Regular Fit Denim Jacket",
@@ -241,8 +300,8 @@
     "discount": 1,
     "quantity": 150,
     "productCategories": ["Male", "Jacket"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "XS"
   },
   {
     "productName": "Boys Hooded Trucker Denim Jacket",
@@ -252,8 +311,8 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Male", "Jacket"],
-    "productColors": ["Blue", "Black"],
-    "productSize": ["S", "M", "L", "XL"]
+    "productColors": "Blue",
+    "productSize": "XL"
   },
   {
     "productName": "Boys Fleece Faux Fur Collar Denim Jacket",
@@ -263,7 +322,7 @@
     "discount": 1,
     "quantity": 50,
     "productCategories": ["Male", "Jacket", "Winter"],
-    "productColors": ["Black"],
-    "productSize": ["XS", "S", "M", "L", "XL"]
+    "productColors": "Black",
+    "productSize": "XL"
   }
 ]
