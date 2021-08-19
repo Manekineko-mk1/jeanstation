@@ -35,7 +35,7 @@ class ProductServiceTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat1");
         categories.add("cat2");
@@ -70,7 +70,7 @@ class ProductServiceTest {
         productRepository.save(product);
         //stubbing the mock to return specific data
         when(productRepository.findAll()).thenReturn(productList);
-        List<Product> productList1 = productService.getAllProducts();
+        List<Product> productList1 = productService.findAllProducts();
         assertEquals(productList, productList1);
         verify(productRepository, times(1)).save(product);
         verify(productRepository, times(1)).findAll();
@@ -79,7 +79,7 @@ class ProductServiceTest {
     @Test
     public void givenProductIdThenShouldReturnRespectiveProduct() {
         when(productRepository.findById(any())).thenReturn(Optional.of(product));
-        Product retrievedProduct = productService.getProductById(product.getId());
+        Product retrievedProduct = productService.findProductById(product.getId());
         verify(productRepository, times(1)).findById(any());
 
     }
@@ -87,8 +87,8 @@ class ProductServiceTest {
     @Test
     void givenProductIdToDeleteThenShouldReturnDeletedProduct() {
         when(productRepository.findById(product.getId())).thenReturn(optional);
-        Product deletedProduct = productService.deleteProduct("1");
-        assertEquals(1, deletedProduct.getId());
+        Product deletedProduct = productService.deleteProductById("1");
+        assertEquals("1", deletedProduct.getId());
 
         verify(productRepository, times(2)).findById(product.getId());
         verify(productRepository, times(1)).deleteById(product.getId());
@@ -97,7 +97,7 @@ class ProductServiceTest {
     @Test
     void givenProductIdToDeleteThenShouldNotReturnDeletedProduct() {
         when(productRepository.findById(product.getId())).thenReturn(Optional.empty());
-        Product deletedProduct = productService.deleteProduct("1");
+        Product deletedProduct = productService.deleteProductById("1");
         verify(productRepository, times(1)).findById(product.getId());
     }
 
