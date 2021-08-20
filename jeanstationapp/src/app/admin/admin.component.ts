@@ -82,6 +82,7 @@ export class AdminComponent implements OnInit {
       this.product.quantity = this.form.value.quantity;
       this.product.productSize = this.form.value.productSize;
       this.product.productColor = this.form.value.productColor;
+      this.product.productCategories = this.form.value.productCategories;
       this.productservice.updateProduct(this.product).subscribe(
         data => {
           this.message = 'Product updated';
@@ -139,14 +140,17 @@ export class AdminComponent implements OnInit {
     this.form.get('quantity').setValue(this.product.quantity);
     this.form.get('productSize').setValue(this.product.productSize);
     this.form.get('productColor').setValue(this.product.productColor);
+    this.form.get('productCategories').setValue(this.product.productCategories);
   }
 
-  // addCategory(){
-  //   this.form.productCategories.push(new FormControl());
-  // }
+  addCategory(){
+    this.form.productCategories = this.form.get('productCategories') as FormArray;
+    this.form.productCategories.push(new FormControl());
+  }
 
-  // deleteCategory(index:number){
-  //   this.form.productCategories.removeAt(index)
-  // }
+  deleteCategory(index:number){
+    this.form.productCategories = this.form.get('productCategories') as FormArray;
+    this.form.productCategories.removeAt(index);
+  }
 
 }

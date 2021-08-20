@@ -89,30 +89,38 @@
           </div>
       </div>
 
-      <!-- <div formArrayName="productCategories">
+      <div formArrayName="productCategories">
+        <div class="arrayform">
         <div class="row">
-            <button class="col-md-offset-1 col-md-1 btn btn-default"
-                    type="button"
-                    (click)="addCategory()">Add Category
-            </button>
-        </div>
+        
         <div class="form-group"
-            *ngFor="let category of productCategories.controls; let i=index" >
-            <label class="col-md-2 control-label" [attr.for]="i">category</label>
+            *ngFor="let category of form.get('productCategories').controls; let i=index" >
+            <div class = "row">
+            <label class="col-25 control-label" [attr.for]="i">Category</label>
 
-            <div class="col-md-8">
+            <div class="col-75">
                 <input class="form-control" 
                         [id]="i" 
                         type="text" 
                         placeholder="category" 
                         [formControlName]="i" />
             </div>
-            <button class="pull-right btn btn-warning"
+            <br>
+            <button class="col-md-offset-1 col-md-1 btn btn-default"
                     type="button"
-                (click)="deleteCategory(i)">Delete category
+                    (click)="deleteCategory(i)">Delete Category
+            </button>
+          </div>
+          </div>
+        </div>
+        <div class="row">
+            <button class="col-md-offset-1 col-md-1 btn btn-default"
+                    type="button"
+                    (click)="addCategory()">Add Category
             </button>
         </div>
-    </div> -->
+      </div>
+    </div>
 
           <br>
 
@@ -209,6 +217,36 @@
               <label>Black</label>
           </div>
       </div>
+
+      <div formArrayName="productCategories">
+        <div class="row">
+        
+        <div class="form-group"
+            *ngFor="let category of form.get('productCategories').controls; let i=index" >
+            <div class = "row">
+            <label class="col-25 control-label" [attr.for]="i">Category</label>
+
+            <div class="col-75">
+                <input class="form-control" 
+                        [id]="i" 
+                        type="text" 
+                        placeholder="category" 
+                        [formControlName]="i" />
+            </div>
+            <button class="col-md-offset-1 col-md-1 btn btn-default"
+                    type="button"
+                    (click)="deleteCategory(i)">Delete Category
+            </button>
+          </div>
+          </div>
+        </div>
+        <div class="row">
+            <button class="col-md-offset-1 col-md-1 btn btn-default"
+                    type="button"
+                    (click)="addCategory()">Add Category
+            </button>
+        </div>
+    </div>
 
           <br>
 
