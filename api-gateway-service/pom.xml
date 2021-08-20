@@ -5,8 +5,9 @@
     <!--    This should inherit the groupId,artifactId,version and relativePAth from parentpom-->
     <parent>
         <groupId>com.stackroute</groupId>
-        <artifactId>maincourse_java_jfse_mc04_api_gateway_routing_exercise</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>boilerplate</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <artifactId>api-gateway-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
