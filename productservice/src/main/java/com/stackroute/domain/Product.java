@@ -37,19 +37,6 @@ public class Product {
         this.quantity = quantity;
         this.productCategories = productCategories;
 
-        log.info("A new product is created: {} | {}", this.getId(), this.productName);
-    }
-
-    public Product(String id, String productName, String productDescription, String picture, float priceCAD, float discount, int quantity, ArrayList<String> productCategories) {
-        this.id = id;
-        this.productName = productName;
-        this.productDescription = productDescription;
-        this.picture = picture;
-        this.priceCAD = priceCAD;
-        this.discount = discount;
-        this.quantity = quantity;
-        this.productCategories = productCategories;
-
-        log.info("A new product is created: {} | {}", this.getId(), this.productName);
+        log.info("A new product is created: {} | {}", getId(), this.productName);
     }
 }
