@@ -5,18 +5,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
 
 @Slf4j
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(collection = "products")
 public class Product {
     @Id
     private String id;
+    private String productId;
     private String productName;
     private String productDescription;
     private String picture;
@@ -26,7 +23,8 @@ public class Product {
     private String productSize;
     private String productColor;
 
-    public Product(String productName, String productDescription, String picture, float priceCAD, float discount, int quantity, String productSize, String productColor) {
+    public Product(String productId, String productName, String productDescription, String picture, float priceCAD, float discount, int quantity, String productSize, String productColor) {
+        this.productId = productId;
         this.productName = productName;
         this.productDescription = productDescription;
         this.picture = picture;
