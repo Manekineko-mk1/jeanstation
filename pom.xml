@@ -23,6 +23,9 @@
 
     <modules>
         <module>productservice</module>
+        <module>cartservice</module>
+        <module>orderservice</module>
+        <module>api-gateway-service</module>
     </modules>
 
 	<dependencies>
