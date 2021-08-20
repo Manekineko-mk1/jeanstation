@@ -37,6 +37,6 @@ public class Product {
         this.quantity = quantity;
         this.productCategories = productCategories;
 
-        log.info("A new product is created: {} | {}", getId(), this.productName);
+        log.info("A new product is created: {} | {}", this.getId(), this.productName);
     }
 }
