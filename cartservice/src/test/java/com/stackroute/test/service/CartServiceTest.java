@@ -36,12 +36,12 @@ class CartServiceTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat1");
         categories.add("cat2");
         ArrayList<Product> itemsList = new ArrayList<>();
-        itemsList.add(new Product("Product1", "description1", "picture1", 42, 10, 10, categories));
+        itemsList.add(new Product("Product1", "description1", "picture1", 42, 10, 10, "L", "BLUE"));
         cart = new Cart(10, itemsList);
         cart1 = new Cart(20, itemsList);
         optional = Optional.of(cart);
@@ -112,7 +112,7 @@ class CartServiceTest {
         categories.add("cat3");
         categories.add("cat4");
         ArrayList<Product> itemsList = new ArrayList<>();
-        itemsList.add(new Product("Product1", "description1", "picture1", 42, 10, 10, categories));
+        itemsList.add(new Product("Product1", "description1", "picture1", 42, 10, 10, "S", "LIGHT_BLUE"));
         cart.setCartItems(itemsList);
         Cart cart1 = cartService.updateCart(cart);
         assertEquals(cart1.getCartItems(), categories);
