@@ -41,7 +41,7 @@ class CartServiceTest {
         categories.add("cat1");
         categories.add("cat2");
         ArrayList<Product> itemsList = new ArrayList<>();
-        itemsList.add(new Product("Product1", "description1", "picture1", 42, 10, 10, "L", "BLUE"));
+        itemsList.add(new Product("1L", "Product1", "description1", "picture1", 42, 10, 10, "L", "BLUE"));
         cart = new Cart(10, itemsList);
         cart1 = new Cart(20, itemsList);
         optional = Optional.of(cart);
@@ -73,7 +73,7 @@ class CartServiceTest {
         cartRepository.save(cart);
         //stubbing the mock to return specific data
         when(cartRepository.findAll()).thenReturn(cartList);
-        List<Cart> cartList1 = cartService.getAllCarts();
+        List<Cart> cartList1 = cartService.findAllCarts();
         assertEquals(cartList, cartList1);
         verify(cartRepository, times(1)).save(cart);
         verify(cartRepository, times(1)).findAll();
@@ -82,7 +82,7 @@ class CartServiceTest {
     @Test
     public void givenCartIdThenShouldReturnRespectiveCart() {
         when(cartRepository.findById(any())).thenReturn(Optional.of(cart));
-        Cart retrievedCart = cartService.getCartById(cart.getId());
+        Cart retrievedCart = cartService.findCartById(cart.getId());
         verify(cartRepository, times(1)).findById(any());
 
     }
@@ -90,7 +90,7 @@ class CartServiceTest {
     @Test
     void givenCartIdToDeleteThenShouldReturnDeletedCart() {
         when(cartRepository.findById(cart.getId())).thenReturn(optional);
-        Cart deletedCart = cartService.deleteCart("1");
+        Cart deletedCart = cartService.deleteCartById("1");
         assertEquals(1, deletedCart.getId());
 
         verify(cartRepository, times(2)).findById(cart.getId());
@@ -100,7 +100,7 @@ class CartServiceTest {
     @Test
     void givenCartIdToDeleteThenShouldNotReturnDeletedCart() {
         when(cartRepository.findById(cart.getId())).thenReturn(Optional.empty());
-        Cart deletedCart = cartService.deleteCart("1");
+        Cart deletedCart = cartService.deleteCartById("1");
         verify(cartRepository, times(1)).findById(cart.getId());
     }
 
@@ -112,7 +112,7 @@ class CartServiceTest {
         categories.add("cat3");
         categories.add("cat4");
         ArrayList<Product> itemsList = new ArrayList<>();
-        itemsList.add(new Product("Product1", "description1", "picture1", 42, 10, 10, "S", "LIGHT_BLUE"));
+        itemsList.add(new Product("1L", "Product1", "description1", "picture1", 42, 10, 10, "S", "LIGHT_BLUE"));
         cart.setCartItems(itemsList);
         Cart cart1 = cartService.updateCart(cart);
         assertEquals(cart1.getCartItems(), categories);
