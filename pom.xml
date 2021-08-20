@@ -23,6 +23,7 @@
 
     <modules>
         <module>productservice</module>
+        <module>userservice</module>
         <module>cartservice</module>
         <module>orderservice</module>
         <module>api-gateway-service</module>
