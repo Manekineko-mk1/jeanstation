@@ -49,10 +49,12 @@ public class ProductServiceImpl implements ProductService {
 
             throw new ProductAlreadyExistsException(product.getId());
         } else {
-            log.info("SUCCESS: Add a product to the \"products\" collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-                    product.getId(), product.getProductName(), timeStamp);
+            Product savedProduct = productRepository.save(product);
 
-            return productRepository.save(product);
+            log.info("SUCCESS: Add a product to the \"products\" collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
+                    savedProduct.getId(), savedProduct.getProductName(), timeStamp);
+
+            return savedProduct;
         }
     }
 
