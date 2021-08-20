@@ -6,11 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 @SpringBootApplication(scanBasePackages = "com.stackroute")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Document(collection = "carts")
 public class Cart {
@@ -23,6 +25,13 @@ public class Cart {
         this.priceTotal = priceTotal;
         this.cartItems = cartItems;
 
-        log.info("A new cart is created: {} | {}", getId());
+        log.info("A new cart is created: {} | {}", this.getId());
+    }
+
+    public Cart(float priceTotal) {
+        this.priceTotal = priceTotal;
+        this.cartItems = new ArrayList<>();
+
+        log.info("A new cart is created: {} | {}", this.getId());
     }
 }
