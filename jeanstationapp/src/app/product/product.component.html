@@ -1,0 +1,19 @@
+<div id="products" >
+  <h2> Our Product </h2>
+      <div class="container" >  
+        <div class="row" *ngFor="let product of products">
+            <div class="column">
+                <div class="card">
+                  <img class="card-img-top" src={{product.picture}} alt="Card image cap">
+                  <div class="card-body">
+                    <h1 class="card-title">{{product.productName}}</h1>
+                    <h2 class="card-text">${{product.priceCAD}}</h2>
+                    <h2 class="card-text">{{product.discount*100}}% Discount!</h2>
+                    <p class="card-text">Only {{product.quantity}} left!!!</p>
+                    <button (click)="addToCart()">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+ </div>
