@@ -13,6 +13,11 @@ import { OrderComponent } from './order/order.component';
 import { AdminComponent } from './admin/admin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderManagementComponent } from './order-management/order-management.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserprofileComponent } from './userprofile/userprofile.component';
+import { MyorderComponent } from './myorder/myorder.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +29,18 @@ import { HttpClientModule } from '@angular/common/http';
     ProductComponent,
     CartComponent,
     OrderComponent,
-    AdminComponent
+    AdminComponent,
+    OrderManagementComponent,
+    UserprofileComponent,
+    MyorderComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

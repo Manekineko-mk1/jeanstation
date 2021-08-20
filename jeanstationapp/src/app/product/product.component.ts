@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from '../model/Product';
 import { ApprouteService } from '../services/approute.service';
 import { ProductService } from '../services/product.service';
@@ -11,8 +12,11 @@ import { ProductService } from '../services/product.service';
 export class ProductComponent implements OnInit {
 
   products:Product[];
+  showDetails:boolean;
+  closeModal: string;
+  showProduct:Product;
 
-  constructor(private productservice:ProductService, private approuter:ApprouteService) { }
+  constructor(private productservice:ProductService, private approuter:ApprouteService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     // this.products = new Array();
@@ -42,6 +46,24 @@ export class ProductComponent implements OnInit {
   addToCart(){
     this.approuter.openCart();
   }
+
+  triggerModal(content, product) {
+    this.showProduct = product;
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+      this.closeModal = `Closed with: ${res}`;
+    }, (res) => {
+      this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+    });
+  }
   
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
 
 }

@@ -6,14 +6,51 @@
                 <div class="card">
                   <img class="card-img-top" src={{product.picture}} alt="Card image cap">
                   <div class="card-body">
-                    <h1 class="card-title">{{product.productName}}</h1>
-                    <h2 class="card-text">${{product.priceCAD}}</h2>
-                    <h2 class="card-text">{{product.discount*100}}% Discount!</h2>
-                    <p class="card-text">Only {{product.quantity}} left!!!</p>
+                    <h4 class="card-title">{{product.productName}}</h4>
+                    <h5 class="card-text">${{product.priceCAD}}</h5>
+                    <h5 class="card-text" *ngIf="product.discount!=0" id="discount">{{product.discount*100}}% Discount!</h5>
+                    <p class="card-text">Quantity: {{product.quantity}}</p>
                     <button (click)="addToCart()">Add to Cart</button>
+                    <br><br>
+                    <button class="btn btn-danger" (click)="triggerModal(modalData,product)">Show More Information</button>
                   </div>
                 </div>
               </div>
+              <!-- <div class="row" *ngIf="showDetails">
+                <div class="card">
+                  <div class="card-body">
+                    <h1 class="card-title">{{product.productName}}</h1>
+                    <h2 class="card-text">${{product.priceCAD}}</h2>
+                    <h2 class="card-text" *ngIf="product.discount!=0" id="discount">{{product.discount*100}}% Discount!</h2>
+                    <p class="card-text">Quantity: {{product.quantity}}</p>
+                    <p class="card-text">Details: {{product.productDescription}}</p>
+                    <p class="card-text">Size: {{product.productSize}}</p>
+                    <p class="card-text">Color: {{productColor}}</p>
+                  </div>
+                </div>
+              </div> -->
         </div>
     </div>
+
+    
+
+<ng-template #modalData let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{showProduct.productName}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h2>${{showProduct.priceCAD}}</h2>
+    <h2 *ngIf="showProduct.discount!=0" id="discount">{{showProduct.discount*100}}% Discount!</h2>
+    <p>Quantity: {{showProduct.quantity}}</p>
+    <p>Details: {{showProduct.productDescription}}</p>
+    <p>Size: {{showProduct.productSize}}</p>
+    <p>Color: {{showProduct.productColor}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
  </div>

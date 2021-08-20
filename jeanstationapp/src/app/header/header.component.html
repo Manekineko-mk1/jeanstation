@@ -8,7 +8,13 @@
         <li *ngIf="isLoggedIn">
           <a href="../login" routerLink="login">Logout</a>
       </li>
-        <li>
+      <li *ngIf="isLoggedIn&&!isAdmin">
+        <a href="../userprofile" routerLink="profile">Profile</a>
+    </li>
+    <li *ngIf="isLoggedIn&&!isAdmin">
+        <a href="../myorder" routerLink="myorder">My Order</a>
+    </li>
+        <li *ngIf="!isAdmin">
             <a href="../cart" routerLink="cart">Cart</a>
         </li>
         <li>
@@ -19,9 +25,19 @@
         </li>
     </ul>
 
+ 
     <div class="add" *ngIf="isAdmin">
-      <button (click)="showAdd()" type="submit">Add Product</button>
+
+      <button (click)="showAdd()" type="submit" *ngIf="!inOrderManag">Add Product</button>
+
+
+      <button (click)="toOrderManagement()" type="submit" *ngIf="!inOrderManag">Order Management</button>
+
+
+        <button (click)="toProductManagement()" type="submit" *ngIf="inOrderManag">Product Management</button>
+
   </div>
+
 
 </div>
 <router-outlet></router-outlet>

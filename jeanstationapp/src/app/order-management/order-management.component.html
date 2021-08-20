@@ -1,0 +1,52 @@
+<div id="orders" >
+  <h2> Orders </h2>
+      <div class="container" >  
+        <div class="row" *ngFor="let order of orders">
+            <div class="column">
+                <div class="card" (click)="viewDetails()">
+                  <div class="card-body">
+                    <h4 class="card-title">ID: {{order.id}}</h4>
+                    <p class="card-text">Total Price: ${{order.priceTotal}}</p>
+                    <p class="card-text">User: {{order.userId}}</p>
+                    <p class="card-text">Delivery Date: {{order.deliveryDate}}</p>
+                    <p class="card-text">Shipment: {{order.shipmentId}}</p>
+                    <p class="card-text">Order Status: {{order.orderStatus}}</p>
+                    <p>Order Items: </p>
+                    <ul *ngFor="let item of order.orderItem">
+                      <li>{{item}}</li>
+                    </ul>
+                    <br><br>
+                    <button class="btn btn-danger" (click)="triggerModal(modalData,order)">Update Status</button>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+<ng-template #modalData let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Angular Bootstrap Modal Popup</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h5>New Status</h5>
+    <form [formGroup]="form" (ngSubmit)="updateStatus()">
+    <select class="custom-select" formControlName="status">
+      <option value="submitted">Submitted</option>
+      <option value="rejected">Rejected</option>
+      <option value="inProgress">In Progress</option>
+      <option value="shipped">Shipped</option>
+      <option value="delivered">Delivered</option>
+    </select>
+    <br>
+    <br>
+    <button type="submit">Update</button>
+  </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+  

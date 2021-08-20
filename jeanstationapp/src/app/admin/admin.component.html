@@ -91,30 +91,31 @@
 
       <div formArrayName="productCategories">
         <div class="arrayform">
-        <div class="row">
+        <!-- <div class="row"> -->
         
         <div class="form-group"
             *ngFor="let category of form.get('productCategories').controls; let i=index" >
             <div class = "row">
             <label class="col-25 control-label" [attr.for]="i">Category</label>
 
-            <div class="col-75">
+            <div class="col-50">
                 <input class="form-control" 
                         [id]="i" 
                         type="text" 
                         placeholder="category" 
                         [formControlName]="i" />
             </div>
-            <br>
-            <button class="col-md-offset-1 col-md-1 btn btn-default"
+           <div class="col-25">
+            <button class="col-md-6 btn btn-default"
                     type="button"
-                    (click)="deleteCategory(i)">Delete Category
+                    (click)="deleteCategory(i)">Delete
             </button>
           </div>
           </div>
+          <!-- </div> -->
         </div>
         <div class="row">
-            <button class="col-md-offset-1 col-md-1 btn btn-default"
+            <button class="col-md-2 btn btn-default"
                     type="button"
                     (click)="addCategory()">Add Category
             </button>
@@ -125,7 +126,7 @@
           <br>
 
         <div class="row">
-          <input class="btn" type="submit" value="Add Product">
+          <input class="col-md-2 btn btn-default" type="submit" value="Add Product">
         </div>
 
       </form>
@@ -275,9 +276,9 @@
                     <div class="card">
                       <img class="card-img-top" src={{product.picture}} alt="Card image cap">
                       <div class="card-body">
-                        <h1 class="card-title">{{product.productName}}</h1>
-                        <h2 class="card-text">${{product.priceCAD}}</h2>
-                        <h2 class="card-text">{{product.discount*100}}% Discount!</h2>
+                        <h4 class="card-title">{{product.productName}}</h4>
+                        <h5 class="card-text">${{product.priceCAD}}</h5>
+                        <h5 class="card-text" *ngIf="product.discount!=0" id="discount">{{product.discount*100}}% Discount!</h5>
                         <p class="card-text">Only {{product.quantity}} left!!!</p>
                         <button (click)="deleteProduct(product.id)">Delete</button>
                         <button (click)="showUpdate(product)">Update</button>

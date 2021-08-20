@@ -2,19 +2,19 @@
     position: fixed;
     background-color: #3a4468;
     text-align: center;
-    width:100%;
     left: 0;
+    right:0;
     bottom: 0%;
-    background-color: #3a4468;
+    width:100%;
+    margin:0;
+    max-width: 2000px;
   }
   
   .container p {
-    border-top: 1px solid #ffffff;
     color: #ffffff;
     padding: 20px 0;
     margin: 0;
+    width:100%;
   }
   
-  .container p a {
-    color: inherit;
-  }
+ 

@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
 
   isLoggedIn:boolean;
   isAdmin:boolean;
+  inOrderManag:boolean;
 
   constructor(private approute:ApprouteService) { }
 
@@ -23,11 +24,21 @@ export class HeaderComponent implements OnInit {
       value => {
         this.isAdmin = value;
       }
-    )
+    );
   }
 
   showAdd(){
     this.approute.showAdd.next(true);
+  }
+
+  toOrderManagement(){
+    this.inOrderManag=true;
+    this.approute.openOrderManagement();
+  }
+
+  toProductManagement(){
+    this.inOrderManag=false;
+    this.approute.openAdmin();
   }
 
 }

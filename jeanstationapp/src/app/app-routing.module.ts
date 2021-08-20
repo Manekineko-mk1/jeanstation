@@ -4,8 +4,11 @@ import { AdminComponent } from './admin/admin.component';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { MyorderComponent } from './myorder/myorder.component';
+import { OrderManagementComponent } from './order-management/order-management.component';
 import { OrderComponent } from './order/order.component';
 import { ProductComponent } from './product/product.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -13,7 +16,10 @@ const routes: Routes = [
   {path: 'order', component:OrderComponent},
   {path: 'cart', component:CartComponent},
   {path: 'admin', component:AdminComponent},
-  {path: 'product', component:ProductComponent}
+  {path: 'product', component:ProductComponent},
+  {path: 'order-management', component:OrderManagementComponent},
+  {path: 'profile', component:UserprofileComponent},
+  {path: 'myorder', component:MyorderComponent}
 ];
 
 @NgModule({
