@@ -1,0 +1,298 @@
+<div id = "Dashboard">
+    <div class="container">
+
+        <form [formGroup]="form" (ngSubmit)=" addProduct()" *ngIf="toAdd">
+
+        <div class="row">
+          <div class="col-25">
+            <label>Name</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="productName" type="text"  placeholder="Enter the name of the product">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Description</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="productDescription" type="text"  placeholder="Enter the description of the product">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Picture</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="picture" type="text"  placeholder="Enter the picture link of the product">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Price in CAD</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="priceCAD" type="number"  placeholder="Enter the price of the product">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Discount</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="discount" type="number"  placeholder="Enter the discount of the product">
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label>Quantity</label>
+            </div>
+            <div class="col-75">
+              <input formControlName="quantity" type="number"  placeholder="Enter the quantity of the product">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+                <label>Size</label>
+            </div>
+            <div class="col-75">
+                <input type="radio" formControlName="productSize" value="XS">
+                <label>XS</label>
+                <input type="radio" formControlName="productSize" value="S">
+                <label>S</label>
+                <input type="radio" formControlName="productSize" value="M">
+                <label>M</label>
+                <input type="radio" formControlName="productSize" value="L">
+                <label>L</label>
+                <input type="radio" formControlName="productSize" value="XL">
+                <label>XL</label>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+              <label>Color</label>
+          </div>
+          <div class="col-75">
+              <input type="radio" formControlName="productColor" value="LIGHT_BLUE">
+              <label>Light Blue</label>
+              <input type="radio" formControlName="productColor" value="BLUE">
+              <label>Blue</label>
+              <input type="radio" formControlName="productColor" value="BLACK">
+              <label>Black</label>
+          </div>
+      </div>
+
+      <div formArrayName="productCategories">
+        <div class="arrayform">
+        <div class="row">
+        
+        <div class="form-group"
+            *ngFor="let category of form.get('productCategories').controls; let i=index" >
+            <div class = "row">
+            <label class="col-25 control-label" [attr.for]="i">Category</label>
+
+            <div class="col-75">
+                <input class="form-control" 
+                        [id]="i" 
+                        type="text" 
+                        placeholder="category" 
+                        [formControlName]="i" />
+            </div>
+            <br>
+            <button class="col-md-offset-1 col-md-1 btn btn-default"
+                    type="button"
+                    (click)="deleteCategory(i)">Delete Category
+            </button>
+          </div>
+          </div>
+        </div>
+        <div class="row">
+            <button class="col-md-offset-1 col-md-1 btn btn-default"
+                    type="button"
+                    (click)="addCategory()">Add Category
+            </button>
+        </div>
+      </div>
+    </div>
+
+          <br>
+
+        <div class="row">
+          <input class="btn" type="submit" value="Add Product">
+        </div>
+
+      </form>
+
+      <form [formGroup]="form" (ngSubmit)=" updateProduct()" *ngIf="toUpdate">
+
+        <div class="row">
+          <div class="col-25">
+            <label>Name</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="productName" type="text"  placeholder={{product.productName}}>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Description</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="productDescription" type="text"  placeholder={{product.productDescription}}>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Picture</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="picture" type="text"  placeholder={{product.picture}}>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Price in CAD</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="priceCAD" type="number"  placeholder={{product.priceCAD}}>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label>Discount</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="discount" type="number"  placeholder={{product.discount}}>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label>Quantity</label>
+            </div>
+            <div class="col-75">
+              <input formControlName="quantity" type="number"  placeholder={{product.quantity}}>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-25">
+                <label>Size</label>
+            </div>
+            <div class="col-75">
+                <input type="radio" formControlName="productSize" value="XS">
+                <label>XS</label>
+                <input type="radio" formControlName="productSize" value="S">
+                <label>S</label>
+                <input type="radio" formControlName="productSize" value="M">
+                <label>M</label>
+                <input type="radio" formControlName="productSize" value="L">
+                <label>L</label>
+                <input type="radio" formControlName="productSize" value="XL">
+                <label>XL</label>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+              <label>Color</label>
+          </div>
+          <div class="col-75">
+              <input type="radio" formControlName="productColor" value="LIGHT_BLUE">
+              <label>Light Blue</label>
+              <input type="radio" formControlName="productColor" value="BLUE">
+              <label>Blue</label>
+              <input type="radio" formControlName="productColor" value="BLACK">
+              <label>Black</label>
+          </div>
+      </div>
+
+      <div formArrayName="productCategories">
+        <div class="row">
+        
+        <div class="form-group"
+            *ngFor="let category of form.get('productCategories').controls; let i=index" >
+            <div class = "row">
+            <label class="col-25 control-label" [attr.for]="i">Category</label>
+
+            <div class="col-75">
+                <input class="form-control" 
+                        [id]="i" 
+                        type="text" 
+                        placeholder="category" 
+                        [formControlName]="i" />
+            </div>
+            <button class="col-md-offset-1 col-md-1 btn btn-default"
+                    type="button"
+                    (click)="deleteCategory(i)">Delete Category
+            </button>
+          </div>
+          </div>
+        </div>
+        <div class="row">
+            <button class="col-md-offset-1 col-md-1 btn btn-default"
+                    type="button"
+                    (click)="addCategory()">Add Category
+            </button>
+        </div>
+    </div>
+
+          <br>
+
+        <div class="row">
+          <input class="btn" type="submit" value="Update Product">
+        </div>
+
+      </form>
+
+        <div class="alert" >
+          {{message}}
+        </div>
+
+        <br>
+
+
+    <br>
+
+    </div>
+
+    <div id="products" >
+
+          <div class="container_product" >
+            <div class="row" *ngFor="let product of products">
+                <div class="column">
+                    <div class="card">
+                      <img class="card-img-top" src={{product.picture}} alt="Card image cap">
+                      <div class="card-body">
+                        <h1 class="card-title">{{product.productName}}</h1>
+                        <h2 class="card-text">${{product.priceCAD}}</h2>
+                        <h2 class="card-text">{{product.discount*100}}% Discount!</h2>
+                        <p class="card-text">Only {{product.quantity}} left!!!</p>
+                        <button (click)="deleteProduct(product.id)">Delete</button>
+                        <button (click)="showUpdate(product)">Update</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+     </div>
+
+
+
+</div>
+
+
+
+
+

@@ -1,0 +1,50 @@
+<div id = "Login">
+    <h2>Login</h2>
+    <div class="container">
+        <form [formGroup]="form" (ngSubmit)=" onSubmit()">
+        <div class="row">
+          <div class="col-25">
+            <label>Username</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="username" type="text"  placeholder="Enter your username">
+          </div>
+        </div>
+            
+        <div class="row">
+          <div class="col-25">
+            <label>Password</label>
+          </div>
+          <div class="col-75">
+            <input formControlName="password" type="text"  placeholder="Enter your password">
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label>Role</label>
+            </div>
+            <div class="col-75">
+                <input class="role" type="radio" formControlName="role" value="user">
+                <label>User</label>
+                <input class="role" type="radio" formControlName="role" value="admin">
+                <label>Adminstrator</label>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <input class="btn" type="submit" value="Login">
+        </div>
+      </form>    
+
+        <div class="alert" >
+          {{message}}
+        </div>
+    </div>
+</div>
+    
+    
+    
+

@@ -1,0 +1,29 @@
+<div class="nav">
+    <h1>JeanStation</h1>
+    <ul class = "topnav">
+        
+        <li *ngIf="!isLoggedIn">
+            <a href="../login" routerLink="login">Login</a>
+        </li>
+        <li *ngIf="isLoggedIn">
+          <a href="../login" routerLink="login">Logout</a>
+      </li>
+        <li>
+            <a href="../cart" routerLink="cart">Cart</a>
+        </li>
+        <li>
+            <a href="../product" routerLink="product">Products</a>
+        </li>
+        <li>
+            <a href="../home" routerLink="">Home</a>
+        </li>
+    </ul>
+
+    <div class="add" *ngIf="isAdmin">
+      <button (click)="showAdd()" type="submit">Add Product</button>
+  </div>
+
+</div>
+<router-outlet></router-outlet>
+
+
