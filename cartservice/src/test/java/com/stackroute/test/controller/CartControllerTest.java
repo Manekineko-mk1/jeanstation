@@ -43,7 +43,7 @@ public class CartControllerTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(cartController).build();
         ArrayList categories = new ArrayList();
         cart = new Cart();
@@ -71,18 +71,18 @@ public class CartControllerTest {
 
     @Test
     public void givenGetAllCartsThenShouldReturnListOfAllCarts() throws Exception {
-        when(cartService.getAllCarts()).thenReturn(cartList);
+        when(cartService.findAllCarts()).thenReturn(cartList);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/carts")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(cart)))
                 .andDo(MockMvcResultHandlers.print());
-        verify(cartService).getAllCarts();
-        verify(cartService, times(1)).getAllCarts();
+        verify(cartService).findAllCarts();
+        verify(cartService, times(1)).findAllCarts();
 
     }
 
     @Test
     void givenCartIdThenShouldReturnRespectiveCart() throws Exception {
-        when(cartService.getCartById(cart.getId())).thenReturn(cart);
+        when(cartService.findCartById(cart.getId())).thenReturn(cart);
         mockMvc.perform(get("/api/v1/cart/1"))
                 .andExpect(MockMvcResultMatchers.status()
                         .isFound())
@@ -91,7 +91,7 @@ public class CartControllerTest {
 
     @Test
     public void givenCartIdToDeleteThenShouldNotReturnDeletedCart() throws Exception {
-        when(cartService.deleteCart(cart.getId())).thenReturn(cart);
+        when(cartService.deleteCartById(cart.getId())).thenReturn(cart);
         mockMvc.perform(delete("/api/v1/cart/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
     }

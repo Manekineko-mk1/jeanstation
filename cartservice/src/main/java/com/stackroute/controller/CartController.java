@@ -34,17 +34,17 @@ public class CartController {
      * save a new Cart
      */
     @PostMapping("/cart")
-    @ApiOperation(value = "POST a new Cart", notes = "Add a new Cart entry to the Cart database " +
+    @ApiOperation(value = "POST a new Cart", notes = "Add a new Cart entry to the carts collection " +
             "using a provided JSON Cart object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
     public ResponseEntity<Cart> saveCart(@RequestBody Cart cart) {
         Cart savedCart = cartService.saveCart(cart);
+        String cartId = savedCart.getId();
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Added a cart to carts collection | Cart ID: {} | Timestamp(EST): {}",
-                cart.getId(), timeStamp);
+        log.info("Added a cart to carts collection | Cart ID: {} | Timestamp(EST): {}", cartId, timeStamp);
 
         return new ResponseEntity<>(savedCart, HttpStatus.CREATED);
     }
@@ -62,42 +62,42 @@ public class CartController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Query to get all cart entries | Timestamp: {}", timeStamp);
+        log.info("Query to get all cart entries | Timestamp(EST): {}", timeStamp);
 
-        return new ResponseEntity<>(cartService.getAllCarts(), HttpStatus.OK);
+        return new ResponseEntity<>(cartService.findAllCarts(), HttpStatus.OK);
     }
 
     /**
      * retrieve Cart by id
      */
     @GetMapping("cart/{cartId}")
-    @ApiOperation(value = "GET a Cart by ID", notes = "GET a Cart entry from the Cart database " +
-            "by a provided Cart ID. Returns a Cart object if found.", response = ResponseEntity.class)
-    public ResponseEntity<Cart> getCartById(@PathVariable("cartId") String cartId) {
+    @ApiOperation(value = "GET a Cart by ID", notes = "GET a Cart entry from the carts collection " +
+            "using a provided Cart ID. Returns a Cart object if found.", response = ResponseEntity.class)
+    public ResponseEntity<Cart> findCartById(@PathVariable("cartId") String cartId) {
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Query to get a cart | Cart ID: {} | Timestamp: {}" ,cartId ,timeStamp);
+        log.info("Query to get a cart | Cart ID: {} | Timestamp: {}", cartId, timeStamp);
 
-        return new ResponseEntity<>(cartService.getCartById(cartId), HttpStatus.FOUND);
+        return new ResponseEntity<>(cartService.findCartById(cartId), HttpStatus.FOUND);
     }
 
     /**
      * delete Cart by id
      */
     @DeleteMapping("cart/{cartId}")
-    @ApiOperation(value = "DELETE an existing Cart", notes = "Remove a Cart entry from the Cart database " +
-            "by a provided Cart ID. Returns the deleted Cart object " +
+    @ApiOperation(value = "DELETE an existing Cart", notes = "Empty a Cart entry from the carts collection " +
+            "using a provided Cart ID. Returns the deleted Cart object " +
             "if the operation is successful.", response = ResponseEntity.class)
-    public ResponseEntity<Cart> getCartAfterDeleting(@PathVariable("CartId") String cartId) {
+    public ResponseEntity<Cart> emptyCartById(@PathVariable("cartId") String cartId) {
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Request to DELETE a cart | Cart ID: {} | Timestamp: {}" ,cartId ,timeStamp);
+        log.info("Request to DELETE a cart | Cart ID: {} | Timestamp: {}", cartId, timeStamp);
 
-        return new ResponseEntity<>(cartService.deleteCart(cartId), HttpStatus.OK);
+        return new ResponseEntity<>(cartService.deleteCartById(cartId), HttpStatus.OK);
     }
 
     /**
@@ -113,7 +113,7 @@ public class CartController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Request to UPDATE a cart| Cart ID: {} | Timestamp: {}",cart.getId() ,timeStamp);
+        log.info("Request to UPDATE a cart| Cart ID: {} | Timestamp: {}", updatedCart.getId(), timeStamp);
 
         return new ResponseEntity<>(updatedCart, HttpStatus.OK);
     }
