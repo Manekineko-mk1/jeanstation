@@ -1,12 +1,9 @@
 #footer {
-    position:static;
+    position:fixed;
     background-color: #3a4468;
     text-align: center;
-    left: 0;
-    right:0;
     bottom: 0%;
     width:100%;
-    margin:0;
     max-width: 2000px;
     padding: 10px 0;
   }

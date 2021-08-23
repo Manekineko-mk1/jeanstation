@@ -186,3 +186,7 @@
   .arrayform {
     display: inline;
   }
+
+  #discount {
+    color: red;
+  }
