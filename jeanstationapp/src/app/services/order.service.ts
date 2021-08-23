@@ -36,6 +36,10 @@ export class OrderService {
     return this.http.delete<Order>(this.baseurl+'order/'+id);
   }
 
+  getOrderByUserId(id:string): Observable<Order[]>{
+    return this.http.get<Order[]>(this.baseurl+'orders/'+id);
+  }
+
 
 }
 
