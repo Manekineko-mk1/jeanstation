@@ -274,8 +274,8 @@
     <div id="products" >
         <h1>Products</h1>
           <div class="container_product" >
-            <div class="row" *ngFor="let product of products">
-              <div class="column">
+            <div class="row">
+              <div class="column" *ngFor="let product of products">
                   <div class="card">
                     <img class="card-img-top" src={{product.picture}} alt="Card image cap">
                     <div class="card-body">

@@ -96,10 +96,11 @@
 
     
     #products{
-      padding-top: 3rem;
-      padding-bottom: 9rem;
-      padding-left: 8%;
-      padding-right: 8%;
+      padding-top: 1rem;
+    padding-bottom: 9rem;
+    padding-left: 3%;
+    padding-right: 3%;
+    width: 100%;
   }
   
   
@@ -109,13 +110,15 @@
   }
   
   #products .column {
-   float: left;
-   padding: 0 10px;
+    float: left;
+    padding: 0 10px;
+    width:50%;
   }
   
   #products .row {
-      margin: 0 -5px;
-      display: inline-flex;
+    margin: 0 -5px;
+    display: inline-flex;
+    width: 100%;
   }
   
   #products .row:after {
@@ -126,7 +129,7 @@
   
   @media screen and (max-width: 600px) {
     #products .column {
-     width: 100%;
+     width: 50%;
      display: block;
      margin-bottom: 20px;
    }
@@ -142,11 +145,11 @@
    text-align: center;
    background-color: #f1f1f1;
    width: 90%;
-   margin: 10%;
+   margin: 1rem;
   }
   
   #products .card img {
-      width: 80%;
+      width: 100%;
   }
     
   #products button {
