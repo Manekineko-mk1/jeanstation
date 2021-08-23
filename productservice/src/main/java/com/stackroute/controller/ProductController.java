@@ -42,7 +42,7 @@ public class ProductController {
         String timeStamp = zonedDateTimeNow.format(formatter);
 
         log.info("Added a product to products collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-                product.getId(), product.getProductName(), timeStamp);
+                savedProduct.getId(), savedProduct.getProductName(), timeStamp);
 
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
@@ -55,14 +55,14 @@ public class ProductController {
             "to the Product database using a provided JSON Product object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
     public ResponseEntity<List<Product>> saveProducts(@RequestBody List<Product> products) {
-        List<Product> savedProduct = productService.saveProducts(products);
+        List<Product> savedProducts = productService.saveProducts(products);
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
         log.info("Added the list of products to the products collection | Timestamp(EST): {}", timeStamp);
 
-        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedProducts, HttpStatus.CREATED);
     }
 
 
@@ -111,7 +111,7 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Request to DELETE a product | Product ID: {} | Timestamp: {}", productId,timeStamp);
+        log.info("Request to DELETE a product | Product ID: {} | Timestamp: {}", productId, timeStamp);
 
         return new ResponseEntity<>(productService.deleteProductById(productId), HttpStatus.OK);
     }
@@ -130,7 +130,7 @@ public class ProductController {
         String timeStamp = zonedDateTimeNow.format(formatter);
 
         log.info("Request to UPDATE a product | Product Name: {} | Product ID: {} | Timestamp: {}",
-                product.getProductName() ,product.getId() ,timeStamp);
+                updatedProduct.getProductName(), updatedProduct.getId(), timeStamp);
 
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }

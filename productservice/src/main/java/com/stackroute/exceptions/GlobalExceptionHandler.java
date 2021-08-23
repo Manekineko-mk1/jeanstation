@@ -1,5 +1,6 @@
 package com.stackroute.exceptions;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
 
@@ -35,6 +37,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         body.put("timestamp", timeStamp);
         body.put("message", "Product already exists.");
 
+        log.error("ERROR: Unable to add product. Product already existed in database | Timestamp(EST): {}", timeStamp);
+
         return new ResponseEntity<>(body, HttpStatus.CONFLICT);
     }
 
@@ -49,6 +53,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         body.put("timestamp", timeStamp);
         body.put("message", "Product not found.");
+
+        log.error("ERROR: Unable to found product. Product not found in database | Timestamp(EST): {}", timeStamp);
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
@@ -73,6 +79,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .collect(Collectors.toList());
 
         body.put("errors", errors);
+
+        log.error("ERROR: Unable to determine cause. | Timestamp(EST): {}", timeStamp);
 
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }

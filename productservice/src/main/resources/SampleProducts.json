@@ -7,7 +7,7 @@
     "discount": 1,
     "quantity": 30,
     "productCategories": ["Mens", "Jean", "Straight Fit"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "XS"
 
   },
@@ -19,7 +19,7 @@
     "discount": 1,
     "quantity": 50,
     "productCategories": ["Mens", "Jean", "Straight Fit"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "S"
 
   },
@@ -31,7 +31,7 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Mens", "Jean", "Straight Fit"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "M"
 
   },
@@ -43,7 +43,7 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Mens", "Jean", "Straight Fit"],
-    "productColors": "Black",
+    "productColors": "BLACK",
     "productSize": "L"
 
   },
@@ -55,7 +55,7 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Mens", "Jean", "Straight Fit"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "XL"
 
   },
@@ -67,7 +67,7 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Mens", "Jean", "Straight Fit"],
-    "productColors": "Black",
+    "productColors": "BLACK",
     "productSize": "XL"
 
   },
@@ -79,7 +79,7 @@
     "discount": 1,
     "quantity": 300,
     "productCategories": ["Mens", "Jean", "Regular Fit", "Classic"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "M"
   },
   {
@@ -90,7 +90,7 @@
     "discount": 1,
     "quantity": 400,
     "productCategories": ["Mens", "Jean", "Relaxed Fit", "CloudsFeels"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "M"
   },
   {
@@ -101,7 +101,7 @@
     "discount": 1,
     "quantity": 500,
     "productCategories": ["Mens", "Jean", "Original Fit"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "L"
   },
   {
@@ -112,7 +112,7 @@
     "discount": 1,
     "quantity": 100,
     "productCategories": ["Mens", "Jacket", "Traditional Western Style"],
-    "productColors": "Black",
+    "productColors": "BLACK",
     "productSize": "L"
   },
   {
@@ -123,7 +123,7 @@
     "discount": 1,
     "quantity": 150,
     "productCategories": ["Male", "Jacket"],
-    "productColors": "Black",
+    "productColors": "BLACK",
     "productSize": "M"
   },
   {
@@ -134,7 +134,7 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Male", "Jacket"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "M"
   },
   {
@@ -145,7 +145,7 @@
     "discount": 1,
     "quantity": 50,
     "productCategories": ["Male", "Jacket", "Winter"],
-    "productColors": "Black",
+    "productColors": "BLACK",
     "productSize": "XL"
   },
   {
@@ -179,7 +179,7 @@
     "discount": 1,
     "quantity": 400,
     "productCategories": ["Womens", "Jean", "Relaxed Fit", "CloudsFeels"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "S"
   },
   {
@@ -201,7 +201,7 @@
     "discount": 1,
     "quantity": 100,
     "productCategories": ["Womens", "Jacket", "Traditional Western Style"],
-    "productColors": "Black",
+    "productColors": "BLACK",
     "productSize": "XL"
   },
   {
@@ -223,7 +223,7 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Male", "Jacket"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "M"
   },
   {
@@ -245,7 +245,7 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Boys", "Jean", "Straight Fit"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "S"
   },
   {
@@ -256,7 +256,7 @@
     "discount": 1,
     "quantity": 300,
     "productCategories": ["Boys", "Jean", "Regular Fit", "Classic"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "S"
   },
   {
@@ -267,7 +267,7 @@
     "discount": 1,
     "quantity": 400,
     "productCategories": ["Boys", "Jean", "Relaxed Fit", "CloudsFeels"],
-    "productColors": "Black",
+    "productColors": "BLACK",
     "productSize": "S"
   },
   {
@@ -278,7 +278,7 @@
     "discount": 1,
     "quantity": 500,
     "productCategories": ["Boys", "Jean", "Original Fit"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "XS"
   },
   {
@@ -289,7 +289,7 @@
     "discount": 1,
     "quantity": 100,
     "productCategories": ["Boys", "Jacket", "Traditional Western Style"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "M"
   },
   {
@@ -300,7 +300,7 @@
     "discount": 1,
     "quantity": 150,
     "productCategories": ["Male", "Jacket"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "XS"
   },
   {
@@ -311,7 +311,7 @@
     "discount": 1,
     "quantity": 200,
     "productCategories": ["Male", "Jacket"],
-    "productColors": "Blue",
+    "productColors": "BLUE",
     "productSize": "XL"
   },
   {
@@ -322,7 +322,7 @@
     "discount": 1,
     "quantity": 50,
     "productCategories": ["Male", "Jacket", "Winter"],
-    "productColors": "Black",
+    "productColors": "BLACK",
     "productSize": "XL"
   }
 ]
