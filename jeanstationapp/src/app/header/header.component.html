@@ -16,9 +16,15 @@
     </li>
         <li *ngIf="!isAdmin">
             <a href="../cart" routerLink="cart">Cart</a>
-        </li>
-        <li>
+        </li >
+        <li *ngIf="!isAdmin">
             <a href="../product" routerLink="product">Products</a>
+        </li>
+        <li *ngIf="isAdmin&&inOrderManag">
+            <a href="../admin" routerLink="admin">Product Management</a>
+        </li>
+        <li *ngIf="isAdmin&&!inOrderManag">
+            <a href="../order-management" routerLink="order-management">Order Management</a>
         </li>
         <li>
             <a href="../home" routerLink="">Home</a>
@@ -31,10 +37,10 @@
       <button (click)="showAdd()" type="submit" *ngIf="!inOrderManag">Add Product</button>
 
 
-      <button (click)="toOrderManagement()" type="submit" *ngIf="!inOrderManag">Order Management</button>
+      <!-- <button (click)="toOrderManagement()" type="submit" *ngIf="!inOrderManag">Order Management</button>
 
 
-        <button (click)="toProductManagement()" type="submit" *ngIf="inOrderManag">Product Management</button>
+        <button (click)="toProductManagement()" type="submit" *ngIf="inOrderManag">Product Management</button> -->
 
   </div>
 

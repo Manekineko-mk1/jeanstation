@@ -43,8 +43,8 @@ public class OrderRepositoryIntegrationTest {
 
     @Test
     public void givenGetAllOrdersThenShouldReturnListOfAllOrders() {
-        Order order = new Order(10, orderItems);
-        Order order1 = new Order(20, orderItems);
+        Order order = new Order(10, orderItems, "A1");
+        Order order1 = new Order(20, orderItems, "A2");
         orderRepository.save(order);
         orderRepository.save(order1);
 
@@ -54,7 +54,7 @@ public class OrderRepositoryIntegrationTest {
 
     @Test
     public void givenOrderIdThenShouldReturnRespectiveOrder() {
-        Order order = new Order(10, orderItems);
+        Order order = new Order(10, orderItems, "A1");
         Order order1 = orderRepository.save(order);
         Optional<Order> optional = orderRepository.findById(order1.getId());
         assertEquals(order1.getId(), optional.get().getId());
@@ -64,7 +64,7 @@ public class OrderRepositoryIntegrationTest {
 
     @Test
     public void givenOrderIdToDeleteThenShouldReturnDeletedOrder() {
-        Order order = new Order(20, orderItems);
+        Order order = new Order(20, orderItems, "A2");
         orderRepository.save(order);
         orderRepository.deleteById(order.getId());
         Optional optional = orderRepository.findById(order.getId());

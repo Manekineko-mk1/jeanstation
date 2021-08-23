@@ -9,10 +9,10 @@
                     <p class="card-text">Total Price: ${{order.priceTotal}}</p>
                     <p class="card-text">User: {{order.userId}}</p>
                     <p class="card-text">Delivery Date: {{order.deliveryDate}}</p>
-                    <p class="card-text">Shipment: {{order.shipmentId}}</p>
-                    <p class="card-text">Order Status: {{order.orderStatus}}</p>
+                    <p class="card-text">Creation Date: {{order.creationDate}}</p>
+                    <p class="card-text">Order Status: {{order.status}}</p>
                     <p>Order Items: </p>
-                    <ul *ngFor="let item of order.orderItem">
+                    <ul *ngFor="let item of order.orderItems">
                       <li>{{item}}</li>
                     </ul>
                     <br><br>
@@ -34,11 +34,11 @@
     <h5>New Status</h5>
     <form [formGroup]="form" (ngSubmit)="updateStatus()">
     <select class="custom-select" formControlName="status">
-      <option value="submitted">Submitted</option>
-      <option value="rejected">Rejected</option>
-      <option value="inProgress">In Progress</option>
-      <option value="shipped">Shipped</option>
-      <option value="delivered">Delivered</option>
+      <option value="SUBMITTED">Submitted</option>
+      <option value="REJECTED">Rejected</option>
+      <option value="IN_PROGRESS">In Progress</option>
+      <option value="SHIPPED">Shipped</option>
+      <option value="DELIVERED">Delivered</option>
     </select>
     <br>
     <br>

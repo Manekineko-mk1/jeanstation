@@ -10,7 +10,7 @@ export class ApprouteService {
   public isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public showAdd: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  //public inOrderManag: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public inOrderManag: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private router:Router) { }
 

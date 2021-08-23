@@ -25,20 +25,25 @@ export class HeaderComponent implements OnInit {
         this.isAdmin = value;
       }
     );
+    this.approute.inOrderManag.subscribe(
+      value => {
+        this.inOrderManag = value;
+      }
+    )
   }
 
   showAdd(){
     this.approute.showAdd.next(true);
   }
 
-  toOrderManagement(){
-    this.inOrderManag=true;
-    this.approute.openOrderManagement();
-  }
+  // toOrderManagement(){
+  //   this.inOrderManag=true;
+  //   this.approute.openOrderManagement();
+  // }
 
-  toProductManagement(){
-    this.inOrderManag=false;
-    this.approute.openAdmin();
-  }
+  // toProductManagement(){
+  //   this.inOrderManag=false;
+  //   this.approute.openAdmin();
+  // }
 
 }

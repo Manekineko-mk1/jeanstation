@@ -21,6 +21,7 @@ body {
 .column {
  float: left;
  padding: 0 10px;
+ margin: 20px;
 }
 
 .row {
@@ -52,7 +53,7 @@ body {
  text-align: left;
  background-color: #f1f1f1;
  width: 100%;
- margin: 10%;
+ margin: 20px;
 }
 
 .card img {

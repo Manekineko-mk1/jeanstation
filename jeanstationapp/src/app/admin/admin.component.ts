@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from '../model/Product';
 import { ApprouteService } from '../services/approute.service';
 import { ProductService } from '../services/product.service';
@@ -17,8 +18,11 @@ export class AdminComponent implements OnInit {
   toAdd = false;
   toUpdate = false;
   product: Product = new Product();
+  closeModal:string;
+  showProduct: Product;
 
-  constructor(private formBuilder:FormBuilder, private productservice:ProductService, private approute: ApprouteService) { 
+  constructor(private formBuilder:FormBuilder, private productservice:ProductService, 
+    private approute: ApprouteService, private modalService:NgbModal) { 
     this.form = this.formBuilder.group({
       productName: new FormControl('', Validators.required),
       productDescription: new FormControl('', Validators.required),
@@ -33,6 +37,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.approute.inOrderManag.next(false);
     this.getProducts();
     this.approute.showAdd.subscribe(
       value => {
@@ -151,6 +156,25 @@ export class AdminComponent implements OnInit {
   deleteCategory(index:number){
     this.form.productCategories = this.form.get('productCategories') as FormArray;
     this.form.productCategories.removeAt(index);
+  }
+
+  triggerModal(content, product) {
+    this.showProduct = product;
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+      this.closeModal = `Closed with: ${res}`;
+    }, (res) => {
+      this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+    });
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 }

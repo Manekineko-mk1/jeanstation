@@ -1,9 +1,9 @@
 export class Order {
-    id?:number;
+    id?:string;
     priceTotal?:number;
-    orderItem?:string[];
+    orderItems?:string[];
     userId?:string;
-    orderStatus?:string;
-    shipmentId?:string;
+    status?:string;
+    creationDate?:string;
     deliveryDate?:string;
 }

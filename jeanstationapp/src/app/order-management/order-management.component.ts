@@ -26,17 +26,18 @@ export class OrderManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.orders = new Array();
-    let some = new Order();
-    some.deliveryDate = "2021";
-    some.id = 1;
-    some.orderItem = ["this","that"];
-    some.orderStatus = "ready";
-    some.priceTotal = 23.12;
-    some.shipmentId = "1145";
-    some.userId = "45";
-    this.orders.push(some);
-    //this.getOrders();
+    // this.orders = new Array();
+    // let some = new Order();
+    // some.deliveryDate = "2021";
+    // some.id = "1";
+    // some.orderItem = ["this","that"];
+    // some.orderStatus = "ready";
+    // some.priceTotal = 23.12;
+    // some.shipmentId = "1145";
+    // some.userId = "45";
+    // this.orders.push(some);
+    this.getOrders();
+    this.approute.inOrderManag.next(true);
   }
 
   getOrders(){
@@ -48,9 +49,8 @@ export class OrderManagementComponent implements OnInit {
   }
 
   updateStatus(){
-    this.orderToUpdate.orderStatus = this.form.value.status;
+    this.orderToUpdate.status = this.form.value.status;
     this.orderService.updateOrder(this.orderToUpdate).subscribe();
-    this.approute.openOrderManagement();
   }
 
   changeStatus(){
