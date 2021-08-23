@@ -3,10 +3,12 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from '../model/Product';
 import { ApprouteService } from '../services/approute.service';
 import { ProductService } from '../services/product.service';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
+  providers: [CartComponent],
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
@@ -17,7 +19,8 @@ export class ProductComponent implements OnInit {
   showProduct:Product;
   isLoggedIn:boolean;
 
-  constructor(private productservice:ProductService, private approuter:ApprouteService, private modalService: NgbModal) { }
+  constructor(private productservice:ProductService, private cartComponent:CartComponent,
+              private approuter:ApprouteService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     // this.products = new Array();
@@ -31,12 +34,14 @@ export class ProductComponent implements OnInit {
     // p.productName = "some";
     // p.quantity = 10;
     // this.products.push(p);
-    this.getProducts();
+
     // this.approuter.isLoggedIn.subscribe(
     //   value => {
     //     this.isLoggedIn = value;
     //   }
     // );
+
+    this.getProducts();
   }
 
   getProducts(){
@@ -45,17 +50,17 @@ export class ProductComponent implements OnInit {
         this.products = data;
       }
     )
-
-
   }
 
-  addToCart(){
+  addToCart(product:Product){
     // if(this.isLoggedIn==false){
     //   this.approuter.openLogin();
     // } else {
     //   this.approuter.openCart();
     // }
-    this.approuter.openCart();
+
+    this.cartComponent.addItemToCart(product);
+    // this.approuter.openCart();
   }
 
   triggerModal(content, product) {
@@ -66,7 +71,7 @@ export class ProductComponent implements OnInit {
       this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
     });
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -76,5 +81,4 @@ export class ProductComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-
 }
