@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../model/Product';
+import { Cart } from '../model/Cart';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -24,15 +25,15 @@ export class CartService {
     return this.http.get<Cart>(this.baseurl+'cart/'+id);
   }
 
-  createCart(data: Product): Observable<Cart>{
+  createCart(data: Cart): Observable<Cart>{
     return this.http.post<Cart>(this.baseurl+'cart',data,httpOptions);
   }
 
-  updateCart(data: Product): Observable<Cart>{
+  updateCart(data: Cart): Observable<Cart>{
     return this.http.put<Cart>(this.baseurl+'cart',data,httpOptions);
   }
 
-  deleteProduct(id: String): Observable<Cart>{
+  deleteCart(id: String): Observable<Cart>{
     return this.http.delete<Cart>(this.baseurl+'cart/'+id);
   }
 }
