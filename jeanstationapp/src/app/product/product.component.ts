@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit {
   showDetails:boolean;
   closeModal: string;
   showProduct:Product;
+  isLoggedIn:boolean;
 
   constructor(private productservice:ProductService, private approuter:ApprouteService, private modalService: NgbModal) { }
 
@@ -31,6 +32,11 @@ export class ProductComponent implements OnInit {
     // p.quantity = 10;
     // this.products.push(p);
     this.getProducts();
+    // this.approuter.isLoggedIn.subscribe(
+    //   value => {
+    //     this.isLoggedIn = value;
+    //   }
+    // );
   }
 
   getProducts(){
@@ -44,6 +50,11 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(){
+    // if(this.isLoggedIn==false){
+    //   this.approuter.openLogin();
+    // } else {
+    //   this.approuter.openCart();
+    // }
     this.approuter.openCart();
   }
 
