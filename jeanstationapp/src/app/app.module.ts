@@ -17,7 +17,7 @@ import { OrderManagementComponent } from './order-management/order-management.co
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { MyorderComponent } from './myorder/myorder.component';
-import { ModalComponent } from './modal/modal.component';
+import { PasswordComponent } from './password/password.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { ModalComponent } from './modal/modal.component';
     OrderManagementComponent,
     UserprofileComponent,
     MyorderComponent,
-    ModalComponent
+    PasswordComponent
   ],
   imports: [
     BrowserModule,

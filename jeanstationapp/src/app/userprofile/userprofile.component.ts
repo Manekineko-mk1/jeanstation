@@ -113,4 +113,8 @@ export class UserprofileComponent implements OnInit {
     this.message = '';
   }
 
+  changePassword(){
+    this.approute.openPassword();
+  }
+
 }

@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { MyorderComponent } from './myorder/myorder.component';
 import { OrderManagementComponent } from './order-management/order-management.component';
 import { OrderComponent } from './order/order.component';
+import { PasswordComponent } from './password/password.component';
 import { ProductComponent } from './product/product.component';
 import { UserGuard } from './user.guard';
 import { UserprofileComponent } from './userprofile/userprofile.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'product', component:ProductComponent},
   {path: 'order-management', component:OrderManagementComponent, canActivate:[AdminGuard]},
   {path: 'profile', component:UserprofileComponent, canActivate:[UserGuard]},
-  {path: 'myorder', component:MyorderComponent, canActivate:[UserGuard]}
+  {path: 'myorder', component:MyorderComponent, canActivate:[UserGuard]},
+  {path: 'password', component:PasswordComponent, canActivate:[UserGuard]}
 ];
 
 @NgModule({

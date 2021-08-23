@@ -35,6 +35,10 @@
     <p>Details: {{showProduct.productDescription}}</p>
     <p>Size: {{showProduct.productSize}}</p>
     <p>Color: {{showProduct.productColor}}</p>
+    <p>Categories: </p>
+    <ul *ngFor="let category of showProduct.productCategories">
+      <li>{{category}}</li>
+    </ul>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>

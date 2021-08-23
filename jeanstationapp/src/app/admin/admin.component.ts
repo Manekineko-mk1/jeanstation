@@ -13,7 +13,7 @@ import { ProductService } from '../services/product.service';
 export class AdminComponent implements OnInit {
 
   form;
-  message = "";
+  message;
   products: Product[];
   toAdd = false;
   toUpdate = false;
@@ -61,8 +61,8 @@ export class AdminComponent implements OnInit {
     if (this.form.valid) {
       this.productservice.addProduct(this.form.value).subscribe(
         data => {
-          this.message = 'Product added';
           this.clearForm();
+          this.message = 'Product added';
           this.getProducts();
         },
         err => {
@@ -90,10 +90,10 @@ export class AdminComponent implements OnInit {
       this.product.productCategories = this.form.value.productCategories;
       this.productservice.updateProduct(this.product).subscribe(
         data => {
-          this.message = 'Product updated';
-          this.clearForm();
-          this.getProducts();
           this.toUpdate = false;
+          this.clearForm();
+          this.message = 'Product updated';
+          this.getProducts();
         },
         err => {
           this.message = 'Failed to update Product!!';
@@ -109,11 +109,11 @@ export class AdminComponent implements OnInit {
   deleteProduct(id:number){
     this.productservice.deleteProduct(id).subscribe(
       data =>{
-        this.message = "Product deleted";
+        this.message = 'Product deleted';
         this.getProducts();
       },
       err => {
-        this.message = "Failed to delete product!";
+        this.message = 'Failed to delete product!';
       }
     );
   }

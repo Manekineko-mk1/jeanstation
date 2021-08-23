@@ -2,6 +2,10 @@
   padding-bottom: 9rem;
 }
 
+#userprofile h1{
+  padding-left: 5rem;
+}
+
 .container {
   background-color: #f1f1f1;
   margin-top: 2rem;

@@ -38,4 +38,8 @@ export class ApprouteService {
     this.router.navigate(['order-management']);
   }
 
+  openPassword(){
+    this.router.navigate(['password']);
+  }
+
 }
