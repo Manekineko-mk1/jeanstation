@@ -27,10 +27,10 @@
 <p align="center">
   <a href="https://gitlab-cgi.stackroute.in/cgi-canada-wave1-capstone-projects/jeanstation"></a>
 
-  <h3 align="center">Jean Station - ProductService - ReadMe</h3>
+  <h3 align="center">Jean Station - CartService - ReadMe</h3>
 
   <p align="center">
-    ProductService is a microservice for the Jean Station online store.
+    CartService is a microservice for the Jean Station online store.
     <br />
     <a href="https://gitlab-cgi.stackroute.in/cgi-canada-wave1-capstone-projects/jeanstation/-/wikis/home"><strong>Explore the docs »</strong></a>
     <br />
@@ -71,10 +71,10 @@
 
 [![Product Name Screen Shot][project-logo]](https://example.com)
 
-ProductService is a microservice for the Jean Station online store. 
+CartService is a microservice for the Jean Station online store. 
 
 Here's the main purpose of this microservice:
-* Provide RESTful endpoints for CRUD operation related to inventory management.
+* Provide RESTful endpoints for CRUD operation related to user cart management.
 * Provide RESTful endpoints for front-end interface
 
 
@@ -105,24 +105,23 @@ This is a maven project. Your IDE will need to have Maven enabled.
    ```
 2. Import the project into your IDE of choice
 3. Let Maven download the dependencies
-4. Run ProductServiceApplication.java
+4. Run CartServiceApplication.java
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
+* POST - Create a cart
+  * localhost:8090/api/v1/cart
+* GET - Retrieve a cart by ID
+   * localhost:8090/api/v1/cart/{cartId}
+* GET - Retrieve all carts
+  * localhost:8090/api/v1/carts
+* PUT - Update a cart by ID
+  * localhost:8090/api/v1/cart
+* DELETE - Delete a cart by ID
+  * localhost:8090/api/v1/cart/{cartId}
 
 
 

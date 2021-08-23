@@ -12,17 +12,17 @@ public interface CartService {
     /**
      * AbstractMethod to get all carts
      */
-    List<Cart> getAllCarts();
+    List<Cart> findAllCarts();
 
     /**
      * AbstractMethod to get cart by id
      */
-    Cart getCartById(String id);
+    Cart findCartById(String id);
 
     /**
      * AbstractMethod to delete cart by id
      */
-    Cart deleteCart(String id);
+    Cart deleteCartById(String id);
 
     /**
      * AbstractMethod to update a cart

@@ -7,7 +7,6 @@
         <groupId>com.stackroute</groupId>
         <artifactId>boilerplate</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <artifactId>api-gateway-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>

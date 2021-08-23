@@ -36,7 +36,7 @@ public class CartControllerIntegrationTest {
      */
     @GetMapping("/carts")
     public ResponseEntity<List<Cart>> getAllCarts() {
-        return new ResponseEntity<>(cartService.getAllCarts(), HttpStatus.OK);
+        return new ResponseEntity<>(cartService.findAllCarts(), HttpStatus.OK);
 
     }
 
@@ -45,7 +45,7 @@ public class CartControllerIntegrationTest {
      */
     @GetMapping("cart/{cartId}")
     public ResponseEntity<Cart> getCartById(@PathVariable("cartId") String cartId) {
-        return new ResponseEntity<>(cartService.getCartById(cartId), HttpStatus.FOUND);
+        return new ResponseEntity<>(cartService.findCartById(cartId), HttpStatus.FOUND);
     }
 
     /**
@@ -53,7 +53,7 @@ public class CartControllerIntegrationTest {
      */
     @DeleteMapping("cart/{cartId}")
     public ResponseEntity<Cart> getCartAfterDeleting(@PathVariable("CartId") String cartId) {
-        return new ResponseEntity<>(cartService.deleteCart(cartId), HttpStatus.OK);
+        return new ResponseEntity<>(cartService.deleteCartById(cartId), HttpStatus.OK);
     }
 
     /**
