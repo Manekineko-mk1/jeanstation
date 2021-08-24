@@ -21,8 +21,8 @@ export class AdminComponent implements OnInit {
   closeModal:string;
   showProduct: Product;
 
-  constructor(private formBuilder:FormBuilder, private productservice:ProductService,
-    private approute: ApprouteService, private modalService:NgbModal) {
+  constructor(private formBuilder:FormBuilder, private productservice:ProductService, 
+    private approute: ApprouteService, private modalService:NgbModal) { 
     this.form = this.formBuilder.group({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -166,7 +166,7 @@ export class AdminComponent implements OnInit {
       this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
     });
   }
-
+  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

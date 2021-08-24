@@ -1,6 +1,6 @@
 #Dashboard{
   margin-top: 1rem;
-    padding-top: 2rem;
+    padding-top: 1rem;
     padding-bottom: 9rem;
     width:100%;
   }
@@ -112,7 +112,7 @@
   #products .column {
     float: left;
     padding: 0 10px;
-    width:50%;
+    width:20%;
   }
   
   #products .row {
