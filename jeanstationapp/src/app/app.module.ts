@@ -18,6 +18,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { MyorderComponent } from './myorder/myorder.component';
 import { PasswordComponent } from './password/password.component';
+import { FiltersComponent } from './filters/filters.component';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { ProductItemComponent } from './product/product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { PasswordComponent } from './password/password.component';
     OrderManagementComponent,
     UserprofileComponent,
     MyorderComponent,
-    PasswordComponent
+    PasswordComponent,
+    FiltersComponent,
+    CartItemComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,
