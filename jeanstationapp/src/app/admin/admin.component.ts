@@ -106,7 +106,7 @@ export class AdminComponent implements OnInit {
 
   }
 
-  deleteProduct(id:number){
+  deleteProduct(id:string){
     this.productservice.deleteProduct(id).subscribe(
       data =>{
         this.message = 'Product deleted';

@@ -20,7 +20,7 @@ export class OrderService {
     return this.http.get<Order[]>(this.baseurl);
   }
 
-  getOrderById(id:number): Observable<Order>{
+  getOrderById(id:string): Observable<Order>{
     return this.http.get<Order>(this.baseurl+'/'+id);
   }
 
@@ -37,7 +37,7 @@ export class OrderService {
   }
 
   getOrderByUserId(id:string): Observable<Order[]>{
-    return this.http.get<Order[]>(this.baseurl+'user/'+id);
+    return this.http.get<Order[]>(this.baseurl+'/user/'+id);
   }
 
 
