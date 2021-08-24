@@ -48,7 +48,7 @@ public class CartControllerTest {
         ArrayList categories = new ArrayList();
         cart = new Cart();
         cart.setId("1l");
-        cart.setPriceTotal(420);
+        cart.setPriceTotalBeforeTax(420);
         cartList = new ArrayList<>();
         cartList.add(cart);
     }
