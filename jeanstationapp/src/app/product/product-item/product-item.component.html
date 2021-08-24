@@ -1,6 +1,6 @@
 <div class="card mb-4 shadow-sm">
   <!-- https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg -->
-  <img class="bd-placeholder-img card-img-top p-2" width="100%" src="{{ productItem.picture }}"/>
+  <img class="bd-placeholder-img card-img-top p-2" src="{{ productItem.picture }}" width="100%"/>
 
   <div class="card-body">
     <p class="card-text">
@@ -11,12 +11,40 @@
     <p class="card-text">{{ productItem.description }}</p>
     <div class="d-flex justify-content-between align-items-center">
       <div class="btn-group">
-        <button type="button"
+        <button (click)="handleAddToCart()"
                 class="btn btn-sm btn-primary product-btn"
-                (click)="handleAddToCart()"
-        >Add to Cart</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary product-btn">View Details</button>
+                type="button"
+        >Add to Cart
+        </button>
+        <button (click)="triggerModal(modalData, productItem)" class="btn btn-sm btn-outline-secondary product-btn"
+                type="button">View Details
+        </button>
       </div>
     </div>
   </div>
+
+  <!-- More info card -->
+  <ng-template #modalData let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{showProduct.name}}</h4>
+      <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h2>${{showProduct.price}}</h2>
+      <h2 *ngIf="showProduct.discount!=0" id="discount">{{showProduct.discount*100}}% Discount!!</h2>
+      <p>Quantity: {{showProduct.quantity}}</p>
+      <p>Details: {{showProduct.description}}</p>
+      <p>Size: {{showProduct.size}}</p>
+      <p>Color: {{showProduct.color}}</p>
+      <p>Categories: </p>
+      <ul *ngFor="let category of showProduct.categories">
+        <li>{{category}}</li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <button (click)="modal.close('Save click')" class="btn btn-danger" type="button">Close</button>
+    </div>
+  </ng-template>
 </div>
