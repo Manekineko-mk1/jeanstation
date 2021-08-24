@@ -26,13 +26,13 @@ public class ProductRepositoryIntegrationTest {
         categories = new ArrayList<String>();
         product = new Product();
         product.setId("1l");
-        product.setProductName("product1");
-        product.setProductDescription("Description");
+        product.setName("product1");
+        product.setDescription("Description");
         product.setPicture("picture");
-        product.setPriceCAD(10.00f);
+        product.setPrice(10.00f);
         product.setDiscount(0.1f);
         product.setQuantity(20);
-        product.setProductCategories(categories);
+        product.setCategories(categories);
     }
 
     @AfterEach
@@ -57,7 +57,7 @@ public class ProductRepositoryIntegrationTest {
         productRepository.save(product1);
 
         List<Product> productList = productRepository.findAll();
-        assertEquals("product3", productList.get(1).getProductName());
+        assertEquals("product3", productList.get(1).getName());
     }
 
     @Test
@@ -66,9 +66,9 @@ public class ProductRepositoryIntegrationTest {
         Product product1 = productRepository.save(product);
         Optional<Product> optional = productRepository.findById(product1.getId());
         assertEquals(product1.getId(), optional.get().getId());
-        assertEquals(product1.getProductName(), optional.get().getProductName());
-        assertEquals(product1.getProductDescription(), optional.get().getProductDescription());
-        assertEquals(product1.getPriceCAD(), optional.get().getPriceCAD());
+        assertEquals(product1.getName(), optional.get().getName());
+        assertEquals(product1.getDescription(), optional.get().getDescription());
+        assertEquals(product1.getPrice(), optional.get().getPrice());
         assertEquals(product1.getDiscount(), optional.get().getDiscount());
         assertEquals(product1.getQuantity(), optional.get().getQuantity());
     }

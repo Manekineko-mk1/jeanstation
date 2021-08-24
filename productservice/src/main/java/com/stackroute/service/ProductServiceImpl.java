@@ -45,14 +45,14 @@ public class ProductServiceImpl implements ProductService {
 
         if(isProductExist) {
             log.error("ERROR: Unable to add product. Product already existed in database | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-                    product.getId(), product.getProductName(), timeStamp);
+                    product.getId(), product.getName(), timeStamp);
 
             throw new ProductAlreadyExistsException(product.getId());
         } else {
             Product savedProduct = productRepository.save(product);
 
             log.info("SUCCESS: Add a product to the \"products\" collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-                    savedProduct.getId(), savedProduct.getProductName(), timeStamp);
+                    savedProduct.getId(), savedProduct.getName(), timeStamp);
 
             return savedProduct;
         }
@@ -79,14 +79,14 @@ public class ProductServiceImpl implements ProductService {
 
             if(isProductExist) {
                 log.error("ERROR: Unable to add product. Product already existed in database | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-                        product.getId(), product.getProductName(), timeStamp);
+                        product.getId(), product.getName(), timeStamp);
 
                 throw new ProductAlreadyExistsException(product.getId());
             } else {
                 productRepository.save(product);
 
                 log.info("SUCCESS: Add a product to the \"products\" collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-                        product.getId(), product.getProductName(), timeStamp);
+                        product.getId(), product.getName(), timeStamp);
             }
         }
 
@@ -163,15 +163,15 @@ public class ProductServiceImpl implements ProductService {
             Product getProduct = productRepository.findById(product.getId()).get();
 
             // Update the existing product with new info
-            getProduct.setProductName(product.getProductName());
-            getProduct.setProductDescription(product.getProductDescription());
-            getProduct.setPriceCAD(product.getPriceCAD());
+            getProduct.setName(product.getName());
+            getProduct.setDescription(product.getDescription());
+            getProduct.setPrice(product.getPrice());
             getProduct.setPicture(product.getPicture());
-            getProduct.setProductCategories(product.getProductCategories());
+            getProduct.setCategories(product.getCategories());
             getProduct.setDiscount(product.getDiscount());
             getProduct.setQuantity(product.getQuantity());
-            getProduct.setProductSize(product.getProductSize());
-            getProduct.setProductColor(product.getProductColor());
+            getProduct.setSize(product.getSize());
+            getProduct.setColor(product.getColor());
 
             // Update the existing product to the DB
             productRepository.save(getProduct);
@@ -180,7 +180,7 @@ public class ProductServiceImpl implements ProductService {
             updatedProduct = productRepository.findById(product.getId()).get();
 
             log.info("SUCCESS: Updated product to the \"products\" collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-                    product.getId(), product.getProductName(), timeStamp);
+                    product.getId(), product.getName(), timeStamp);
 
             return updatedProduct;
         } else {

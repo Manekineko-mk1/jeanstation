@@ -2,6 +2,7 @@ import { Product } from '../model/Product';
 
 export class Cart {
     id?:string;
-    priceTotal?:number;
+    priceTotalBeforeTax?:number;
+    priceTotalAfterTax?:number;
     cartItems?:Product[];
 }

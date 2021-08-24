@@ -1,12 +1,13 @@
 export class Product {
-    id?:number;
-    productName?:string;
-    productDescription?:string;
+    id?:string;
+    productId?:string;
+    name?:string;
+    description?:string;
     picture?:string;
-    priceCAD?:number;
+    price?:number;
     discount?:number;
     quantity?:number;
-    productSize?:string;
-    productColor?:string;
-    productCategories?:string[];
+    size?:string;
+    color?:string;
+    categories?:string[];
 }

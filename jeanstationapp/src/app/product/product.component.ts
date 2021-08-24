@@ -3,24 +3,22 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from '../model/Product';
 import { ApprouteService } from '../services/approute.service';
 import { ProductService } from '../services/product.service';
-import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  providers: [CartComponent],
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
 
-  products:Product[];
-  showDetails:boolean;
+  products: Product[] = [];
+  showDetails: boolean;
   closeModal: string;
-  showProduct:Product;
-  isLoggedIn:boolean;
+  showProduct: Product;
+  isLoggedIn: boolean;
 
-  constructor(private productservice:ProductService, private cartComponent:CartComponent,
-              private approuter:ApprouteService, private modalService: NgbModal) { }
+  // Dependency injection
+  constructor(private productservice:ProductService, private approuter:ApprouteService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     // this.products = new Array();
@@ -28,10 +26,10 @@ export class ProductComponent implements OnInit {
     // p.discount = 0.1;
     // p.id = 1;
     // p.picture = "http://staffmobility.eu/sites/default/files/isewtweetbg.jpg";
-    // p.priceCAD = 20.00;
-    // p.productCategories = ["something"];
-    // p.productDescription = "the description";
-    // p.productName = "some";
+    // p.price = 20.00;
+    // p.categories = ["something"];
+    // p.description = "the description";
+    // p.name = "some";
     // p.quantity = 10;
     // this.products.push(p);
 
@@ -59,7 +57,7 @@ export class ProductComponent implements OnInit {
     //   this.approuter.openCart();
     // }
 
-    this.cartComponent.addItemToCart(product);
+    // this.cartComponent.addItemToCart(product);
     // this.approuter.openCart();
   }
 

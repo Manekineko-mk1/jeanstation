@@ -35,7 +35,7 @@
             <label>Price in CAD</label>
           </div>
           <div class="col-75">
-            <input formControlName="priceCAD" type="number"  placeholder="Enter the price of the product">
+            <input formControlName="price" type="number"  placeholder="Enter the price of the product">
           </div>
         </div>
 
@@ -62,15 +62,15 @@
                 <label>Size</label>
             </div>
             <div class="col-75">
-                <input type="radio" formControlName="productSize" value="XS">
+                <input type="radio" formControlName="size" value="XS">
                 <label>XS</label>
-                <input type="radio" formControlName="productSize" value="S">
+                <input type="radio" formControlName="size" value="S">
                 <label>S</label>
-                <input type="radio" formControlName="productSize" value="M">
+                <input type="radio" formControlName="size" value="M">
                 <label>M</label>
-                <input type="radio" formControlName="productSize" value="L">
+                <input type="radio" formControlName="size" value="L">
                 <label>L</label>
-                <input type="radio" formControlName="productSize" value="XL">
+                <input type="radio" formControlName="size" value="XL">
                 <label>XL</label>
             </div>
         </div>
@@ -80,11 +80,11 @@
               <label>Color</label>
           </div>
           <div class="col-75">
-              <input type="radio" formControlName="productColor" value="LIGHT_BLUE">
+              <input type="radio" formControlName="color" value="LIGHT_BLUE">
               <label>Light Blue</label>
-              <input type="radio" formControlName="productColor" value="BLUE">
+              <input type="radio" formControlName="color" value="BLUE">
               <label>Blue</label>
-              <input type="radio" formControlName="productColor" value="BLACK">
+              <input type="radio" formControlName="color" value="BLACK">
               <label>Black</label>
           </div>
       </div>
@@ -92,17 +92,17 @@
       <div formArrayName="productCategories">
         <div class="arrayform">
         <!-- <div class="row"> -->
-        
+
         <div class="form-group"
             *ngFor="let category of form.get('productCategories').controls; let i=index" >
             <div class = "row">
             <label class="col-25 control-label" [attr.for]="i">Category</label>
 
             <div class="col-50">
-                <input class="form-control" 
-                        [id]="i" 
-                        type="text" 
-                        placeholder="category" 
+                <input class="form-control"
+                        [id]="i"
+                        type="text"
+                        placeholder="category"
                         [formControlName]="i" />
             </div>
            <div class="col-25">
@@ -138,7 +138,7 @@
             <label>Name</label>
           </div>
           <div class="col-75">
-            <input formControlName="productName" type="text"  placeholder={{product.productName}}>
+            <input formControlName="name" type="text"  placeholder={{product.name}}>
           </div>
         </div>
 
@@ -147,7 +147,7 @@
             <label>Description</label>
           </div>
           <div class="col-75">
-            <input formControlName="productDescription" type="text"  placeholder={{product.productDescription}}>
+            <input formControlName="productDescription" type="text"  placeholder={{product.description}}>
           </div>
         </div>
 
@@ -165,7 +165,7 @@
             <label>Price in CAD</label>
           </div>
           <div class="col-75">
-            <input formControlName="priceCAD" type="number"  placeholder={{product.priceCAD}}>
+            <input formControlName="price" type="number"  placeholder={{product.price}}>
           </div>
         </div>
 
@@ -192,15 +192,15 @@
                 <label>Size</label>
             </div>
             <div class="col-75">
-                <input type="radio" formControlName="productSize" value="XS">
+                <input type="radio" formControlName="size" value="XS">
                 <label>XS</label>
-                <input type="radio" formControlName="productSize" value="S">
+                <input type="radio" formControlName="size" value="S">
                 <label>S</label>
-                <input type="radio" formControlName="productSize" value="M">
+                <input type="radio" formControlName="size" value="M">
                 <label>M</label>
-                <input type="radio" formControlName="productSize" value="L">
+                <input type="radio" formControlName="size" value="L">
                 <label>L</label>
-                <input type="radio" formControlName="productSize" value="XL">
+                <input type="radio" formControlName="size" value="XL">
                 <label>XL</label>
             </div>
         </div>
@@ -210,11 +210,11 @@
               <label>Color</label>
           </div>
           <div class="col-75">
-              <input type="radio" formControlName="productColor" value="LIGHT_BLUE">
+              <input type="radio" formControlName="color" value="LIGHT_BLUE">
               <label>Light Blue</label>
-              <input type="radio" formControlName="productColor" value="BLUE">
+              <input type="radio" formControlName="color" value="BLUE">
               <label>Blue</label>
-              <input type="radio" formControlName="productColor" value="BLACK">
+              <input type="radio" formControlName="color" value="BLACK">
               <label>Black</label>
           </div>
       </div>
@@ -222,17 +222,17 @@
       <div formArrayName="productCategories">
         <div class="arrayform">
         <!-- <div class="row"> -->
-        
+
         <div class="form-group"
             *ngFor="let category of form.get('productCategories').controls; let i=index" >
             <div class = "row">
             <label class="col-25 control-label" [attr.for]="i">Category</label>
 
             <div class="col-50">
-                <input class="form-control" 
-                        [id]="i" 
-                        type="text" 
-                        placeholder="category" 
+                <input class="form-control"
+                        [id]="i"
+                        type="text"
+                        placeholder="category"
                         [formControlName]="i" />
             </div>
            <div class="col-25">
@@ -263,13 +263,13 @@
 
       <br>
       <br>
-      
+
       <div class="alert" >
           {{message}}
         </div>
     </div>
 
-    
+
 
     <div id="products" >
         <h1>Products</h1>
@@ -279,8 +279,8 @@
                   <div class="card">
                     <img class="card-img-top" src={{product.picture}} alt="Card image cap">
                     <div class="card-body">
-                      <h4 class="card-title">{{product.productName}}</h4>
-                      <h5 class="card-text">${{product.priceCAD}}</h5>
+                      <h4 class="card-title">{{product.name}}</h4>
+                      <h5 class="card-text">${{product.price}}</h5>
                       <h5 class="card-text" *ngIf="product.discount!=0" id="discount">{{product.discount*100}}% Discount!</h5>
                       <p class="card-text">Quantity: {{product.quantity}}</p>
                       <button (click)="deleteProduct(product.id)">Delete</button>
@@ -295,20 +295,20 @@
 
      <ng-template #modalData let-modal>
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">{{showProduct.productName}}</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{showProduct.name}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">
-        <h2>${{showProduct.priceCAD}}</h2>
+        <h2>${{showProduct.price}}</h2>
         <h2 *ngIf="showProduct.discount!=0" id="discount">{{showProduct.discount*100}}% Discount!</h2>
         <p>Quantity: {{showProduct.quantity}}</p>
-        <p>Details: {{showProduct.productDescription}}</p>
-        <p>Size: {{showProduct.productSize}}</p>
-        <p>Color: {{showProduct.productColor}}</p>
+        <p>Details: {{showProduct.description}}</p>
+        <p>Size: {{showProduct.size}}</p>
+        <p>Color: {{showProduct.color}}</p>
         <p>Categories: </p>
-        <ul *ngFor="let category of showProduct.productCategories">
+        <ul *ngFor="let category of showProduct.categories">
           <li>{{category}}</li>
         </ul>
       </div>
@@ -325,3 +325,4 @@
 
 
 
+</div>

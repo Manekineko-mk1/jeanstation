@@ -105,9 +105,9 @@ class ProductServiceTest {
     public void givenProductToUpdateThenShouldReturnUpdatedProduct() {
         when(productRepository.findById(product.getId())).thenReturn(optional);
         when(productRepository.save(product)).thenReturn(product);
-        product.setProductDescription("SampleProductForTesting");
+        product.setDescription("SampleProductForTesting");
         Product product1 = productService.updateProduct(product);
-        assertEquals(product1.getProductDescription(), "SampleProductForTesting");
+        assertEquals(product1.getDescription(), "SampleProductForTesting");
         verify(productRepository, times(1)).save(product);
         verify(productRepository, times(2)).findById(product.getId());
     }
