@@ -1,5 +1,4 @@
 #products{
-    padding-top: 1rem;
     padding-bottom: 9rem;
     padding-left: 3%;
     padding-right: 3%;
@@ -62,7 +61,7 @@ body {
 .card img {
     width: 100%;
 }
-  
+
 button {
     background-color: #3a4468;
     color: white;
