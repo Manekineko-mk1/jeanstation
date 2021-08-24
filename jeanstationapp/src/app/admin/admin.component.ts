@@ -64,6 +64,7 @@ export class AdminComponent implements OnInit {
           this.clearForm();
           this.message = 'Product added';
           this.getProducts();
+          
         },
         err => {
           this.message = 'Failed to add Product!!';
@@ -109,8 +110,10 @@ export class AdminComponent implements OnInit {
   deleteProduct(id:string){
     this.productservice.deleteProduct(id).subscribe(
       data =>{
+        this.approute.showAdd.next(false);
         this.message = 'Product deleted';
         this.getProducts();
+        
       },
       err => {
         this.message = 'Failed to delete product!';
