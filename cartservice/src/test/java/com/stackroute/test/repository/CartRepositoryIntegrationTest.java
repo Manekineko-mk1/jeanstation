@@ -49,7 +49,7 @@ public class CartRepositoryIntegrationTest {
         cartRepository.save(cart1);
 
         List<Cart> cartList = cartRepository.findAll();
-        assertEquals(20, cartList.get(1).getPriceTotal());
+        assertEquals(20, cartList.get(1).getPriceTotalBeforeTax());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class CartRepositoryIntegrationTest {
         Cart cart1 = cartRepository.save(cart);
         Optional<Cart> optional = cartRepository.findById(cart1.getId());
         assertEquals(cart1.getId(), optional.get().getId());
-        assertEquals(cart1.getPriceTotal(), optional.get().getPriceTotal());
+        assertEquals(cart1.getPriceTotalBeforeTax(), optional.get().getPriceTotalBeforeTax());
         assertEquals(cart1.getCartItems(), optional.get().getCartItems());
     }
 
