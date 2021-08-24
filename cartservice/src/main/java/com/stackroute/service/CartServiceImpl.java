@@ -127,7 +127,7 @@ public class CartServiceImpl implements CartService {
             Cart getCart = cartRepository.findById(cart.getId()).get();
 
             // Update the existing product with new info
-            getCart.setPriceTotal(cart.getPriceTotal());
+            getCart.setPriceTotalBeforeTax(cart.getPriceTotalBeforeTax());
             getCart.setCartItems(cart.getCartItems());
 
             // Update the existing product to the DB
