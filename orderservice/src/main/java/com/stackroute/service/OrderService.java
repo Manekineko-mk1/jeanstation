@@ -28,4 +28,6 @@ public interface OrderService {
      * AbstractMethod to update a order
      */
     Order updateOrder(Order order);
+
+    List<Order> getOrderByUserId(String id);
 }

@@ -33,9 +33,9 @@ public class OrderServiceIntegrationTest {
         ArrayList<String> itemsList = new ArrayList<>();
         itemsList.add("cat1");
         itemsList.add("cat2");
-        order1 = new Order(10, itemsList);
-        order2 = new Order(20, itemsList);
-        order3 = new Order(30, itemsList);
+        order1 = new Order(10, itemsList, "A1");
+        order2 = new Order(20, itemsList, "A2");
+        order3 = new Order(30, itemsList, "A1");
         orderList.add(order1);
         orderList.add(order2);
         orderList.add(order3);

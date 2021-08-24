@@ -50,13 +50,13 @@ public class ProductControllerTest {
         ArrayList<String> categories = new ArrayList<>();
         product = new Product();
         product.setId("1l");
-        product.setProductName("product1");
-        product.setProductDescription("Description");
+        product.setName("product1");
+        product.setDescription("Description");
         product.setPicture("picture");
-        product.setPriceCAD(10.00f);
+        product.setPrice(10.00f);
         product.setDiscount(0.1f);
         product.setQuantity(20);
-        product.setProductCategories(categories);
+        product.setCategories(categories);
         productList = new ArrayList<>();
         productList.add(product);
     }

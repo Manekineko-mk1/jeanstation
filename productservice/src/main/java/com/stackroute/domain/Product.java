@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Getter
@@ -18,25 +19,41 @@ import java.util.ArrayList;
 public class Product {
     @Id
     private String id;
-    private String productName;
-    private String productDescription;
+    private String name;
+    private String description;
     private String picture;
-    private float priceCAD;
+    private float price;
     private float discount;
     private int quantity;
-    private ProductSize productSize;
-    private ProductColor productColor;
-    ArrayList<String> productCategories;
+    private ProductSize size;
+    private ProductColor color;
+    List<String> categories;
 
-    public Product(String productName, String productDescription, String picture, float priceCAD, float discount, int quantity, ArrayList<String> productCategories) {
-        this.productName = productName;
-        this.productDescription = productDescription;
+    public Product(String name, String description, String picture, float price, float discount,
+                   int quantity, List<String> categories) {
+        this.name = name;
+        this.description = description;
         this.picture = picture;
-        this.priceCAD = priceCAD;
+        this.price = price;
         this.discount = discount;
         this.quantity = quantity;
-        this.productCategories = productCategories;
+        this.categories = categories;
 
-        log.info("A new product is created: {} | {}", this.getId(), this.productName);
+        log.info("A new product is created: {} | {}", this.getId(), this.name);
+    }
+
+    public Product(String name, String description, String picture, float price, float discount,
+                   int quantity, ProductSize size, ProductColor color, List<String> categories) {
+        this.name = name;
+        this.description = description;
+        this.picture = picture;
+        this.price = price;
+        this.discount = discount;
+        this.quantity = quantity;
+        this.size = size;
+        this.color = color;
+        this.categories = categories;
+
+        log.info("A new product is created: {} | {}", this.getId(), this.name);
     }
 }

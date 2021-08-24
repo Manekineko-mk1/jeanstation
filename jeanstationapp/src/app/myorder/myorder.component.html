@@ -1,0 +1,26 @@
+<div id="myorder" >
+    <h2> Your Past Order </h2>
+        <div class="container" >  
+          <div class="row" *ngFor="let order of orders">
+              <div class="column">
+                  <div class="card" (click)="viewDetails()">
+                    <div class="card-body">
+                      <h4 class="card-title">ID: {{order.id}}</h4>
+                      <p class="card-text">Total Price: ${{order.priceTotal}}</p>
+                      <p class="card-text">User: {{order.userId}}</p>
+                      <p class="card-text">Delivery Date: {{order.deliveryDate}}</p>
+                      <p class="card-text">Shipment: {{order.shipmentId}}</p>
+                      <p class="card-text">Order Status: {{order.orderStatus}}</p>
+                      <p>Order Items: </p>
+                      <ul *ngFor="let item of order.orderItem">
+                        <li>{{item}}</li>
+                      </ul>
+                      <br><br>
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+  
+  
+  

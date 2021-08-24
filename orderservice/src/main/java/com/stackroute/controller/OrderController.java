@@ -33,7 +33,7 @@ public class OrderController {
     /**
      * save a new Order
      */
-    @PostMapping("/order")
+    @PostMapping("/orders")
     @ApiOperation(value = "POST a new Order", notes = "Add a new Order entry to the Order database " +
             "using a provided JSON Order object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
@@ -70,7 +70,7 @@ public class OrderController {
     /**
      * retrieve Order by id
      */
-    @GetMapping("order/{orderId}")
+    @GetMapping("orders/{orderId}")
     @ApiOperation(value = "GET a Order by ID", notes = "GET a Order entry from the Order database " +
             "by a provided Order ID. Returns a Order object if found.", response = ResponseEntity.class)
     public ResponseEntity<Order> getOrderById(@PathVariable("orderId") String orderId) {
@@ -86,11 +86,11 @@ public class OrderController {
     /**
      * delete Order by id
      */
-    @DeleteMapping("order/{orderId}")
+    @DeleteMapping("orders/{orderId}")
     @ApiOperation(value = "DELETE an existing Order", notes = "Remove a Order entry from the Order database " +
             "by a provided Order ID. Returns the deleted Order object " +
             "if the operation is successful.", response = ResponseEntity.class)
-    public ResponseEntity<Order> getOrderAfterDeleting(@PathVariable("OrderId") String orderId) {
+    public ResponseEntity<Order> getOrderAfterDeleting(@PathVariable("orderId") String orderId) {
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
@@ -103,7 +103,7 @@ public class OrderController {
     /**
      * update Order
      */
-    @PutMapping("order")
+    @PutMapping("orders")
     @ApiOperation(value = "UPDATE an existing Order", notes = "Update an existing Order entry " +
             "from the Order database using a provided JSON Order object. " +
             "Returns the updated entry if the operation is a success.", response = ResponseEntity.class)
@@ -116,5 +116,18 @@ public class OrderController {
         log.info("Request to UPDATE a order| Order ID: {} | Timestamp: {}",order.getId() ,timeStamp);
 
         return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
+    }
+
+    @GetMapping("orders/user/{userId}")
+    @ApiOperation(value = "GET a Order by User ID", notes = "GET Order entries from the Order database " +
+            "by a provided User ID. Returns a Order object if found.", response = ResponseEntity.class)
+    public ResponseEntity<List<Order>> getOrderByUserId(@PathVariable("userId") String userId) {
+
+        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+        String timeStamp = zonedDateTimeNow.format(formatter);
+
+        log.info("Query to get a order | User ID: {} | Timestamp: {}" ,userId ,timeStamp);
+
+        return new ResponseEntity<>(orderService.getOrderByUserId(userId), HttpStatus.FOUND);
     }
 }

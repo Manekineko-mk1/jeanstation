@@ -1,0 +1,125 @@
+<div id="userprofile">
+    <h1>Your Profile</h1>
+    <div class="container" *ngIf="!update">
+        <div class="row">
+            <p>ID: {{user.id}}</p>
+        </div>
+        <div class="row">
+            <p>Username: {{user.username}}</p>
+        </div>
+        <div class="row">
+            <p>Role: {{user.userRole}}</p>
+        </div>
+        <div class="row">
+            <p>Status: {{user.userStatus}}</p>
+        </div>
+        <div class="row">
+            <p>Creation Date: {{user.creationDate}}</p>
+        </div>
+        <div class="row">
+            <p>Name: {{user.name}}</p>
+        </div>
+        <div class="row" *ngIf="!isAdmin">
+            <p>Address: {{user.address.doorNumber}} {{user.address.street}}, {{user.address.city}}, {{user.address.country}}, {{user.address.postalCode}}</p>
+        </div>
+        <div class="row" *ngIf="!isAdmin">
+            <p>Telephone: {{user.telephone}}</p>
+        </div>
+        <button class="col-md-3 btn btn-default"
+                    type="button"
+                    (click)="showUpdate()">Update information
+        </button>
+        <button class="col-md-3 btn btn-default"
+            type="button"
+            (click)="changePassword()">Change Password
+        </button>
+    </div>
+
+    <div class="container" *ngIf="update">
+        <form [formGroup]="form" (ngSubmit)="updateUser()" >
+            <div class="row">
+                <div class="col-25">
+                    <label>Username</label>
+                </div>
+                <div class="col-75">
+                    <input formControlName="username" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>Name</label>
+                </div>
+                <div class="col-75">
+                    <input formControlName="name" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label> Address</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label> - Door number</label>
+                </div>
+                <div class="col-75">
+                    <input formControlName="doornumber" type="number" placeholder="Enter your door number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>       - Street Name</label>
+                </div>
+                <div class="col-75">
+                    <input formControlName="street" type="text" placeholder="Enter your street name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>        - City</label>
+                </div>
+                <div class="col-75">
+                    <input formControlName="city" type="text" placeholder="Enter your city">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>   - Country</label>
+                </div>
+                <div class="col-75">
+                    <input formControlName="country" type="text" placeholder="Enter your Country">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>        - Postal Code</label>
+                </div>
+                <div class="col-75">
+                    <input formControlName="postalcode" type="text" placeholder="Enter your postal code">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>Phone Number</label>
+                </div>
+                <div class="col-75">
+                    <input formControlName="telephone" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label>Your Status</label>
+                </div>
+                <div class="col-75">
+                    <input type="radio" formControlName="status" value="Active">
+                    <label>Active</label>
+                    <input type="radio" formControlName="status" value="Inactive">
+                    <label>Inactive</label>
+                </div>
+            </div>
+            <div class="row">
+                <input class="col-md-2 btn btn-default" type="submit" value="Update Profile">
+              </div>
+        </form>
+    </div>
+</div>

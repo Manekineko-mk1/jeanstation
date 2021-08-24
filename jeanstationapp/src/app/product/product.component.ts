@@ -10,22 +10,12 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductComponent implements OnInit {
 
-  products:Product[];
+  products: Product[] = [];
 
+  // Dependency injection
   constructor(private productservice:ProductService, private approuter:ApprouteService) { }
 
   ngOnInit(): void {
-    // this.products = new Array();
-    // let p = new Product();
-    // p.discount = 0.1;
-    // p.id = 1;
-    // p.picture = "http://staffmobility.eu/sites/default/files/isewtweetbg.jpg";
-    // p.priceCAD = 20.00;
-    // p.productCategories = ["something"];
-    // p.productDescription = "the description";
-    // p.productName = "some";
-    // p.quantity = 10;
-    // this.products.push(p);
     this.getProducts();
   }
 
@@ -35,13 +25,5 @@ export class ProductComponent implements OnInit {
         this.products = data;
       }
     )
-
-
   }
-
-  addToCart(){
-    this.approuter.openCart();
-  }
-  
-
 }

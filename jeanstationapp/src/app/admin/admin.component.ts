@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from '../model/Product';
 import { ApprouteService } from '../services/approute.service';
 import { ProductService } from '../services/product.service';
@@ -12,27 +13,31 @@ import { ProductService } from '../services/product.service';
 export class AdminComponent implements OnInit {
 
   form;
-  message = "";
+  message;
   products: Product[];
   toAdd = false;
   toUpdate = false;
   product: Product = new Product();
+  closeModal:string;
+  showProduct: Product;
 
-  constructor(private formBuilder:FormBuilder, private productservice:ProductService, private approute: ApprouteService) { 
+  constructor(private formBuilder:FormBuilder, private productservice:ProductService, 
+    private approute: ApprouteService, private modalService:NgbModal) { 
     this.form = this.formBuilder.group({
-      productName: new FormControl('', Validators.required),
-      productDescription: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
       picture: new FormControl('', Validators.required),
-      priceCAD: new FormControl('', Validators.required),
+      price: new FormControl('', Validators.required),
       discount: new FormControl('', Validators.required),
       quantity: new FormControl('', Validators.required),
-      productSize: new FormControl('', Validators.required),
-      productColor: new FormControl('', Validators.required),
-      productCategories: new FormArray([new FormControl()])
+      size: new FormControl('', Validators.required),
+      color: new FormControl('', Validators.required),
+      categories: new FormArray([new FormControl()])
     });
   }
 
   ngOnInit(): void {
+    this.approute.inOrderManag.next(false);
     this.getProducts();
     this.approute.showAdd.subscribe(
       value => {
@@ -56,8 +61,8 @@ export class AdminComponent implements OnInit {
     if (this.form.valid) {
       this.productservice.addProduct(this.form.value).subscribe(
         data => {
-          this.message = 'Product added';
           this.clearForm();
+          this.message = 'Product added';
           this.getProducts();
         },
         err => {
@@ -74,21 +79,21 @@ export class AdminComponent implements OnInit {
   updateProduct(){
 
     if (this.form.valid) {
-      this.product.productName = this.form.value.productName;
-      this.product.productDescription = this.form.value.productDescription;
+      this.product.name = this.form.value.name;
+      this.product.description = this.form.value.description;
       this.product.picture = this.form.value.picture;
-      this.product.priceCAD = this.form.value.priceCAD;
+      this.product.price = this.form.value.price;
       this.product.discount = this.form.value.discount;
       this.product.quantity = this.form.value.quantity;
-      this.product.productSize = this.form.value.productSize;
-      this.product.productColor = this.form.value.productColor;
-      this.product.productCategories = this.form.value.productCategories;
+      this.product.size = this.form.value.size;
+      this.product.color = this.form.value.color;
+      this.product.categories = this.form.value.categories;
       this.productservice.updateProduct(this.product).subscribe(
         data => {
-          this.message = 'Product updated';
-          this.clearForm();
-          this.getProducts();
           this.toUpdate = false;
+          this.clearForm();
+          this.message = 'Product updated';
+          this.getProducts();
         },
         err => {
           this.message = 'Failed to update Product!!';
@@ -104,11 +109,11 @@ export class AdminComponent implements OnInit {
   deleteProduct(id:number){
     this.productservice.deleteProduct(id).subscribe(
       data =>{
-        this.message = "Product deleted";
+        this.message = 'Product deleted';
         this.getProducts();
       },
       err => {
-        this.message = "Failed to delete product!";
+        this.message = 'Failed to delete product!';
       }
     );
   }
@@ -132,25 +137,44 @@ export class AdminComponent implements OnInit {
       top.scrollIntoView();
       top = null;
     }
-    this.form.get('productName').setValue(this.product.productName);
-    this.form.get('productDescription').setValue(this.product.productDescription);
+    this.form.get('name').setValue(this.product.name);
+    this.form.get('description').setValue(this.product.description);
     this.form.get('picture').setValue(this.product.picture);
-    this.form.get('priceCAD').setValue(this.product.priceCAD);
+    this.form.get('price').setValue(this.product.price);
     this.form.get('discount').setValue(this.product.discount);
     this.form.get('quantity').setValue(this.product.quantity);
-    this.form.get('productSize').setValue(this.product.productSize);
-    this.form.get('productColor').setValue(this.product.productColor);
-    this.form.get('productCategories').setValue(this.product.productCategories);
+    this.form.get('size').setValue(this.product.size);
+    this.form.get('color').setValue(this.product.color);
+    this.form.get('categories').setValue(this.product.categories);
   }
 
   addCategory(){
-    this.form.productCategories = this.form.get('productCategories') as FormArray;
-    this.form.productCategories.push(new FormControl());
+    this.form.categories = this.form.get('categories') as FormArray;
+    this.form.categories.push(new FormControl());
   }
 
   deleteCategory(index:number){
-    this.form.productCategories = this.form.get('productCategories') as FormArray;
-    this.form.productCategories.removeAt(index);
+    this.form.categories = this.form.get('categories') as FormArray;
+    this.form.categories.removeAt(index);
+  }
+
+  triggerModal(content, product) {
+    this.showProduct = product;
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+      this.closeModal = `Closed with: ${res}`;
+    }, (res) => {
+      this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+    });
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 }
