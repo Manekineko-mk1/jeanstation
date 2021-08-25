@@ -27,7 +27,6 @@ public class UserController {
         this.userService = userService;
     }
 
-
     /**
      * save a new User
      */
@@ -35,15 +34,12 @@ public class UserController {
     @ApiOperation(value = "POST a new User", notes = "Add a new User entry to the users collection " +
             "using a provided JSON User object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
-    public ResponseEntity<User> saveProduct(@RequestBody User user) {
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
         User saveUser = userService.saveUser(user);
-
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
-
-        log.info("Added a user to products collection | User ID: {} | User name: {} | Timestamp(EST): {}",
+        log.info("Added a user to users collection | User ID: {} | User name: {} | Timestamp(EST): {}",
                 user.getId(), user.getUsername(), timeStamp);
-
         return new ResponseEntity<>(saveUser, HttpStatus.CREATED);
     }
 
@@ -67,10 +63,10 @@ public class UserController {
 
 
     /**
-     * retrieve all Products
+     * retrieve all Users
      */
     @GetMapping("users")
-    @ApiOperation(value = "GET all Products", notes = "GET all User entries from the users collection. " +
+    @ApiOperation(value = "GET all Users", notes = "GET all User entries from the users collection. " +
             "Returns the result as a List of User object in JSON format " +
             "if any entry is found.", response = ResponseEntity.class)
     public ResponseEntity<List<User>> getAllUsers() {

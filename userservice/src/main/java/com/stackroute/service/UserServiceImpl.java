@@ -119,9 +119,20 @@ public class UserServiceImpl implements UserService {
         } else {
             log.error("ERROR: Unable to find user. User ID not found | User ID: {} | Timestamp(EST): {}", id, timeStamp);
 
-            throw new UserNotFoundException(id);
+            throw new UserNotFoundException("User with ID "+id+" not found.");
         }
     }
+
+    @Override
+    public User findByIdAndPassword(String id, String password) throws UserNotFoundException {
+        User authUser = userRepository.findByIdAndPassword(id, password);
+        if (authUser == null) {
+            throw new UserNotFoundException("Username or Password is invalid");
+        }
+        return authUser;
+    }
+
+
 
     /**
      * AbstractMethod to delete user by id
