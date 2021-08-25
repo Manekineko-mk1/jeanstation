@@ -21,6 +21,7 @@ import { PasswordComponent } from './password/password.component';
 import { FiltersComponent } from './filters/filters.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { ProductItemComponent } from './product/product-item/product-item.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ProductItemComponent } from './product/product-item/product-item.compon
     PasswordComponent,
     FiltersComponent,
     CartItemComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

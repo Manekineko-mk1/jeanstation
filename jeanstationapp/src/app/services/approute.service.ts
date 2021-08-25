@@ -42,4 +42,8 @@ export class ApprouteService {
     this.router.navigate(['password']);
   }
 
+  openRegistration(){
+    this.router.navigate(['registration']);
+  }
+
 }
