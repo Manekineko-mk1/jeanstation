@@ -27,6 +27,7 @@
         <module>cartservice</module>
         <module>orderservice</module>
         <module>api-gateway-service</module>
+        <module>eurekaservice</module>
     </modules>
 
 	<dependencies>
@@ -56,6 +57,11 @@
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
             <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.activation/activation -->
         <dependency>

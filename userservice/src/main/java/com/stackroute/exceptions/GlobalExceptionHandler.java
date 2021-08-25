@@ -48,10 +48,26 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         String timeStamp = zonedDateTimeNow.format(formatter);
 
         body.put("timestamp", timeStamp);
-        body.put("message", "User not found.");
+        body.put("message", "User not found. Username or Password is invalid");
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+
+
+//    @ExceptionHandler(InvalidPasswordException.class)
+//    public ResponseEntity<Object> handleInvalidPasswordException(
+//            InvalidPasswordException ex, WebRequest request) {
+//
+//        Map<String, Object> body = new LinkedHashMap<>();
+//
+//        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+//        String timeStamp = zonedDateTimeNow.format(formatter);
+//
+//        body.put("timestamp", timeStamp);
+//        body.put("message", "Password is invalid");
+//
+//        return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED);
+//    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(

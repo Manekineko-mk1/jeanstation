@@ -20,10 +20,10 @@ public class User {
     @Id
     private String id;
     private String username;
+    private String password;
     private UserRole userRole;
     private UserStatus userStatus;
     private Date creationDate;
-
     private String realName;
     private Address address;
     private String telephone;
@@ -33,11 +33,11 @@ public class User {
      private List<Order> pastOrders;
     */
 
-    public User(String username, UserRole userRole, UserStatus userStatus, Date creationDate, String realName, Address address, String telephone) {
+    public User(String username, UserRole userRole, UserStatus userStatus, Date creationDate, String realName, Address address, String telephone, String password) {
         this.username = username;
         this.userRole = userRole;
         this.userStatus = userStatus;
-
+        this.password = password;
         this.creationDate = creationDate;
 
         this.realName = realName;

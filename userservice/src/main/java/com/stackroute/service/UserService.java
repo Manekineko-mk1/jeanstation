@@ -1,6 +1,7 @@
 package com.stackroute.service;
 
 import com.stackroute.domain.User;
+import com.stackroute.exceptions.UserNotFoundException;
 
 import java.util.List;
 
@@ -24,6 +25,9 @@ public interface UserService {
      * AbstractMethod to get user by id
      */
     User findUserById(String id);
+
+    User findByIdAndPassword(String id, String password) throws UserNotFoundException;
+
 
     /**
      * AbstractMethod to delete user by id
