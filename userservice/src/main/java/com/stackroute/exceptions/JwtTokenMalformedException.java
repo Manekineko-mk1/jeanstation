@@ -1,4 +1,4 @@
-package com.stackroute.exception;
+package com.stackroute.exceptions;
 
 import javax.naming.AuthenticationException;
 

@@ -1,16 +1,21 @@
 package com.stackroute.service;
 
-import com.stackroute.domain.User;
+import com.stackroute.domain.Users;
 import com.stackroute.exceptions.UserAlreadyExistsException;
 import com.stackroute.exceptions.UserNotFoundException;
 import com.stackroute.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,16 +34,16 @@ public class UserServiceImpl implements UserService {
     /**
      * AbstractMethod to save a user
      *
-     * @param user
+     * @param users
      */
     @Override
-    public User saveUser(User user) {
+    public Users saveUser(Users users) {
         boolean isUserExist;
 
-        if(user.getId() == null) {
+        if(users.getId() == null) {
             isUserExist = false;
         } else {
-            isUserExist = userRepository.findById(user.getId()).isPresent();
+            isUserExist = userRepository.findById(users.getId()).isPresent();
         }
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
@@ -46,14 +51,14 @@ public class UserServiceImpl implements UserService {
 
         if(isUserExist) {
             log.error("ERROR: Unable to add user. User already existed in database | User ID: {} | User name: {} | Timestamp(EST): {}",
-                    user.getId(), user.getUsername(), timeStamp);
+                    users.getId(), users.getUsername(), timeStamp);
 
-            throw new UserAlreadyExistsException(user.getId());
+            throw new UserAlreadyExistsException(users.getId());
         } else {
             log.info("SUCCESS: Add a user to the \"users\" collection | User ID: {} | User name: {} | Timestamp(EST): {}",
-                    user.getId(), user.getUsername(), timeStamp);
+                    users.getId(), users.getUsername(), timeStamp);
 
-            return userRepository.save(user);
+            return userRepository.save(users);
         }
     }
 
@@ -63,10 +68,10 @@ public class UserServiceImpl implements UserService {
      * @param users
      */
     @Override
-    public List<User> saveUsers(List<User> users) {
+    public List<Users> saveUsers(List<Users> users) {
         boolean isUserExist;
 
-        for(User user : users){
+        for(Users user : users){
             if(user.getId() == null) {
                 isUserExist = false;
             } else {
@@ -96,7 +101,7 @@ public class UserServiceImpl implements UserService {
      * AbstractMethod to get all users
      */
     @Override
-    public List<User> findAllUser() {
+    public List<Users> findAllUser() {
         return userRepository.findAll();
     }
 
@@ -106,7 +111,7 @@ public class UserServiceImpl implements UserService {
      * @param id
      */
     @Override
-    public User findUserById(String id) {
+    public Users findUserById(String id) {
         boolean isUserExist = userRepository.findById(id).isPresent();
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
@@ -124,12 +129,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByIdAndPassword(String id, String password) throws UserNotFoundException {
-        User authUser = userRepository.findByIdAndPassword(id, password);
-        if (authUser == null) {
+    public Users findByIdAndPassword(String id, String password) throws UserNotFoundException {
+        Users authUsers = userRepository.findByIdAndPassword(id, password);
+        if (authUsers == null) {
             throw new UserNotFoundException("Username or Password is invalid");
         }
-        return authUser;
+        return authUsers;
     }
 
 
@@ -140,20 +145,20 @@ public class UserServiceImpl implements UserService {
      * @param id
      */
     @Override
-    public User deleteUserById(String id) {
-        User user;
-        Optional<User> optional = userRepository.findById(id);
+    public Users deleteUserById(String id) {
+        Users users;
+        Optional<Users> optional = userRepository.findById(id);
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
         if (optional.isPresent()) {
-            user = userRepository.findById(id).get();
+            users = userRepository.findById(id).get();
             userRepository.deleteById(id);
 
             log.info("SUCCESS: Deleted user by ID | User ID: {} | Timestamp(EST): {}", id, timeStamp);
 
-            return user;
+            return users;
         } else {
             log.error("ERROR: Unable to delete user. User ID not found | User ID: {} | Timestamp(EST): {}", id, timeStamp);
 
@@ -164,43 +169,56 @@ public class UserServiceImpl implements UserService {
     /**
      * AbstractMethod to update a user
      *
-     * @param user
+     * @param users
      */
     @Override
-    public User updateUser(User user) {
-        User updatedProduct;
-        Optional<User> optional = userRepository.findById(user.getId());
+    public Users updateUser(Users users) {
+        Users updatedProduct;
+        Optional<Users> optional = userRepository.findById(users.getId());
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
         if (optional.isPresent()) {
             // Locate the existing product with same product ID
-            User getUser = userRepository.findById(user.getId()).get();
+            Users getUsers = userRepository.findById(users.getId()).get();
 
             // Update the existing product with new info
-            getUser.setUsername(user.getUsername());
-            getUser.setUserRole(user.getUserRole());
-            getUser.setUserStatus(user.getUserStatus());
-            getUser.setCreationDate(user.getCreationDate());
-            getUser.setRealName(user.getRealName());
-            getUser.setAddress(user.getAddress());
-            getUser.setTelephone(user.getTelephone());
+            getUsers.setUsername(users.getUsername());
+            getUsers.setUserRole(users.getUserRole());
+            getUsers.setUserStatus(users.getUserStatus());
+            getUsers.setCreationDate(users.getCreationDate());
+            getUsers.setRealName(users.getRealName());
+            getUsers.setAddress(users.getAddress());
+            getUsers.setTelephone(users.getTelephone());
 
             // Update the existing user to the DB
-            userRepository.save(getUser);
+            userRepository.save(getUsers);
 
             // Retrieve the updated product for return
-            updatedProduct = userRepository.findById(user.getId()).get();
+            updatedProduct = userRepository.findById(users.getId()).get();
 
             log.info("SUCCESS: Updated user to the \"users\" collection | User ID: {} | User name: {} | Timestamp(EST): {}",
-                    user.getId(), user.getUsername(), timeStamp);
+                    users.getId(), users.getUsername(), timeStamp);
 
             return updatedProduct;
         } else {
-            log.error("ERROR: Unable to delete user. User ID not found | User ID: {} | Timestamp(EST): {}", user.getId(), timeStamp);
+            log.error("ERROR: Unable to delete user. User ID not found | User ID: {} | Timestamp(EST): {}", users.getId(), timeStamp);
 
-            throw new UserNotFoundException(user.getId());
+            throw new UserNotFoundException(users.getId());
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Users users = userRepository.findByUsername(username);
+
+        if(users == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+
+        List authorities = Arrays.asList(new SimpleGrantedAuthority("user"));
+
+        return new User(users.getUsername(), users.getPassword(), authorities);
     }
 }

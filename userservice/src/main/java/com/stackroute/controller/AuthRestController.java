@@ -1,6 +1,6 @@
 package com.stackroute.controller;
 
-import com.stackroute.domain.User;
+import com.stackroute.domain.Users;
 import com.stackroute.exceptions.UserNotFoundException;
 import com.stackroute.service.UserService;
 import com.stackroute.util.JwtUtil;
@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/api/v1/")
 @Slf4j
@@ -22,19 +22,19 @@ public class AuthRestController {
 	ResponseEntity<?> responseEntity;
 
 	@PostMapping("/auth/login")
-	public ResponseEntity<?> login(@RequestBody User user) {
+	public ResponseEntity<?> login(@RequestBody Users users) {
 		try {
-			if (user.getId() == null || user.getPassword() == null) {
+			if (users.getId() == null || users.getPassword() == null) {
 				throw new UserNotFoundException("Id and Password Empty");
 			}
-			User userDetails = userService.findByIdAndPassword(user.getId(), user.getPassword());
-			if (userDetails == null) {
+			Users usersDetails = userService.findByIdAndPassword(users.getId(), users.getPassword());
+			if (usersDetails == null) {
 				throw new UserNotFoundException("Id and Password not found");
 			}
-			if (!(user.getPassword().equals(userDetails.getPassword()))) {
+			if (!(users.getPassword().equals(usersDetails.getPassword()))) {
 				throw new UserNotFoundException("Id and Password invalid");
 			}
-			String token = jwtUtil.generateToken(userDetails.getId());
+			String token = jwtUtil.generateToken(usersDetails.getId());
 			responseEntity = new ResponseEntity<>(token, HttpStatus.OK);
 
 		} catch (UserNotFoundException e) {
@@ -43,11 +43,11 @@ public class AuthRestController {
 		return responseEntity;
 	}
 
-	@PostMapping("/auth/register")
-	public ResponseEntity<?> register(@RequestBody String userName) {
-		// Persist user to some persistent storage
-		System.out.println("Info saved...");
-		responseEntity = new ResponseEntity<>("Registered", HttpStatus.OK);
-		return responseEntity;
-	}
+//	@PostMapping("/auth/register")
+//	public ResponseEntity<?> register(@RequestBody String userName) {
+//		// Persist user to some persistent storage
+//		System.out.println("Info saved...");
+//		responseEntity = new ResponseEntity<>("Registered", HttpStatus.OK);
+//		return responseEntity;
+//	}
 }
