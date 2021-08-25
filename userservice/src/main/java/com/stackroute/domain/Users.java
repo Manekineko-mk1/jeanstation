@@ -16,7 +16,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Document(collection = "users")
-public class User {
+public class Users {
     @Id
     private String id;
     private String username;
@@ -33,7 +33,7 @@ public class User {
      private List<Order> pastOrders;
     */
 
-    public User(String username, UserRole userRole, UserStatus userStatus, Date creationDate, String realName, Address address, String telephone, String password) {
+    public Users(String username, UserRole userRole, UserStatus userStatus, Date creationDate, String realName, Address address, String telephone, String password) {
         this.username = username;
         this.userRole = userRole;
         this.userStatus = userStatus;

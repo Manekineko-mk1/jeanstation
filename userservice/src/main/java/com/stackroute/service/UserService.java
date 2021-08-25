@@ -1,7 +1,8 @@
 package com.stackroute.service;
 
-import com.stackroute.domain.User;
+import com.stackroute.domain.Users;
 import com.stackroute.exceptions.UserNotFoundException;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -9,33 +10,35 @@ public interface UserService {
     /**
      * AbstractMethod to save a user
      */
-    User saveUser(User user);
+    Users saveUser(Users users);
 
     /**
      * AbstractMethod to save a list of users
      */
-    List<User> saveUsers(List<User> users);
+    List<Users> saveUsers(List<Users> users);
 
     /**
      * AbstractMethod to get all users
      */
-    List<User> findAllUser();
+    List<Users> findAllUser();
 
     /**
      * AbstractMethod to get user by id
      */
-    User findUserById(String id);
+    Users findUserById(String id);
 
-    User findByIdAndPassword(String id, String password) throws UserNotFoundException;
+    Users findByIdAndPassword(String id, String password) throws UserNotFoundException;
 
 
     /**
      * AbstractMethod to delete user by id
      */
-    User deleteUserById(String id);
+    Users deleteUserById(String id);
 
     /**
      * AbstractMethod to update a user
      */
-    User updateUser(User user);
+    Users updateUser(Users users);
+
+    UserDetails loadUserByUsername(String username);
 }

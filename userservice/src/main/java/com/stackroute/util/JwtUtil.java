@@ -5,8 +5,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.stackroute.exception.JwtTokenMalformedException;
-import com.stackroute.exception.JwtTokenMissingException;
+import com.stackroute.exceptions.JwtTokenMalformedException;
+import com.stackroute.exceptions.JwtTokenMissingException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
