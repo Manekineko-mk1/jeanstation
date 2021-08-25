@@ -33,7 +33,8 @@ export class HeaderComponent implements OnInit {
   }
 
   showAdd(){
-    this.approute.showAdd.next(true);
+    let add = this.approute.showAdd.value;
+    this.approute.showAdd.next(!add);
   }
 
   // toOrderManagement(){

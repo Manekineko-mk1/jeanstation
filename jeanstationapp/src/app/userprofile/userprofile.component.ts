@@ -36,7 +36,6 @@ export class UserprofileComponent implements OnInit {
   ngOnInit(): void {
     this.update = false;
     let address:Address = new Address();
-    address.id="1";
     address.city="mycity";
     address.country="mycounter";
     address.doorNumber=100;
@@ -48,7 +47,7 @@ export class UserprofileComponent implements OnInit {
     this.user.userRole="User";
     this.user.userStatus="Active";
     this.user.creationDate="2021";
-    this.user.name="myRealname";
+    this.user.realName="myRealname";
     this.user.address = address;
     this.user.telephone = "11111111";
     this.approute.isAdmin.subscribe(
@@ -69,7 +68,7 @@ export class UserprofileComponent implements OnInit {
   showUpdate(){
     this.update = true;
     this.form.get('username').setValue(this.user.username);
-    this.form.get('name').setValue(this.user.name);
+    this.form.get('name').setValue(this.user.realName);
     this.form.get('doornumber').setValue(this.user.address.doorNumber);
     this.form.get('street').setValue(this.user.address.street);
     this.form.get('city').setValue(this.user.address.city);
@@ -89,7 +88,7 @@ export class UserprofileComponent implements OnInit {
       address.postalCode = this.form.value.postalcode;
       this.user.username = this.form.value.username;
       this.user.address = address;
-      this.user.name = this.form.value.name;
+      this.user.realName = this.form.value.name;
       this.user.telephone = this.form.value.telephone;
       this.user.userStatus = this.form.value.status;
       this.userService.updateUser(this.user).subscribe(

@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-25">
                 <label>Role</label>
             </div>
@@ -30,7 +30,7 @@
                 <input class="role" type="radio" formControlName="role" value="admin">
                 <label>Adminstrator</label>
             </div>
-        </div>
+        </div> -->
 
         <br>
 
@@ -41,6 +41,10 @@
 
         <div class="alert" >
           {{message}}
+        </div>
+
+        <div class="row">
+          <button (click)="openRegistration()">Register Now!</button>
         </div>
     </div>
 </div>
