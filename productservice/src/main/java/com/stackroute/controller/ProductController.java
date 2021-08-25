@@ -42,7 +42,7 @@ public class ProductController {
         String timeStamp = zonedDateTimeNow.format(formatter);
 
         log.info("Added a product to products collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-                savedProduct.getId(), savedProduct.getProductName(), timeStamp);
+                savedProduct.getId(), savedProduct.getName(), timeStamp);
 
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
@@ -130,7 +130,7 @@ public class ProductController {
         String timeStamp = zonedDateTimeNow.format(formatter);
 
         log.info("Request to UPDATE a product | Product Name: {} | Product ID: {} | Timestamp: {}",
-                updatedProduct.getProductName(), updatedProduct.getId(), timeStamp);
+                updatedProduct.getName(), updatedProduct.getId(), timeStamp);
 
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }

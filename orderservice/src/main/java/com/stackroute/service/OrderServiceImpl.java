@@ -2,32 +2,61 @@ package com.stackroute.service;
 
 import com.stackroute.domain.Order;
 
+import com.stackroute.enums.OrderStatus;
+import com.stackroute.exceptions.OrderAlreadyExistException;
+import com.stackroute.exceptions.OrderNotFoundException;
 import com.stackroute.repository.OrderRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    private final OrderRepository orderRepository;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
-    /**
-     * Constructor based Dependency injection to inject OrderRepository here
-     */
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
-    }
+    private OrderRepository orderRepository;
 
     /**
      * Implementation of saveOrder method
      */
     @Override
     public Order saveOrder(Order order) {
-        boolean isOrderExist = orderRepository.findById(order.getId()).isPresent();
-        return orderRepository.save(order);
+        boolean isOrderExist;
+        if(order.getId() == null){
+            isOrderExist = false;
+        } else {
+            isOrderExist = orderRepository.findById(order.getId()).isPresent();
+        }
+
+        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+        String timeStamp = zonedDateTimeNow.format(formatter);
+
+        if(isOrderExist) {
+            log.error("ERROR: Unable to add order. Order already existed in database | Order ID: {} | Timestamp(EST): {}",
+                    order.getId(), timeStamp);
+
+            throw new OrderAlreadyExistException(order.getId());
+        } else {
+            order.setCreationDate(LocalDate.now());
+            order.setDeliveryDate(order.getCreationDate().plusDays(3l));
+            order.setStatus(OrderStatus.SUBMITTED);
+            Order addedCart = orderRepository.save(order);
+
+            log.info("SUCCESS: Add an order to the \"orders\" collection | Order ID: {} | Timestamp(EST): {}",
+                    addedCart.getId(), timeStamp);
+
+            return addedCart;
+        }
     }
 
     /**
@@ -43,9 +72,20 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Order getOrderById(String id) {
-        Order order;
-        order = orderRepository.findById(id).get();
-        return order;
+        boolean isOrderExist = orderRepository.findById(id).isPresent();
+
+        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+        String timeStamp = zonedDateTimeNow.format(formatter);
+
+        if(isOrderExist) {
+            log.info("SUCCESS: Cart found by ID | Cart ID: {} | Timestamp(EST): {}", id, timeStamp);
+
+            return orderRepository.findById(id).get();
+        } else {
+            log.error("ERROR: Unable to find cart. Cart ID not found | Cart ID: {} | Timestamp(EST): {}", id, timeStamp);
+
+            throw new OrderNotFoundException(id);
+        }
     }
 
     /**
@@ -55,11 +95,21 @@ public class OrderServiceImpl implements OrderService {
     public Order deleteOrder(String id) {
         Order order = null;
         Optional<Order> optional = orderRepository.findById(id);
+
+        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+        String timeStamp = zonedDateTimeNow.format(formatter);
+
         if (optional.isPresent()) {
             order = orderRepository.findById(id).get();
             orderRepository.deleteById(id);
+            log.info("SUCCESS: Deleted order by ID | Order ID: {} | Timestamp(EST): {}", id, timeStamp);
+
+            return order;
+        } else {
+            log.error("ERROR: Unable to delete order. Order ID not found | Cart ID: {} | Timestamp(EST): {}", id, timeStamp);
+
+            throw new OrderNotFoundException(id);
         }
-        return order;
     }
 
     /**
@@ -69,13 +119,28 @@ public class OrderServiceImpl implements OrderService {
     public Order updateOrder(Order order) {
         Order updatedOrder = null;
         Optional<Order> optional = orderRepository.findById(order.getId());
+
+        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+        String timeStamp = zonedDateTimeNow.format(formatter);
+
         if (optional.isPresent()) {
             Order getOrder = orderRepository.findById(order.getId()).get();
-            getOrder.setPriceTotal(order.getPriceTotal());
-            updatedOrder = saveOrder(getOrder);
-            System.out.println(updatedOrder);
+            getOrder.setStatus(order.getStatus());
+            updatedOrder = orderRepository.save(getOrder);
+            log.info("SUCCESS: Updated order to the \"orders\" collection | Order ID: {} | Timestamp(EST): {}",
+                    order.getId(), timeStamp);
+
+            return updatedOrder;
+        } else {
+            log.error("ERROR: Unable to update order. Order ID not found | Cart ID: {} | Timestamp(EST): {}", order.getId(), timeStamp);
+
+            throw new OrderNotFoundException(order.getId());
         }
-        return updatedOrder;
+    }
+
+    @Override
+    public List<Order> getOrderByUserId(String id) {
+        return orderRepository.findByUserId(id);
     }
 }
 

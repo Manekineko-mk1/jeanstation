@@ -43,4 +43,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  openRegistration(){
+    this.approute.openRegistration();
+  }
+
 }

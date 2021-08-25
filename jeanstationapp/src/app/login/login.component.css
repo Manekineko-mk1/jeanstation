@@ -1,6 +1,7 @@
 #Login{
-  padding-top: 9rem;
+  padding-top: 1rem;
   padding-bottom: 9rem;
+  width:100%;
 }
 h2{
   padding-left: 3rem;
@@ -31,17 +32,18 @@ h2{
     border-radius: 4px;
     cursor: pointer;
     float: right;
+    margin-left: 20px;
   }
   
   input[type=submit]:hover {
-    background-color: #3a4468;
+    background-color: #45a049;
   }
   
   .container {
     margin: auto;  
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
+    padding: 30px;
     left: 1rem;
     width: 95%;
 
@@ -54,12 +56,14 @@ h2{
     float: left;
     width: 25%;
     margin-top: 6px;
+    padding: 0 20px;
   }
   
   .col-75 {
     float: left;
     width: 75%;
     margin-top: 6px;
+    padding: 0 20px;
   }
   
   /* Clear floats after the columns */
@@ -87,4 +91,19 @@ h2{
     margin-bottom: 1rem;
     border: 1px solid transparent;
     border-radius: .25rem;
+  }
+
+  .container button {
+    background-color: #3a4468;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin-left: 20px;
+  }
+
+  .container button:hover {
+    background-color: #45a049;
   }

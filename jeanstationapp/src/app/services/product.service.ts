@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class ProductService {
 
-  baseurl:string = 'http://localhost:8080/api/v1/';
+  baseurl:string = 'http://localhost:8080/product/api/v1/';
 
   constructor(private http: HttpClient) { }
 
@@ -20,9 +20,9 @@ export class ProductService {
     return this.http.get<Product[]>(this.baseurl+'products');
   }
 
-  getProductById(id:number): Observable<Product>{
-    return this.http.get<Product>(this.baseurl+'product/'+id);
-  }
+  // getProductById(id:number): Observable<Product>{
+  //   return this.http.get<Product>(this.baseurl+'product/'+id);
+  // }
 
   addProduct(data: Product): Observable<Product>{
     return this.http.post<Product>(this.baseurl+'product',data,httpOptions);
@@ -32,9 +32,7 @@ export class ProductService {
     return this.http.put<Product>(this.baseurl+'product',data,httpOptions);
   }
 
-  deleteProduct(id: number): Observable<Product>{
+  deleteProduct(id: string): Observable<Product>{
     return this.http.delete<Product>(this.baseurl+'product/'+id);
   }
-
-
 }

@@ -14,24 +14,24 @@ public class Product {
     @Id
     private String id;
     private String productId;
-    private String productName;
-    private String productDescription;
+    private String name;
+    private String description;
     private String picture;
-    private float priceCAD;
+    private float price;
     private float discount;
     private int quantity;
-    private String productSize;
-    private String productColor;
+    private String size;
+    private String color;
 
-    public Product(String productId, String productName, String productDescription, String picture, float priceCAD, float discount, int quantity, String productSize, String productColor) {
+    public Product(String productId, String name, String description, String picture, float price, float discount, int quantity, String size, String color) {
         this.productId = productId;
-        this.productName = productName;
-        this.productDescription = productDescription;
+        this.name = name;
+        this.description = description;
         this.picture = picture;
-        this.priceCAD = priceCAD;
+        this.price = price;
         this.discount = discount;
         this.quantity = quantity;
-        this.productSize = productSize;
-        this.productColor = productColor;
+        this.size = size;
+        this.color = color;
     }
 }

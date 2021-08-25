@@ -39,8 +39,8 @@ class OrderServiceTest {
         ArrayList<String> itemsList = new ArrayList<>();
         itemsList.add("cat1");
         itemsList.add("cat2");
-        order = new Order(10, itemsList);
-        order1 = new Order(20, itemsList);
+        order = new Order(10, itemsList, "A1");
+        order1 = new Order(20, itemsList, "A2");
         optional = Optional.of(order);
     }
 

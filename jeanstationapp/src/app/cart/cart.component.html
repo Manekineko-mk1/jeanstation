@@ -1,1 +1,13 @@
-<h2>Cart</h2>
+<div *ngIf="cartItems.length === 0" class="alert alert-info">Shopping cart is empty</div>
+
+<ul *ngIf="cartItems.length > 0" class="list-group">
+  <li class="list-group-item" *ngFor="let item of cartItems">
+    <app-cart-item [cartItem]="item"></app-cart-item>
+  </li>
+
+  <li class="list-group-item active">
+    <strong>Total (before tax):</strong> {{ priceTotalBeforeTax | currency:'CAD' }}
+    <br />
+    <strong>Total (after tax):</strong> {{ priceTotalAfterTax | currency:'CAD' }}
+  </li>
+</ul>

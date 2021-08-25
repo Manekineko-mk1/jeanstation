@@ -18,19 +18,28 @@ import java.util.List;
 public class Cart {
     @Id
     private String id;
-    private float priceTotal;
+    private float priceTotalBeforeTax;
+    private float priceTotalAfterTax;
     List<Product> cartItems;
 
-    public Cart(float priceTotal, List<Product> cartItems) {
-        this.priceTotal = priceTotal;
+    public Cart(float priceTotalBeforeTax) {
+        this.priceTotalBeforeTax = priceTotalBeforeTax;
+        this.cartItems = new ArrayList<>();
+
+        log.info("A new cart is created: {} | {}", this.getId());
+    }
+
+    public Cart(float priceTotalBeforeTax, List<Product> cartItems) {
+        this.priceTotalBeforeTax = priceTotalBeforeTax;
         this.cartItems = cartItems;
 
         log.info("A new cart is created: {} | {}", this.getId());
     }
 
-    public Cart(float priceTotal) {
-        this.priceTotal = priceTotal;
-        this.cartItems = new ArrayList<>();
+    public Cart(float priceTotalBeforeTax, float priceTotalAfterTax, List<Product> cartItems) {
+        this.priceTotalBeforeTax = priceTotalBeforeTax;
+        this.priceTotalAfterTax = priceTotalAfterTax;
+        this.cartItems = cartItems;
 
         log.info("A new cart is created: {} | {}", this.getId());
     }
