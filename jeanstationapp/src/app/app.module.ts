@@ -12,7 +12,7 @@ import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
 import { AdminComponent } from './admin/admin.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OrderManagementComponent } from './order-management/order-management.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserprofileComponent } from './userprofile/userprofile.component';
@@ -22,6 +22,7 @@ import { FiltersComponent } from './filters/filters.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { ProductItemComponent } from './product/product-item/product-item.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,11 @@ import { RegistrationComponent } from './registration/registration.component';
     HttpClientModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS, useClass:AuthInterceptorService, multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
