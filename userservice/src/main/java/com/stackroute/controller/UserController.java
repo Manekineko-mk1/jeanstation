@@ -27,7 +27,7 @@ public class UserController {
     private UserService userService;
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
 
-    @Autowired
+    // @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
