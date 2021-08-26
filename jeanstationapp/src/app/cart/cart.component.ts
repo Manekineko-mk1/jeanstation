@@ -4,7 +4,7 @@ import { Product } from 'src/app/model/Product'
 import { ApprouteService } from '../services/approute.service';
 import { CartService } from '../services/cart.service';
 import { MessengerService } from 'src/app/services/messenger.service';
-import { CartStatus } from 'src/app/model/CartStatus';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-cart',
@@ -12,18 +12,23 @@ import { CartStatus } from 'src/app/model/CartStatus';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartStatus: CartStatus;
   cart:Cart;
+  cartId:string;
   cartItems: Product[];
   tax=0.14;
   priceTotalBeforeTax;
   priceTotalAfterTax;
 
-  constructor(private cartservice:CartService, private approuter:ApprouteService, private msg: MessengerService) { }
+
+  constructor(private cartservice:CartService, private approuter:ApprouteService,
+              private msg: MessengerService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    if (this.cartStatus != null && this.cartStatus.status) {
-      this.retrieveCart(this.cartStatus.cartId);
+    this.cartId = this.cookieService.get("cartId");
+
+
+    if (this.cartId != null) {      
+      this.retrieveCart(this.cartId);
     } else {
       this.initCart();
     }
@@ -47,7 +52,7 @@ export class CartComponent implements OnInit {
     // Create an empty cart
     this.createCart(this.cart);
 
-    this.cartStatus = new CartStatus(true, this.cart.id);
+    this.cookieService.put("cartId", this.cart.id);
 
     console.log('cartComponent initialized');
   }
