@@ -22,6 +22,7 @@ import { FiltersComponent } from './filters/filters.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { ProductItemComponent } from './product/product-item/product-item.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,8 @@ import { RegistrationComponent } from './registration/registration.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    CookieModule.forRoot(),
+    CookieModule.forChild()
   ],
   providers: [],
   bootstrap: [AppComponent]
