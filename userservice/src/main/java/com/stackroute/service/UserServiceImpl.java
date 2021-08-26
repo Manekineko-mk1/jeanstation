@@ -34,16 +34,16 @@ public class UserServiceImpl implements UserService {
     /**
      * AbstractMethod to save a user
      *
-     * @param users
+     * @param user
      */
     @Override
-    public Users saveUser(Users users) {
+    public Users saveUser(Users user) {
         boolean isUserExist;
 
-        if(users.getId() == null) {
+        if(user.getId() == null) {
             isUserExist = false;
         } else {
-            isUserExist = userRepository.findById(users.getId()).isPresent();
+            isUserExist = userRepository.findById(user.getId()).isPresent();
         }
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
@@ -51,14 +51,14 @@ public class UserServiceImpl implements UserService {
 
         if(isUserExist) {
             log.error("ERROR: Unable to add user. User already existed in database | User ID: {} | User name: {} | Timestamp(EST): {}",
-                    users.getId(), users.getUsername(), timeStamp);
+                    user.getId(), user.getUsername(), timeStamp);
 
-            throw new UserAlreadyExistsException(users.getId());
+            throw new UserAlreadyExistsException(user.getId());
         } else {
             log.info("SUCCESS: Add a user to the \"users\" collection | User ID: {} | User name: {} | Timestamp(EST): {}",
-                    users.getId(), users.getUsername(), timeStamp);
+                    user.getId(), user.getUsername(), timeStamp);
 
-            return userRepository.save(users);
+            return userRepository.save(user);
         }
     }
 
