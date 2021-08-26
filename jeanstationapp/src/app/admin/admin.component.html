@@ -1,7 +1,7 @@
 <div id = "Dashboard">
   <div class="container">
 
-      <form [formGroup]="form" (ngSubmit)=" addProduct()" *ngIf="toAdd">
+      <form [formGroup]="form" (ngSubmit)=" addProduct()" *ngIf="toAdd" enctype="multipart/form-data">
 
       <div class="row">
         <div class="col-25">
@@ -26,7 +26,8 @@
           <label>Picture</label>
         </div>
         <div class="col-75">
-          <input formControlName="picture" type="text"  placeholder="Enter the picture link of the product">
+          <!-- <input type="file" formControlName="picture" (change)="fileChange($event)" placeholder="Upload file" accept=".jpg,.jpeg,.png"> -->
+          <input formControlName="picture" type="text"  placeholder={{product.picture}}>
         </div>
       </div>
 
@@ -62,7 +63,7 @@
               <label>Size</label>
           </div>
           <div class="col-75">
-              <input type="radio" formControlName="size" value="XS">
+              <!-- <input type="radio" formControlName="size" value="XS">
               <label>XS</label>
               <input type="radio" formControlName="size" value="S">
               <label>S</label>
@@ -71,7 +72,8 @@
               <input type="radio" formControlName="size" value="L">
               <label>L</label>
               <input type="radio" formControlName="size" value="XL">
-              <label>XL</label>
+              <label>XL</label> -->
+              <input type="text" formControlName="size" placeholder="Enter the size of the product">
           </div>
       </div>
 
@@ -80,12 +82,13 @@
             <label>Color</label>
         </div>
         <div class="col-75">
-            <input type="radio" formControlName="color" value="LIGHT_BLUE">
+            <!-- <input type="radio" formControlName="color" value="LIGHT_BLUE">
             <label>Light Blue</label>
             <input type="radio" formControlName="color" value="BLUE">
             <label>Blue</label>
             <input type="radio" formControlName="color" value="BLACK">
-            <label>Black</label>
+            <label>Black</label> -->
+            <input type="text" formControlName="color" placeholder="Enter the color of the product">
         </div>
     </div>
 

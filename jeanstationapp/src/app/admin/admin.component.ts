@@ -161,6 +161,16 @@ export class AdminComponent implements OnInit {
     this.form.categories.removeAt(index);
   }
 
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        let file: File = fileList[0];
+        const formData = new FormData();
+        formData.append('file', this.form.get('picture').value);
+        this.form.get('picture').setValue(formData);
+    }
+}
+
   triggerModal(content, product) {
     this.showProduct = product;
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
@@ -179,5 +189,6 @@ export class AdminComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
 
 }
