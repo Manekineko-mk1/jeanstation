@@ -7,7 +7,7 @@ import { ProductService } from './product.service';
 const product1: Product = {
   name: 'New Product',
   description: 'The description',
-  picture: 'picture',
+  //picture: 'picture',
   price: 120,
   discount: 0.05,
   quantity: 56,

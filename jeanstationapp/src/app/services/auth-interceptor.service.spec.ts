@@ -13,4 +13,8 @@ describe('AuthInterceptorService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should have intercept()', () => {
+    expect(service.intercept).toBeTruthy();
+  });
 });

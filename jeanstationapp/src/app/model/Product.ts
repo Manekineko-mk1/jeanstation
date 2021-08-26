@@ -3,7 +3,7 @@ export class Product {
     productId?:string;
     name?:string;
     description?:string;
-    picture?:string;
+    picture?:FormData;
     price?:number;
     discount?:number;
     quantity?:number;

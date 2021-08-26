@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
     this.form = this.formBuilder.group({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
-      role: new FormControl('',Validators.required)
     });
     this.approute.isLoggedIn.next(false);
     this.approute.isAdmin.next(false);
@@ -30,11 +29,11 @@ export class LoginComponent implements OnInit {
     if(!this.form.valid){
       this.message = 'Username and Password should not be empty!!! Please verify details'
     } else {
-      if((this.form.value.username=='admin') && (this.form.value.password=='password') && (this.form.value.role=='admin')){
+      if((this.form.value.username=='admin') && (this.form.value.password=='password')){
         this.approute.isLoggedIn.next(true);
         this.approute.isAdmin.next(true);
         this.approute.openAdmin();
-      } else if((this.form.value.username=='user') && (this.form.value.password=='password') && (this.form.value.role=='user')){
+      } else if((this.form.value.username=='user') && (this.form.value.password=='password')){
         this.approute.isLoggedIn.next(true);
         this.approute.openProduct();
       } else {
