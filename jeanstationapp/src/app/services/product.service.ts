@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class ProductService {
 
-  baseurl:string = 'http://localhost:8080/product/api/v1/';
+  baseurl:string = 'http://localhost:8083/api/v1/';
 
   constructor(private http: HttpClient) { }
 
