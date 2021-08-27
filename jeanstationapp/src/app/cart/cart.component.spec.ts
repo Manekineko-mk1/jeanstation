@@ -26,4 +26,40 @@ describe('CartComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have ngOnInit()', () => {
+    expect(component.ngOnInit).toBeTruthy();
+  });
+
+  it('should have initCart()', () => {
+    expect(component.initCart).toBeTruthy();
+  });
+
+  it('should have retrieveCart()', () => {
+    expect(component.retrieveCart).toBeTruthy();
+  });
+
+  it('should have createCart()', () => {
+    expect(component.createCart).toBeTruthy();
+  });
+
+  it('should have addItemToCart()', () => {
+    expect(component.addItemToCart).toBeTruthy();
+  });
+
+  it('should have updateCart()', () => {
+    expect(component.updateCart).toBeTruthy();
+  });
+
+  it('should have emptyCart()', () => {
+    expect(component.emptyCart).toBeTruthy();
+  });
+
+  it('should have deleteCart()', () => {
+    expect(component.deleteCart).toBeTruthy();
+  });
+
+  it('should have calculateTotal()', () => {
+    expect(component.calculateTotal).toBeTruthy();
+  });
 });

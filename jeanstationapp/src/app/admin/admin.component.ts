@@ -126,9 +126,9 @@ export class AdminComponent implements OnInit {
     this.message = '';
   }
 
-  logout(){
-    this.approute.openHome();
-  }
+  // logout(){
+  //   this.approute.openHome();
+  // }
 
   showUpdate(product:Product){
     this.toUpdate = true;
