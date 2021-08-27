@@ -19,24 +19,25 @@ export class CartComponent implements OnInit {
   priceTotalBeforeTax;
   priceTotalAfterTax;
 
-
   constructor(private cartservice:CartService, private approuter:ApprouteService,
               private msg: MessengerService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this.cartId = this.cookieService.get("cartId");
 
-
-    if (this.cartId != null) {      
+    // Retrieve Cart from cartID exists in cookie ELSE create a new Cart
+    if (this.cartId != null) {
+      console.log("cartId found | cartId: " + this.cartId);
       this.retrieveCart(this.cartId);
     } else {
+      console.log("cartId not found | this.initCart()");
       this.initCart();
     }
 
     // Add listener to MessengerService
     this.msg.getMsg().subscribe(product => {
-      this.addItemToCart(product);
       this.calculateTotal();
+      this.addItemToCart(product);
     });
 
     console.log('cartComponent initialized');
@@ -44,36 +45,42 @@ export class CartComponent implements OnInit {
 
   initCart() {
     // Initialization
-    this.cart = JSON.parse('{ "priceTotalBeforeTax" : 0}');
     this.priceTotalBeforeTax = 0;
     this.priceTotalAfterTax = 0;
     this.cartItems = new Array<Product>();
 
     // Create an empty cart
+    this.cart = JSON.parse('{ "priceTotalBeforeTax" : 0, "priceTotalAfterTax" : 0, "cartItems": [] }');
     this.createCart(this.cart);
 
-    this.cookieService.put("cartId", this.cart.id);
-
-    console.log('cartComponent initialized');
+    console.log('cartComponent initCart()');
   }
 
   retrieveCart(cartId: string) {
-    this.cartservice.getCartById(cartId).subscribe(
-      data => {
+    this.cartservice.getCartById(cartId).subscribe(data => {
+        console.log("retrieveCart: | cartID: " + cartId);
+        console.log(data);
         this.cart = data;
-      }
-    );
+        this.cart.cartItems === null ? this.cartItems = new Array<Product>() : this.cartItems = this.cart.cartItems;
+        this.priceTotalBeforeTax === null ? this.priceTotalBeforeTax = 0 : this.priceTotalBeforeTax = this.cart.priceTotalBeforeTax;
+        this.priceTotalAfterTax === null ? this.priceTotalAfterTax = 0 : this.priceTotalAfterTax = this.cart.priceTotalAfterTax;
+        console.log("retrieveCart: | this.cartItems");
+        console.log(this.cartItems);
+    });
   }
 
-  createCart(cart:Cart) {
-    this.cartservice.createCart(cart).subscribe(
-      data => {
+  createCart(cart: Cart) {
+    this.cartservice.createCart(cart).subscribe(data => {
         this.cart = data;
-      }
-    );
+        console.log(this.cart);
+        this.cookieService.put("cartId", this.cart.id);
+        console.log("cookie set @createCart() | cartId: " + this.cart.id);
+
+        return data;
+    });
   }
 
-  addItemToCart(product:Product) {
+  addItemToCart(product: Product) {
     let ifProductExist = false;
 
     for(let i in this.cartItems) {
@@ -90,16 +97,21 @@ export class CartComponent implements OnInit {
     }
 
     this.cart.cartItems = this.cartItems;
+    this.cart.priceTotalBeforeTax = this.priceTotalBeforeTax;
+    this.cart.priceTotalAfterTax = this.priceTotalAfterTax;
+
+    console.log("addItemToCart | this.cart.priceTotalBeforeTax " + this.cart.priceTotalBeforeTax);
+    console.log("addItemToCart | this.cart.priceTotalAfterTax " + this.cart.priceTotalAfterTax);
+
     this.updateCart(this.cart);
   }
 
-  updateCart(cart:Cart) {
-    this.cartservice.updateCart(cart).subscribe(
-      data => {
+  updateCart(cart: Cart) {
+    this.cartservice.updateCart(cart).subscribe(data => {
+        console.log("updateCart");
         console.log(data);
         this.cart = data;
-      }
-    );
+    });
   }
 
   emptyCart() {
@@ -111,17 +123,14 @@ export class CartComponent implements OnInit {
   }
 
   deleteCart() {
-      this.cartservice.deleteCart(this.cart.id).subscribe(
-        data => {
+      this.cartservice.deleteCart(this.cart.id).subscribe(data => {
           console.log('DeleteCart succeed: ' + data);
-        }
-      );
+      });
   }
 
   calculateTotal() {
     this.cartItems.forEach(item => {
       this.priceTotalBeforeTax = this.priceTotalBeforeTax + (item.quantity * item.price);
-
     });
 
     this.priceTotalAfterTax = this.priceTotalBeforeTax + (this.priceTotalAfterTax * this.tax);
