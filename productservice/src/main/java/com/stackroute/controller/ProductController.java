@@ -41,8 +41,8 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Added a product to products collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-                savedProduct.getId(), savedProduct.getName(), timeStamp);
+//        log.info("Added a product to products collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
+//                savedProduct.getId(), savedProduct.getName(), timeStamp);
 
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
@@ -94,7 +94,7 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Query to get a product | Product ID: {} | Timestamp: {}" ,productId ,timeStamp);
+        log.info("Query to get a product | Product ID: {} | Timestamp: {}", productId, timeStamp);
 
         return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.FOUND);
     }
@@ -129,8 +129,8 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Request to UPDATE a product | Product Name: {} | Product ID: {} | Timestamp: {}",
-                updatedProduct.getName(), updatedProduct.getId(), timeStamp);
+//        log.info("Request to UPDATE a product | Product Name: {} | Product ID: {} | Timestamp: {}",
+//                updatedProduct.getName(), updatedProduct.getId(), timeStamp);
 
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
