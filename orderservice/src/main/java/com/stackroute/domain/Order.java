@@ -13,7 +13,8 @@ import java.util.ArrayList;
 
 @Slf4j
 @SpringBootApplication(scanBasePackages = "com.stackroute")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Document(collection = "orders")
 public class Order {
