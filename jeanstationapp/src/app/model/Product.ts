@@ -1,10 +1,12 @@
+import { Money } from '../model/Money';
+
 export class Product {
     id?:string;
     productId?:string;
     name?:string;
     description?:string;
     picture?:string;
-    price?:number;
+    price?:Money;
     discount?:number;
     quantity?:number;
     size?:string;

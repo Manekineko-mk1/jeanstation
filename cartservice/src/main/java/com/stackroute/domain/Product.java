@@ -17,13 +17,13 @@ public class Product {
     private String name;
     private String description;
     private String picture;
-    private float price;
-    private float discount;
+    private Money price;
+    private int discount;
     private int quantity;
     private String size;
     private String color;
 
-    public Product(String productId, String name, String description, String picture, float price, float discount, int quantity, String size, String color) {
+    public Product(String productId, String name, String description, String picture, Money price, int discount, int quantity, String size, String color) {
         this.productId = productId;
         this.name = name;
         this.description = description;

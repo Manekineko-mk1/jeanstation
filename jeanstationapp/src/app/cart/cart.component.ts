@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from '../model/Cart';
-import { Product } from 'src/app/model/Product'
+import { Product } from 'src/app/model/Product';
+import { Money } from '../model/Money';
 import { ApprouteService } from '../services/approute.service';
 import { CartService } from '../services/cart.service';
 import { MessengerService } from 'src/app/services/messenger.service';
@@ -130,7 +131,7 @@ export class CartComponent implements OnInit {
 
   calculateTotal() {
     this.cartItems.forEach(item => {
-      this.priceTotalBeforeTax = this.priceTotalBeforeTax + (item.quantity * item.price);
+      this.priceTotalBeforeTax = this.priceTotalBeforeTax + (item.quantity * (item.price.amount / 100));
     });
 
     this.priceTotalAfterTax = this.priceTotalBeforeTax + (this.priceTotalAfterTax * this.tax);

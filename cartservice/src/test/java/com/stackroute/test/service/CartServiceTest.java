@@ -2,7 +2,9 @@ package com.stackroute.test.service;
 
 import com.stackroute.domain.Cart;
 
+import com.stackroute.domain.Money;
 import com.stackroute.domain.Product;
+import com.stackroute.enums.Currency;
 import com.stackroute.repository.CartRepository;
 import com.stackroute.service.CartServiceImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -41,7 +43,8 @@ class CartServiceTest {
         categories.add("cat1");
         categories.add("cat2");
         ArrayList<Product> itemsList = new ArrayList<>();
-        itemsList.add(new Product("1L", "Product1", "description1", "picture1", 42, 10, 10, "L", "BLUE"));
+        Money money = new Money(1000, Currency.CAD);
+        itemsList.add(new Product("1L", "Product1", "description1", "picture1", money, 10, 10, "L", "BLUE"));
         cart = new Cart(10, itemsList);
         cart1 = new Cart(20, itemsList);
         optional = Optional.of(cart);
@@ -112,7 +115,8 @@ class CartServiceTest {
         categories.add("cat3");
         categories.add("cat4");
         ArrayList<Product> itemsList = new ArrayList<>();
-        itemsList.add(new Product("1L", "Product1", "description1", "picture1", 42, 10, 10, "S", "LIGHT_BLUE"));
+        Money money = new Money(1000, Currency.CAD);
+        itemsList.add(new Product("1L", "Product1", "description1", "picture1", money, 10, 10, "S", "LIGHT_BLUE"));
         cart.setCartItems(itemsList);
         Cart cart1 = cartService.updateCart(cart);
         assertEquals(cart1.getCartItems(), categories);
