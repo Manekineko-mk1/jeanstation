@@ -65,6 +65,7 @@ describe('RegistrationComponent', () => {
 
   it('onSubmit() should go to login page if addUser is successful', () => {
     component.form.clearValidators();
+    component.form.updateValueAndValidity();
     spyOn(userservice, 'addUser').and.returnValue(of(user1));
     component.onSubmit();
     expect(userservice.addUser).toHaveBeenCalled();
@@ -73,6 +74,7 @@ describe('RegistrationComponent', () => {
 
   it('onSubmit() should return error message if addUser is not successful', () => {
     component.form.clearValidators();
+    component.form.updateValueAndValidity();
     spyOn(userservice, 'addUser').and.returnValue(throwError({status:404}));
     component.onSubmit();
     expect(userservice.addUser).toHaveBeenCalled();
