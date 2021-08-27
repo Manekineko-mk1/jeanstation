@@ -27,6 +27,7 @@ describe('ApprouteService', () => {
   });
 
   it('openLogin() should call router.navigate', () => {
+    spyOn(router, 'navigate');
     service.openLogin();
     expect(router.navigate).toHaveBeenCalled();
   });
@@ -36,6 +37,7 @@ describe('ApprouteService', () => {
   });
 
   it('openHome() should call router.navigate', () => {
+    spyOn(router, 'navigate');
     service.openHome();
     expect(router.navigate).toHaveBeenCalled();
   });
@@ -45,6 +47,7 @@ describe('ApprouteService', () => {
   });
 
   it('openProduct() should call router.navigate', () => {
+    spyOn(router, 'navigate');
     service.openProduct();
     expect(router.navigate).toHaveBeenCalled();
   });
@@ -54,6 +57,7 @@ describe('ApprouteService', () => {
   });
 
   it('openCart() should call router.navigate', () => {
+    spyOn(router, 'navigate');
     service.openCart();
     expect(router.navigate).toHaveBeenCalled();
   });
@@ -63,6 +67,7 @@ describe('ApprouteService', () => {
   });
 
   it('openAdmin() should call router.navigate', () => {
+    spyOn(router, 'navigate');
     service.openAdmin();
     expect(router.navigate).toHaveBeenCalled();
   });
@@ -72,6 +77,7 @@ describe('ApprouteService', () => {
   });
 
   it('openOrderManagement() should call router.navigate', () => {
+    spyOn(router, 'navigate');
     service.openOrderManagement();
     expect(router.navigate).toHaveBeenCalled();
   });
@@ -81,6 +87,7 @@ describe('ApprouteService', () => {
   });
 
   it('openPassword() should call router.navigate', () => {
+    spyOn(router, 'navigate');
     service.openPassword();
     expect(router.navigate).toHaveBeenCalled();
   });
@@ -90,6 +97,7 @@ describe('ApprouteService', () => {
   });
 
   it('openRegistration() should call router.navigate', () => {
+    spyOn(router, 'navigate');
     service.openRegistration();
     expect(router.navigate).toHaveBeenCalled();
   });

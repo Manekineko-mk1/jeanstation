@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.ArrayList;
@@ -25,15 +26,15 @@ public class Product {
     private float price;
     private float discount;
     private int quantity;
-    private ProductSize size;
-    private ProductColor color;
+    private String size;
+    private String color;
     List<String> categories;
 
-    public Product(String name, String description, String picture, float price, float discount,
+    public Product(String name, String description, float price, float discount,
                    int quantity, List<String> categories) {
         this.name = name;
         this.description = description;
-        this.picture = picture;
+        //this.picture = picture;
         this.price = price;
         this.discount = discount;
         this.quantity = quantity;
@@ -43,7 +44,7 @@ public class Product {
     }
 
     public Product(String name, String description, String picture, float price, float discount,
-                   int quantity, ProductSize size, ProductColor color, List<String> categories) {
+                   int quantity, String size, String color, List<String> categories) {
         this.name = name;
         this.description = description;
         this.picture = picture;

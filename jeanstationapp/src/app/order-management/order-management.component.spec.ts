@@ -68,7 +68,7 @@ describe('OrderManagementComponent', () => {
 
   it('updateStatus should call updateOrder', () => {
     spyOn(orderservice, 'updateOrder').and.returnValue(of(order1));
-    component.form.status.setValue("SUBMITTED");
+    component.form.get('status').setValue("SUBMITTED");
     component.updateStatus();
     expect(orderservice.updateOrder).toHaveBeenCalled();
   });

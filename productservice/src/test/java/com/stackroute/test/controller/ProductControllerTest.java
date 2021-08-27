@@ -21,6 +21,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +54,7 @@ public class ProductControllerTest {
         product.setId("1l");
         product.setName("product1");
         product.setDescription("Description");
-        product.setPicture("picture");
+        //product.setPicture("picture");
         product.setPrice(10.00f);
         product.setDiscount(0.1f);
         product.setQuantity(20);

@@ -33,9 +33,9 @@ public class ProductServiceIntegrationTest {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat1");
         categories.add("cat2");
-        product1 = new Product("Product1", "description1", "picture1", 42, 10, 10, categories);
-        product2 = new Product("Product2", "description2", "picture2", 43, 10, 10, categories);
-        product3 = new Product("Product3", "description3", "picture3", 44, 10, 10, categories);
+        product1 = new Product("Product1", "description1", 42, 10, 10, categories);
+        product2 = new Product("Product2", "description2", 43, 10, 10, categories);
+        product3 = new Product("Product3", "description3", 44, 10, 10, categories);
         productList.add(product1);
         productList.add(product2);
         productList.add(product3);

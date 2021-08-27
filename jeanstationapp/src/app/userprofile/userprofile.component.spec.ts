@@ -35,7 +35,8 @@ describe('UserprofileComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports : [HttpClientModule, ReactiveFormsModule, RouterTestingModule],
-      declarations: [ UserprofileComponent ]
+      declarations: [ UserprofileComponent ],
+      providers: [UserService]
     })
     .compileComponents();
     userservice = TestBed.get(UserService);
@@ -45,6 +46,7 @@ describe('UserprofileComponent', () => {
     fixture = TestBed.createComponent(UserprofileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.user = user1;
   });
 
   it('should create', () => {

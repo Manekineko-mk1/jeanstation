@@ -35,7 +35,8 @@ describe('LoginComponent', () => {
     expect(component.onSubmit).toBeTruthy();
   });
 
-  it('onSubmit should print error message if form invalid', () => {
+  it('onSubmit() should print error message if form invalid', () => {
+    component.onSubmit();
     expect(component.message).toEqual('Username and Password should not be empty!!! Please verify details');
   });
 
@@ -44,6 +45,7 @@ describe('LoginComponent', () => {
   });
 
   it('openRegistration() should call ApprouteService', () => {
+    spyOn(router, 'openRegistration');
     component.openRegistration();
     expect(router.openRegistration).toHaveBeenCalled();
   });

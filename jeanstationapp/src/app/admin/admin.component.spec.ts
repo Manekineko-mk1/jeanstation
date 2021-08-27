@@ -52,6 +52,7 @@ describe('AdminComponent', () => {
 
   it('ngOninit() should call getProducts', () => {
     spyOn(component, 'getProducts').and.callThrough();
+    component.ngOnInit();
     expect(component.getProducts).toHaveBeenCalled();
   })
 
@@ -74,6 +75,7 @@ describe('AdminComponent', () => {
 
   it('addProduct() should add Product', () => {
     component.form.clearValidators();
+    component.form.updateValueAndValidity();
     spyOn(service, 'addProduct').and.returnValue(of(product1));
     component.addProduct();
     expect(component.message).toEqual('Product added');

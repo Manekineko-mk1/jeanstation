@@ -28,7 +28,7 @@ public class ProductRepositoryIntegrationTest {
         product.setId("1l");
         product.setName("product1");
         product.setDescription("Description");
-        product.setPicture("picture");
+        //product.setPicture("picture");
         product.setPrice(10.00f);
         product.setDiscount(0.1f);
         product.setQuantity(20);
@@ -51,8 +51,8 @@ public class ProductRepositoryIntegrationTest {
 
     @Test
     public void givenGetAllProductsThenShouldReturnListOfAllProducts() {
-        Product product = new Product("product2", "description", "picture", 10.99f, 0.0f, 10, categories);
-        Product product1 = new Product("product3", "description", "picture", 1.99f, 0.05f, 100, categories);
+        Product product = new Product("product2", "description", 10.99f, 0.0f, 10, categories);
+        Product product1 = new Product("product3", "description", 1.99f, 0.05f, 100, categories);
         productRepository.save(product);
         productRepository.save(product1);
 
@@ -62,7 +62,7 @@ public class ProductRepositoryIntegrationTest {
 
     @Test
     public void givenProductIdThenShouldReturnRespectiveProduct() {
-        Product product = new Product("product9", "description", "picture", 5.50f, 0.25f, 56, categories);
+        Product product = new Product("product9", "description", 5.50f, 0.25f, 56, categories);
         Product product1 = productRepository.save(product);
         Optional<Product> optional = productRepository.findById(product1.getId());
         assertEquals(product1.getId(), optional.get().getId());
@@ -75,7 +75,7 @@ public class ProductRepositoryIntegrationTest {
 
     @Test
     public void givenProductIdToDeleteThenShouldReturnDeletedProduct() {
-        Product product = new Product("product4", "description", "picture", 2.31f, 0.01f, 23, categories);
+        Product product = new Product("product4", "description", 2.31f, 0.01f, 23, categories);
         productRepository.save(product);
         productRepository.deleteById(product.getId());
         Optional optional = productRepository.findById(product.getId());

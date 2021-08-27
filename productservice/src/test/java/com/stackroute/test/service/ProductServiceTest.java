@@ -39,8 +39,8 @@ class ProductServiceTest {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat1");
         categories.add("cat2");
-        product = new Product("Product1", "description1", "picture1", 42, 10, 10, categories);
-        product1 = new Product("Product2", "description2", "picture2", 43, 10, 10, categories);
+        product = new Product("Product1", "description1", 42, 10, 10, categories);
+        product1 = new Product("Product2", "description2", 43, 10, 10, categories);
         optional = Optional.of(product);
     }
 
