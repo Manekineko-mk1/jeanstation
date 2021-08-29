@@ -67,26 +67,26 @@ export class CartComponent implements OnInit {
   }
 
   addItemToCart(product: Product) {
-//     let ifProductExist = false;
-//
-//     for(let i in this.cartItems) {
-//       if(this.cartItems[i].id === product.id) {
-//         this.cartItems[i].quantity++;
-//         ifProductExist = true;
-//         break;
-//       }
-//     }
-//
-//     if(!ifProductExist) {
-//       product.quantity = 1;
-//       this.cartItems.push(product);
-//     }
-//
-//     this.cart.cartItems = this.cartItems;
-//     this.cart.priceTotalBeforeTax = this.priceTotalBeforeTax;
-//     this.cart.priceTotalAfterTax = this.priceTotalAfterTax;
+    let ifProductExist = false;
 
-    // this.updateCart(this.cart);
+    for(let i in this.cartItems) {
+      if(this.cartItems[i].id === product.id) {
+        this.cartItems[i].quantity++;
+        ifProductExist = true;
+        break;
+      }
+    }
+
+    if(!ifProductExist) {
+      product.quantity = 1;
+      this.cartItems.push(product);
+    }
+
+    this.cart.cartItems = this.cartItems;
+    this.cart.priceTotalBeforeTax = this.priceTotalBeforeTax;
+    this.cart.priceTotalAfterTax = this.priceTotalAfterTax;
+
+    this.updateCart(this.cart);
   }
 
   updateCart(cart: Cart) {
