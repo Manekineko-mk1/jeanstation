@@ -146,5 +146,10 @@ public class OrderServiceImpl implements OrderService {
             throw new OrderNotFoundException(order.getId());
         }
     }
+
+    @Override
+    public List<Order> getOrderByUserId(String id) {
+        return orderRepository.findByUserId(id);
+    }
 }
 
