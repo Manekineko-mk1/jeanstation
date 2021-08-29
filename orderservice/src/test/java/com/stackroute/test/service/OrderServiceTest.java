@@ -2,6 +2,7 @@ package com.stackroute.test.service;
 
 import com.stackroute.domain.Order;
 
+import com.stackroute.domain.Product;
 import com.stackroute.repository.OrderRepository;
 import com.stackroute.service.OrderServiceImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -14,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,12 +37,17 @@ class OrderServiceTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
-        ArrayList<String> itemsList = new ArrayList<>();
-        itemsList.add("cat1");
-        itemsList.add("cat2");
-        order = new Order(10, itemsList, "A1");
-        order1 = new Order(20, itemsList, "A2");
+        MockitoAnnotations.openMocks(this);
+        List<Product> itemsList = new ArrayList<Product>();
+        Product product1 = new Product();
+        itemsList.add(product1);
+
+        String userId = "userId";
+        int priceTotal = 1000;
+        LocalDate creationDate = LocalDate.now();
+        LocalDate deliveryDate = creationDate.plusDays(3l);
+        order = new Order(userId, priceTotal, itemsList, creationDate, deliveryDate);
+        order1 = new Order(userId, priceTotal, itemsList, creationDate, deliveryDate);
         optional = Optional.of(order);
     }
 
@@ -105,9 +112,9 @@ class OrderServiceTest {
     public void givenOrderToUpdateThenShouldReturnUpdatedOrder() {
         when(orderRepository.findById(order.getId())).thenReturn(optional);
         when(orderRepository.save(order)).thenReturn(order);
-        ArrayList<String> itemsList = new ArrayList<>();
-        itemsList.add("cat3");
-        itemsList.add("cat4");
+        List<Product> itemsList = new ArrayList<Product>();
+        Product product1 = new Product();
+        itemsList.add(product1);
         order.setOrderItems(itemsList);
         Order order1 = orderService.updateOrder(order);
         assertEquals(order1.getOrderItems(), itemsList);

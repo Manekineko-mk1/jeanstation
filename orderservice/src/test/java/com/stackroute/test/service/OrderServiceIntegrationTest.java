@@ -1,6 +1,7 @@
 package com.stackroute.test.service;
 
 import com.stackroute.domain.Order;
+import com.stackroute.domain.Product;
 import com.stackroute.repository.OrderRepository;
 import com.stackroute.service.OrderServiceImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -8,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,12 +33,15 @@ public class OrderServiceIntegrationTest {
     public void setUp() {
 
         orderList = new ArrayList<>();
-        ArrayList<String> itemsList = new ArrayList<>();
-        itemsList.add("cat1");
-        itemsList.add("cat2");
-        order1 = new Order(10, itemsList, "A1");
-        order2 = new Order(20, itemsList, "A2");
-        order3 = new Order(30, itemsList, "A1");
+        ArrayList<Product> itemsList = new ArrayList<Product>();
+        Product product1 = new Product();
+        String userId = "userId";
+        int priceTotal = 1000;
+        LocalDate creationDate = LocalDate.now();
+        LocalDate deliveryDate = creationDate.plusDays(3l);
+        order1 = new Order(userId, priceTotal, itemsList, creationDate, deliveryDate);
+        order2 = new Order(userId, priceTotal, itemsList, creationDate, deliveryDate);
+        order3 = new Order(userId, priceTotal, itemsList, creationDate, deliveryDate);
         orderList.add(order1);
         orderList.add(order2);
         orderList.add(order3);
