@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @SpringBootApplication(scanBasePackages = "com.stackroute")
@@ -20,21 +21,21 @@ import java.util.ArrayList;
 public class Order {
     @Id
     private String id;
-    private float priceTotal;
     private String userId;
-    private LocalDate deliveryDate;
+    private int priceTotal;
     private LocalDate creationDate;
+    private LocalDate deliveryDate;
     private OrderStatus status;
-    ArrayList<String> orderItems;
-//    ArrayList<Product> orderItems;
+    List<Product> orderItems;
 
-    public Order(float priceTotal, ArrayList<String> orderItems, String userId) {
+    public Order(String userId, int priceTotal, List<Product> orderItems, LocalDate creationDate, LocalDate deliveryDate) {
+        this.userId = userId;
         this.priceTotal = priceTotal;
         this.orderItems = orderItems;
-        this.userId = userId;
-        //this.creationDate = LocalDate.now();
-        //this.deliveryDate = this.creationDate.plusDays(3l);
-        //this.status = OrderStatus.SUBMITTED;
+
+        this.creationDate = LocalDate.now();
+        this.deliveryDate = this.creationDate.plusDays(3l);
+        this.status = OrderStatus.SUBMITTED;
 
         log.info("A new order is created: {} | {}", this.getId());
     }

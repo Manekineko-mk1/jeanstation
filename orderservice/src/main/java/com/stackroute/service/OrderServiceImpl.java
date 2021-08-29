@@ -32,6 +32,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order saveOrder(Order order) {
         boolean isOrderExist;
+
         if(order.getId() == null){
             isOrderExist = false;
         } else {
@@ -47,9 +48,6 @@ public class OrderServiceImpl implements OrderService {
 
             throw new OrderAlreadyExistException(order.getId());
         } else {
-            order.setCreationDate(LocalDate.now());
-            order.setDeliveryDate(order.getCreationDate().plusDays(3l));
-            order.setStatus(OrderStatus.SUBMITTED);
             Order addedCart = orderRepository.save(order);
 
             log.info("SUCCESS: Add an order to the \"orders\" collection | Order ID: {} | Timestamp(EST): {}",
@@ -93,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Order deleteOrder(String id) {
-        Order order = null;
+        Order order;
         Optional<Order> optional = orderRepository.findById(id);
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
@@ -117,16 +115,27 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Order updateOrder(Order order) {
-        Order updatedOrder = null;
+        Order updatedOrder;
         Optional<Order> optional = orderRepository.findById(order.getId());
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
         if (optional.isPresent()) {
+            // Locate the existing order with same order ID
             Order getOrder = orderRepository.findById(order.getId()).get();
+
+            // Update the existing order with the new info
+            getOrder.setOrderItems(order.getOrderItems());
+            getOrder.setPriceTotal(order.getPriceTotal());
+            getOrder.setDeliveryDate(order.getDeliveryDate());
             getOrder.setStatus(order.getStatus());
-            updatedOrder = orderRepository.save(getOrder);
+
+            // Update the existing order to the DB
+            orderRepository.save(getOrder);
+
+            updatedOrder = orderRepository.findById(order.getId()).get();
+
             log.info("SUCCESS: Updated order to the \"orders\" collection | Order ID: {} | Timestamp(EST): {}",
                     order.getId(), timeStamp);
 
@@ -136,11 +145,6 @@ public class OrderServiceImpl implements OrderService {
 
             throw new OrderNotFoundException(order.getId());
         }
-    }
-
-    @Override
-    public List<Order> getOrderByUserId(String id) {
-        return orderRepository.findByUserId(id);
     }
 }
 
