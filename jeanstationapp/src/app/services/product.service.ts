@@ -28,6 +28,10 @@ export class ProductService {
     return this.http.post<Product>(this.baseurl+'product',data,httpOptions);
   }
 
+  uploadImage(data) {
+    return this.http.post(this.baseurl+'upload', data, {observe: 'response'});
+  }
+
   updateProduct(data: Product): Observable<Product>{
     return this.http.put<Product>(this.baseurl+'product',data,httpOptions);
   }

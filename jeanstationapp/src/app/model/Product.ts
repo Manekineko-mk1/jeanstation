@@ -2,7 +2,6 @@ import { Money } from '../model/Money';
 
 export class Product {
     id?:string;
-    productId?:string;
     name?:string;
     description?:string;
     picture?:string;

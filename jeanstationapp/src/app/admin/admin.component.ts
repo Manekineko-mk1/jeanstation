@@ -1,6 +1,8 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Money } from '../model/Money';
 import { Product } from '../model/Product';
 import { ApprouteService } from '../services/approute.service';
 import { ProductService } from '../services/product.service';
@@ -15,11 +17,14 @@ export class AdminComponent implements OnInit {
   form;
   message;
   products: Product[];
+  productsReceived: Product[];
   toAdd = false;
   toUpdate = false;
   product: Product = new Product();
   closeModal:string;
   showProduct: Product;
+  private selectedFile;
+  imgURL: any;
 
   constructor(private formBuilder:FormBuilder, private productservice:ProductService, 
     private approute: ApprouteService, private modalService:NgbModal) { 
@@ -51,7 +56,26 @@ export class AdminComponent implements OnInit {
   getProducts(){
     this.productservice.getProduct().subscribe(
       data => {
-      this.products = data;
+        this.products = new Array<Product>();
+        this.productsReceived = data;
+        for(const prod of this.productsReceived){
+          const prodWithImage = new Product();
+          prodWithImage.id = prod.id;
+          prodWithImage.name = prod.name;
+          if(prod.picture.startsWith('http')){
+            prodWithImage.picture = prod.picture;
+          } else {
+            prodWithImage.picture = 'data:image/jpeg;base64,'+prod.picture;
+          }
+          prodWithImage.price = prod.price;
+          prodWithImage.discount = prod.discount;
+          prodWithImage.description = prod.description;
+          prodWithImage.quantity = prod.quantity;
+          prodWithImage.color = prod.color;
+          prodWithImage.size = prod.size;
+          prodWithImage.categories = prod.categories;
+          this.products.push(prodWithImage);
+        }
     }
     );
   }
@@ -59,18 +83,41 @@ export class AdminComponent implements OnInit {
   addProduct(){
 
     if (this.form.valid) {
-      this.productservice.addProduct(this.form.value).subscribe(
+      const uploadData = new FormData();
+      uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
+      this.selectedFile.imageName = this.selectedFile.name;
+      const prodWithImage = new Product();
+      prodWithImage.name = this.form.value.name;
+      prodWithImage.picture = this.form.value.picture;
+      prodWithImage.price = new Money();
+      prodWithImage.price.amount = this.form.value.price;
+      prodWithImage.price.currency = 'CAD';
+      prodWithImage.discount = this.form.value.discount;
+      prodWithImage.description = this.form.value.description;
+      prodWithImage.quantity = this.form.value.quantity;
+      prodWithImage.color = this.form.value.color;
+      prodWithImage.size = this.form.value.size;
+      prodWithImage.categories = this.form.value.categories;
+      this.productservice.uploadImage(uploadData).subscribe(
         data => {
-          this.clearForm();
-          this.message = 'Product added';
-          this.getProducts();
-          
+          this.productservice.addProduct(prodWithImage).subscribe(
+          data => {
+            this.clearForm();
+            this.message = 'Product added';
+            this.getProducts();
+            
+          },
+          err => {
+            this.message = 'Failed to add Product!!';
+            this.clearForm();
+          }
+        );
         },
         err => {
-          this.message = 'Failed to add Product!!';
-          this.clearForm();
+          this.message = 'Image upload failed';
         }
       );
+     
     } else {
       this.message = 'The fields should not be empty!!! Please verify details';
     }
@@ -162,13 +209,14 @@ export class AdminComponent implements OnInit {
   }
 
   fileChange(event) {
-    let fileList: FileList = event.target.files;
-    if(fileList.length > 0) {
-        let file: File = fileList[0];
-        const formData = new FormData();
-        formData.append('file', this.form.get('picture').value);
-        this.form.get('picture').setValue(formData);
-    }
+    console.log(event);
+    this.selectedFile = event.target.files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event2) => {
+      this.imgURL = reader.result;
+    };
 }
 
   triggerModal(content, product) {
