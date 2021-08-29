@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(OrderAlreadyExistException.class)
-    public ResponseEntity<Object> handleCityNotFoundException(
+    public ResponseEntity<Object> handleOrderAlreadyExistException(
             OrderAlreadyExistException ex, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();
@@ -30,7 +30,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(OrderNotFoundException.class)
-    public ResponseEntity<Object> handleNodataFoundException(
+    public ResponseEntity<Object> handleNoOrderFoundException(
             OrderNotFoundException ex, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();
