@@ -26,8 +26,8 @@ public class Product {
     private Money finalPrice;
     private int discount;
     private int quantity;
-    private ProductSize size;
-    private ProductColor color;
+    private String size;
+    private String color;
     List<String> categories;
 
     public Product(String name, String description, String picture, Money price, int discount,
@@ -47,7 +47,7 @@ public class Product {
     }
 
     public Product(String name, String description, String picture, Money price, int discount,
-                   int quantity, ProductSize size, ProductColor color, List<String> categories) {
+                   int quantity, String size, String color, List<String> categories) {
         this.name = name;
         this.description = description;
         this.picture = picture;

@@ -28,13 +28,21 @@ public class Order {
     private OrderStatus status;
     List<Product> orderItems;
 
+    public Order(String userId, int priceTotal, List<Product> orderItems) {
+        this.userId = userId;
+        this.priceTotal = priceTotal;
+        this.orderItems = orderItems;
+
+        log.info("A new order is created: {} | {}", this.getId());
+    }
+
     public Order(String userId, int priceTotal, List<Product> orderItems, LocalDate creationDate, LocalDate deliveryDate) {
         this.userId = userId;
         this.priceTotal = priceTotal;
         this.orderItems = orderItems;
 
-        this.creationDate = LocalDate.now();
-        this.deliveryDate = this.creationDate.plusDays(3l);
+        this.creationDate = creationDate;
+        this.deliveryDate = deliveryDate;
         this.status = OrderStatus.SUBMITTED;
 
         log.info("A new order is created: {} | {}", this.getId());

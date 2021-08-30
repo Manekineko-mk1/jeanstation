@@ -1,6 +1,7 @@
 package com.stackroute.controller;
 
 import com.stackroute.domain.Order;
+import com.stackroute.enums.OrderStatus;
 import com.stackroute.service.OrderService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -38,6 +40,9 @@ public class OrderController {
             "using a provided JSON Order object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
     public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
+        order.setCreationDate(LocalDate.now());
+        order.setDeliveryDate(order.getCreationDate().plusDays(3l));
+        order.setStatus(OrderStatus.SUBMITTED);
         Order savedOrder = orderService.saveOrder(order);
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
