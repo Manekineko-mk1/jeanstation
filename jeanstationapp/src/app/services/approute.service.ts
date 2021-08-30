@@ -30,6 +30,10 @@ export class ApprouteService {
     this.router.navigate(['cart']);
   }
 
+  openCheckout(){
+      this.router.navigate(['checkout']);
+  }
+
   openAdmin(){
     this.router.navigate(['admin']);
   }

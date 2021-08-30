@@ -24,7 +24,8 @@ import { ProductItemComponent } from './product/product-item/product-item.compon
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CookieModule } from 'ngx-cookie';
-
+import { CurrencyPipe } from '@angular/common';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CookieModule } from 'ngx-cookie';
     CartItemComponent,
     ProductItemComponent,
     RegistrationComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
