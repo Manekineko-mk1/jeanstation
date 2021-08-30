@@ -61,17 +61,7 @@ export class CheckoutComponent implements OnInit {
   handleSubscription() {
     // Add listener to MessengerService
     this.msg.getMsg().subscribe(product => {
-      this.calculateTotal();
       this.retrieveCart(this.cartId);
     });
   }
-
-  calculateTotal() {
-    this.cartItems.forEach(item => {
-      this.priceTotalBeforeTax = this.priceTotalBeforeTax + (item.quantity * (item.price.amount / 100));
-    });
-
-    this.priceTotalAfterTax = this.priceTotalBeforeTax + (this.priceTotalAfterTax * this.tax);
-  }
-
 }
