@@ -7,8 +7,7 @@
       <strong class="productName">{{ productItem.name }}</strong>
       <br />
       <strong class="quantity">Quantity: {{ productItem.quantity }}</strong>
-<!--      <br />-->
-<!--      <strong class="currency">{{ (productItem.price.amount / 100) | currency:'CAD' }}</strong>-->
+
       <span *ngIf="productItem.discount > 0">
         <br />
         <s>
