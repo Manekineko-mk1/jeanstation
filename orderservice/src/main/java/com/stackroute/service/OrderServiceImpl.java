@@ -48,7 +48,9 @@ public class OrderServiceImpl implements OrderService {
 
             throw new OrderAlreadyExistException(order.getId());
         } else {
-            Order addedCart = orderRepository.save(order);
+            Order newOrder = new Order(order.getUserId(), order.getPriceTotalBeforeTax(),
+                    order.getPriceTotalAfterTax(), order.getOrderItems());
+            Order addedCart = orderRepository.save(newOrder);
 
             log.info("SUCCESS: Add an order to the \"orders\" collection | Order ID: {} | Timestamp(EST): {}",
                     addedCart.getId(), timeStamp);
@@ -127,7 +129,8 @@ public class OrderServiceImpl implements OrderService {
 
             // Update the existing order with the new info
             getOrder.setOrderItems(order.getOrderItems());
-            getOrder.setPriceTotal(order.getPriceTotal());
+            getOrder.setPriceTotalBeforeTax(order.getPriceTotalBeforeTax());
+            getOrder.setPriceTotalAfterTax(order.getPriceTotalAfterTax());
             getOrder.setDeliveryDate(order.getDeliveryDate());
             getOrder.setStatus(order.getStatus());
 
