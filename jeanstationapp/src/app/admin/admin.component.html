@@ -140,7 +140,7 @@
           <label>Name</label>
         </div>
         <div class="col-75">
-          <input formControlName="name" type="text"  placeholder={{product.name}}>
+          <input formControlName="name" type="text"  placeholder="Enter the name of the product">
         </div>
       </div>
 
@@ -149,7 +149,7 @@
           <label>Description</label>
         </div>
         <div class="col-75">
-          <input formControlName="description" type="text"  placeholder={{product.description}}>
+          <input formControlName="description" type="text"  placeholder="Enter the description of the product">
         </div>
       </div>
 
@@ -158,7 +158,12 @@
           <label>Picture</label>
         </div>
         <div class="col-75">
-          <input formControlName="picture" type="text"  placeholder={{product.picture}}>
+          <img src={{product.picture}} width="100px" height="100px" *ngIf="!showchangeImage">
+          <button class="col-md-6 btn btn-default"
+                  type="button"
+                  (click)="changeImage()" *ngIf="!showchangeImage">Change Image
+          </button>
+          <input type="file" formControlName="picture" (change)="fileChange($event)" placeholder="Upload file" accept=".jpg,.jpeg,.png" *ngIf="showchangeImage">
         </div>
       </div>
 
@@ -167,7 +172,7 @@
           <label>Price in CAD</label>
         </div>
         <div class="col-75">
-          <input formControlName="price" type="number"  placeholder={{product.price}}>
+          <input formControlName="price" type="number"  placeholder="Enter the price of the product">
         </div>
       </div>
 
@@ -176,7 +181,7 @@
           <label>Discount</label>
         </div>
         <div class="col-75">
-          <input formControlName="discount" type="number"  placeholder={{product.discount}}>
+          <input formControlName="discount" type="number"  placeholder="Enter the discount of the product">
         </div>
       </div>
 
@@ -185,7 +190,7 @@
             <label>Quantity</label>
           </div>
           <div class="col-75">
-            <input formControlName="quantity" type="number"  placeholder={{product.quantity}}>
+            <input formControlName="quantity" type="number"  placeholder="Enter the quantity of the product">
           </div>
         </div>
 
@@ -194,7 +199,7 @@
               <label>Size</label>
           </div>
           <div class="col-75">
-              <input type="radio" formControlName="size" value="XS">
+              <!-- <input type="radio" formControlName="size" value="XS">
               <label>XS</label>
               <input type="radio" formControlName="size" value="S">
               <label>S</label>
@@ -203,7 +208,8 @@
               <input type="radio" formControlName="size" value="L">
               <label>L</label>
               <input type="radio" formControlName="size" value="XL">
-              <label>XL</label>
+              <label>XL</label> -->
+              <input type="text" formControlName="size" placeholder="Enter the size of the product">
           </div>
       </div>
 
@@ -212,12 +218,13 @@
             <label>Color</label>
         </div>
         <div class="col-75">
-            <input type="radio" formControlName="color" value="LIGHT_BLUE">
+            <!-- <input type="radio" formControlName="color" value="LIGHT_BLUE">
             <label>Light Blue</label>
             <input type="radio" formControlName="color" value="BLUE">
             <label>Blue</label>
             <input type="radio" formControlName="color" value="BLACK">
-            <label>Black</label>
+            <label>Black</label> -->
+            <input type="text" formControlName="color" placeholder="Enter the color of the product">
         </div>
     </div>
 
@@ -257,6 +264,7 @@
 
         <br>
 
+
         <div class="row">
           <input class="col-md-2 btn btn-default" type="submit" value="Update Product">
         </div>
@@ -273,19 +281,73 @@
 
   
 
-  <div class="row">
+
   
-    <!-- Product list column -->
-    <div class="col-md-8 products" id="products">
-      <div class="row">
-        <div class="col-md-4" *ngFor="let product of products">
-          <app-product-item [productItem]="product"></app-product-item>
+      <div class="row" id="products">
+        <div class="col-md-3" *ngFor="let productItem of products">
+          <div class="card mb-3 shadow-sm">
+            <!-- https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg -->
+            <img class="bd-placeholder-img card-img-top p-2" src="{{ productItem.picture }}" width="100%"/>
+          
+            <div class="card-body">
+              <p class="card-text">
+                <!-- (productItem.price.amount / 100) | currency:'CAD' -->
+                <strong>{{ (productItem.price.amount / 100) | currency:'CAD' }}</strong>
+                <br />
+                <strong>Quantity: {{ productItem.quantity }}</strong>
+                <br />
+                <strong *ngIf="productItem.discount > 0">Discount: {{ productItem.discount }}</strong>
+              </p>
+              <p class="card-text">{{ productItem.description | slice: 0:50 }}...</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button (click)="showUpdate(productItem)"
+                          class="btn btn-sm btn-primary product-btn"
+                          type="button"
+                  >Update
+                  </button>
+                  <button (click)="deleteProduct(productItem.id)"
+                          class="btn btn-sm btn-primary product-btn"
+                          type="button"
+                  >Delete
+                  </button>
+                  <button (click)="triggerModal(modalData, productItem)" class="btn btn-sm btn-outline-secondary product-btn"
+                          type="button">View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          
         </div>
       </div>
     </div>
-    </div>
-  
 
+ 
+  
+    <ng-template #modalData let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{showProduct.name}}</h4>
+        <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2>{{ (showProduct.price.amount / 100) | currency:'CAD' }}</h2>
+        <h2 *ngIf="showProduct.discount!=0" id="discount">{{showProduct.discount}}% Discount!!</h2>
+        <p>Quantity: {{showProduct.quantity}}</p>
+        <p>Details: {{showProduct.description}}</p>
+        <p>Size: {{showProduct.size}}</p>
+        <p>Color: {{showProduct.color}}</p>
+        <p>Categories: </p>
+        <ul *ngFor="let category of showProduct.categories">
+          <li>{{category}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button (click)="modal.close('Save click')" class="btn btn-danger" type="button">Close</button>
+      </div>
+    </ng-template>
+  
 
 
 </div>
