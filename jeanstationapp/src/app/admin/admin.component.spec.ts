@@ -69,75 +69,75 @@ describe('AdminComponent', () => {
     expect(component.products).toEqual(list);
   });
 
-  // it('should have addProduct()', () => {
-  //   expect(component.addProduct).toBeTruthy();
-  // });
+  it('should have addProduct()', () => {
+    expect(component.addProduct).toBeTruthy();
+  });
 
-  // it('addProduct() should print error message if input is invalid', () => {
-  //   component.addProduct();
-  //   expect(component.message).toEqual('The fields should not be empty!!! Please verify details');
-  // });
+  it('addProduct() should print error message if input is invalid', () => {
+    component.addProduct();
+    expect(component.message).toEqual('The fields should not be empty!!! Please verify details');
+  });
 
-  // it('addProduct() should add Product', () => {
-  //   component.form.clearValidators();
-  //   component.form.updateValueAndValidity();
-  //   spyOn(service, 'addProduct').and.returnValue(of(product1));
-  //   component.addProduct();
-  //   expect(service.addProduct).toHaveBeenCalled();
-  //   expect(component.message).toEqual('Product added');
-  // });
+  it('addProduct() should add Product', () => {
+    component.form.clearValidators();
+    component.form.updateValueAndValidity();
+    spyOn(service, 'addProduct').and.returnValue(of(product1));
+    component.addProduct();
+    expect(service.addProduct).toHaveBeenCalled();
+    expect(component.message).toEqual('Product added');
+  });
 
-  // it('addProduct() should print error message if failed', () => {
-  //   component.form.clearValidators();
-  //   component.form.updateValueAndValidity();
-  //   spyOn(service, 'addProduct').and.returnValue(throwError({status:404}));
-  //   component.addProduct();
-  //   expect(service.addProduct).toHaveBeenCalled();
-  //   expect(component.message).toEqual('Registration failed!');
-  // });
+  it('addProduct() should print error message if failed', () => {
+    component.form.clearValidators();
+    component.form.updateValueAndValidity();
+    spyOn(service, 'addProduct').and.returnValue(throwError({status:404}));
+    component.addProduct();
+    expect(service.addProduct).toHaveBeenCalled();
+    expect(component.message).toEqual('Registration failed!');
+  });
 
-  // it('should have updateProduct()', () => {
-  //   expect(component.updateProduct).toBeTruthy();
-  // });
+  it('should have updateProduct()', () => {
+    expect(component.updateProduct).toBeTruthy();
+  });
 
-  // it('should have deleteProduct()', () => {
-  //   expect(component.deleteProduct).toBeTruthy();
-  // });
+  it('should have deleteProduct()', () => {
+    expect(component.deleteProduct).toBeTruthy();
+  });
 
-  // it('deleteProduct() should delete product', () => {
-  //   spyOn(service, 'deleteProduct').and.returnValue(of(product1));
-  //   component.deleteProduct("id");
-  //   expect(component.message).toEqual('Product deleted');
-  // });
+  it('deleteProduct() should delete product', () => {
+    spyOn(service, 'deleteProduct').and.returnValue(of(product1));
+    component.deleteProduct("id");
+    expect(component.message).toEqual('Product deleted');
+  });
 
-  // it('deleteProduct() should print error message if an error occurs', () => {
-  //   spyOn(service, 'deleteProduct').and.returnValue(throwError({status:404}));
-  //   component.deleteProduct("1");
-  //   expect(component.message).toEqual('Failed to delete product!');
-  // });
+  it('deleteProduct() should print error message if an error occurs', () => {
+    spyOn(service, 'deleteProduct').and.returnValue(throwError({status:404}));
+    component.deleteProduct("1");
+    expect(component.message).toEqual('Failed to delete product!');
+  });
 
-  // it('should have clearForm()', () => {
-  //   expect(component.clearForm).toBeTruthy();
-  // });
+  it('should have clearForm()', () => {
+    expect(component.clearForm).toBeTruthy();
+  });
 
-  // it('should have showUpdate()', () => {
-  //   expect(component.showUpdate).toBeTruthy();
-  // });
+  it('should have showUpdate()', () => {
+    expect(component.showUpdate).toBeTruthy();
+  });
 
-  // it('should have addCategory()', () => {
-  //   expect(component.addCategory).toBeTruthy();
-  // });
+  it('should have addCategory()', () => {
+    expect(component.addCategory).toBeTruthy();
+  });
 
-  // it('should have deleteCategory()', () => {
-  //   expect(component.deleteCategory).toBeTruthy();
-  // });
+  it('should have deleteCategory()', () => {
+    expect(component.deleteCategory).toBeTruthy();
+  });
 
-  // it('should have triggerModal()', () => {
-  //   expect(component.triggerModal).toBeTruthy();
-  // });
+  it('should have triggerModal()', () => {
+    expect(component.triggerModal).toBeTruthy();
+  });
 
-  // it('should have fileChange()', () => {
-  //   expect(component.fileChange).toBeTruthy();
-  // });
+  it('should have fileChange()', () => {
+    expect(component.fileChange).toBeTruthy();
+  });
 
 });

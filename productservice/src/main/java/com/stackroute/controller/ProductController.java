@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import static org.apache.commons.codec.binary.Base64.encodeBase64String;
 
 @RestController
 @RequestMapping(value = "/api/v1/")
@@ -21,6 +25,7 @@ import java.util.List;
 public class ProductController {
     private ProductService productService;
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
+    private byte[] bytes;
 
     @Autowired
     public ProductController(ProductService productService) {
@@ -36,7 +41,9 @@ public class ProductController {
             "using a provided JSON Product object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
     public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
+        product.setPicture(encodeBase64String(this.bytes));
         Product savedProduct = productService.saveProduct(product);
+        this.bytes = null;
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
@@ -63,6 +70,11 @@ public class ProductController {
         log.info("Added the list of products to the products collection | Timestamp(EST): {}", timeStamp);
 
         return new ResponseEntity<>(savedProducts, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/upload")
+    public void uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+        this.bytes = file.getBytes();
     }
 
 
@@ -124,8 +136,12 @@ public class ProductController {
             "from the Product database using a provided JSON Product object. " +
             "Returns the updated entry if the operation is a success.", response = ResponseEntity.class)
     public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
-        Product updatedProduct = productService.updateProduct(product);
-
+        Product updatedProduct;
+        if(this.bytes!=null){
+            product.setPicture(encodeBase64String(this.bytes));
+            this.bytes = null;
+        }
+        updatedProduct = productService.updateProduct(product);
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 

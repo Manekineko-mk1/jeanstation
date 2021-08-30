@@ -14,7 +14,7 @@
                     <p class="card-text">Order Status: {{order.status}}</p>
                     <p>Order Items: </p>
                     <ul *ngFor="let item of order.orderItems">
-                      <li>{{item}}</li>
+                      <li>{{item.name}}</li>
                     </ul>
                     <br><br>
                     <button class="btn" (click)="triggerModal(modalData,order)">Update Status</button>
@@ -51,3 +51,4 @@
   </div>
 </ng-template>
 
+</div>
