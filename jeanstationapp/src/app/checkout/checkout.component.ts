@@ -7,6 +7,7 @@ import { CartService } from '../services/cart.service';
 import { CheckoutService } from '../services/checkout.service';
 import { CookieService } from 'ngx-cookie';
 import { MessengerService } from 'src/app/services/messenger.service';
+import { ApprouteService } from 'src/app/services/approute.service';
 
 @Component({
   selector: 'app-checkout',
@@ -16,13 +17,14 @@ import { MessengerService } from 'src/app/services/messenger.service';
 export class CheckoutComponent implements OnInit {
   cart: Cart;
   cartId: string;
+  userId: string;
   cartItems: Product[] = new Array<Product>();
   tax = 0.14;
   priceTotalBeforeTax: number = 0;
   priceTotalAfterTax: number = 0;
 
   constructor(private cookieService: CookieService, private cartService:CartService,
-              private checkoutService:CheckoutService, private msg: MessengerService) { }
+              private checkoutService:CheckoutService, private msg: MessengerService, private appRouter: ApprouteService) { }
 
   ngOnInit(): void {
     this.cartId = this.cookieService.get("cartId");
@@ -102,6 +104,18 @@ export class CheckoutComponent implements OnInit {
     const order: Order = new Order();
 
     // 1.1 Get userId if no id from cookie redirect to login
+    // this.userId = this.cookieService.get("userId");
+    this.userId = sessionStorage.getItem("username");
+    console.log("sessionStorage@checkout");
+    console.log(this.userId);
+
+    if(this.userId == null) {
+      console.log("UserId not found. Redirect to login page");
+      // redirect to login page
+      this.appRouter.openLogin();
+    }
+
+
     order.userId = "userId";
     order.priceTotalBeforeTax = this.cart.priceTotalBeforeTax;
     order.priceTotalAfterTax = this.cart.priceTotalAfterTax;
