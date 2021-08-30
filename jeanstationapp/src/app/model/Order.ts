@@ -3,7 +3,8 @@ import { Product } from '../model/Product';
 export class Order {
     id?:string;
     userId?:string;
-    priceTotal?:number;
+    priceTotalBeforeTax?:number;
+    priceTotalAfterTax?:number;
     orderItems?:Product[];
     creationDate?:string;
     deliveryDate?:string;
