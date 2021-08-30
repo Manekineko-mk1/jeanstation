@@ -26,19 +26,19 @@
                     </td>
                     <td class="desc">
                       <h3>
-                        <!-- TODO: Item name -->
+                        <!-- Item name -->
                         <a href="#" class="text-navy">{{ item.name }}</a>
                       </h3>
-                      <!-- TODO: Item description -->
+                      <!-- Item description -->
                       <p class="small">{{ item.description }}</p>
 
                       <!-- TODO: Remove item from cart -->
-                      <div class="m-t-sm">
-                        <a href="#" class="text-muted"><i class="fa fa-trash"></i>Remove item</a>
+                      <div class="btn-group m-t-sm">
+                        <button (click)="removeItemFromCart(item)" class="btn btn-sm btn-primary product-btn"><i class="fa fa-trash"></i> Remove item</button>
                       </div>
                     </td>
 
-                    <!-- TODO: Item price -->
+                    <!-- Item price -->
                     <!-- If discounted -->
                     <span *ngIf="item.discount > 0">
                       <td>{{ item.finalPrice.amount/100 | currency:'CAD' }}
@@ -53,12 +53,12 @@
                     </span>
 
                     <td width="65">
-                      <input type="text" class="form-control" placeholder="1">
+                      <input type="text" class="form-control" value="{{ item.quantity }}">
                     </td>
 
-                    <!-- TODO: Item subtotal (bold text) -->
+                    <!-- Item subtotal (bold text) -->
                     <td>
-                      <h4>{{ item.finalPrice.amount/100 | currency:'CAD' }}</h4>
+                      <h4>{{ item.finalPrice.amount/100 * item.quantity | currency:'CAD' }}</h4>
                     </td>
                   </tr>
                   </tbody>
@@ -71,10 +71,10 @@
           <!-- Bottom row: Continue shopping & Checkout section -->
           <div class="ibox-content">
             <!-- TODO: Show payment view -->
-            <button class="btn btn-primary pull-right"><i class="fa fa fa-shopping-cart"></i>Checkout</button>
+            <button class="btn btn-primary pull-right"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
 
             <!-- TODO: Redirect back to product list view -->
-            <button class="btn btn-white"><i class="fa fa-arrow-left"></i>Continue shopping</button>
+            <a class="btn btn-white" href="../product" routerLink="../product"><i class="fa fa-arrow-left"></i> Continue shopping</a>
           </div>
         </div>
       </div>
@@ -99,8 +99,7 @@
 
             <div class="m-t-sm">
               <div class="btn-group">
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i>Checkout</a>
-                <a href="#" class="btn btn-white btn-sm"> Cancel</a>
+                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a>
               </div>
             </div>
           </div>
