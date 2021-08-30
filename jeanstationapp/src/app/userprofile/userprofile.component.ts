@@ -50,12 +50,9 @@ export class UserprofileComponent implements OnInit {
     this.user.realName="myRealname";
     this.user.address = address;
     this.user.telephone = "11111111";
+    this.id = sessionStorage.getItem('username');
     // this.getUser();
-    this.approute.isAdmin.subscribe(
-      value => {
-        this.isAdmin = value;
-      }
-    );
+    this.isAdmin = sessionStorage.getItem('isAdmin')==='true';
   }
 
   getUser(){

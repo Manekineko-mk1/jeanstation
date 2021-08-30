@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
-    this.approute.isLoggedIn.next(false);
-    this.approute.isAdmin.next(false);
+    sessionStorage.setItem('isLoggedIn', 'false');
+    sessionStorage.setItem('isAdmin', 'false');
   }
 
   ngOnInit(): void {
@@ -30,11 +30,11 @@ export class LoginComponent implements OnInit {
       this.message = 'Username and Password should not be empty!!! Please verify details'
     } else {
       if((this.form.value.username=='admin') && (this.form.value.password=='password')){
-        this.approute.isLoggedIn.next(true);
-        this.approute.isAdmin.next(true);
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('isAdmin', 'true');
         this.approute.openAdmin();
       } else if((this.form.value.username=='user') && (this.form.value.password=='password')){
-        this.approute.isLoggedIn.next(true);
+        sessionStorage.setItem('isLoggedIn', 'true');
         this.approute.openProduct();
       } else {
         this.message = 'Username and Password incorrect!!! Please verify details'
