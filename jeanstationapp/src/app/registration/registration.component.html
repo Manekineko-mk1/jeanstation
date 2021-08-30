@@ -1,6 +1,7 @@
 <div id="registration">
     <div class="container">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h5>Account</h5>
             <div class="row">
                 <div class="col-25">
                     <label>Username:</label>
@@ -25,7 +26,8 @@
                     <input formControlName="name" type="text" placeholder="Enter your name">
                 </div>
             </div>
-            <h2>Address</h2>
+            <br>
+            <h5>Address</h5>
             <div class="row">
                 <div class="col-25">
                     <label>Door number:</label>
@@ -66,6 +68,8 @@
                     <input formControlName="postalcode" type="text" placeholder="Enter your postal code">
                 </div>
             </div>
+            <br>
+            <h5>Contact</h5>
             <div class="row">
                 <div class="col-25">
                     <label>Phone Number:</label>
