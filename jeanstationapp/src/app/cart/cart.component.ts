@@ -37,7 +37,6 @@ export class CartComponent implements OnInit {
   handleSubscription() {
     // Add listener to MessengerService
     this.msg.getMsg().subscribe(product => {
-      this.calculateTotal();
       this.addItemToCart(product);
     });
   }
@@ -78,16 +77,13 @@ export class CartComponent implements OnInit {
     }
 
     this.cart.cartItems = this.cartItems;
-    this.cart.priceTotalBeforeTax = this.priceTotalBeforeTax;
-    this.cart.priceTotalAfterTax = this.priceTotalAfterTax;
 
-    this.updateCart(this.cart);
+    this.calculateTotal();
+    this.updateCart();
   }
 
-  updateCart(cart: Cart) {
-    this.cartService.updateCart(cart).subscribe(data => {
-        console.log("updateCart");
-        console.log(data);
+  updateCart() {
+    this.cartService.updateCart(this.cart).subscribe(data => {
         this.cart = data;
     });
   }
@@ -100,17 +96,17 @@ export class CartComponent implements OnInit {
     this.cartService.updateCart(this.cart);
   }
 
-  deleteCart() {
-      this.cartService.deleteCart(this.cart.id).subscribe(data => {
-          console.log('DeleteCart succeed: ' + data);
-      });
-  }
-
   calculateTotal() {
+    this.priceTotalBeforeTax = 0;
+    this.priceTotalAfterTax = 0;
+
     this.cartItems.forEach(item => {
-      this.priceTotalBeforeTax = this.priceTotalBeforeTax + (item.quantity * (item.price.amount / 100));
+      this.priceTotalBeforeTax = this.priceTotalBeforeTax + (item.quantity * (item.finalPrice.amount / 100));
     });
 
-    this.priceTotalAfterTax = this.priceTotalBeforeTax + (this.priceTotalAfterTax * this.tax);
+    this.priceTotalAfterTax = this.priceTotalBeforeTax + (this.priceTotalBeforeTax * this.tax);
+
+    this.cart.priceTotalBeforeTax = this.priceTotalBeforeTax;
+    this.cart.priceTotalAfterTax = this.priceTotalAfterTax;
   }
 }
