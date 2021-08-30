@@ -37,8 +37,13 @@ export class ProductComponent implements OnInit {
           }
           prodWithImage.price = prod.price;
           prodWithImage.finalPrice = new Money();
+
+          // Temporary: For testing, the json products didn't include the finalPrice,
+          //  but for production, when products are added via ProductService, the finalPrice will be handled by constructor
           prodWithImage.finalPrice.amount = prod.price.amount * (1 - (prod.discount/100));
           prodWithImage.finalPrice.currency = prod.price.currency;
+          // End temporary
+
           prodWithImage.discount = prod.discount;
           prodWithImage.description = prod.description;
           prodWithImage.quantity = prod.quantity;
