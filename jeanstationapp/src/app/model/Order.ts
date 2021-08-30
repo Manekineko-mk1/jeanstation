@@ -1,9 +1,11 @@
+import { Product } from '../model/Product';
+
 export class Order {
     id?:string;
-    priceTotal?:number;
-    orderItems?:string[];
     userId?:string;
-    status?:string;
+    priceTotal?:number;
+    orderItems?:Product[];
     creationDate?:string;
     deliveryDate?:string;
+    status?:string;
 }
