@@ -43,11 +43,10 @@ class OrderServiceTest {
         itemsList.add(product1);
 
         String userId = "userId";
-        int priceTotal = 1000;
-        LocalDate creationDate = LocalDate.now();
-        LocalDate deliveryDate = creationDate.plusDays(3l);
-        order = new Order(userId, priceTotal, itemsList, creationDate, deliveryDate);
-        order1 = new Order(userId, priceTotal, itemsList, creationDate, deliveryDate);
+        int priceTotalBeforeTax = 1000;
+        int priceTotalAfterTax = 1100;
+        order = new Order(userId, priceTotalBeforeTax, priceTotalAfterTax, itemsList);
+        order1 = new Order(userId, priceTotalBeforeTax, priceTotalAfterTax, itemsList);
         optional = Optional.of(order);
     }
 

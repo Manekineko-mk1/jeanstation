@@ -48,7 +48,8 @@ public class OrderControllerTest {
         ArrayList itemsList = new ArrayList();
         order = new Order();
         order.setId("1l");
-        order.setPriceTotal(420);
+        order.setPriceTotalBeforeTax(420);
+        order.setPriceTotalAfterTax(420);
         orderList = new ArrayList<>();
         orderList.add(order);
     }

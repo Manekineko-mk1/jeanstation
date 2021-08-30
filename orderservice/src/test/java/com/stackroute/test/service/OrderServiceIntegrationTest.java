@@ -36,12 +36,11 @@ public class OrderServiceIntegrationTest {
         ArrayList<Product> itemsList = new ArrayList<Product>();
         Product product1 = new Product();
         String userId = "userId";
-        int priceTotal = 1000;
-        LocalDate creationDate = LocalDate.now();
-        LocalDate deliveryDate = creationDate.plusDays(3l);
-        order1 = new Order(userId, priceTotal, itemsList, creationDate, deliveryDate);
-        order2 = new Order(userId, priceTotal, itemsList, creationDate, deliveryDate);
-        order3 = new Order(userId, priceTotal, itemsList, creationDate, deliveryDate);
+        int priceTotalBeforeTax = 1000;
+        int priceTotalAfterTax = 1100;
+        order1 = new Order(userId, priceTotalBeforeTax, priceTotalAfterTax, itemsList);
+        order2 = new Order(userId, priceTotalBeforeTax, priceTotalAfterTax, itemsList);
+        order3 = new Order(userId, priceTotalBeforeTax, priceTotalAfterTax, itemsList);
         orderList.add(order1);
         orderList.add(order2);
         orderList.add(order3);

@@ -47,16 +47,16 @@ public class OrderRepositoryIntegrationTest {
     public void givenGetAllOrdersThenShouldReturnListOfAllOrders() {
         Product product1 = new Product();
         String userId = "userId";
-        int priceTotal = 1000;
-        LocalDate creationDate = LocalDate.now();
-        LocalDate deliveryDate = creationDate.plusDays(3l);
-        Order order = new Order(userId, priceTotal, orderItems, creationDate, deliveryDate);
-        Order order1 = new Order(userId, priceTotal, orderItems, creationDate, deliveryDate);
+        int priceTotalBeforeTax = 1000;
+        int priceTotalAfterTax = 1100;
+        Order order = new Order(userId, priceTotalBeforeTax, priceTotalAfterTax, orderItems);
+        Order order1 = new Order(userId, priceTotalBeforeTax, priceTotalAfterTax, orderItems);
         orderRepository.save(order);
         orderRepository.save(order1);
 
         List<Order> orderList = orderRepository.findAll();
-        assertEquals(20, orderList.get(1).getPriceTotal());
+        assertEquals(1000, orderList.get(1).getPriceTotalBeforeTax());
+        assertEquals(1100, orderList.get(1).getPriceTotalAfterTax());
     }
 
     @Test
@@ -64,13 +64,14 @@ public class OrderRepositoryIntegrationTest {
         Product product1 = new Product();
         String userId = "userId";
         int priceTotal = 1000;
-        LocalDate creationDate = LocalDate.now();
-        LocalDate deliveryDate = creationDate.plusDays(3l);
-        Order order = new Order(userId, priceTotal, orderItems, creationDate, deliveryDate);
+        int priceTotalBeforeTax = 1000;
+        int priceTotalAfterTax = 1100;
+        Order order = new Order(userId, priceTotalBeforeTax, priceTotalAfterTax, orderItems);
         Order order1 = orderRepository.save(order);
         Optional<Order> optional = orderRepository.findById(order1.getId());
         assertEquals(order1.getId(), optional.get().getId());
-        assertEquals(order1.getPriceTotal(), optional.get().getPriceTotal());
+        assertEquals(order1.getPriceTotalBeforeTax(), optional.get().getPriceTotalBeforeTax());
+        assertEquals(order1.getPriceTotalAfterTax(), optional.get().getPriceTotalAfterTax());
         assertEquals(order1.getOrderItems(), optional.get().getOrderItems());
     }
 
@@ -78,10 +79,9 @@ public class OrderRepositoryIntegrationTest {
     public void givenOrderIdToDeleteThenShouldReturnDeletedOrder() {
         Product product1 = new Product();
         String userId = "userId";
-        int priceTotal = 1000;
-        LocalDate creationDate = LocalDate.now();
-        LocalDate deliveryDate = creationDate.plusDays(3l);
-        Order order = new Order(userId, priceTotal, orderItems, creationDate, deliveryDate);
+        int priceTotalBeforeTax = 1000;
+        int priceTotalAfterTax = 1100;
+        Order order = new Order(userId, priceTotalBeforeTax, priceTotalAfterTax, orderItems);
         orderRepository.save(order);
         orderRepository.deleteById(order.getId());
         Optional optional = orderRepository.findById(order.getId());
