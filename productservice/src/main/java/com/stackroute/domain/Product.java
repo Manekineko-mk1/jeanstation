@@ -23,6 +23,7 @@ public class Product {
     private String description;
     private String picture;
     private Money price;
+    private Money finalPrice;
     private int discount;
     private int quantity;
     private ProductSize size;
@@ -38,6 +39,9 @@ public class Product {
         this.discount = discount;
         this.quantity = quantity;
         this.categories = categories;
+
+        int finPrice = this.price.getAmount() * (1 - this.discount);
+        this.finalPrice = new Money(finPrice, price.getCurrency());
 
         log.info("A new product is created: {} | {}", this.getId(), this.name);
     }

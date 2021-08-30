@@ -6,6 +6,7 @@ export class Product {
     description?:string;
     picture?:string;
     price?:Money;
+    finalPrice?:Money;
     discount?:number;
     quantity?:number;
     size?:string;

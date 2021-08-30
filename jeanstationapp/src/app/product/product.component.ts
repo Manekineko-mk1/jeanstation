@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../model/Product';
+import { Money } from '../model/Money';
 import { ApprouteService } from '../services/approute.service';
 import { ProductService } from '../services/product.service';
 
@@ -35,6 +36,9 @@ export class ProductComponent implements OnInit {
             prodWithImage.picture = 'data:image/jpeg;base64,'+prod.picture;
           }
           prodWithImage.price = prod.price;
+          prodWithImage.finalPrice = new Money();
+          prodWithImage.finalPrice.amount = prod.price.amount * (1 - (prod.discount/100));
+          prodWithImage.finalPrice.currency = prod.price.currency;
           prodWithImage.discount = prod.discount;
           prodWithImage.description = prod.description;
           prodWithImage.quantity = prod.quantity;
