@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Cart } from '../model/Cart';
 import { Product } from 'src/app/model/Product';
 import { Money } from '../model/Money';
-import { ApprouteService } from '../services/approute.service';
 import { CartService } from '../services/cart.service';
 import { MessengerService } from 'src/app/services/messenger.service';
 import { CookieService } from 'ngx-cookie';
@@ -20,8 +19,7 @@ export class CartComponent implements OnInit {
   priceTotalBeforeTax: number = 0;
   priceTotalAfterTax: number = 0;
 
-  constructor(private cartservice:CartService, private approuter:ApprouteService,
-              private msg: MessengerService, private cookieService: CookieService) { }
+  constructor(private cartService:CartService, private msg: MessengerService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this.cartId = this.cookieService.get("cartId");
@@ -30,7 +28,7 @@ export class CartComponent implements OnInit {
     if (this.cartId != null) {
       this.retrieveCart(this.cartId);
     } else {
-      this.initCart();
+      this.createCart();
     }
 
     this.handleSubscription();
@@ -44,14 +42,8 @@ export class CartComponent implements OnInit {
     });
   }
 
-  initCart() {
-    // Create an empty cart
-    this.cart = JSON.parse('{ "priceTotalBeforeTax" : 0, "priceTotalAfterTax" : 0, "cartItems": [] }');
-    this.createCart(this.cart);
-  }
-
   retrieveCart(cartId: string) {
-    this.cartservice.getCartById(cartId).subscribe(data => {
+    this.cartService.getCartById(cartId).subscribe(data => {
         this.cart = data;
         this.cart.cartItems === null ? this.cartItems = new Array<Product>() : this.cartItems = this.cart.cartItems;
         this.priceTotalBeforeTax === null ? this.priceTotalBeforeTax = 0 : this.priceTotalBeforeTax = this.cart.priceTotalBeforeTax;
@@ -59,8 +51,11 @@ export class CartComponent implements OnInit {
     });
   }
 
-  createCart(cart: Cart) {
-    this.cartservice.createCart(cart).subscribe(data => {
+  createCart() {
+    // Create an empty cart
+    this.cart = JSON.parse('{ "priceTotalBeforeTax" : 0, "priceTotalAfterTax" : 0, "cartItems": [] }');
+
+    this.cartService.createCart(this.cart).subscribe(data => {
         this.cart = data;
         this.cookieService.put("cartId", this.cart.id);
     });
@@ -90,7 +85,7 @@ export class CartComponent implements OnInit {
   }
 
   updateCart(cart: Cart) {
-    this.cartservice.updateCart(cart).subscribe(data => {
+    this.cartService.updateCart(cart).subscribe(data => {
         console.log("updateCart");
         console.log(data);
         this.cart = data;
@@ -102,11 +97,11 @@ export class CartComponent implements OnInit {
     this.cart.priceTotalAfterTax = 0;
     this.cart.cartItems = new Array<Product>();
 
-    this.cartservice.updateCart(this.cart);
+    this.cartService.updateCart(this.cart);
   }
 
   deleteCart() {
-      this.cartservice.deleteCart(this.cart.id).subscribe(data => {
+      this.cartService.deleteCart(this.cart.id).subscribe(data => {
           console.log('DeleteCart succeed: ' + data);
       });
   }
