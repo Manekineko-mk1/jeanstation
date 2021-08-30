@@ -22,15 +22,17 @@ public class Order {
     @Id
     private String id;
     private String userId;
-    private int priceTotal;
+    private int priceTotalBeforeTax;
+    private int priceTotalAfterTax;
     private LocalDate creationDate;
     private LocalDate deliveryDate;
     private OrderStatus status;
     List<Product> orderItems;
 
-    public Order(String userId, int priceTotal, List<Product> orderItems, LocalDate creationDate, LocalDate deliveryDate) {
+    public Order(String userId, int priceTotalBeforeTax, int priceTotalAfterTax, List<Product> orderItems) {
         this.userId = userId;
-        this.priceTotal = priceTotal;
+        this.priceTotalBeforeTax = priceTotalBeforeTax;
+        this.priceTotalAfterTax = priceTotalAfterTax;
         this.orderItems = orderItems;
 
         this.creationDate = LocalDate.now();
