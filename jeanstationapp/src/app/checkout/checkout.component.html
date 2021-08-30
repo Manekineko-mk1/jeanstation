@@ -7,12 +7,12 @@
         <div class="ibox">
           <!-- Title row -->
           <div class="ibox-title">
-            <!-- TODO: Total items in cart -->
+            <!-- Total items in cart -->
             <span class="pull-right">(<strong>{{ cartItems.length }}</strong>) items</span>
             <h5>Items in your cart</h5>
           </div>
 
-          <!-- TODO: Each individual item in cart-->
+          <!-- Each individual item in cart-->
           <li class="list-group-item" *ngFor="let item of cartItems">
             <div class="ibox-content">
               <div class="table-responsive">
@@ -42,7 +42,7 @@
                     <!-- If discounted -->
                     <span *ngIf="item.discount > 0">
                       <td>{{ item.finalPrice.amount/100 | currency:'CAD' }}
-                        <!-- TODO: If there is a discount, show original price -->
+                        <!-- If there is a discount, show original price -->
                         <s class="small text-muted">{{ item.price.amount/100 | currency:'CAD' }}</s>
                       </td>
                     </span>
@@ -67,13 +67,12 @@
             </div>
           </li>
 
-
           <!-- Bottom row: Continue shopping & Checkout section -->
           <div class="ibox-content">
             <!-- TODO: Show payment view -->
-            <button class="btn btn-primary pull-right"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
+            <button class="btn btn-primary pull-right" (click)="checkout()"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
 
-            <!-- TODO: Redirect back to product list view -->
+            <!-- Redirect back to product list view -->
             <a class="btn btn-white" href="../product" routerLink="../product"><i class="fa fa-arrow-left"></i> Continue shopping</a>
           </div>
         </div>
@@ -86,20 +85,16 @@
             <h5>Cart Summary</h5>
           </div>
           <div class="ibox-content">
-            <!-- <span>Total</span> -->
-            <!-- <h2 class="font-bold">$390,00</h2> -->
             <li class="list-group-item active">
               <strong>Total (before tax):</strong> {{ priceTotalBeforeTax | currency:'CAD' }}
               <br />
               <strong>Total (after tax):</strong> {{ priceTotalAfterTax | currency:'CAD' }}
             </li>
-
             <hr>
             <span class="text-muted small">*Sales tax will be applied if applicable</span>
-
             <div class="m-t-sm">
               <div class="btn-group">
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a>
+                <button class="btn btn-primary btn-sm" (click)="checkout()"><i class="fa fa-shopping-cart"></i> Checkout</button>
               </div>
             </div>
           </div>

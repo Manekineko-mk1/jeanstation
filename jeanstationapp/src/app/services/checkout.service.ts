@@ -23,18 +23,22 @@ export class CheckoutService {
   }
 
   getOrderById(id:String): Observable<Order>{
-    return this.http.get<Order>(this.baseurl+'order/' + id);
+    return this.http.get<Order>(this.baseurl+ 'order/' + id);
   }
 
   createOrder(data: Order): Observable<Order>{
-    return this.http.post<Order>(this.baseurl+'order', data, httpOptions);
+    return this.http.post<Order>(this.baseurl+ 'order', data, httpOptions);
   }
 
   updateOrder(data: Order): Observable<Order>{
-    return this.http.put<Order>(this.baseurl+'order', data, httpOptions);
+    return this.http.put<Order>(this.baseurl+ 'order', data, httpOptions);
   }
 
   deleteOrder(id: String): Observable<Order>{
-    return this.http.delete<Order>(this.baseurl+'order/' + id);
+    return this.http.delete<Order>(this.baseurl+ 'order/' + id);
+  }
+
+  getOrderByUserId(id:string): Observable<Order[]>{
+      return this.http.get<Order[]>(this.baseurl+ 'order/user/' + id);
   }
 }
