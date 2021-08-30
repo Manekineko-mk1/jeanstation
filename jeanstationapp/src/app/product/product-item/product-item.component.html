@@ -4,14 +4,31 @@
 
   <div class="card-body">
     <p class="card-text">
-      <!-- (productItem.price.amount / 100) | currency:'CAD' -->
-      <strong>{{ (productItem.price.amount / 100) | currency:'CAD' }}</strong>
+      <strong class="productName">{{ productItem.name }}</strong>
       <br />
-      <strong>Quantity: {{ productItem.quantity }}</strong>
+      <strong class="quantity">Quantity: {{ productItem.quantity }}</strong>
+<!--      <br />-->
+<!--      <strong class="currency">{{ (productItem.price.amount / 100) | currency:'CAD' }}</strong>-->
+      <span *ngIf="productItem.discount > 0">
+        <br />
+        <s>
+          <!-- Original price -->
+          <strong class="currency">{{ (productItem.price.amount / 100) | currency:'CAD' }}</strong>
+        </s>
+        <br />
+        <!-- Discounted price -->
+        <strong class="currency">{{ (productItem.finalPrice.amount / 100) | currency:'CAD' }}</strong>
+      </span>
+
+      <span *ngIf="productItem.discount === 0">
+        <br />
+        <strong class="currency">{{ (productItem.price.amount / 100) | currency:'CAD' }}</strong>
+      </span>
+
       <br />
-      <strong *ngIf="productItem.discount > 0">Discount: {{ productItem.discount }}</strong>
+      <strong *ngIf="productItem.discount > 0" class="discount">Discount: {{ productItem.discount }}%</strong>
     </p>
-    <p class="card-text">{{ productItem.description | slice: 0:50 }}...</p>
+    <p class="card-text description">{{ productItem.description | slice: 0:50 }}...</p>
     <div class="d-flex justify-content-between align-items-center">
       <div class="btn-group">
         <button (click)="handleAddToCart()"
