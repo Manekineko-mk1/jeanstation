@@ -8,54 +8,65 @@
           <!-- Title row -->
           <div class="ibox-title">
             <!-- TODO: Total items in cart -->
-            <span class="pull-right">(<strong>5</strong>) items</span>
+            <span class="pull-right">(<strong>{{ cartItems.length }}</strong>) items</span>
             <h5>Items in your cart</h5>
           </div>
 
           <!-- TODO: Each individual item in cart-->
-          <div class="ibox-content">
-            <div class="table-responsive">
-              <table class="table shopping-cart-table">
-                <tbody>
-                <tr>
-                  <td width="90">
-                    <div class="cart-product-imitation"></div>
-                  </td>
-                  <td class="desc">
-                    <h3>
-                      <!-- TODO: Item name -->
-                      <a href="#" class="text-navy">Desktop publishing software</a>
-                    </h3>
-                    <!-- TODO: Item description -->
-                    <p class="small">
-                      It is a long-established fact that a reader will be distracted by the readable
-                      content of a page when looking at its layout. The point of using Lorem Ipsum is
-                    </p>
+          <li class="list-group-item" *ngFor="let item of cartItems">
+            <div class="ibox-content">
+              <div class="table-responsive">
+                <table class="table shopping-cart-table">
+                  <tbody>
+                  <tr>
+                    <td width="90">
+                      <div class="cart-product-imitation">
+                        <img class="bd-placeholder-img card-img-top p-2" src="{{ item.picture }}" width="100%"/>
+                      </div>
+                    </td>
+                    <td class="desc">
+                      <h3>
+                        <!-- TODO: Item name -->
+                        <a href="#" class="text-navy">{{ item.name }}</a>
+                      </h3>
+                      <!-- TODO: Item description -->
+                      <p class="small">{{ item.description }}</p>
 
-                    <!-- TODO: Remove item from cart -->
-                    <div class="m-t-sm">
-                      <a href="#" class="text-muted"><i class="fa fa-trash"></i> Remove item</a>
-                    </div>
-                  </td>
+                      <!-- TODO: Remove item from cart -->
+                      <div class="m-t-sm">
+                        <a href="#" class="text-muted"><i class="fa fa-trash"></i>Remove item</a>
+                      </div>
+                    </td>
 
-                  <!-- TODO: Item price -->
-                  <td>$180,00
-                    <!-- TODO: If there is a discount, show original price -->
-                    <s class="small text-muted">$230,00</s>
-                  </td>
-                  <td width="65">
-                    <input type="text" class="form-control" placeholder="1">
-                  </td>
+                    <!-- TODO: Item price -->
+                    <!-- If discounted -->
+                    <span *ngIf="item.discount > 0">
+                      <td>{{ item.finalPrice.amount/100 | currency:'CAD' }}
+                        <!-- TODO: If there is a discount, show original price -->
+                        <s class="small text-muted">{{ item.price.amount/100 | currency:'CAD' }}</s>
+                      </td>
+                    </span>
 
-                  <!-- TODO: Item subtotal (bold text) -->
-                  <td>
-                    <h4>$280,00</h4>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
+                    <!-- If no discount -->
+                    <span *ngIf="item.discount === 0">
+                      <td>{{ item.finalPrice.amount/100 | currency:'CAD' }}</td>
+                    </span>
+
+                    <td width="65">
+                      <input type="text" class="form-control" placeholder="1">
+                    </td>
+
+                    <!-- TODO: Item subtotal (bold text) -->
+                    <td>
+                      <h4>{{ item.finalPrice.amount/100 | currency:'CAD' }}</h4>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+          </li>
+
 
           <!-- Bottom row: Continue shopping & Checkout section -->
           <div class="ibox-content">
@@ -75,8 +86,13 @@
             <h5>Cart Summary</h5>
           </div>
           <div class="ibox-content">
-            <span>Total</span>
-            <h2 class="font-bold">$390,00</h2>
+            <!-- <span>Total</span> -->
+            <!-- <h2 class="font-bold">$390,00</h2> -->
+            <li class="list-group-item active">
+              <strong>Total (before tax):</strong> {{ priceTotalBeforeTax | currency:'CAD' }}
+              <br />
+              <strong>Total (after tax):</strong> {{ priceTotalAfterTax | currency:'CAD' }}
+            </li>
 
             <hr>
             <span class="text-muted small">*Sales tax will be applied if applicable</span>
