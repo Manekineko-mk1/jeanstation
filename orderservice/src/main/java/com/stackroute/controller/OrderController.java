@@ -33,7 +33,7 @@ public class OrderController {
     /**
      * save a new Order
      */
-    @PostMapping("/orders")
+    @PostMapping("/order")
     @ApiOperation(value = "POST a new Order", notes = "Add a new Order entry to the orders collection " +
             "using a provided JSON Order object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
@@ -70,7 +70,7 @@ public class OrderController {
     /**
      * retrieve Order by id
      */
-    @GetMapping("orders/{orderId}")
+    @GetMapping("order/{orderId}")
     @ApiOperation(value = "GET a Order by ID", notes = "GET a Order entry from the orders collection " +
             "by a provided Order ID. Returns a Order object if found.", response = ResponseEntity.class)
     public ResponseEntity<Order> getOrderById(@PathVariable("orderId") String orderId) {
@@ -86,7 +86,7 @@ public class OrderController {
     /**
      * delete Order by id
      */
-    @DeleteMapping("orders/{orderId}")
+    @DeleteMapping("order/{orderId}")
     @ApiOperation(value = "DELETE an existing Order", notes = "Remove an Order entry from the orders collection " +
             "by a provided Order ID. Returns the deleted Order object " +
             "if the operation is successful.", response = ResponseEntity.class)
@@ -103,7 +103,7 @@ public class OrderController {
     /**
      * update Order
      */
-    @PutMapping("orders")
+    @PutMapping("order")
     @ApiOperation(value = "UPDATE an existing Order", notes = "Update an existing Order entry " +
             "from the Order database using a provided JSON Order object. " +
             "Returns the updated entry if the operation is a success.", response = ResponseEntity.class)
@@ -118,7 +118,7 @@ public class OrderController {
         return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
     }
 
-    @GetMapping("orders/user/{userId}")
+    @GetMapping("order/user/{userId}")
     @ApiOperation(value = "GET a Order by User ID", notes = "GET Order entries from the orders collection " +
             "by a provided User ID. Returns a Order object if found.", response = ResponseEntity.class)
     public ResponseEntity<List<Order>> getOrderByUserId(@PathVariable("userId") String userId) {
