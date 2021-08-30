@@ -33,18 +33,18 @@ h3 {
 .ecommerce .note-editor {
   border: 1px solid #e7eaec;
 }
-table.shoping-cart-table {
+table.shopping-cart-table {
   margin-bottom: 0;
 }
-table.shoping-cart-table tr td {
+table.shopping-cart-table tr td {
   border: none;
   text-align: right;
 }
-table.shoping-cart-table tr td.desc,
-table.shoping-cart-table tr td:first-child {
+table.shopping-cart-table tr td.desc,
+table.shopping-cart-table tr td:first-child {
   text-align: left;
 }
-table.shoping-cart-table tr td:last-child {
+table.shopping-cart-table tr td:last-child {
   width: 80px;
 }
 .ibox {
