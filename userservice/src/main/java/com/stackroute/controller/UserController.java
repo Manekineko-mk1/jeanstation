@@ -16,7 +16,7 @@ import java.util.List;
 
 @CrossOrigin()
 @RestController
-@RequestMapping(value = "/api/v1/user/")
+@RequestMapping(value = "/api/v1/user")
 @Slf4j
 public class UserController {
     private UserService userService;
@@ -56,6 +56,17 @@ public class UserController {
         log.info("Query to get a user | User ID: {} | Timestamp: {}" ,userId ,timeStamp);
 
         return new ResponseEntity<>(userService.findUserById(userId), HttpStatus.FOUND);
+    }
+
+    @GetMapping("user/username/{username}")
+    @ApiOperation(value = "GET a User by Username", notes = "GET a User entry from the users collection " +
+            "by a provided User Name. Returns a User object if found.", response = ResponseEntity.class)
+    public ResponseEntity<Users> loadUserByUsername(@PathVariable("username") String username){
+        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+        String timeStamp = zonedDateTimeNow.format(formatter);
+        log.info("Query to get a user | User Name: {} | Timestamp: {}" ,username ,timeStamp);
+
+        return new ResponseEntity<>(userService.loadUserByUsername(username), HttpStatus.FOUND);
     }
 
     /**

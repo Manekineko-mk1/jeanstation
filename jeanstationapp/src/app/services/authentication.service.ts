@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators'
 
@@ -15,6 +15,7 @@ export class AuthenticationService {
         userData => {
           sessionStorage.setItem('username',username);
           let tokenStr= 'Bearer '+ userData.token;
+          console.log(tokenStr);
           sessionStorage.setItem('token', tokenStr);
           return userData;
         }

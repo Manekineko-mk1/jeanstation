@@ -24,6 +24,10 @@ export class UserService {
     return this.http.get<User>(this.baseurl+'user/'+id);
   }
 
+  getUserByUsername(username:string): Observable<User>{
+    return this.http.get<User>(this.baseurl+'user/username/'+username);
+  }
+
   addUser(data: User): Observable<User>{
     return this.http.post<User>(this.baseurl+'user/register',data,httpOptions);
   }

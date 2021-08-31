@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ApprouteService } from '../services/approute.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   form;
   message:string ="";
 
-  constructor(private formBuilder: FormBuilder, private approute: ApprouteService, private authservice:AuthenticationService) {
+  constructor(private formBuilder: FormBuilder, private approute: ApprouteService, private authservice:AuthenticationService, private userservice:UserService) {
     this.form = this.formBuilder.group({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
@@ -44,13 +45,19 @@ export class LoginComponent implements OnInit {
         this.approute.openAdmin();
       } else {
         this.authservice.authenticate(this.form.value.username, this.form.value.password).subscribe(
-          data => {
+          userData => {
             this.approute.isLoggedIn.next(true);
             //sessionStorage.setItem('isLoggedIn', 'true');
+            this.userservice.getUserByUsername(sessionStorage.getItem('username')).subscribe(
+              data => {
+                sessionStorage.setItem('userId', data.id);
+              }
+            )
             this.approute.openProduct();
           },
           err => {
-            this.message = 'Username and Password incorrect!!! Please verify details';
+            console.log(err);
+            this.message = 'Username and Password incorrect!!! Please verify details ';
           }
         );
       }
