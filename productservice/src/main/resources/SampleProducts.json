@@ -3,11 +3,14 @@
     "name": "Mens Straight Fit Jeans",
     "description": "100% Cotton, Machine Wash, Super comfortable",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 70.00,
-    "discount": 1,
+    "price": {
+      "amount": 7000,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 30,
     "categories": ["Mens", "Jean", "Straight Fit"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "XS"
 
   },
@@ -15,308 +18,392 @@
     "name": "Mens Straight Fit Jeans",
     "description": "100% Cotton, Machine Wash, Super comfortable",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 65.00,
-    "discount": 1,
+    "price": {
+      "amount": 6500,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 50,
     "categories": ["Mens", "Jean", "Straight Fit"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "S"
   },
   {
     "name": "Mens Straight Fit Jeans",
     "description": "100% Cotton, Machine Wash, Super comfortable",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 60.00,
-    "discount": 1,
+    "price": {
+      "amount": 6000,
+      "currency": "CAD"
+    },
+    "discount": 15,
     "quantity": 200,
     "categories": ["Mens", "Jean", "Straight Fit"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "M"
   },
   {
     "name": "Mens Straight Fit Jeans",
     "description": "100% Cotton, Machine Wash, Super comfortable",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 60.00,
-    "discount": 1,
+    "price": {
+      "amount": 6000,
+      "currency": "CAD"
+    },
+    "discount": 15,
     "quantity": 200,
     "categories": ["Mens", "Jean", "Straight Fit"],
-    "colors": "BLACK",
+    "color": "BLACK",
     "size": "L"
   },
   {
     "name": "Mens Straight Fit Jeans",
     "description": "100% Cotton, Machine Wash, Super comfortable",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 60.00,
-    "discount": 1,
+    "price": {
+      "amount": 6000,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 200,
     "categories": ["Mens", "Jean", "Straight Fit"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "XL"
   },
   {
     "name": "Mens Straight Fit Jeans",
     "description": "100% Cotton, Machine Wash, Super comfortable",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 60.00,
-    "discount": 1,
+    "price": {
+      "amount": 6000,
+      "currency": "CAD"
+    },
+    "discount": 20,
     "quantity": 200,
     "categories": ["Mens", "Jean", "Straight Fit"],
-    "colors": "BLACK",
+    "color": "BLACK",
     "size": "XL"
   },
   {
     "name": "Mens Classic Regular Fit Jeans",
     "description": "99% Cotton, 1% Elastane, Machine Wash, 5-pockets and belt loops",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 60.0,
-    "discount": 1,
+    "price": {
+      "amount": 6000,
+      "currency": "CAD"
+    },
+    "discount": 20,
     "quantity": 300,
     "categories": ["Mens", "Jean", "Regular Fit", "Classic"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "M"
   },
   {
     "name": "Mens Relaxed Fit CloudsFeels Jeans",
     "description": "Our newest jeans using softest cotton from the Antarctic desert. You can sleep in it!",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 80.0,
-    "discount": 1,
+    "price": {
+      "amount": 8000,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 400,
     "categories": ["Mens", "Jean", "Relaxed Fit", "CloudsFeels"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "M"
   },
   {
     "name": "Mens 1010 Original Fit Jeans",
     "description": "99% Cotton, 1% Spandex, Machine Wash, Button closure, Leg opening: 16'",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 75.0,
-    "discount": 1,
+    "price": {
+      "amount": 7500,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 500,
     "categories": ["Mens", "Jean", "Original Fit"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "L"
   },
   {
     "name": "Mens Regular Blanket Lined Denim Jacket",
     "description": "100% Cotton, Snap closure, Machine Wash, Traditional western styling",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 160.75,
-    "discount": 1,
+    "price": {
+      "amount": 16075,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 100,
     "categories": ["Mens", "Jacket", "Traditional Western Style"],
-    "colors": "BLACK",
+    "color": "BLACK",
     "size": "L"
   },
   {
     "name": "Mens Regular Fit Denim Jacket",
     "description": "100% Cotton, Snap closure, Machine Wash, Great for all occasions.",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 175.95,
-    "discount": 1,
+    "price": {
+      "amount": 17595,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 150,
     "categories": ["Male", "Jacket"],
-    "colors": "BLACK",
+    "color": "BLACK",
     "size": "M"
   },
   {
     "name": "Mens Hooded Trucker Denim Jacket",
     "description": "100% Cotton, Button closure, Machine Wash, Most popular mens denim jacket 2020",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 195.0,
-    "discount": 1,
+    "price": {
+      "amount": 19500,
+      "currency": "CAD"
+    },
+    "discount": 25,
     "quantity": 200,
     "categories": ["Male", "Jacket"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "M"
   },
   {
     "name": "Mens Fleece Faux Fur Collar Denim Jacket",
     "description": "90% Cotton, 10% Polyester, lining: 100% polyester, as soft as baby's button, as warm as under summer sun",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 250.0,
-    "discount": 1,
+    "price": {
+      "amount": 25000,
+      "currency": "CAD"
+    },
+    "discount": 25,
     "quantity": 50,
     "categories": ["Male", "Jacket", "Winter"],
-    "colors": "BLACK",
+    "color": "BLACK",
     "size": "XL"
   },
   {
     "name": "Womens Straight Fit Jeans",
     "description": "100% Cotton, Machine Wash, Super comfortable",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 60.00,
-    "discount": 1,
+    "price": {
+      "amount": 6000,
+      "currency": "CAD"
+    },
+    "discount": 10,
     "quantity": 200,
     "categories": ["Womens", "Jean", "Straight Fit"],
-    "colors": "LIGHT_BLUE",
+    "color": "LIGHT_BLUE",
     "size": "S"
   },
   {
     "name": "Womens Classic Regular Fit Jeans",
     "description": "99% Cotton, 1% Elastane, Machine Wash, 5-pockets and belt loops",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 60.0,
-    "discount": 1,
+    "price": {
+      "amount": 6000,
+      "currency": "CAD"
+    },
+    "discount": 15,
     "quantity": 300,
     "categories": ["Womens", "Jean", "Regular Fit", "Classic"],
-    "colors": "LIGHT_BLUE",
+    "color": "LIGHT_BLUE",
     "size": "M"
   },
   {
     "name": "Womens Relaxed Fit CloudsFeels Jeans",
     "description": "Our newest jeans using softest cotton from the Antarctic desert. You can sleep in it!",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 80.0,
-    "discount": 1,
+    "price": {
+      "amount": 8000,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 400,
     "categories": ["Womens", "Jean", "Relaxed Fit", "CloudsFeels"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "S"
   },
   {
     "name": "Womens 1010 Original Fit Jeans",
     "description": "99% Cotton, 1% Spandex, Machine Wash, Button closure, Leg opening: 16'",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 75.0,
-    "discount": 1,
+    "price": {
+      "amount": 7500,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 500,
     "categories": ["Womens", "Jean", "Original Fit"],
-    "colors": "LIGHT_BLUE",
+    "color": "LIGHT_BLUE",
     "size": "M"
   },
   {
     "name": "Womens Regular Blanket Lined Denim Jacket",
     "description": "100% Cotton, Snap closure, Machine Wash, Traditional western styling",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 160.75,
-    "discount": 1,
+    "price": {
+      "amount": 16075,
+      "currency": "CAD"
+    },
+    "discount": 20,
     "quantity": 100,
     "categories": ["Womens", "Jacket", "Traditional Western Style"],
-    "colors": "BLACK",
+    "color": "BLACK",
     "size": "XL"
   },
   {
     "name": "Womens Regular Fit Denim Jacket",
     "description": "100% Cotton, Snap closure, Machine Wash, Great for all occasions.",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 175.95,
-    "discount": 1,
+    "price": {
+      "amount": 17595,
+      "currency": "CAD"
+    },
+    "discount": 25,
     "quantity": 150,
     "categories": ["Male", "Jacket"],
-    "colors": "LIGHT_BLUE",
+    "color": "LIGHT_BLUE",
     "size": "XS"
   },
   {
     "name": "Womens Hooded Trucker Denim Jacket",
     "description": "100% Cotton, Button closure, Machine Wash, Most popular mens denim jacket 2020",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 195.0,
-    "discount": 1,
+    "price": {
+      "amount": 19500,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 200,
     "categories": ["Male", "Jacket"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "M"
   },
   {
     "name": "Womens Fleece Faux Fur Collar Denim Jacket",
     "description": "90% Cotton, 10% Polyester, lining: 100% polyester, as soft as baby's button, as warm as under summer sun",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 250.0,
-    "discount": 1,
+    "price": {
+      "amount": 25000,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 50,
     "categories": ["Male", "Jacket", "Winter"],
-    "colors": "LIGHT_BLUE",
+    "color": "LIGHT_BLUE",
     "size": "M"
   },
   {
     "name": "Boys Straight Fit Jeans",
     "description": "100% Cotton, Machine Wash, Super comfortable",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 60.00,
-    "discount": 1,
+    "price": {
+      "amount": 7000,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 200,
     "categories": ["Boys", "Jean", "Straight Fit"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "S"
   },
   {
     "name": "Boys Classic Regular Fit Jeans",
     "description": "99% Cotton, 1% Elastane, Machine Wash, 5-pockets and belt loops",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 60.0,
-    "discount": 1,
+    "price": {
+      "amount": 6000,
+      "currency": "CAD"
+    },
+    "discount": 15,
     "quantity": 300,
     "categories": ["Boys", "Jean", "Regular Fit", "Classic"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "S"
   },
   {
     "name": "Boys Relaxed Fit CloudsFeels Jeans",
     "description": "Our newest jeans using softest cotton from the Antarctic desert. You can sleep in it!",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 80.0,
-    "discount": 1,
+    "price": {
+      "amount": 8000,
+      "currency": "CAD"
+    },
+    "discount": 20,
     "quantity": 400,
     "categories": ["Boys", "Jean", "Relaxed Fit", "CloudsFeels"],
-    "colors": "BLACK",
+    "color": "BLACK",
     "size": "S"
   },
   {
     "name": "Boys 1010 Original Fit Jeans",
     "description": "99% Cotton, 1% Spandex, Machine Wash, Button closure, Leg opening: 16'",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 75.0,
-    "discount": 1,
+    "price": {
+      "amount": 7500,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 500,
     "categories": ["Boys", "Jean", "Original Fit"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "XS"
   },
   {
     "name": "Boys Regular Blanket Lined Denim Jacket",
     "description": "100% Cotton, Snap closure, Machine Wash, Traditional western styling",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 160.75,
-    "discount": 1,
+    "price": {
+      "amount": 16700,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 100,
     "categories": ["Boys", "Jacket", "Traditional Western Style"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "M"
   },
   {
     "name": "Boys Regular Fit Denim Jacket",
     "description": "100% Cotton, Snap closure, Machine Wash, Great for all occasions.",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 175.95,
-    "discount": 1,
+    "price": {
+      "amount": 17595,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 150,
     "categories": ["Male", "Jacket"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "XS"
   },
   {
     "name": "Boys Hooded Trucker Denim Jacket",
     "description": "100% Cotton, Button closure, Machine Wash, Most popular mens denim jacket 2020",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 195.0,
-    "discount": 1,
+    "price": {
+      "amount": 19000,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 200,
     "categories": ["Male", "Jacket"],
-    "colors": "BLUE",
+    "color": "BLUE",
     "size": "XL"
   },
   {
     "name": "Boys Fleece Faux Fur Collar Denim Jacket",
     "description": "90% Cotton, 10% Polyester, lining: 100% polyester, as soft as baby's button, as warm as under summer sun",
     "picture": "https://www.realmenrealstyle.com/wp-content/uploads/2021/07/mens-jeans.jpg",
-    "price": 250.0,
-    "discount": 1,
+    "price": {
+      "amount": 17000,
+      "currency": "CAD"
+    },
+    "discount": 0,
     "quantity": 50,
     "categories": ["Male", "Jacket", "Winter"],
-    "colors": "BLACK",
+    "color": "BLACK",
     "size": "XL"
   }
 ]

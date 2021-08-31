@@ -1,7 +1,9 @@
 package com.stackroute.test.service;
 
+import com.stackroute.domain.Money;
 import com.stackroute.domain.Product;
 
+import com.stackroute.enums.Currency;
 import com.stackroute.repository.ProductRepository;
 import com.stackroute.service.ProductServiceImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -39,8 +41,9 @@ class ProductServiceTest {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("cat1");
         categories.add("cat2");
-        product = new Product("Product1", "description1", "picture1", 42, 10, 10, categories);
-        product1 = new Product("Product2", "description2", "picture2", 43, 10, 10, categories);
+        Money money1 = new Money(1000, Currency.CAD);
+        product = new Product("Product1", "description1", "picture1", money1, 10, 10, categories);
+        product1 = new Product("Product2", "description2", "picture2", money1, 10, 10, categories);
         optional = Optional.of(product);
     }
 

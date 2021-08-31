@@ -10,7 +10,7 @@ public interface UserService {
     /**
      * AbstractMethod to save a user
      */
-    Users saveUser(Users users);
+    Users saveUser(Users user);
 
     /**
      * AbstractMethod to save a list of users
@@ -38,7 +38,7 @@ public interface UserService {
     /**
      * AbstractMethod to update a user
      */
-    Users updateUser(Users users);
+    Users updateUser(Users user);
 
     UserDetails loadUserByUsername(String username);
 }

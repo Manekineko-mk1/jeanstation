@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -21,14 +22,14 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value = "/api/v1/")
+@RequestMapping(value = "/api/v1/user/")
 @Slf4j
 public class UserController {
     private UserService userService;
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
 
 //    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+//    private PasswordEncoder bCryptPasswordEncoder;
     BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 
@@ -57,6 +58,10 @@ public class UserController {
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
+//    @PostMapping("login")
+//    public ResponseEntity<?> login(@RequestBody String test) {
+//        return new ResponseEntity<String>("Hello, " + test, HttpStatus.OK);
+//    }
     /**
      * save a new User
      */
