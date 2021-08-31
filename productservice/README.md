@@ -107,6 +107,12 @@ This is a maven project. Your IDE will need to have Maven enabled.
 3. Let Maven download the dependencies
 4. Run ProductServiceApplication.java
 
+## To Run the project
+1. Start the eurekaservice
+2. Start the api-gateway-service
+3. Start cartservice + orderservice + productservice + userservice
+4. Start a terminal, go to 'jeanstationapp' folder, run 'ng serve -o' 
+
 <!-- DOCUMENTATION -->
 ## Swagger
 
