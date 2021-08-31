@@ -112,11 +112,14 @@ export class CheckoutComponent implements OnInit {
     if(this.userId == null) {
       console.log("UserId not found. Redirect to login page");
       // redirect to login page
-      this.appRouter.openLogin();
+      // TODO: Re-enable this once userId login is persistent
+      // this.appRouter.openLogin();
+
+      // Testing only
+      this.userId = "userId";
     }
 
-
-    order.userId = "userId";
+    order.userId = this.userId;
     order.priceTotalBeforeTax = this.cart.priceTotalBeforeTax;
     order.priceTotalAfterTax = this.cart.priceTotalAfterTax;
     order.orderItems = this.cart.cartItems;
