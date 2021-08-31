@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ApprouteService } from '../services/approute.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -12,17 +13,19 @@ export class LoginComponent implements OnInit {
   form;
   message:string ="";
 
-  constructor(private formBuilder: FormBuilder, private approute: ApprouteService) {
+  constructor(private formBuilder: FormBuilder, private approute: ApprouteService, private authservice:AuthenticationService) {
     this.form = this.formBuilder.group({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
-    this.approute.isLoggedIn.next(false);
-    this.approute.isAdmin.next(false);
+    sessionStorage.setItem('isLoggedIn', 'false');
+    sessionStorage.setItem('isAdmin', 'false');
   }
 
   ngOnInit(): void {
-    
+      if(this.authservice.isUserLoggedIn()){
+        this.authservice.logOut();
+      }
   }
 
   onSubmit(){
@@ -30,15 +33,22 @@ export class LoginComponent implements OnInit {
       this.message = 'Username and Password should not be empty!!! Please verify details'
     } else {
       if((this.form.value.username=='admin') && (this.form.value.password=='password')){
-        this.approute.isLoggedIn.next(true);
-        this.approute.isAdmin.next(true);
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('isAdmin', 'true');
         this.approute.openAdmin();
-      } else if((this.form.value.username=='user') && (this.form.value.password=='password')){
-        this.approute.isLoggedIn.next(true);
-        this.approute.openProduct();
       } else {
-        this.message = 'Username and Password incorrect!!! Please verify details'
+        this.authservice.authenticate(this.form.value.username, this.form.value.password).subscribe(
+          data => {
+            sessionStorage.setItem('isLoggedIn', 'true');
+            this.approute.openProduct();
+          },
+          err => {
+            this.message = 'Username and Password incorrect!!! Please verify details';
+          }
+        );
       }
+
+      
     }
   }
 

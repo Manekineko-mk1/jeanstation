@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/api/v1/order/")
 @Slf4j
 @CrossOrigin(origins = "*")
 public class OrderController {
@@ -35,8 +35,8 @@ public class OrderController {
     /**
      * save a new Order
      */
-    @PostMapping("/order")
-    @ApiOperation(value = "POST a new Order", notes = "Add a new Order entry to the orders collection " +
+    @PostMapping("orders")
+    @ApiOperation(value = "POST a new Order", notes = "Add a new Order entry to the Order database " +
             "using a provided JSON Order object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
     public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
@@ -58,8 +58,8 @@ public class OrderController {
     /**
      * retrieve all Orders
      */
-    @GetMapping("/orders")
-    @ApiOperation(value = "GET all Orders", notes = "GET all Order entries from the orders collection. " +
+    @GetMapping("orders")
+    @ApiOperation(value = "GET all Orders", notes = "GET all Order entries from the Order database. " +
             "Returns the result as a List of Order object in JSON format " +
             "if any entry is found.", response = ResponseEntity.class)
     public ResponseEntity<List<Order>> getAllOrders() {
@@ -75,7 +75,7 @@ public class OrderController {
     /**
      * retrieve Order by id
      */
-    @GetMapping("order/{orderId}")
+    @GetMapping("orders/{orderId}")
     @ApiOperation(value = "GET a Order by ID", notes = "GET a Order entry from the orders collection " +
             "by a provided Order ID. Returns a Order object if found.", response = ResponseEntity.class)
     public ResponseEntity<Order> getOrderById(@PathVariable("orderId") String orderId) {
@@ -91,7 +91,7 @@ public class OrderController {
     /**
      * delete Order by id
      */
-    @DeleteMapping("order/{orderId}")
+    @DeleteMapping("orders/{orderId}")
     @ApiOperation(value = "DELETE an existing Order", notes = "Remove an Order entry from the orders collection " +
             "by a provided Order ID. Returns the deleted Order object " +
             "if the operation is successful.", response = ResponseEntity.class)
@@ -108,7 +108,7 @@ public class OrderController {
     /**
      * update Order
      */
-    @PutMapping("order")
+    @PutMapping("orders")
     @ApiOperation(value = "UPDATE an existing Order", notes = "Update an existing Order entry " +
             "from the Order database using a provided JSON Order object. " +
             "Returns the updated entry if the operation is a success.", response = ResponseEntity.class)
@@ -123,7 +123,7 @@ public class OrderController {
         return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
     }
 
-    @GetMapping("order/user/{userId}")
+    @GetMapping("orders/user/{userId}")
     @ApiOperation(value = "GET a Order by User ID", notes = "GET Order entries from the orders collection " +
             "by a provided User ID. Returns a Order object if found.", response = ResponseEntity.class)
     public ResponseEntity<List<Order>> getOrderByUserId(@PathVariable("userId") String userId) {
