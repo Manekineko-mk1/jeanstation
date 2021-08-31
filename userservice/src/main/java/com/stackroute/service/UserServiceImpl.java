@@ -202,22 +202,22 @@ public class UserServiceImpl implements UserService {
 
             return updatedProduct;
         } else {
-            log.error("ERROR: Unable to delete user. User ID not found | User ID: {} | Timestamp(EST): {}", users.getId(), timeStamp);
+            log.error("ERROR: Unable to delete user. User ID not found | User ID: {} | Timestamp(EST): {}", user.getId(), timeStamp);
 
             throw new UserNotFoundException(user.getId());
         }
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users users = userRepository.findByUsername(username);
-
-        if(users == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-
-        List authorities = Arrays.asList(new SimpleGrantedAuthority("user"));
-
-        return new User(users.getUsername(), users.getPassword(), authorities);
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        Users users = userRepository.findByUsername(username);
+//
+//        if(users == null) {
+//            throw new UsernameNotFoundException("User not found");
+//        }
+//
+//        List authorities = Arrays.asList(new SimpleGrantedAuthority("user"));
+//
+//        return new User(users.getUsername(), users.getPassword(), authorities);
+//    }
 }

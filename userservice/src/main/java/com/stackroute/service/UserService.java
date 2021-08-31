@@ -39,6 +39,4 @@ public interface UserService {
      * AbstractMethod to update a user
      */
     Users updateUser(Users user);
-
-    UserDetails loadUserByUsername(String username);
 }
