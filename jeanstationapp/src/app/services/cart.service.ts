@@ -13,12 +13,12 @@ const httpOptions = {
 })
 export class CartService {
 
-  baseurl:string = 'http://localhost:8080/cart/api/v1/';
+  baseurl:string = 'http://localhost:8080/api/v1/cart/';
 
   constructor(private http: HttpClient) { }
 
   getAllCarts(): Observable<Cart[]>{
-    return this.http.get<Cart[]>(this.baseurl + 'cart');
+    return this.http.get<Cart[]>(this.baseurl + 'carts');
   }
 
   getCartById(id:String): Observable<Cart>{

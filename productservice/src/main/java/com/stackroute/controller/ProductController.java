@@ -19,7 +19,7 @@ import java.util.List;
 import static org.apache.commons.codec.binary.Base64.encodeBase64String;
 
 @RestController
-@RequestMapping(value = "/api/v1/product/")
+@RequestMapping(value = "/api/v1/product")
 @Slf4j
 @CrossOrigin(origins = "*")
 public class ProductController {
@@ -72,7 +72,7 @@ public class ProductController {
         return new ResponseEntity<>(savedProducts, HttpStatus.CREATED);
     }
 
-    @PostMapping("/upload")
+    @PostMapping("upload")
     public void uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
         this.bytes = file.getBytes();
     }

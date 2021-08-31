@@ -10,7 +10,7 @@ export class AuthenticationService {
   constructor(private httpClient:HttpClient) { }
 
   authenticate(username, password){
-    return this.httpClient.post<any>('http://localhost:8080/user/api/v1/user/login', {username,password}).pipe(
+    return this.httpClient.post<any>('http://localhost:8080/api/v1/user/login', {username,password}).pipe(
       map(
         userData => {
           sessionStorage.setItem('username',username);
