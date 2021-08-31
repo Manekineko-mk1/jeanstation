@@ -31,9 +31,9 @@
 //        return new BCryptPasswordEncoder();
 //    }
 //
-//    @Override
-//    @Autowired
-//    public void configure(AuthenticationManagerBuilder builder) throws Exception {
-//        builder.userDetailsService(userDetailsService);
-//    }
+////    @Override
+////    @Autowired
+////    public void configure(AuthenticationManagerBuilder builder) throws Exception {
+////        builder.userDetailsService(userDetailsService);
+////    }
 //}

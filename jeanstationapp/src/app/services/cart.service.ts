@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class CartService {
 
-  baseurl:string = 'http://localhost:8081/api/v1/';
+  baseurl:string = 'http://localhost:8080/cart/api/v1/';
 
   constructor(private http: HttpClient) { }
 
