@@ -5,7 +5,8 @@ import { Product } from '../model/Product';
 import { Cart } from '../model/Cart';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}),
+  mode: 'cors'
 };
 
 @Injectable({
@@ -13,7 +14,7 @@ const httpOptions = {
 })
 export class CartService {
 
-  baseurl:string = 'http://localhost:8080/api/v1/cart/';
+  baseurl:string = 'http://localhost:8081/api/v1/cart/';
 
   constructor(private http: HttpClient) { }
 

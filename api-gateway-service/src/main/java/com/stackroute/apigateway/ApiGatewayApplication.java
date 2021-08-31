@@ -17,7 +17,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 /**
  *  Add annotation to make this Class as Zuul Proxy
  */
-@CrossOrigin(origins = "*")
+@CrossOrigin()
 @EnableEurekaClient
 public class ApiGatewayApplication {
 
@@ -26,3 +26,4 @@ public class ApiGatewayApplication {
     }
 
 }
+

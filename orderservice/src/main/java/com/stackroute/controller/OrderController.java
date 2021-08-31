@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/")
 @Slf4j
-@CrossOrigin(origins = "*")
+@CrossOrigin()
 public class OrderController {
 
     private final OrderService orderService;

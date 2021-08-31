@@ -18,14 +18,17 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
-    sessionStorage.setItem('isLoggedIn', 'false');
-    sessionStorage.setItem('isAdmin', 'false');
+    this.approute.isLoggedIn.next(false);
+    this.approute.isAdmin.next(false);
+    
   }
 
   ngOnInit(): void {
-      if(this.authservice.isUserLoggedIn()){
-        this.authservice.logOut();
-      }
+    // sessionStorage.setItem('isLoggedIn', 'false');
+    // sessionStorage.setItem('isAdmin', 'false');
+    //   if(this.authservice.isUserLoggedIn()){
+    //     this.authservice.logOut();
+    //   }
   }
 
   onSubmit(){
@@ -33,13 +36,17 @@ export class LoginComponent implements OnInit {
       this.message = 'Username and Password should not be empty!!! Please verify details'
     } else {
       if((this.form.value.username=='admin') && (this.form.value.password=='password')){
-        sessionStorage.setItem('isLoggedIn', 'true');
-        sessionStorage.setItem('isAdmin', 'true');
+        sessionStorage.setItem('username', 'admin');
+        this.approute.isLoggedIn.next(true);
+        this.approute.isAdmin.next(true);
+        // sessionStorage.setItem('isLoggedIn', 'true');
+        // sessionStorage.setItem('isAdmin', 'true');
         this.approute.openAdmin();
       } else {
         this.authservice.authenticate(this.form.value.username, this.form.value.password).subscribe(
           data => {
-            sessionStorage.setItem('isLoggedIn', 'true');
+            this.approute.isLoggedIn.next(true);
+            //sessionStorage.setItem('isLoggedIn', 'true');
             this.approute.openProduct();
           },
           err => {

@@ -16,9 +16,9 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api/v1/cart/")
+@RequestMapping(value = "/api/v1/cart")
 @Slf4j
-@CrossOrigin(origins = "*")
+@CrossOrigin()
 public class CartController {
 
     private final CartService cartService;

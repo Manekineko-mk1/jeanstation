@@ -40,16 +40,26 @@ export class AdminComponent implements OnInit {
       color: new FormControl(''),
       categories: new FormArray([new FormControl()])
     });
+    
   }
 
   ngOnInit(): void {
-    sessionStorage.setItem('inOrderManag', 'false')
+    this.approute.inOrderManag.next(false);
     this.getProducts();
-    if(sessionStorage.getItem('showAdd')=='true'){
-      this.toAdd = true;
-    }
-    this.toUpdate=false;
-    this.clearForm();
+    this.approute.showAdd.subscribe(
+      value => {
+        this.toAdd = value;
+        this.toUpdate=false;
+        this.clearForm();
+      }
+    )
+    // sessionStorage.setItem('inOrderManag', 'false')
+    // this.getProducts();
+    // if(sessionStorage.getItem('showAdd')==='true'){
+    //   this.toAdd = true;
+    // }
+    // this.toUpdate=false;
+    // this.clearForm();
   }
 
   getProducts(){
@@ -205,7 +215,8 @@ export class AdminComponent implements OnInit {
   deleteProduct(id:string){
     this.productservice.deleteProduct(id).subscribe(
       data =>{
-        sessionStorage.setItem('showAdd', 'false');
+        this.approute.showAdd.next(false);
+        //sessionStorage.setItem('showAdd', 'false');
         this.message = 'Product deleted';
         this.getProducts();
         
