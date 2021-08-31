@@ -2,7 +2,9 @@ package com.stackroute.test.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.controller.ProductController;
+import com.stackroute.domain.Money;
 import com.stackroute.domain.Product;
+import com.stackroute.enums.Currency;
 import com.stackroute.exceptions.GlobalExceptionHandler;
 import com.stackroute.exceptions.ProductAlreadyExistsException;
 import com.stackroute.exceptions.ProductNotFoundException;
@@ -53,8 +55,8 @@ public class ProductControllerTest {
         product.setName("product1");
         product.setDescription("Description");
         product.setPicture("picture");
-        product.setPrice(10.00f);
-        product.setDiscount(0.1f);
+        product.setPrice(new Money(7500, Currency.CAD));
+        product.setDiscount(15);
         product.setQuantity(20);
         product.setCategories(categories);
         productList = new ArrayList<>();

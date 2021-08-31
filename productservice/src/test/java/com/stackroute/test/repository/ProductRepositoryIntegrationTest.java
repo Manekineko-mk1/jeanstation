@@ -1,6 +1,8 @@
 package com.stackroute.test.repository;
 
+import com.stackroute.domain.Money;
 import com.stackroute.domain.Product;
+import com.stackroute.enums.Currency;
 import com.stackroute.repository.ProductRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,8 +31,8 @@ public class ProductRepositoryIntegrationTest {
         product.setName("product1");
         product.setDescription("Description");
         product.setPicture("picture");
-        product.setPrice(10.00f);
-        product.setDiscount(0.1f);
+        product.setPrice(new Money(1000, Currency.CAD));
+        product.setDiscount(20);
         product.setQuantity(20);
         product.setCategories(categories);
     }
@@ -51,8 +53,10 @@ public class ProductRepositoryIntegrationTest {
 
     @Test
     public void givenGetAllProductsThenShouldReturnListOfAllProducts() {
-        Product product = new Product("product2", "description", "picture", 10.99f, 0.0f, 10, categories);
-        Product product1 = new Product("product3", "description", "picture", 1.99f, 0.05f, 100, categories);
+        Money money1 = new Money(1000, Currency.CAD);
+        Money money2 = new Money(1750, Currency.USD);
+        Product product = new Product("product2", "description", "picture", money1, 20, 10, categories);
+        Product product1 = new Product("product3", "description", "picture", money2, 20, 100, categories);
         productRepository.save(product);
         productRepository.save(product1);
 
@@ -62,7 +66,8 @@ public class ProductRepositoryIntegrationTest {
 
     @Test
     public void givenProductIdThenShouldReturnRespectiveProduct() {
-        Product product = new Product("product9", "description", "picture", 5.50f, 0.25f, 56, categories);
+        Money money1 = new Money(1000, Currency.CAD);
+        Product product = new Product("product9", "description", "picture", money1, 25, 56, categories);
         Product product1 = productRepository.save(product);
         Optional<Product> optional = productRepository.findById(product1.getId());
         assertEquals(product1.getId(), optional.get().getId());
@@ -75,7 +80,8 @@ public class ProductRepositoryIntegrationTest {
 
     @Test
     public void givenProductIdToDeleteThenShouldReturnDeletedProduct() {
-        Product product = new Product("product4", "description", "picture", 2.31f, 0.01f, 23, categories);
+        Money money1 = new Money(1000, Currency.CAD);
+        Product product = new Product("product4", "description", "picture", money1, 20, 23, categories);
         productRepository.save(product);
         productRepository.deleteById(product.getId());
         Optional optional = productRepository.findById(product.getId());

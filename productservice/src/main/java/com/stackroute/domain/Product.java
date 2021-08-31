@@ -22,14 +22,14 @@ public class Product {
     private String name;
     private String description;
     private String picture;
-    private float price;
-    private float discount;
+    private Money price;
+    private int discount;
     private int quantity;
     private ProductSize size;
     private ProductColor color;
     List<String> categories;
 
-    public Product(String name, String description, String picture, float price, float discount,
+    public Product(String name, String description, String picture, Money price, int discount,
                    int quantity, List<String> categories) {
         this.name = name;
         this.description = description;
@@ -42,7 +42,7 @@ public class Product {
         log.info("A new product is created: {} | {}", this.getId(), this.name);
     }
 
-    public Product(String name, String description, String picture, float price, float discount,
+    public Product(String name, String description, String picture, Money price, int discount,
                    int quantity, ProductSize size, ProductColor color, List<String> categories) {
         this.name = name;
         this.description = description;

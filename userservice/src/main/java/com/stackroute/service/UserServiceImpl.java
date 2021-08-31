@@ -1,6 +1,6 @@
 package com.stackroute.service;
 
-import com.stackroute.domain.User;
+import com.stackroute.domain.Users;
 import com.stackroute.exceptions.UserAlreadyExistsException;
 import com.stackroute.exceptions.UserNotFoundException;
 import com.stackroute.repository.UserRepository;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
      * @param user
      */
     @Override
-    public User saveUser(User user) {
+    public Users saveUser(Users user) {
         boolean isUserExist;
 
         if(user.getId() == null) {
@@ -63,10 +63,10 @@ public class UserServiceImpl implements UserService {
      * @param users
      */
     @Override
-    public List<User> saveUsers(List<User> users) {
+    public List<Users> saveUsers(List<Users> users) {
         boolean isUserExist;
 
-        for(User user : users){
+        for(Users user : users){
             if(user.getId() == null) {
                 isUserExist = false;
             } else {
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
      * AbstractMethod to get all users
      */
     @Override
-    public List<User> findAllUser() {
+    public List<Users> findAllUser() {
         return userRepository.findAll();
     }
 
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
      * @param id
      */
     @Override
-    public User findUserById(String id) {
+    public Users findUserById(String id) {
         boolean isUserExist = userRepository.findById(id).isPresent();
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
@@ -124,8 +124,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByIdAndPassword(String id, String password) throws UserNotFoundException {
-        User authUser = userRepository.findByIdAndPassword(id, password);
+    public Users findByIdAndPassword(String id, String password) throws UserNotFoundException {
+        Users authUser = userRepository.findByIdAndPassword(id, password);
         if (authUser == null) {
             throw new UserNotFoundException("Username or Password is invalid");
         }
@@ -140,9 +140,9 @@ public class UserServiceImpl implements UserService {
      * @param id
      */
     @Override
-    public User deleteUserById(String id) {
-        User user;
-        Optional<User> optional = userRepository.findById(id);
+    public Users deleteUserById(String id) {
+        Users user;
+        Optional<Users> optional = userRepository.findById(id);
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
@@ -167,16 +167,16 @@ public class UserServiceImpl implements UserService {
      * @param user
      */
     @Override
-    public User updateUser(User user) {
-        User updatedProduct;
-        Optional<User> optional = userRepository.findById(user.getId());
+    public Users updateUser(Users user) {
+        Users updatedProduct;
+        Optional<Users> optional = userRepository.findById(user.getId());
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
         if (optional.isPresent()) {
             // Locate the existing product with same product ID
-            User getUser = userRepository.findById(user.getId()).get();
+            Users getUser = userRepository.findById(user.getId()).get();
 
             // Update the existing product with new info
             getUser.setUsername(user.getUsername());
