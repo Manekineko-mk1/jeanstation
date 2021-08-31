@@ -19,7 +19,7 @@ import java.util.List;
 import static org.apache.commons.codec.binary.Base64.encodeBase64String;
 
 @RestController
-@RequestMapping(value = "/api/v1/")
+@RequestMapping(value = "/api/v1/product/")
 @Slf4j
 @CrossOrigin(origins = "*")
 public class ProductController {
