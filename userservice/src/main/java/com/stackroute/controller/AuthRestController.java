@@ -26,9 +26,8 @@ public class AuthRestController {
 	@Autowired
 	private JwtUtil jwtUtil;
 	private UserService userService;
-//	@Autowired
-//	private PasswordEncoder bCryptPasswordEncoder;
-	BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+	@Autowired
+	private PasswordEncoder bCryptPasswordEncoder;
 
 	ResponseEntity<?> responseEntity;
 	final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
@@ -63,26 +62,19 @@ public class AuthRestController {
 //		return new ResponseEntity<>(token, HttpStatus.OK);
 	}
 
-
+	/**
+	 * register a new User
+	 */
 	@PostMapping("register")
 	@ApiOperation(value = "POST a new User", notes = "Add a new User entry to the users collection " +
 			"using a provided JSON User object. Returns the newly created entry " +
 			"if the operation is a success.", response = ResponseEntity.class)
 	public ResponseEntity<?> register(@RequestBody Users user) {
-//		// Persist user to some persistent storage
-////		Users regUser = userService.saveUser(user);
-//		UserController newUser;
-////		System.out.println("Info saved...");
-////		responseEntity = new ResponseEntity<>("Registered", HttpStatus.OK);
-//		return responseEntity;
 		ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
 		String timeStamp = zonedDateTimeNow.format(formatter);
 		String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-		//List<GrantedAuthority> authorities = new ArrayList<>();
 		Users encryptedUser = new Users(user.getUsername(),user.getUserRole(), user.getUserStatus(), user.getCreationDate(), user.getRealName(), user.getAddress(), user.getTelephone(), encodedPassword/*, authorities*/);
 		Users newUser = userService.saveUser(encryptedUser);
-//		log.info("Added a user to users collection | User ID: {} | User name: {} | Timestamp(EST): {}",
-//				user.getId(), user.getUsername(), timeStamp);
 		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 	}
 }
