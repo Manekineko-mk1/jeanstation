@@ -10,11 +10,7 @@ public interface UserService {
     /**
      * AbstractMethod to save a user
      */
-<<<<<<< HEAD
     Users saveUser(Users user);
-=======
-    Users saveUser(Users users);
->>>>>>> d526a11bb77da354cfd452b53ab183b8b5b9a500
 
     /**
      * AbstractMethod to save a list of users
@@ -42,11 +38,5 @@ public interface UserService {
     /**
      * AbstractMethod to update a user
      */
-<<<<<<< HEAD
     Users updateUser(Users user);
-=======
-    Users updateUser(Users users);
-
-    UserDetails loadUserByUsername(String username);
->>>>>>> d526a11bb77da354cfd452b53ab183b8b5b9a500
 }
