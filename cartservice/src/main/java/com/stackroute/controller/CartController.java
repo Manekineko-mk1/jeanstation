@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/api/v1/cart/")
 @Slf4j
 @CrossOrigin(origins = "*")
 public class CartController {
@@ -33,7 +33,7 @@ public class CartController {
     /**
      * save a new Cart
      */
-    @PostMapping("/cart")
+    @PostMapping("cart")
     @ApiOperation(value = "POST a new Cart", notes = "Add a new Cart entry to the carts collection " +
             "using a provided JSON Cart object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
@@ -53,7 +53,7 @@ public class CartController {
     /**
      * retrieve all Carts
      */
-    @GetMapping("/carts")
+    @GetMapping("carts")
     @ApiOperation(value = "GET all Carts", notes = "GET all Cart entries from the Cart database. " +
             "Returns the result as a List of Cart object in JSON format " +
             "if any entry is found.", response = ResponseEntity.class)
