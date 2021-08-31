@@ -79,3 +79,12 @@ button:hover {
 #discount {
     color: red;
 }
+
+.cart {
+  position: fixed;
+  right: 0;
+}
+
+.filter {
+  left: 0;
+}

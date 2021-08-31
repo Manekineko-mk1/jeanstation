@@ -1,7 +1,9 @@
 package com.stackroute.test.service;
 
 import com.stackroute.domain.Cart;
+import com.stackroute.domain.Money;
 import com.stackroute.domain.Product;
+import com.stackroute.enums.Currency;
 import com.stackroute.repository.CartRepository;
 import com.stackroute.service.CartServiceImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -35,7 +37,8 @@ public class CartServiceIntegrationTest {
         categories.add("cat1");
         categories.add("cat2");
         ArrayList<Product> itemsList = new ArrayList<>();
-        itemsList.add(new Product("1L", "Product1", "description1", "picture1", 42, 10, 10, "XL", "BLACK"));
+        Money money = new Money(1000, Currency.CAD);
+        itemsList.add(new Product("1L", "Product1", "description1", "picture1", money, 10, 10, "XL", "BLACK"));
         cart1 = new Cart(10, itemsList);
         cart2 = new Cart(20, itemsList);
         cart3 = new Cart(30, itemsList);

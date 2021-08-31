@@ -143,7 +143,7 @@
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
    padding: 16px;
    text-align: left;
-   background-color: #f1f1f1;
+   background-color: white;
    width: 90%;
    margin: 1rem;
   }
@@ -152,7 +152,7 @@
       width: 100%;
   }
     
-  #products button {
+  /* #products button {
       background-color: #3a4468;
       color: white;
       padding: 12px 20px;
@@ -164,7 +164,7 @@
 
   #products button:hover {
     background-color: #45a049;
-  }
+  } */
 
   .clear {
     clear: both;

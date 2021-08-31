@@ -1,6 +1,7 @@
 package com.stackroute.controller;
 
 import com.stackroute.domain.Order;
+import com.stackroute.enums.OrderStatus;
 import com.stackroute.service.OrderService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +18,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api/v1/")
+@RequestMapping(value = "/api/v1/order/")
 @Slf4j
 @CrossOrigin(origins = "*")
 public class OrderController {
@@ -38,6 +40,9 @@ public class OrderController {
             "using a provided JSON Order object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
     public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
+        order.setCreationDate(LocalDate.now());
+        order.setDeliveryDate(order.getCreationDate().plusDays(3l));
+        order.setStatus(OrderStatus.SUBMITTED);
         Order savedOrder = orderService.saveOrder(order);
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
@@ -71,7 +76,7 @@ public class OrderController {
      * retrieve Order by id
      */
     @GetMapping("orders/{orderId}")
-    @ApiOperation(value = "GET a Order by ID", notes = "GET a Order entry from the Order database " +
+    @ApiOperation(value = "GET a Order by ID", notes = "GET a Order entry from the orders collection " +
             "by a provided Order ID. Returns a Order object if found.", response = ResponseEntity.class)
     public ResponseEntity<Order> getOrderById(@PathVariable("orderId") String orderId) {
 
@@ -80,14 +85,14 @@ public class OrderController {
 
         log.info("Query to get a order | Order ID: {} | Timestamp: {}" ,orderId ,timeStamp);
 
-        return new ResponseEntity<>(orderService.getOrderById(orderId), HttpStatus.FOUND);
+        return new ResponseEntity<>(orderService.getOrderById(orderId), HttpStatus.OK);
     }
 
     /**
      * delete Order by id
      */
     @DeleteMapping("orders/{orderId}")
-    @ApiOperation(value = "DELETE an existing Order", notes = "Remove a Order entry from the Order database " +
+    @ApiOperation(value = "DELETE an existing Order", notes = "Remove an Order entry from the orders collection " +
             "by a provided Order ID. Returns the deleted Order object " +
             "if the operation is successful.", response = ResponseEntity.class)
     public ResponseEntity<Order> getOrderAfterDeleting(@PathVariable("orderId") String orderId) {
@@ -119,7 +124,7 @@ public class OrderController {
     }
 
     @GetMapping("orders/user/{userId}")
-    @ApiOperation(value = "GET a Order by User ID", notes = "GET Order entries from the Order database " +
+    @ApiOperation(value = "GET a Order by User ID", notes = "GET Order entries from the orders collection " +
             "by a provided User ID. Returns a Order object if found.", response = ResponseEntity.class)
     public ResponseEntity<List<Order>> getOrderByUserId(@PathVariable("userId") String userId) {
 
@@ -128,6 +133,6 @@ public class OrderController {
 
         log.info("Query to get a order | User ID: {} | Timestamp: {}" ,userId ,timeStamp);
 
-        return new ResponseEntity<>(orderService.getOrderByUserId(userId), HttpStatus.FOUND);
+        return new ResponseEntity<>(orderService.getOrderByUserId(userId), HttpStatus.OK);
     }
 }

@@ -3,10 +3,10 @@
     left: 0;
     top: 0;
     width: 100%;
-    position:sticky;
     background-color: #3a4468;
     margin-bottom: 5%;
     z-index: 5;
+    position:sticky;
   }
 
   .nav h1 {
@@ -25,9 +25,9 @@
 
 
   }
-  
+
   ul.topnav li {float: right;}
-  
+
   ul.topnav li a {
     display: block;
     color: white;
@@ -35,13 +35,13 @@
     padding: 20px 20px;
     text-decoration: none;
   }
-  
+
   ul.topnav li.right {float: right;}
-  
+
   @media screen and (max-width: 600px) {
-    ul.topnav li.right, 
+    ul.topnav li.right,
     ul.topnav li {float: none;
-    
+
     }
   }
 

@@ -1,6 +1,6 @@
 <div id="orders" >
   <h2> Orders </h2>
-      <div class="container" >  
+      <div class="container" >
         <div class="row" *ngFor="let order of orders">
             <div class="column">
                 <div class="card" (click)="viewDetails()">
@@ -13,7 +13,7 @@
                     <p class="card-text">Order Status: {{order.status}}</p>
                     <p>Order Items: </p>
                     <ul *ngFor="let item of order.orderItems">
-                      <li>{{item}}</li>
+                      <li>{{item.name}}</li>
                     </ul>
                     <br><br>
                     <button class="btn" (click)="triggerModal(modalData,order)">Update Status</button>
@@ -49,4 +49,5 @@
     <button type="button" class="btn" (click)="modal.close('Save click')">Close</button>
   </div>
 </ng-template>
-  
+
+</div>

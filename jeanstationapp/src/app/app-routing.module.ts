@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './admin.guard';
 import { AdminComponent } from './admin/admin.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MyorderComponent } from './myorder/myorder.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: '', component:HomeComponent},
   {path: 'order', component:OrderComponent},
   {path: 'cart', component:CartComponent},
+  {path: 'checkout', component:CheckoutComponent},
   {path: 'admin', component:AdminComponent, canActivate:[AdminGuard]},
   {path: 'product', component:ProductComponent},
   {path: 'order-management', component:OrderManagementComponent, canActivate:[AdminGuard]},

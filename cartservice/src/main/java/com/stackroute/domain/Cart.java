@@ -18,25 +18,25 @@ import java.util.List;
 public class Cart {
     @Id
     private String id;
-    private float priceTotalBeforeTax;
-    private float priceTotalAfterTax;
+    private int priceTotalBeforeTax;
+    private int priceTotalAfterTax;
     List<Product> cartItems;
 
-    public Cart(float priceTotalBeforeTax) {
+    public Cart(int priceTotalBeforeTax) {
         this.priceTotalBeforeTax = priceTotalBeforeTax;
         this.cartItems = new ArrayList<>();
 
         log.info("A new cart is created: {} | {}", this.getId());
     }
 
-    public Cart(float priceTotalBeforeTax, List<Product> cartItems) {
+    public Cart(int priceTotalBeforeTax, List<Product> cartItems) {
         this.priceTotalBeforeTax = priceTotalBeforeTax;
         this.cartItems = cartItems;
 
         log.info("A new cart is created: {} | {}", this.getId());
     }
 
-    public Cart(float priceTotalBeforeTax, float priceTotalAfterTax, List<Product> cartItems) {
+    public Cart(int priceTotalBeforeTax, int priceTotalAfterTax, List<Product> cartItems) {
         this.priceTotalBeforeTax = priceTotalBeforeTax;
         this.priceTotalAfterTax = priceTotalAfterTax;
         this.cartItems = cartItems;

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { User } from '../model/User';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-password',
@@ -9,8 +11,10 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 export class PasswordComponent implements OnInit {
 
   form:any;
+  id:string;
+  message:string;
 
-  constructor(private formBuilder:FormBuilder) {
+  constructor(private formBuilder:FormBuilder, private userservice:UserService) {
     this.form = this.formBuilder.group({
       oldPassword: new FormControl('',Validators.required),
       newPassword: new FormControl('',Validators.required),
@@ -19,10 +23,21 @@ export class PasswordComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.id = sessionStorage.getItem('username');
   }
 
   onSubmit(){
-
+    let profile:User; 
+    this.userservice.getUserById(this.id).subscribe(
+      data => {
+        profile = data;
+      },
+    );
+    if((profile.password == this.form.value.oldPassword)&&(this.form.value.newPassword == this.form.value.confirmPassword)){
+      profile.password = this.form.value.newPassword;
+    } else {
+      this.message = 'Password Incorrect';
+    }
   }
 
 }

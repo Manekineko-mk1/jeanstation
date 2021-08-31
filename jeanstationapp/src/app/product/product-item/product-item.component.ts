@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/model/Product';
+import { Cart } from 'src/app/model/Cart';
 import { MessengerService } from 'src/app/services/messenger.service';
+import { CartService } from 'src/app/services/cart.service';
+import { CookieService } from 'ngx-cookie';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

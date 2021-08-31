@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class ProductService {
 
-  baseurl:string = 'http://localhost:8080/product/api/v1/';
+  baseurl:string = 'http://localhost:8080/api/v1/product/';
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +26,10 @@ export class ProductService {
 
   addProduct(data: Product): Observable<Product>{
     return this.http.post<Product>(this.baseurl+'product',data,httpOptions);
+  }
+
+  uploadImage(data) {
+    return this.http.post(this.baseurl+'upload', data, {observe: 'response'});
   }
 
   updateProduct(data: Product): Observable<Product>{
