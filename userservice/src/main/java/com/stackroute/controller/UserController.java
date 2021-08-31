@@ -51,10 +51,8 @@ public class UserController {
     @ApiOperation(value = "GET a User by ID", notes = "GET a User entry from the users collection " +
             "by a provided User ID. Returns a User object if found.", response = ResponseEntity.class)
     public ResponseEntity<Users> getUserById(@PathVariable("userId") String userId) {
-
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
-
         log.info("Query to get a user | User ID: {} | Timestamp: {}" ,userId ,timeStamp);
 
         return new ResponseEntity<>(userService.findUserById(userId), HttpStatus.FOUND);

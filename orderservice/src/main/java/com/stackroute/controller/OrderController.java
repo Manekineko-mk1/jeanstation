@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/api/v1/")
 @Slf4j
 @CrossOrigin(origins = "*")
 public class OrderController {
@@ -35,8 +35,8 @@ public class OrderController {
     /**
      * save a new Order
      */
-    @PostMapping("/orders")
-    @ApiOperation(value = "POST a new Order", notes = "Add a new Order entry to the orders collection " +
+    @PostMapping("orders")
+    @ApiOperation(value = "POST a new Order", notes = "Add a new Order entry to the Order database " +
             "using a provided JSON Order object. Returns the newly created entry " +
             "if the operation is a success.", response = ResponseEntity.class)
     public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
@@ -58,8 +58,8 @@ public class OrderController {
     /**
      * retrieve all Orders
      */
-    @GetMapping("/orders")
-    @ApiOperation(value = "GET all Orders", notes = "GET all Order entries from the orders collection. " +
+    @GetMapping("orders")
+    @ApiOperation(value = "GET all Orders", notes = "GET all Order entries from the Order database. " +
             "Returns the result as a List of Order object in JSON format " +
             "if any entry is found.", response = ResponseEntity.class)
     public ResponseEntity<List<Order>> getAllOrders() {

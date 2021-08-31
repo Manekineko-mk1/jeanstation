@@ -1,5 +1,6 @@
 package com.stackroute.controller;
 
+import com.stackroute.domain.UserDto;
 import com.stackroute.domain.Users;
 import com.stackroute.exceptions.UserNotFoundException;
 import com.stackroute.service.UserService;
@@ -9,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,29 +37,31 @@ public class AuthRestController {
 		this.userService = userService;
 	}
 
-
 	@PostMapping("login")
-	public ResponseEntity<?> login(@RequestBody Users user) {
+	public ResponseEntity<?> login(@RequestBody UserDto userDto) {
+		Users user = userService.loadUserByUsername(userDto.getUsername());
 		try {
-			if (user.getId() == null || user.getPassword() == null) {
+			if (userDto.getUsername().isEmpty() || userDto.getPassword().isEmpty()) {
 				throw new UserNotFoundException("Id or Password Empty");
 			}
-			Users usersDetails = userService.findByIdAndPassword(user.getId(), user.getPassword());
-			if (usersDetails == null) {
+//			Users usersDetails = userService.findByIdAndPassword(user.getId(), user.getPassword());
+			if (user == null) {
 				throw new UserNotFoundException("Id and Password not found");
 			}
-			if (!(user.getPassword().equals(usersDetails.getPassword()))) {
+			boolean isValidPw = bCryptPasswordEncoder.matches(userDto.getPassword(), user.getPassword());
+//			if (!(userDto.getPassword().equals(user.getPassword()))) {
+			if(!isValidPw){
 				throw new UserNotFoundException("Id and Password invalid");
 			}
-			String token = jwtUtil.generateToken(usersDetails.getId());
+
+
+			String token = jwtUtil.generateToken(user.getId());
 			responseEntity = new ResponseEntity<>(token, HttpStatus.OK);
 
 		} catch (UserNotFoundException e) {
 			responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
 		}
 		return responseEntity;
-//		String token = jwtUtil.generateToken(id);
-//		return new ResponseEntity<>(token, HttpStatus.OK);
 	}
 
 	/**

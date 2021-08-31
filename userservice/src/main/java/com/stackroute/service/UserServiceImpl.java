@@ -208,9 +208,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Users users = userRepository.findByUsername(username);
+    @Override
+    public Users loadUserByUsername(String username) throws UsernameNotFoundException {
+        Users user = userRepository.findByUsername(username);
 //
 //        if(users == null) {
 //            throw new UsernameNotFoundException("User not found");
@@ -219,5 +219,12 @@ public class UserServiceImpl implements UserService {
 //        List authorities = Arrays.asList(new SimpleGrantedAuthority("user"));
 //
 //        return new User(users.getUsername(), users.getPassword(), authorities);
-//    }
+       // return userRepository.findByUsername(username);
+
+        if(user != null) {
+            return user;
+        } else {
+            throw new UserNotFoundException("User with username "+username+" not found.");
+        }
+    }
 }
