@@ -48,8 +48,8 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-//        log.info("Added a product to products collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-//                savedProduct.getId(), savedProduct.getName(), timeStamp);
+        log.info("Added a product to products collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
+                savedProduct.getId(), savedProduct.getName(), timeStamp);
 
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
