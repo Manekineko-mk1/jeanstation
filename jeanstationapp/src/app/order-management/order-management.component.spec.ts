@@ -9,12 +9,12 @@ import { OrderService } from '../services/order.service';
 import { OrderManagementComponent } from './order-management.component';
 
 const order1:Order = {
-  priceTotal: 120,
+  priceTotalBeforeTax: 120,
   userId: 'A1',
   deliveryDate: '2021-08-26',
   creationDate: '2021-08-23',
   status: 'SUBMITTED',
-  orderItems : ['Item1', 'Item2'] 
+  //orderItems : ['Item1', 'Item2'] 
 }
 
 describe('OrderManagementComponent', () => {

@@ -55,7 +55,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     HttpClientModule,
     NgbModule,
     CookieModule.forRoot(),
-    CookieModule.forChild()
+    CookieModule.forChild(),
   ],
   providers: [
     {

@@ -55,4 +55,8 @@ export class ProductComponent implements OnInit {
     }
     );
   }
+
+  backToTop(){
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
 }

@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     // sessionStorage.setItem('isLoggedIn', 'false');
     // sessionStorage.setItem('isAdmin', 'false');
-    //   if(this.authservice.isUserLoggedIn()){
-    //     this.authservice.logOut();
-    //   }
+      if(this.authservice.isUserLoggedIn()){
+        this.authservice.logOut();
+      }
   }
 
   onSubmit(){

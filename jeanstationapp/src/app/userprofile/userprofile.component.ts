@@ -35,21 +35,21 @@ export class UserprofileComponent implements OnInit {
 
   ngOnInit(): void {
     this.update = false;
-    let address:Address = new Address();
-    address.city="mycity";
-    address.country="mycounter";
-    address.doorNumber=100;
-    address.postalCode="post";
-    address.street="mystreet";
-    this.user = new User();
-    this.user.id="1";
-    this.user.username="myusername";
-    this.user.userRole="User";
-    this.user.userStatus="Active";
-    this.user.creationDate="2021";
-    this.user.realName="myRealname";
-    this.user.address = address;
-    this.user.telephone = "11111111";
+    // let address:Address = new Address();
+    // address.city="mycity";
+    // address.country="mycounter";
+    // address.doorNumber=100;
+    // address.postalCode="post";
+    // address.street="mystreet";
+    // this.user = new User();
+    // this.user.id="1";
+    // this.user.username="myusername";
+    // this.user.userRole="User";
+    // this.user.userStatus="Active";
+    // this.user.creationDate="2021";
+    // this.user.realName="myRealname";
+    // this.user.address = address;
+    // this.user.telephone = "11111111";
     this.id = sessionStorage.getItem('userId');
     this.getUser();
     this.approute.isAdmin.subscribe(
