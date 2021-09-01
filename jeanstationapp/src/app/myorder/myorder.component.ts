@@ -26,7 +26,7 @@ export class MyorderComponent implements OnInit {
     // some.shipmentId = "1145";
     // some.userId = "45";
     // this.orders.push(some);
-    this.id = sessionStorage.getItem('username');
+    this.id = sessionStorage.getItem('userId');
     this.getOrders();
   }
 
@@ -34,6 +34,9 @@ export class MyorderComponent implements OnInit {
     this.orderservice.getOrderByUserId(this.id).subscribe(
       data => {
         this.orders = data;
+      },
+      err => {
+        console.log(err);
       }
     )
   }

@@ -23,7 +23,7 @@ export class PasswordComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.id = sessionStorage.getItem('username');
+    this.id = sessionStorage.getItem('userId');
   }
 
   onSubmit(){
