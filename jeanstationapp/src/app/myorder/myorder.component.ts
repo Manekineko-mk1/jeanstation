@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from '../model/Order';
 import { ApprouteService } from '../services/approute.service';
 import { OrderService } from '../services/order.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-myorder',
@@ -13,7 +14,7 @@ export class MyorderComponent implements OnInit {
   orders:Order[];
   id:string;
 
-  constructor(private orderservice:OrderService, private approute:ApprouteService) { }
+  constructor(private orderservice:OrderService, private approute:ApprouteService, private userservice:UserService) { }
 
   ngOnInit(): void {
     // this.orders = new Array();
@@ -26,12 +27,20 @@ export class MyorderComponent implements OnInit {
     // some.shipmentId = "1145";
     // some.userId = "45";
     // this.orders.push(some);
-    this.id = sessionStorage.getItem('userId');
+    // this.userservice.getUserByUsername(sessionStorage.getItem('username')).subscribe(
+    //   data => {
+    //     this.id = data.id;
+    //   },
+    //   err => {
+    //     console.log(err);
+    //     console.log(sessionStorage.getItem('username'));
+    //   }
+    // )
     this.getOrders();
   }
 
   getOrders(){
-    this.orderservice.getOrderByUserId(this.id).subscribe(
+    this.orderservice.getOrderByUserId(sessionStorage.getItem('username')).subscribe(
       data => {
         this.orders = data;
       },

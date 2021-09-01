@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class UserService {
 
-  baseurl:string = 'http://localhost:8084/api/v1/';
+  baseurl:string = 'http://localhost:8084/api/v1/user/';
 
   constructor(private http: HttpClient) { }
 
@@ -25,7 +25,7 @@ export class UserService {
   }
 
   getUserByUsername(username:string): Observable<User>{
-    return this.http.get<User>(this.baseurl+'user/username/'+username);
+    return this.http.get<User>(this.baseurl+'username/'+username);
   }
 
   addUser(data: User): Observable<User>{

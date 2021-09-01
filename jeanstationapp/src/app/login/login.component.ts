@@ -48,11 +48,6 @@ export class LoginComponent implements OnInit {
           userData => {
             this.approute.isLoggedIn.next(true);
             //sessionStorage.setItem('isLoggedIn', 'true');
-            this.userservice.getUserByUsername(sessionStorage.getItem('username')).subscribe(
-              data => {
-                sessionStorage.setItem('userId', data.id);
-              }
-            )
             this.approute.openProduct();
           },
           err => {

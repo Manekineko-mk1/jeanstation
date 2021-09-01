@@ -66,7 +66,7 @@ public class UserController {
         String timeStamp = zonedDateTimeNow.format(formatter);
         log.info("Query to get a user | User Name: {} | Timestamp: {}" ,username ,timeStamp);
 
-        return new ResponseEntity<>(userService.loadUserByUsername(username), HttpStatus.FOUND);
+        return new ResponseEntity<>(userService.loadUserByUsername(username), HttpStatus.OK);
     }
 
     /**

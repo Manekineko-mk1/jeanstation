@@ -50,4 +50,8 @@ export class ApprouteService {
     this.router.navigate(['registration']);
   }
 
+  openProfile(){
+    this.router.navigate(['profile']);
+  }
+
 }
