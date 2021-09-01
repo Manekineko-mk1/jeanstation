@@ -39,12 +39,11 @@ public class CartController {
             "if the operation is a success.", response = ResponseEntity.class)
     public ResponseEntity<Cart> saveCart(@RequestBody Cart cart) {
         Cart savedCart = cartService.saveCart(cart);
-        String cartId = savedCart.getId();
 
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Added a cart to carts collection | Cart ID: {} | Timestamp(EST): {}", cartId, timeStamp);
+        // log.info("Added a cart to carts collection | Cart ID: {} | Timestamp(EST): {}", savedCart.getId(), timeStamp);
 
         return new ResponseEntity<>(savedCart, HttpStatus.CREATED);
     }
