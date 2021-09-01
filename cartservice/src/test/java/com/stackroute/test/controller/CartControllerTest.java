@@ -3,8 +3,10 @@ package com.stackroute.test.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.controller.CartController;
 import com.stackroute.domain.Cart;
+import com.stackroute.domain.Product;
 import com.stackroute.exceptions.CartAlreadyExistException;
 import com.stackroute.exceptions.CartNotFoundException;
+import com.stackroute.exceptions.GlobalExceptionHandler;
 import com.stackroute.service.CartService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,17 +41,22 @@ public class CartControllerTest {
     @InjectMocks
     private CartController cartController;
     private Cart cart;
+    private List<Product> productList;
     private List<Cart> cartList;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(cartController).build();
-        ArrayList categories = new ArrayList();
+        mockMvc = MockMvcBuilders.standaloneSetup(cartController).setControllerAdvice(new GlobalExceptionHandler()).build();
+
         cart = new Cart();
         cart.setId("1l");
         cart.setPriceTotalBeforeTax(420);
-        cartList = new ArrayList<>();
+        productList = new ArrayList<Product>();
+        productList.add(new Product());
+        cart.setCartItems(productList);
+
+        cartList = new ArrayList<Cart>();
         cartList.add(cart);
     }
 
@@ -61,7 +68,7 @@ public class CartControllerTest {
     @Test
     public void givenCartToSaveThenShouldReturnSavedCart() throws Exception {
         when(cartService.saveCart(any())).thenReturn(cart);
-        mockMvc.perform(post("/api/v1/cart")
+        mockMvc.perform(post("/api/v1/cart/cart")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(cart)))
                 .andExpect(status().isCreated())
