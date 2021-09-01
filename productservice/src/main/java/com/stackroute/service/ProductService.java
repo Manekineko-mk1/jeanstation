@@ -2,7 +2,6 @@ package com.stackroute.service;
 
 import com.stackroute.domain.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ProductService {
