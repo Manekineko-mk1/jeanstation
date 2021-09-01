@@ -1,2 +1,26 @@
-package com.stackroute.apigateway.config;public class CorsConfig {
+package com.stackroute.apigateway.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+public class CorsConfig extends CorsConfiguration{
+
+    @Bean
+    public CorsWebFilter corsWebFilter(){
+        final CorsConfiguration corsConfig = new CorsConfiguration();
+        corsConfig.setAllowedOrigins(Collections.singletonList("*"));
+        corsConfig.setMaxAge(3600L);
+        corsConfig.setAllowedMethods(Arrays.asList("GET", "POST"));
+        corsConfig.addAllowedHeader("*");
+
+        final UrlBasedCorsConfigurationSource src = new UrlBasedCorsConfigurationSource();
+        src.registerCorsConfiguration("/**", corsConfig);
+
+        return new CorsWebFilter(src);
+    }
 }
