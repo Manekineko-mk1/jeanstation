@@ -18,17 +18,7 @@ const user1:User = {
   userRole : 'USER',
   userStatus : 'ACTIVE',
   creationDate : '2021-08-30',
-  name : 'Real Name',
-  address : address,
-  telephone : '123-456-7890'
-}
-
-const user2:User = {
-  username : 'NewUser2',
-  userRole : 'USER',
-  userStatus : 'ACTIVE',
-  creationDate : '2021-08-30',
-  name : 'Real Name2',
+  realName : 'Real Name',
   address : address,
   telephone : '123-456-7890'
 }
@@ -84,7 +74,7 @@ describe('UserService', () => {
   it('addUser() method should add User', () => {
     service.addUser(user1).subscribe(
       data => {
-        expect(data.name).toEqual('New User');
+        expect(data.realName).toEqual('New User');
       }
     );
     const req = httpMock.expectOne('http://localhost:8080/user/api/v1/user');
@@ -93,10 +83,10 @@ describe('UserService', () => {
   });
 
   it('updateUser() method should update User', () => {
-    user1.name = 'New name';
+    user1.realName = 'New name';
     service.updateUser(user1).subscribe(
       data => {
-        expect(data.name).toEqual('New name');
+        expect(data.realName).toEqual('New name');
       }
     );
     const req = httpMock.expectOne('http://localhost:8080/user/api/v1/user');

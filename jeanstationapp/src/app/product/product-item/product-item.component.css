@@ -1,0 +1,21 @@
+.productName {
+    font-size: larger;
+}
+
+.currency {
+    font-size: small;
+}
+
+.quantity {
+    font-size: small;
+}
+
+.discount {
+    color: red;
+    font-size: small;
+
+}
+
+.description {
+    font-size: small;
+}

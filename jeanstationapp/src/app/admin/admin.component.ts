@@ -1,6 +1,8 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Money } from '../model/Money';
 import { Product } from '../model/Product';
 import { ApprouteService } from '../services/approute.service';
 import { ProductService } from '../services/product.service';
@@ -15,43 +17,66 @@ export class AdminComponent implements OnInit {
   form;
   message;
   products: Product[];
+  productsReceived: Product[];
   toAdd = false;
   toUpdate = false;
   product: Product = new Product();
   closeModal:string;
   showProduct: Product;
+  private selectedFile;
+  imgURL: any;
+  showchangeImage: boolean = false;
 
   constructor(private formBuilder:FormBuilder, private productservice:ProductService, 
     private approute: ApprouteService, private modalService:NgbModal) { 
     this.form = this.formBuilder.group({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      picture: new FormControl('', Validators.required),
+      picture: new FormControl(''),
       price: new FormControl('', Validators.required),
       discount: new FormControl('', Validators.required),
       quantity: new FormControl('', Validators.required),
-      size: new FormControl('', Validators.required),
-      color: new FormControl('', Validators.required),
+      size: new FormControl(''),
+      color: new FormControl(''),
       categories: new FormArray([new FormControl()])
     });
   }
 
   ngOnInit(): void {
-    this.approute.inOrderManag.next(false);
+    sessionStorage.setItem('inOrderManag', 'false')
     this.getProducts();
-    this.approute.showAdd.subscribe(
-      value => {
-        this.toAdd = value;
-        this.toUpdate=false;
-        this.clearForm();
-      }
-    )
+    if(sessionStorage.getItem('showAdd')=='true'){
+      this.toAdd = true;
+    }
+    this.toUpdate=false;
+    this.clearForm();
   }
 
   getProducts(){
     this.productservice.getProduct().subscribe(
       data => {
-      this.products = data;
+        this.products = new Array<Product>();
+        this.productsReceived = data;
+        for(const prod of this.productsReceived){
+          const prodWithImage = new Product();
+          prodWithImage.id = prod.id;
+          prodWithImage.name = prod.name;
+          if(prod.picture.startsWith('http')){
+            prodWithImage.picture = prod.picture;
+          } else if (prod.picture.startsWith('data:image/jpeg;base64,')) {
+            prodWithImage.picture = prod.picture;
+          } else {
+            prodWithImage.picture = 'data:image/jpeg;base64,'+prod.picture;
+          }
+          prodWithImage.price = prod.price;
+          prodWithImage.discount = prod.discount;
+          prodWithImage.description = prod.description;
+          prodWithImage.quantity = prod.quantity;
+          prodWithImage.color = prod.color;
+          prodWithImage.size = prod.size;
+          prodWithImage.categories = prod.categories;
+          this.products.push(prodWithImage);
+        }
     }
     );
   }
@@ -59,18 +84,41 @@ export class AdminComponent implements OnInit {
   addProduct(){
 
     if (this.form.valid) {
-      this.productservice.addProduct(this.form.value).subscribe(
+      const uploadData = new FormData();
+      uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
+      this.selectedFile.imageName = this.selectedFile.name;
+      const prodWithImage = new Product();
+      prodWithImage.name = this.form.value.name;
+      prodWithImage.picture = this.form.value.picture;
+      prodWithImage.price = new Money();
+      prodWithImage.price.amount = this.form.value.price;
+      prodWithImage.price.currency = 'CAD';
+      prodWithImage.discount = this.form.value.discount;
+      prodWithImage.description = this.form.value.description;
+      prodWithImage.quantity = this.form.value.quantity;
+      prodWithImage.color = this.form.value.color;
+      prodWithImage.size = this.form.value.size;
+      prodWithImage.categories = this.form.value.categories;
+      this.productservice.uploadImage(uploadData).subscribe(
         data => {
-          this.clearForm();
-          this.message = 'Product added';
-          this.getProducts();
-          
+          this.productservice.addProduct(prodWithImage).subscribe(
+          data => {
+            this.clearForm();
+            this.message = 'Product added';
+            this.getProducts();
+            
+          },
+          err => {
+            this.message = 'Failed to add Product!!';
+            this.clearForm();
+          }
+        );
         },
         err => {
-          this.message = 'Failed to add Product!!';
-          this.clearForm();
+          this.message = 'Image upload failed';
         }
       );
+     
     } else {
       this.message = 'The fields should not be empty!!! Please verify details';
     }
@@ -78,39 +126,86 @@ export class AdminComponent implements OnInit {
   }
 
   updateProduct(){
+    if(this.showchangeImage){
+      this.updateWithImage();
+    }else {
+      this.updateWithoutImage();
+    }
+  }
 
+  updateWithImage(){
     if (this.form.valid) {
+      const uploadData = new FormData();
+      uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
+      this.selectedFile.imageName = this.selectedFile.name;
       this.product.name = this.form.value.name;
       this.product.description = this.form.value.description;
       this.product.picture = this.form.value.picture;
-      this.product.price = this.form.value.price;
+      this.product.price = new Money();
+      this.product.price.amount = this.form.value.price;
+      this.product.price.currency = 'CAD';
       this.product.discount = this.form.value.discount;
       this.product.quantity = this.form.value.quantity;
       this.product.size = this.form.value.size;
       this.product.color = this.form.value.color;
       this.product.categories = this.form.value.categories;
-      this.productservice.updateProduct(this.product).subscribe(
+      this.productservice.uploadImage(uploadData).subscribe(
         data => {
-          this.toUpdate = false;
-          this.clearForm();
-          this.message = 'Product updated';
-          this.getProducts();
+          this.productservice.updateProduct(this.product).subscribe(
+            data => {
+              this.toUpdate = false;
+              this.clearForm();
+              this.message = 'Product updated';
+              this.getProducts();
+            },
+            err => {
+              this.message = 'Failed to update Product!!';
+              this.clearForm();
+            }
+          );
         },
         err => {
-          this.message = 'Failed to update Product!!';
-          this.clearForm();
+          this.message = 'Image upload failed';
         }
       );
     } else {
       this.message = 'The fields should not be empty!!! Please verify details';
     }
+  }
 
+  updateWithoutImage(){
+    if (this.form.valid) {
+      this.product.name = this.form.value.name;
+      this.product.description = this.form.value.description;
+      this.product.price = new Money();
+      this.product.price.amount = this.form.value.price;
+      this.product.price.currency = 'CAD';
+      this.product.discount = this.form.value.discount;
+      this.product.quantity = this.form.value.quantity;
+      this.product.size = this.form.value.size;
+      this.product.color = this.form.value.color;
+      this.product.categories = this.form.value.categories;
+          this.productservice.updateProduct(this.product).subscribe(
+            data => {
+              this.toUpdate = false;
+              this.clearForm();
+              this.message = 'Product updated';
+              this.getProducts();
+            },
+            err => {
+              this.message = 'Failed to update Product!!';
+              this.clearForm();
+            }
+          );
+    } else {
+      this.message = 'The fields should not be empty!!! Please verify details';
+    }
   }
 
   deleteProduct(id:string){
     this.productservice.deleteProduct(id).subscribe(
       data =>{
-        this.approute.showAdd.next(false);
+        sessionStorage.setItem('showAdd', 'false');
         this.message = 'Product deleted';
         this.getProducts();
         
@@ -126,9 +221,9 @@ export class AdminComponent implements OnInit {
     this.message = '';
   }
 
-  logout(){
-    this.approute.openHome();
-  }
+  // logout(){
+  //   this.approute.openHome();
+  // }
 
   showUpdate(product:Product){
     this.toUpdate = true;
@@ -142,13 +237,16 @@ export class AdminComponent implements OnInit {
     }
     this.form.get('name').setValue(this.product.name);
     this.form.get('description').setValue(this.product.description);
-    this.form.get('picture').setValue(this.product.picture);
-    this.form.get('price').setValue(this.product.price);
+    this.form.get('price').setValue(this.product.price.amount);
     this.form.get('discount').setValue(this.product.discount);
     this.form.get('quantity').setValue(this.product.quantity);
     this.form.get('size').setValue(this.product.size);
     this.form.get('color').setValue(this.product.color);
     this.form.get('categories').setValue(this.product.categories);
+  }
+
+  changeImage(){
+    this.showchangeImage = true;
   }
 
   addCategory(){
@@ -160,6 +258,17 @@ export class AdminComponent implements OnInit {
     this.form.categories = this.form.get('categories') as FormArray;
     this.form.categories.removeAt(index);
   }
+
+  fileChange(event) {
+    console.log(event);
+    this.selectedFile = event.target.files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event2) => {
+      this.imgURL = reader.result;
+    };
+}
 
   triggerModal(content, product) {
     this.showProduct = product;
@@ -179,5 +288,6 @@ export class AdminComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
 
 }

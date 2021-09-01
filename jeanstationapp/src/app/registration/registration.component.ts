@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
       street: new FormControl('',Validators.required),
       city: new FormControl('',Validators.required),
       country: new FormControl('',Validators.required),
-      postalcode: new FormControl('',[Validators.required, Validators.pattern('[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]')]),
+      postalcode: new FormControl('',[Validators.required]),
       telephone: new FormControl('', [Validators.required])
     });
   }
@@ -64,7 +64,7 @@ export class RegistrationComponent implements OnInit {
       this.message = 'Fields cannot be empty! Please verify provided information'
     }
 
-    
+
 
   }
 

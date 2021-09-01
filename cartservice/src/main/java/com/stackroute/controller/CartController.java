@@ -80,7 +80,7 @@ public class CartController {
 
         log.info("Query to get a cart | Cart ID: {} | Timestamp: {}", cartId, timeStamp);
 
-        return new ResponseEntity<>(cartService.findCartById(cartId), HttpStatus.FOUND);
+        return new ResponseEntity<>(cartService.findCartById(cartId), HttpStatus.OK);
     }
 
     /**

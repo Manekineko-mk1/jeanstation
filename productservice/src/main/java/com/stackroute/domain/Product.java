@@ -23,10 +23,11 @@ public class Product {
     private String description;
     private String picture;
     private Money price;
+    private Money finalPrice;
     private int discount;
     private int quantity;
-    private ProductSize size;
-    private ProductColor color;
+    private String size;
+    private String color;
     List<String> categories;
 
     public Product(String name, String description, String picture, Money price, int discount,
@@ -39,11 +40,14 @@ public class Product {
         this.quantity = quantity;
         this.categories = categories;
 
+        int finPrice = this.price.getAmount() * (1 - this.discount);
+        this.finalPrice = new Money(finPrice, price.getCurrency());
+
         log.info("A new product is created: {} | {}", this.getId(), this.name);
     }
 
     public Product(String name, String description, String picture, Money price, int discount,
-                   int quantity, ProductSize size, ProductColor color, List<String> categories) {
+                   int quantity, String size, String color, List<String> categories) {
         this.name = name;
         this.description = description;
         this.picture = picture;

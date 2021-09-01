@@ -1,6 +1,7 @@
 <div id="registration">
     <div class="container">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h5>Account</h5>
             <div class="row">
                 <div class="col-25">
                     <label>Username:</label>
@@ -25,14 +26,11 @@
                     <input formControlName="name" type="text" placeholder="Enter your name">
                 </div>
             </div>
+            <br>
+            <h5>Address</h5>
             <div class="row">
                 <div class="col-25">
-                    <label> Address:</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label> - Door number:</label>
+                    <label>Door number:</label>
                 </div>
                 <div class="col-75">
                     <input formControlName="doornumber" type="number" placeholder="Enter your door number">
@@ -40,7 +38,7 @@
             </div>
             <div class="row">
                 <div class="col-25">
-                    <label>       - Street Name:</label>
+                    <label>Street Name:</label>
                 </div>
                 <div class="col-75">
                     <input formControlName="street" type="text" placeholder="Enter your street name">
@@ -48,7 +46,7 @@
             </div>
             <div class="row">
                 <div class="col-25">
-                    <label>        - City:</label>
+                    <label>City:</label>
                 </div>
                 <div class="col-75">
                     <input formControlName="city" type="text" placeholder="Enter your city">
@@ -56,7 +54,7 @@
             </div>
             <div class="row">
                 <div class="col-25">
-                    <label>   - Country:</label>
+                    <label>Country:</label>
                 </div>
                 <div class="col-75">
                     <input formControlName="country" type="text" placeholder="Enter your country">
@@ -64,12 +62,14 @@
             </div>
             <div class="row">
                 <div class="col-25">
-                    <label>        - Postal Code:</label>
+                    <label>Postal Code:</label>
                 </div>
                 <div class="col-75">
                     <input formControlName="postalcode" type="text" placeholder="Enter your postal code">
                 </div>
             </div>
+            <br>
+            <h5>Contact</h5>
             <div class="row">
                 <div class="col-25">
                     <label>Phone Number:</label>
