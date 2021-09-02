@@ -9,7 +9,6 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
-import { OrderComponent } from './order/order.component';
 import { AdminComponent } from './admin/admin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -24,7 +23,6 @@ import { ProductItemComponent } from './product/product-item/product-item.compon
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CookieModule } from 'ngx-cookie';
-import { CurrencyPipe } from '@angular/common';
 import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
@@ -36,7 +34,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
     HomeComponent,
     ProductComponent,
     CartComponent,
-    OrderComponent,
     AdminComponent,
     OrderManagementComponent,
     UserprofileComponent,
