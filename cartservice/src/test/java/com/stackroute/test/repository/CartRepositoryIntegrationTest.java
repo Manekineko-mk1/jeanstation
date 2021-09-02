@@ -6,10 +6,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +40,7 @@ public class CartRepositoryIntegrationTest {
     public void givenCartToSaveThenShouldReturnSavedCart() {
         cartRepository.save(cart);
         Cart fetchedcart = cartRepository.findById(cart.getId()).get();
-        assertEquals("1", fetchedcart.getId());
+        assertEquals(cart.getId(), fetchedcart.getId());
     }
 
     @Test

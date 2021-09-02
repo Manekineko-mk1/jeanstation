@@ -108,7 +108,6 @@ class ProductServiceTest {
         Assertions.assertThrows(ProductNotFoundException.class, () ->
                 productService.deleteProductById(any()));
 
-        // Product deletedProduct = productService.deleteProductById(product.getId());
         verify(productRepository, times(1)).findById(any());
     }
 

@@ -5,6 +5,7 @@ import com.stackroute.domain.Cart;
 import com.stackroute.domain.Money;
 import com.stackroute.domain.Product;
 import com.stackroute.enums.Currency;
+import com.stackroute.exceptions.CartNotFoundException;
 import com.stackroute.repository.CartRepository;
 import com.stackroute.service.CartServiceImpl;
 import org.junit.jupiter.api.AfterEach;
@@ -86,41 +87,53 @@ class CartServiceTest {
     public void givenCartIdThenShouldReturnRespectiveCart() {
         when(cartRepository.findById(any())).thenReturn(Optional.of(cart));
         Cart retrievedCart = cartService.findCartById(cart.getId());
-        verify(cartRepository, times(1)).findById(any());
-
+        verify(cartRepository, times(2)).findById(any());
     }
 
     @Test
     void givenCartIdToDeleteThenShouldReturnDeletedCart() {
-        when(cartRepository.findById(cart.getId())).thenReturn(optional);
-        Cart deletedCart = cartService.deleteCartById("1");
-        assertEquals(1, deletedCart.getId());
+        when(cartRepository.findById(any())).thenReturn(Optional.of(cart));
+
+        Cart deletedCart = cartService.deleteCartById(cart.getId());
+        assertEquals(cart.getId(), deletedCart.getId());
 
         verify(cartRepository, times(2)).findById(cart.getId());
         verify(cartRepository, times(1)).deleteById(cart.getId());
     }
 
     @Test
-    void givenCartIdToDeleteThenShouldNotReturnDeletedCart() {
-        when(cartRepository.findById(cart.getId())).thenReturn(Optional.empty());
-        Cart deletedCart = cartService.deleteCartById("1");
-        verify(cartRepository, times(1)).findById(cart.getId());
+    void givenCartIdToDeleteThenShouldNotReturnDeletedCart() throws CartNotFoundException {
+        when(cartRepository.findById(any())).thenThrow(CartNotFoundException.class);
+
+        Assertions.assertThrows(CartNotFoundException.class, () ->
+                cartService.deleteCartById(any()));
+
+        verify(cartRepository, times(1)).findById(any());
     }
 
     @Test
     public void givenCartToUpdateThenShouldReturnUpdatedCart() {
         when(cartRepository.findById(cart.getId())).thenReturn(optional);
         when(cartRepository.save(cart)).thenReturn(cart);
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("cat3");
-        categories.add("cat4");
-        ArrayList<Product> itemsList = new ArrayList<>();
-        Money money = new Money(1000, Currency.CAD);
-        itemsList.add(new Product("1L", "Product1", "description1", "picture1", money, 10, 10, "S", "LIGHT_BLUE"));
-        cart.setCartItems(itemsList);
+
+        cart.setPriceTotalBeforeTax(1234);
+        cart.setPriceTotalAfterTax(7890);
         Cart cart1 = cartService.updateCart(cart);
-        assertEquals(cart1.getCartItems(), categories);
+
+        assertEquals(cart1.getPriceTotalBeforeTax(), 1234);
+        assertEquals(cart1.getPriceTotalAfterTax(), 7890);
+
         verify(cartRepository, times(1)).save(cart);
-        verify(cartRepository, times(2)).findById(cart.getId());
+        verify(cartRepository, times(3)).findById(cart.getId());
+    }
+
+    @Test
+    public void givenCartToUpdateThenShouldNotReturnUpdatedCart() throws CartNotFoundException {
+        when(cartRepository.findById(cart.getId())).thenThrow(CartNotFoundException.class);
+
+        Assertions.assertThrows(CartNotFoundException.class, () ->
+                cartService.updateCart(cart));
+
+        verify(cartRepository, times(1)).findById(cart.getId());
     }
 }

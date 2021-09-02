@@ -1,9 +1,7 @@
 package com.stackroute.test.controller;
 
 import com.stackroute.domain.Cart;
-import com.stackroute.domain.Money;
 import com.stackroute.domain.Product;
-import com.stackroute.enums.Currency;
 import com.stackroute.exceptions.CartAlreadyExistException;
 import com.stackroute.exceptions.CartNotFoundException;
 import com.stackroute.service.CartService;
@@ -12,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +17,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@Transactional
 public class CartControllerIntegrationTest {
     @Autowired
     private CartService cartService;
@@ -66,6 +62,7 @@ public class CartControllerIntegrationTest {
 
     @Test
     void givenProductToDeleteThenThrowException() throws CartNotFoundException {
+        cart.setId("NonExistCartId");
         assertThrows(CartNotFoundException.class, () -> cartService.deleteCartById(cart.getId()));
     }
 
@@ -86,6 +83,7 @@ public class CartControllerIntegrationTest {
 
     @Test
     void givenProductToUpdateThenThrowException() throws CartNotFoundException {
+        cart.setId("NonExistCartId");
         assertThrows(CartNotFoundException.class, () -> cartService.updateCart(cart));
     }
 
@@ -98,6 +96,7 @@ public class CartControllerIntegrationTest {
 
     @Test
     void givenProductIdThenShouldThrowException() throws CartNotFoundException {
+        cart.setId("NonExistCartId");
         assertThrows(CartNotFoundException.class, () -> cartService.findCartById(cart.getId()));
     }
 }
