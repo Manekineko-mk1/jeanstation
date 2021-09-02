@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@Transactional
 public class ProductControllerIntegrationTest {
     @Autowired
     private ProductService productService;
@@ -64,7 +62,7 @@ public class ProductControllerIntegrationTest {
 
     @Test
     void givenProductToDeleteThenThrowException() throws ProductNotFoundException {
-        assertThrows(ProductNotFoundException.class, () -> productService.deleteProductById(product.getId()));
+        assertThrows(ProductNotFoundException.class, () -> productService.deleteProductById("NonExistProduct"));
     }
 
     @Test
@@ -84,6 +82,7 @@ public class ProductControllerIntegrationTest {
 
     @Test
     void givenProductToUpdateThenThrowException() throws ProductNotFoundException {
+        product.setId("NonExistProductId");
         assertThrows(ProductNotFoundException.class, () -> productService.updateProduct(product));
     }
 
@@ -96,6 +95,7 @@ public class ProductControllerIntegrationTest {
 
     @Test
     void givenProductIdThenShouldThrowException() throws ProductNotFoundException {
+        product.setId("NonExistProductId");
         assertThrows(ProductNotFoundException.class, () -> productService.findProductById(product.getId()));
     }
 }
