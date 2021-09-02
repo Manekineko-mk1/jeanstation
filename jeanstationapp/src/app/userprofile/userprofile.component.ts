@@ -35,6 +35,8 @@ export class UserprofileComponent implements OnInit {
 
   ngOnInit(): void {
     this.update = false;
+    this.approute.inOrderManag.next(false);
+    this.approute.inProdManag.next(false);
     // let address:Address = new Address();
     // address.city="mycity";
     // address.country="mycounter";

@@ -21,7 +21,7 @@ import static org.apache.commons.codec.binary.Base64.encodeBase64String;
 @RestController
 @RequestMapping(value = "/api/v1/product")
 @Slf4j
-@CrossOrigin()
+//@CrossOrigin()
 public class ProductController {
     private ProductService productService;
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");

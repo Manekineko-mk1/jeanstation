@@ -37,7 +37,8 @@ export class OrderManagementComponent implements OnInit {
     // some.userId = "45";
     // this.orders.push(some);
     this.getOrders();
-    sessionStorage.setItem('inOrderManag', 'true');
+    this.approute.inOrderManag.next(true);
+    this.approute.inProdManag.next(false);
   }
 
   getOrders(){

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Cart } from '../model/Cart';
 import { Product } from 'src/app/model/Product';
 import { Order } from 'src/app/model/Order';
@@ -8,6 +8,7 @@ import { CheckoutService } from '../services/checkout.service';
 import { CookieService } from 'ngx-cookie';
 import { MessengerService } from 'src/app/services/messenger.service';
 import { ApprouteService } from 'src/app/services/approute.service';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-checkout',
@@ -22,9 +23,12 @@ export class CheckoutComponent implements OnInit {
   tax = 0.14;
   priceTotalBeforeTax: number = 0;
   priceTotalAfterTax: number = 0;
+  closeModal;
+  @Output() closeModalEvent = new EventEmitter<boolean>();
 
   constructor(private cookieService: CookieService, private cartService:CartService,
-              private checkoutService:CheckoutService, private msg: MessengerService, private appRouter: ApprouteService) { }
+              private checkoutService:CheckoutService, private msg: MessengerService, private appRouter: ApprouteService,
+              private modalService:NgbModal) { }
 
   ngOnInit(): void {
     this.cartId = this.cookieService.get("cartId");
@@ -99,7 +103,15 @@ export class CheckoutComponent implements OnInit {
       this.cart.priceTotalAfterTax = this.priceTotalAfterTax;
   }
 
-  checkout() {
+  emptyCart() {
+    this.cart.priceTotalBeforeTax = 0;
+    this.cart.priceTotalAfterTax = 0;
+    this.cart.cartItems = new Array<Product>();
+
+    this.cartService.updateCart(this.cart);
+  }
+
+  checkout(content) {
     // 1. Convert Cart -> Order
     const order: Order = new Order();
 
@@ -113,23 +125,52 @@ export class CheckoutComponent implements OnInit {
       console.log("UserId not found. Redirect to login page");
       // redirect to login page
       // TODO: Re-enable this once userId login is persistent
-      // this.appRouter.openLogin();
+      this.appRouter.openLogin();
 
       // Testing only
       this.userId = "userId";
+    } else {
+      order.userId = this.userId;
+      order.priceTotalBeforeTax = this.cart.priceTotalBeforeTax;
+      order.priceTotalAfterTax = this.cart.priceTotalAfterTax;
+      order.orderItems = this.cart.cartItems;
+
+      // 2. Call createOrder@checkoutService
+      this.checkoutService.createOrder(order).subscribe(data => {
+        console.log("checkout@checkoutService");
+        console.log(data);
+      });
+
+      // 3. Redirect to Orders page
+      this.emptyCart();
+      this.cookieService.removeAll();
+      this.triggerModal(content);
+      
     }
 
-    order.userId = this.userId;
-    order.priceTotalBeforeTax = this.cart.priceTotalBeforeTax;
-    order.priceTotalAfterTax = this.cart.priceTotalAfterTax;
-    order.orderItems = this.cart.cartItems;
+    
+  }
 
-    // 2. Call createOrder@checkoutService
-    this.checkoutService.createOrder(order).subscribe(data => {
-      console.log("checkout@checkoutService");
-      console.log(data);
+  triggerModal(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+      this.closeModal = `Closed with: ${res}`;
+    }, (res) => {
+      this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
     });
+  }
 
-    // 3. Redirect to Orders page
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+  viewOrder(){
+    this.appRouter.openOrder();
+    this.closeModalEvent.emit(false); 
   }
 }

@@ -1,20 +1,20 @@
 <div id="userprofile">
     <h1>Your Profile</h1>
     <div class="container" *ngIf="!update">
-        <div class="row">
+        <!-- <div class="row">
             <p>ID: {{user.id}}</p>
-        </div>
+        </div> -->
         <div class="row">
             <p>Username: {{user.username}}</p>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="isAdmin">
             <p>Role: {{user.userRole}}</p>
         </div>
         <div class="row">
             <p>Status: {{user.userStatus}}</p>
         </div>
         <div class="row">
-            <p>Creation Date: {{user.creationDate}}</p>
+            <p>Creation Date: {{user.creationDate.substring(0,10)}}</p>
         </div>
         <div class="row">
             <p>Name: {{user.realName}}</p>

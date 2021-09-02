@@ -3,23 +3,49 @@
         <div class="container" >  
           <div class="row" *ngFor="let order of orders">
               <div class="column">
-                  <div class="card" (click)="viewDetails()">
+                  <div class="card">
                     <div class="card-body">
                       <h4 class="card-title">ID: {{order.id}}</h4>
-                      <p class="card-text">Total Price: ${{order.priceTotalAfterTax.amount}}</p>
+                      <p class="card-text">Total Price: ${{order.priceTotalAfterTax}}</p>
                       <p class="card-text">User: {{order.userId}}</p>
+                      <p class="card-text">Creation Date: {{order.creationDate}}</p>
                       <p class="card-text">Delivery Date: {{order.deliveryDate}}</p>
-                      <p class="card-text">Order Status: {{order.status}}</p>
+                      <!-- <p class="card-text">Order Status: {{order.status}}</p> -->
                       <p>Order Items: </p>
                       <ul *ngFor="let item of order.orderItems">
                         <li>{{item.name}}</li>
                       </ul>
+                      <button type="button" (click)="triggerModal(modalData,order)">Check Status</button>
                       <br><br>
                     </div>
                   </div>
                 </div>
           </div>
-      </div>
+        </div>
+
+        <ng-template #modalData let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Order: {{showOrder.id}}</h4>
+            <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="progress-track" *ngIf="!isRejected">
+              <ul id="progressbar">
+                  <li [ngClass]="step>=1 ? 'step0 active':'step0'" id="step1">Submitted</li>
+                  <li [ngClass]="step>=2 ? 'step0 active':'step0'" id="step2">In Progress</li>
+                  <li [ngClass]="step>=3 ? 'step0 active':'step0'" id="step3">Shipped</li>
+                  <li [ngClass]="step>=4 ? 'step0 active':'step0'" id="step4">Delivered</li>
+              </ul>
+            </div>
+            <h4 *ngIf="isRejected">Order rejected! Please contact us at 123-456-7890 for more information.</h4>
+          </div>
+          <div class="modal-footer">
+            <button (click)="modal.close('Save click')" class="btn btn-danger" type="button">Close</button>
+          </div>
+        </ng-template>
+</div>
   
   
   

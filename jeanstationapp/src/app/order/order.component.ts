@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from '../model/Order';
+import { MessengerService } from '../services/messenger.service';
 
 @Component({
   selector: 'app-order',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  order: Order;
+
+  constructor(private msg:MessengerService) { }
 
   ngOnInit(): void {
+    this.handleSubscription;
+  }
+
+  handleSubscription() {
+    // Add listener to MessengerService
+    this.msg.getMsg().subscribe(order => {
+      this.order = order;
+    });
   }
 
 }

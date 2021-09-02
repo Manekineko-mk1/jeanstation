@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class UserService {
 
-  baseurl:string = 'http://localhost:8084/api/v1/user/';
+  baseurl:string = 'http://localhost:8080/api/v1/user/';
 
   constructor(private http: HttpClient) { }
 
@@ -29,11 +29,11 @@ export class UserService {
   }
 
   addUser(data: User): Observable<User>{
-    return this.http.post<User>(this.baseurl+'user/register',data,httpOptions);
+    return this.http.post<User>(this.baseurl+'register',data,httpOptions);
   }
 
   updateUser(data: User): Observable<User>{
-    return this.http.put<User>(this.baseurl+'user',data,httpOptions);
+    return this.http.put<User>(this.baseurl+'update/password',data,httpOptions);
   }
 
   deleteUser(id: string): Observable<User>{

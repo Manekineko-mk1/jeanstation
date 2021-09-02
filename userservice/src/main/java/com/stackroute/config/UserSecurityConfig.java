@@ -20,12 +20,12 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.cors(Customizer.withDefaults());
         http.csrf().disable();
-        http.cors();
-//                http.authorizeRequests()//.anyRequest().authenticated()
-//                .antMatchers("/**").permitAll()
-//                .and().httpBasic()
-//                .and().sessionManagement().disable();
+                http.authorizeRequests()//.anyRequest().authenticated()
+                .antMatchers("/**").permitAll()
+                .and().httpBasic()
+                .and().sessionManagement().disable();
     }
     @Bean
     public PasswordEncoder passwordEncoder() {

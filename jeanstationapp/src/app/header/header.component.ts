@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn:boolean;
   isAdmin:boolean;
   inOrderManag:boolean;
+  inProdManag:boolean;
 
   constructor(private approute:ApprouteService, private authservice:AuthenticationService) {
     // this.isLoggedIn = this.authservice.isUserLoggedIn();
@@ -33,6 +34,11 @@ export class HeaderComponent implements OnInit {
     this.approute.inOrderManag.subscribe(
       value => {
         this.inOrderManag = value;
+      }
+    );
+    this.approute.inProdManag.subscribe(
+      value => {
+        this.inProdManag = value;
       }
     )
     // this.isLoggedIn = this.authservice.isUserLoggedIn();

@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class CheckoutService {
 
-  baseurl:string = 'http://localhost:8082/api/v1/order/';
+  baseurl:string = 'http://localhost:8080/api/v1/order/';
 
   constructor(private http: HttpClient) { }
 

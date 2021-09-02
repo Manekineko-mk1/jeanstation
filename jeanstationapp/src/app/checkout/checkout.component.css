@@ -90,3 +90,19 @@ table.shopping-cart-table tr td:last-child {
   background: #ffffff;
   padding: 10px 15px;
 }
+
+.modal-body button {
+  background-color: #3a4468;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin: 2px;
+  width: auto;
+}
+
+.modal-body button:hover {
+  background-color: #45a049;
+}

@@ -45,6 +45,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.approute.inOrderManag.next(false);
+    this.approute.inProdManag.next(true);
     this.getProducts();
     this.approute.showAdd.subscribe(
       value => {

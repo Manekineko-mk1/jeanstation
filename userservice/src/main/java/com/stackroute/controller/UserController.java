@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@CrossOrigin()
+//@CrossOrigin()
 @RestController
 @RequestMapping(value = "/api/v1/user")
 @Slf4j

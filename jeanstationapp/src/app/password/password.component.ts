@@ -43,10 +43,12 @@ export class PasswordComponent implements OnInit {
       data => {
         if(this.form.value.newPassword == this.form.value.confirmPassword){
           this.profile.password = this.form.value.newPassword;
+          console.log(this.profile.password);
+          this.authservice.logOut();
           this.userservice.updateUser(this.profile).subscribe(
             data => {
               this.message = "Password Updated";
-              this.approute.openProfile();
+              this.approute.openLogin();
             }, 
             err => {
               this.message = "Update failed";

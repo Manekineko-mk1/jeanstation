@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/api/v1/user")
 @Slf4j
@@ -84,5 +84,21 @@ public class AuthRestController {
 		Users encryptedUser = new Users(user.getUsername(),user.getUserRole(), user.getUserStatus(), user.getCreationDate(), user.getRealName(), user.getAddress(), user.getTelephone(), encodedPassword/*, authorities*/);
 		Users newUser = userService.saveUser(encryptedUser);
 		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+	}
+
+	/**
+	 * update password of an existing User
+	 */
+	@PutMapping("update/password")
+	@ApiOperation(value = "PUT an existing User", notes = "Update password of an existing User entry to the users collection " +
+			"using a provided JSON User object. Returns the updated entry " +
+			"if the operation is a success.", response = ResponseEntity.class)
+	public ResponseEntity<?> updatePassword(@RequestBody Users user) {
+		ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
+		String timeStamp = zonedDateTimeNow.format(formatter);
+		String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
+		Users updatedUser = userService.updateUser(user);
+		return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 	}
 }

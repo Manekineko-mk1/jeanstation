@@ -21,6 +21,7 @@ body {
 .column {
  float: left;
  padding: 0 10px;
+ margin: 20px;
 }
 
 .row {
@@ -47,12 +48,12 @@ body {
 }
 
 .card {
- box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
- padding: 16px;
- text-align: left;
- background-color: #f1f1f1;
- width: 100%;
- margin: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: left;
+    background-color: white;
+    width: 90%;
+    margin: 1rem;
 }
 
 .card img {
@@ -71,4 +72,122 @@ button {
 
 button:hover {
     background-color:#45a049 ;
+}
+
+#discount {
+    color: red;
+}
+
+#progressbar {
+    margin-bottom: 3vh;
+    overflow: hidden;
+    color: blue;
+    padding-left: 0px;
+    margin-top: 3vh
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 0.8rem;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+    color: blue
+}
+
+#progressbar #step1:before {
+    content: "";
+    color: blue;
+    width: 20px;
+    height: 20px;
+    margin-left: 0px !important
+}
+
+#progressbar #step2:before {
+    content: "";
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    margin-left: 32%
+}
+
+#progressbar #step3:before {
+    content: "";
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    margin-right: 32%
+}
+
+#progressbar #step4:before {
+    content: "";
+    color: rgb(151, 149, 149, 0.651);
+    width: 20px;
+    height: 20px;
+    margin-right: 0px !important
+}
+
+#progressbar li:before {
+    line-height: 29px;
+    display: block;
+    font-size: 12px;
+    background: rgb(151, 149, 149);
+    border-radius: 50%;
+    margin: auto;
+    z-index: -1;
+    margin-bottom: 1vh
+}
+
+#progressbar li:after {
+    content: '';
+    height: 3px;
+    background: rgb(151, 149, 149, 0.651);
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    margin-bottom: 2vh;
+    top: 8px;
+    z-index: 1
+}
+
+.progress-track {
+    padding: 0 8%
+}
+
+#progressbar li:nth-child(2):after {
+    margin-right: auto
+}
+
+#progressbar li:nth-child(1):after {
+    margin: auto
+}
+
+#progressbar li:nth-child(3):after {
+    float: left;
+    width: 68%
+}
+
+#progressbar li:nth-child(4):after {
+    margin-left: auto;
+    width: 132%
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: blue
+}
+
+#three {
+    font-size: 1.2rem
+}
+
+@media (max-width: 767px) {
+    #three {
+        font-size: 1rem
+    }
+}
+
+.modal-body h4 {
+    color: red;
 }
