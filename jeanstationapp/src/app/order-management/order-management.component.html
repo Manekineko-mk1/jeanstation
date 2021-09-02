@@ -26,7 +26,7 @@
 
 <ng-template #modalData let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Angular Bootstrap Modal Popup</h4>
+    <h4 class="modal-title" id="modal-basic-title">Order: {{orderToUpdate.id}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">×</span>
     </button>
@@ -43,7 +43,8 @@
     </select>
     <br>
     <br>
-    <button type="submit">Update</button>
+    <button type="submit" (click)="modal.dismiss('Submit')">Update</button>
+    <div class="alert">{{message}}</div>
   </form>
   </div>
   <div class="modal-footer">

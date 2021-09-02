@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { $ } from 'protractor';
 import { Order } from '../model/Order';
 import { ApprouteService } from '../services/approute.service';
 import { OrderService } from '../services/order.service';
@@ -51,7 +52,14 @@ export class OrderManagementComponent implements OnInit {
 
   updateStatus(){
     this.orderToUpdate.status = this.form.value.status;
-    this.orderService.updateOrder(this.orderToUpdate).subscribe();
+    this.orderService.updateOrder(this.orderToUpdate).subscribe(
+      data => {
+        this.message = "Update Successful";
+      },
+      err => {
+        this.message = "Update Failed";
+      }
+    );
   }
 
   changeStatus(){

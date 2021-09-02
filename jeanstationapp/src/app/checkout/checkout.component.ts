@@ -24,7 +24,6 @@ export class CheckoutComponent implements OnInit {
   priceTotalBeforeTax: number = 0;
   priceTotalAfterTax: number = 0;
   closeModal;
-  @Output() closeModalEvent = new EventEmitter<boolean>();
 
   constructor(private cookieService: CookieService, private cartService:CartService,
               private checkoutService:CheckoutService, private msg: MessengerService, private appRouter: ApprouteService,
@@ -171,6 +170,6 @@ export class CheckoutComponent implements OnInit {
 
   viewOrder(){
     this.appRouter.openOrder();
-    this.closeModalEvent.emit(false); 
+    this.modalService.dismissAll();
   }
 }
