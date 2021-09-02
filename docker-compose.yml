@@ -32,10 +32,10 @@ services:
     - 8083:8083
     links:
       - mymongo
-#  userservice:
-#    image: userservice:1.0
-#    container_name: userservice
-#    ports:
-#      - 8084:8084
-#    links:
-#      - mymongo
+  userservice:
+    image: userservice:1.0
+    container_name: userservice
+    ports:
+      - 8084:8084
+    links:
+      - mymongo
