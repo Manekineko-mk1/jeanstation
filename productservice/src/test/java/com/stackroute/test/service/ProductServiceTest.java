@@ -53,6 +53,7 @@ class ProductServiceTest {
 
     @AfterEach
     public void tearDown() {
+        productRepository.deleteAll();
         product = null;
     }
 

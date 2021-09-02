@@ -65,7 +65,7 @@ public class ProductControllerTest {
 
     @AfterEach
     public void tearDown() {
-       product = null;
+        product = null;
     }
 
     @Test

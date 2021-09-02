@@ -46,6 +46,7 @@ public class ProductServiceIntegrationTest {
 
     @AfterEach
     public void tearDown() {
+        productRepository.deleteAll();
         product1 = product2 = product3 = null;
         productList = null;
     }
