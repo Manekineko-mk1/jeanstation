@@ -1,14 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Cart } from '../model/Cart';
 import { Product } from 'src/app/model/Product';
 import { Order } from 'src/app/model/Order';
-import { Money } from '../model/Money';
 import { CartService } from '../services/cart.service';
-import { CheckoutService } from '../services/checkout.service';
 import { CookieService } from 'ngx-cookie';
 import { MessengerService } from 'src/app/services/messenger.service';
 import { ApprouteService } from 'src/app/services/approute.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-checkout',
@@ -26,7 +25,7 @@ export class CheckoutComponent implements OnInit {
   closeModal;
 
   constructor(private cookieService: CookieService, private cartService:CartService,
-              private checkoutService:CheckoutService, private msg: MessengerService, private appRouter: ApprouteService,
+              private orderService:OrderService, private msg: MessengerService, private appRouter: ApprouteService,
               private modalService:NgbModal) { }
 
   ngOnInit(): void {
@@ -134,9 +133,9 @@ export class CheckoutComponent implements OnInit {
       order.priceTotalAfterTax = this.cart.priceTotalAfterTax;
       order.orderItems = this.cart.cartItems;
 
-      // 2. Call createOrder@checkoutService
-      this.checkoutService.createOrder(order).subscribe(data => {
-        console.log("checkout@checkoutService");
+      // 2. Call addOrder@orderService
+      this.orderService.addOrder(order).subscribe(data => {
+        console.log("checkout@orderService");
         console.log(data);
       });
 
