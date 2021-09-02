@@ -61,7 +61,7 @@ public class CartController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Query to get all cart entries | Timestamp(EST): {}", timeStamp);
+        // log.info("Query to get all cart entries | Timestamp(EST): {}", timeStamp);
 
         return new ResponseEntity<>(cartService.findAllCarts(), HttpStatus.OK);
     }
@@ -77,7 +77,7 @@ public class CartController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Query to get a cart | Cart ID: {} | Timestamp: {}", cartId, timeStamp);
+        // log.info("Query to get a cart | Cart ID: {} | Timestamp: {}", cartId, timeStamp);
 
         return new ResponseEntity<>(cartService.findCartById(cartId), HttpStatus.OK);
     }
@@ -94,7 +94,7 @@ public class CartController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Request to DELETE a cart | Cart ID: {} | Timestamp: {}", cartId, timeStamp);
+        // log.info("Request to DELETE a cart | Cart ID: {} | Timestamp: {}", cartId, timeStamp);
 
         return new ResponseEntity<>(cartService.deleteCartById(cartId), HttpStatus.OK);
     }
@@ -112,7 +112,7 @@ public class CartController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Request to UPDATE a cart| Cart ID: {} | Timestamp: {}", updatedCart.getId(), timeStamp);
+        // log.info("Request to UPDATE a cart| Cart ID: {} | Timestamp: {}", updatedCart.getId(), timeStamp);
 
         return new ResponseEntity<>(updatedCart, HttpStatus.OK);
     }
