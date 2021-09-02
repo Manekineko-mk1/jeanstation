@@ -52,22 +52,25 @@ public class CartControllerTest {
         cart = new Cart();
         cart.setId("1l");
         cart.setPriceTotalBeforeTax(420);
-        productList = new ArrayList<Product>();
+        cart.setPriceTotalAfterTax(460);
+        productList = new ArrayList<>();
         productList.add(new Product());
         cart.setCartItems(productList);
 
-        cartList = new ArrayList<Cart>();
+        cartList = new ArrayList<>();
         cartList.add(cart);
     }
 
     @AfterEach
     public void tearDown() {
        cart = null;
+       productList = null;
+       cartList = null;
     }
 
     @Test
     public void givenCartToSaveThenShouldReturnSavedCart() throws Exception {
-        when(cartService.saveCart(any())).thenReturn(cart);
+        when(cartService.saveCart(cart)).thenReturn(cart);
         mockMvc.perform(post("/api/v1/cart/cart")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(cart)))
@@ -79,35 +82,37 @@ public class CartControllerTest {
     @Test
     public void givenGetAllCartsThenShouldReturnListOfAllCarts() throws Exception {
         when(cartService.findAllCarts()).thenReturn(cartList);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/carts")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cart/carts")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(cart)))
                 .andDo(MockMvcResultHandlers.print());
         verify(cartService).findAllCarts();
         verify(cartService, times(1)).findAllCarts();
-
     }
 
     @Test
     void givenCartIdThenShouldReturnRespectiveCart() throws Exception {
         when(cartService.findCartById(cart.getId())).thenReturn(cart);
-        mockMvc.perform(get("/api/v1/cart/1"))
-                .andExpect(MockMvcResultMatchers.status()
-                        .isFound())
+        mockMvc.perform(get("/api/v1/cart/cart/1l"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
     public void givenCartIdToDeleteThenShouldNotReturnDeletedCart() throws Exception {
         when(cartService.deleteCartById(cart.getId())).thenReturn(cart);
-        mockMvc.perform(delete("/api/v1/cart/1"))
-                .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
+        mockMvc.perform(delete("/api/v1/cart/cart/1l"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
     public void givenCartToUpdateThenShouldReturnUpdatedCart() throws Exception {
         when(cartService.updateCart(any())).thenReturn(cart);
-        mockMvc.perform(put("/api/v1/cart").contentType(MediaType.APPLICATION_JSON).content(asJsonString(cart)))
-                .andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
+        mockMvc.perform(put("/api/v1/cart/cart")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(cart)))
+                .andExpect(status().isOk())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     /**
@@ -115,14 +120,14 @@ public class CartControllerTest {
      * @throws CartAlreadyExistException
      */
     @Test
-    public void givenCartAlreadyExistThenTryToSaveThenShouldThrowException() throws CartAlreadyExistException {
-//        when(cartService.saveCart(any())).thenReturn(cart);
-//        mockMvc.perform(post("/api/v1/cart")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(asJsonString(cart)))
-//                .andExpect(status().isCreated())
-//                .andDo(MockMvcResultHandlers.print());
-//        verify(cartService).saveCart(any());
+    public void givenCartAlreadyExistThenTryToSaveThenShouldThrowException() throws Exception {
+        when(cartService.saveCart(any())).thenThrow(CartAlreadyExistException.class);
+
+        mockMvc.perform(post("/api/v1/cart/cart")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(cart)))
+                .andExpect(status().isConflict())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     /**
@@ -130,8 +135,12 @@ public class CartControllerTest {
      * @throws CartNotFoundException
      */
     @Test
-    public void givenNoCartExistThenGetCartByIDShouldThrowException() throws CartNotFoundException {
+    public void givenNoCartExistThenGetCartByIDShouldThrowException() throws Exception {
+        when(cartService.findCartById(any())).thenThrow(CartNotFoundException.class);
 
+        mockMvc.perform(get("/api/v1/cart/cart/NonExistCartId"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     /**
@@ -139,8 +148,12 @@ public class CartControllerTest {
      * @throws CartNotFoundException
      */
     @Test
-    public void givenNoCartExistThenDeleteCartByIDShouldThrowException() throws CartNotFoundException {
+    public void givenNoCartExistThenDeleteCartByIDShouldThrowException() throws Exception {
+        when(cartService.deleteCartById(any())).thenThrow(CartNotFoundException.class);
 
+        mockMvc.perform(delete("/api/v1/cart/cart/NonExistCartId"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     /**
@@ -148,8 +161,13 @@ public class CartControllerTest {
      * @throws CartNotFoundException
      */
     @Test
-    public void givenNoCartExistThenUpdateCartShouldThrowException() throws CartNotFoundException {
-
+    public void givenNoCartExistThenUpdateCartShouldThrowException() throws Exception {
+        when(cartService.updateCart(any())).thenThrow(CartNotFoundException.class);
+        mockMvc.perform(put("/api/v1/cart/cart")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(cart)))
+                .andExpect(status().isNotFound())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     public static String asJsonString(final Object obj) {
