@@ -3,6 +3,7 @@ import { Product } from '../model/Product';
 import { Money } from '../model/Money';
 import { ApprouteService } from '../services/approute.service';
 import { ProductService } from '../services/product.service';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -11,11 +12,17 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductComponent implements OnInit {
 
+  form;
   products: Product[] = [];
   productsReceived: Product[];
 
   // Dependency injection
-  constructor(private productservice:ProductService, private approuter:ApprouteService) { }
+  constructor(private productservice:ProductService, private approuter:ApprouteService, private formBuilder:FormBuilder) {
+    this.form = this.formBuilder.group({
+      from: new FormControl('', Validators.required),
+      to: new FormControl('', Validators.required)
+    })
+   }
 
   ngOnInit(): void {
     this.getProducts();
@@ -56,7 +63,29 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  backToTop(){
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  onSubmit(){
+    let filtered = new Array();
+    let low = this.form.value.from*100;
+    let high = this.form.value.to*100;
+    let price;
+    let priceFinal;
+    //console.log(low+' '+high);
+    for(let item of this.products){
+      price = item.price.amount;
+      priceFinal = item.finalPrice.amount;
+      //console.log(price + ' '+ priceFinal + ' '+((price>=low && price<=high) || (priceFinal>=low && priceFinal<=high)));
+      if((price>=low && price<=high) || (priceFinal>=low && priceFinal<=high)){
+        filtered.push(item);
+      }
+    }
+    this.products = filtered;
   }
+
+  clearFilter(){
+    this.getProducts();
+  }
+
+  // backToTop(){
+  //   document.body.scrollTop = document.documentElement.scrollTop = 0;
+  // }
 }

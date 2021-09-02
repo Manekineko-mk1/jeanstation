@@ -5,24 +5,12 @@
     width: 100%;
 }
 
-.container{
-    width:100%;
-    margin:0;
-    display: inline;
-}
-
 * {
  box-sizing: border-box;
 }
 
 body {
  font-family: Arial, Helvetica, sans-serif;
-}
-
-.column {
- float: left;
- padding: 0 10px;
- width:50%;
 }
 
 .row {
@@ -49,38 +37,40 @@ body {
  }
 }
 
-.card {
- box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
- padding: 16px;
- text-align: center;
- background-color: #f1f1f1;
- width: 90%;
- margin: 1rem;
-}
-
-.card img {
-    width: 100%;
-}
-
-
-#discount {
-    color: red;
-}
-
-.cart {
-  position: fixed;
-  right: 0;
-}
-
 .filter {
   left: 0;
 }
 
-button img{
+/* button img{
     width: 30px;
     height: 30px;
     background-color: rgba(0, 0, 0, 0);
     padding:0;
     border: 0;
     align-items: bottom;
-}
+} */
+
+
+
+  label {
+    padding: 6px 6px 6px 0;
+    display: inline-block;
+  }
+
+  .col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+    padding: 0 20px;
+  }
+  
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+    padding: 0 20px;
+  }
+
+  input[type="submit"]{
+      margin-top: 10px;
+  }
