@@ -4,6 +4,7 @@ import com.stackroute.domain.Cart;
 import com.stackroute.domain.Product;
 import com.stackroute.exceptions.CartAlreadyExistException;
 import com.stackroute.exceptions.CartNotFoundException;
+import com.stackroute.repository.CartRepository;
 import com.stackroute.service.CartService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,25 +19,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class CartControllerIntegrationTest {
+
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private CartRepository cartRepository;
+
     private Cart cart;
-    private List<Product> cartItems;
-    int priceTotalBeforeTax;
-    int priceTotalAfterTax;
+    private List<Product> cartList;
 
     @BeforeEach
     void setUp() {
         cart = new Cart();
-        priceTotalBeforeTax = 100;
-        priceTotalAfterTax = 114;
-        cartItems = new ArrayList<Product>();
-        Product product = new Product();
-        cartItems.add(product);
+        cart.setId("1l");
+        cart.setPriceTotalBeforeTax(100);
+        cart.setPriceTotalAfterTax(114);
+        cart.setCartItems(new ArrayList<>());
     }
 
     @AfterEach
     void tearDown() {
+        cartRepository.deleteAll();
         cart = null;
     }
 
