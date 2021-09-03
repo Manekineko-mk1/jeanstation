@@ -47,7 +47,7 @@ body {
  }
 }
 
-.card {
+.container .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
     text-align: left;
@@ -56,11 +56,11 @@ body {
     margin: 1rem;
 }
 
-.card img {
+.container .card img {
     width: 80%;
 }
   
-button {
+button, input[type="submit"] {
     background-color: #3a4468;
     color: white;
     padding: 12px 20px;
@@ -74,6 +74,26 @@ button:hover {
     background-color:#45a049 ;
 }
 
-#discount {
-    color: red;
+.row {
+    width:100%;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+  
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+    margin-right: 1px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
 }

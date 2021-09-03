@@ -108,7 +108,7 @@ public class ProductController {
 
         log.info("Query to get a product | Product ID: {} | Timestamp: {}", productId, timeStamp);
 
-        return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.FOUND);
+        return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.OK);
     }
 
     /**

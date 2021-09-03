@@ -32,7 +32,7 @@
   </ul>
 
   <div *ngIf="isAdmin" class="add">
-    <button (click)="showAdd()" *ngIf="!inOrderManag" type="submit">Add Product</button>
+    <button (click)="showAdd()" *ngIf="inProdManag" type="submit">Add Product</button>
 
     <!-- <button (click)="toOrderManagement()" type="submit" *ngIf="!inOrderManag">Order Management</button>
 

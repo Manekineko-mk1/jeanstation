@@ -19,10 +19,15 @@ export class OrderManagementComponent implements OnInit {
   status:boolean = false;
   closeModal: string;
   orderToUpdate:Order;
+  searchform;
+  searchError;
 
   constructor(private formBuilder:FormBuilder, private orderService:OrderService, private modalService: NgbModal, private approute:ApprouteService) { 
     this.form = this.formBuilder.group({
       status: new FormControl('', Validators.required)
+    })
+    this.searchform = this.formBuilder.group({
+      id : new FormControl('', Validators.required)
     })
   }
 
@@ -83,6 +88,23 @@ export class OrderManagementComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  filter(){
+    this.orderService.getOrderById(this.searchform.value.id).subscribe(
+      data => {
+        this.orders = new Array(data);
+        this.searchError = '';
+        this.searchform.reset();
+      }, 
+      err => {
+        this.searchError = 'ID does not exist.';
+      }
+    )
+  }
+
+  clearFilter(){
+    this.getOrders();
   }
 
 }
