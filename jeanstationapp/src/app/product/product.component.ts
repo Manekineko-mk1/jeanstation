@@ -83,6 +83,7 @@ export class ProductComponent implements OnInit {
 
   clearFilter(){
     this.getProducts();
+    this.form.reset();
   }
 
   // backToTop(){
