@@ -63,22 +63,22 @@ describe('RegistrationComponent', () => {
     expect(component.message).toEqual('Fields cannot be empty! Please verify provided information');
   });
 
-  it('onSubmit() should go to login page if addUser is successful', () => {
-    component.form.clearValidators();
-    component.form.updateValueAndValidity();
-    spyOn(userservice, 'addUser').and.returnValue(of(user1));
-    component.onSubmit();
-    expect(userservice.addUser).toHaveBeenCalled();
-    expect(router.openLogin).toHaveBeenCalled();
-  });
+  // it('onSubmit() should go to login page if addUser is successful', () => {
+  //   component.form.clearValidators();
+  //   component.form.updateValueAndValidity();
+  //   spyOn(userservice, 'addUser').and.returnValue(of(user1));
+  //   component.onSubmit();
+  //   expect(userservice.addUser).toHaveBeenCalled();
+  //   expect(router.openLogin).toHaveBeenCalled();
+  // });
 
-  it('onSubmit() should return error message if addUser is not successful', () => {
-    component.form.clearValidators();
-    component.form.updateValueAndValidity();
-    spyOn(userservice, 'addUser').and.returnValue(throwError({status:404}));
-    component.onSubmit();
-    expect(userservice.addUser).toHaveBeenCalled();
-    expect(component.message).toEqual('Registration failed!');
-  });
+  // it('onSubmit() should return error message if addUser is not successful', () => {
+  //   component.form.clearValidators();
+  //   component.form.updateValueAndValidity();
+  //   spyOn(userservice, 'addUser').and.returnValue(throwError({status:404}));
+  //   component.onSubmit();
+  //   expect(userservice.addUser).toHaveBeenCalled();
+  //   expect(component.message).toEqual('Registration failed!');
+  // });
 
 });

@@ -9,7 +9,6 @@ import { FooterComponent } from 'src/app/footer/footer.component';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { HomeComponent } from 'src/app/home/home.component';
 import { LoginComponent } from 'src/app/login/login.component';
-import { OrderComponent } from 'src/app/order/order.component';
 import { ProductComponent } from 'src/app/product/product.component';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,7 +38,6 @@ describe('AppComponent', () => {
         HomeComponent,
         ProductComponent,
         CartComponent,
-        OrderComponent,
         AdminComponent
       ],
     }).compileComponents();

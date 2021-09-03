@@ -45,7 +45,7 @@ export class PasswordComponent implements OnInit {
           this.profile.password = this.form.value.newPassword;
           console.log(this.profile.password);
           this.authservice.logOut();
-          this.userservice.updateUser(this.profile).subscribe(
+          this.userservice.updatePassword(this.profile).subscribe(
             data => {
               this.message = "Password Updated";
               this.approute.openLogin();

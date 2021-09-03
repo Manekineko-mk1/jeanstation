@@ -5,13 +5,15 @@ import { Order } from '../model/Order';
 import { OrderService } from './order.service';
 
 const order1:Order = {
-  priceTotal: 120,
+  priceTotalBeforeTax: 120,
   userId: 'A1',
   deliveryDate: '2021-08-26',
   creationDate: '2021-08-23',
   status: 'SUBMITTED',
-  orderItems : ['Item1', 'Item2'] 
+  //orderItems : ['Item1', 'Item2'] 
 }
+
+const baseurl:string = 'http://localhost:8080/api/v1/order/orders';
 
 describe('OrderService', () => {
   let service: OrderService;
@@ -51,13 +53,13 @@ describe('OrderService', () => {
 
   it('getOrder() method should return list of Orders', () => {
     service.getOrder().subscribe();
-    const req = httpMock.expectOne('http://localhost:8080/order/api/v1/orders');
+    const req = httpMock.expectOne(baseurl);
     expect(req.request.method).toEqual('GET');
   });
 
   it('getOrderById() method should return respective Order', () => {
     service.getOrderById(order1.id).subscribe();
-    const req = httpMock.expectOne('http://localhost:8080/order/api/v1/orders/'+order1.id);
+    const req = httpMock.expectOne(baseurl+'/'+order1.id);
     expect(req.request.method).toEqual('GET');
   });
 
@@ -67,7 +69,7 @@ describe('OrderService', () => {
         expect(data.userId).toEqual('New Order');
       }
     );
-    const req = httpMock.expectOne('http://localhost:8080/order/api/v1/orders');
+    const req = httpMock.expectOne(baseurl);
     expect(req.request.method).toEqual('POST');
     expect(req.request.headers.get('Content-Type')).toEqual('application/json');
   });
@@ -79,20 +81,20 @@ describe('OrderService', () => {
         expect(data.userId).toEqual('A2');
       }
     );
-    const req = httpMock.expectOne('http://localhost:8080/order/api/v1/orders');
+    const req = httpMock.expectOne(baseurl);
     expect(req.request.method).toEqual('PUT');
     expect(req.request.headers.get('Content-Type')).toEqual('application/json');
   });
 
   it('deleteOrder() method should delete Order', () => {
     service.deleteOrder(order1.id).subscribe();
-    const req = httpMock.expectOne('http://localhost:8080/order/api/v1/orders/'+order1.id);
+    const req = httpMock.expectOne(baseurl+'/'+order1.id);
     expect(req.request.method).toEqual('DELETE');
   });
 
   it('getOrderByUserId() method should return respective Order', () => {
     service.getOrderByUserId(order1.userId).subscribe();
-    const req = httpMock.expectOne('http://localhost:8080/order/api/v1/orders/user/'+order1.userId);
+    const req = httpMock.expectOne(baseurl+'/user/'+order1.userId);
     expect(req.request.method).toEqual('GET');
   });
 

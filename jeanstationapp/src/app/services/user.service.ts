@@ -32,8 +32,12 @@ export class UserService {
     return this.http.post<User>(this.baseurl+'register',data,httpOptions);
   }
 
-  updateUser(data: User): Observable<User>{
+  updatePassword(data: User): Observable<User>{
     return this.http.put<User>(this.baseurl+'update/password',data,httpOptions);
+  }
+
+  updateUser(data: User): Observable<User>{
+    return this.http.put<User>(this.baseurl+'user',data,httpOptions);
   }
 
   deleteUser(id: string): Observable<User>{

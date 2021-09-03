@@ -22,6 +22,7 @@ const user1:User = {
   address : address,
   telephone : '123-456-7890'
 }
+const baseurl='http://localhost:8080/api/v1/user/'
 
 describe('UserService', () => {
   let service: UserService;
@@ -61,13 +62,13 @@ describe('UserService', () => {
 
   it('getUser() method should return list of users', () => {
     service.getUser().subscribe();
-    const req = httpMock.expectOne('http://localhost:8080/user/api/v1/users');
+    const req = httpMock.expectOne(baseurl+'users');
     expect(req.request.method).toEqual('GET');
   });
 
   it('getUserById() method should return respective user', () => {
     service.getUserById(user1.id).subscribe();
-    const req = httpMock.expectOne('http://localhost:8080/user/api/v1/user/'+user1.id);
+    const req = httpMock.expectOne(baseurl+'user/'+user1.id);
     expect(req.request.method).toEqual('GET');
   });
 
@@ -77,7 +78,7 @@ describe('UserService', () => {
         expect(data.realName).toEqual('New User');
       }
     );
-    const req = httpMock.expectOne('http://localhost:8080/user/api/v1/user');
+    const req = httpMock.expectOne(baseurl+'register');
     expect(req.request.method).toEqual('POST');
     expect(req.request.headers.get('Content-Type')).toEqual('application/json');
   });
@@ -89,14 +90,14 @@ describe('UserService', () => {
         expect(data.realName).toEqual('New name');
       }
     );
-    const req = httpMock.expectOne('http://localhost:8080/user/api/v1/user');
+    const req = httpMock.expectOne(baseurl+'user');
     expect(req.request.method).toEqual('PUT');
     expect(req.request.headers.get('Content-Type')).toEqual('application/json');
   });
 
   it('deleteUser() method should delete User', () => {
     service.deleteUser(user1.id).subscribe();
-    const req = httpMock.expectOne('http://localhost:8080/user/api/v1/user/'+user1.id);
+    const req = httpMock.expectOne(baseurl+'user/'+user1.id);
     expect(req.request.method).toEqual('DELETE');
   });
 

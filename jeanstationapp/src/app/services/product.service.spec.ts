@@ -16,6 +16,8 @@ const product1: Product = {
   categories: ['Men', 'Jacket']
 };
 
+const baseurl:string = 'http://localhost:8080/api/v1/product/';
+
 describe('ProductService', () => {
   let service: ProductService;
   let httpMock: HttpTestingController;
@@ -51,7 +53,7 @@ describe('ProductService', () => {
   it('getProduct() method should return list of products', () => {
     service.getProduct().subscribe();
     
-    const req = httpMock.expectOne('http://localhost:8080/product/api/v1/products');
+    const req = httpMock.expectOne(baseurl+'products');
     expect(req.request.method).toEqual('GET');
   });
 
@@ -61,7 +63,7 @@ describe('ProductService', () => {
         expect(data.name).toEqual('New Product');
       }
     );
-    const req = httpMock.expectOne('http://localhost:8080/product/api/v1/product');
+    const req = httpMock.expectOne(baseurl+'product');
     expect(req.request.method).toEqual('POST');
     expect(req.request.headers.get('Content-Type')).toEqual('application/json');
   });
@@ -73,14 +75,14 @@ describe('ProductService', () => {
         expect(data.name).toEqual('New name');
       }
     );
-    const req = httpMock.expectOne('http://localhost:8080/product/api/v1/product');
+    const req = httpMock.expectOne(baseurl+'product');
     expect(req.request.method).toEqual('PUT');
     expect(req.request.headers.get('Content-Type')).toEqual('application/json');
   });
 
   it('deleteProduct() method should delete Product', () => {
     service.deleteProduct(product1.id).subscribe();
-    const req = httpMock.expectOne('http://localhost:8080/product/api/v1/product/'+product1.id);
+    const req = httpMock.expectOne(baseurl+'product/'+product1.id);
     expect(req.request.method).toEqual('DELETE');
   });
 
