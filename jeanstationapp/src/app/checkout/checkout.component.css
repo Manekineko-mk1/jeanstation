@@ -1,3 +1,4 @@
+
 body{margin-top:20px;
     background:#eee;
 }
@@ -105,4 +106,8 @@ table.shopping-cart-table tr td:last-child {
 
 .modal-body button:hover {
   background-color: #45a049;
+}
+
+.container {
+  height:75vh;
 }
