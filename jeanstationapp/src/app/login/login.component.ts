@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     // sessionStorage.setItem('isLoggedIn', 'false');
     // sessionStorage.setItem('isAdmin', 'false');
-    //   if(this.authservice.isUserLoggedIn()){
-    //     this.authservice.logOut();
-    //   }
+      if(this.authservice.isUserLoggedIn()){
+        this.authservice.logOut();
+      }
   }
 
   onSubmit(){
@@ -48,11 +48,6 @@ export class LoginComponent implements OnInit {
           userData => {
             this.approute.isLoggedIn.next(true);
             //sessionStorage.setItem('isLoggedIn', 'true');
-            this.userservice.getUserByUsername(sessionStorage.getItem('username')).subscribe(
-              data => {
-                sessionStorage.setItem('userId', data.id);
-              }
-            )
             this.approute.openProduct();
           },
           err => {

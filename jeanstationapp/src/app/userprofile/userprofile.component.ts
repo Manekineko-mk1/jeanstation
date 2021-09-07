@@ -35,6 +35,8 @@ export class UserprofileComponent implements OnInit {
 
   ngOnInit(): void {
     this.update = false;
+    this.approute.inOrderManag.next(false);
+    this.approute.inProdManag.next(false);
     let address:Address = new Address();
     address.city="mycity";
     address.country="mycounter";
@@ -50,21 +52,21 @@ export class UserprofileComponent implements OnInit {
     this.user.realName="myRealname";
     this.user.address = address;
     this.user.telephone = "11111111";
-    this.id = sessionStorage.getItem('userId');
-    this.getUser();
+    this.userService.getUserByUsername(sessionStorage.getItem('username')).subscribe(
+      data => {
+        this.user = data;
+        console.log(this.user);
+      },
+      err => {
+        console.log(err);
+        console.log(sessionStorage.getItem('username'));
+      }
+    )
     this.approute.isAdmin.subscribe(
       value => {
         this.isAdmin = value;
       }
     )
-  }
-
-  getUser(){
-    this.userService.getUserById(this.id).subscribe(
-      data => {
-        this.user = data;
-      }
-    );
   }
 
   showUpdate(){

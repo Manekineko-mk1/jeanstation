@@ -26,6 +26,8 @@ export class AdminComponent implements OnInit {
   private selectedFile;
   imgURL: any;
   showchangeImage: boolean = false;
+  searchform;
+  searchError;
 
   constructor(private formBuilder:FormBuilder, private productservice:ProductService, 
     private approute: ApprouteService, private modalService:NgbModal) { 
@@ -40,11 +42,16 @@ export class AdminComponent implements OnInit {
       color: new FormControl(''),
       categories: new FormArray([new FormControl()])
     });
+
+    this.searchform = this.formBuilder.group({
+      id : new FormControl('', Validators.required)
+    })
     
   }
 
   ngOnInit(): void {
     this.approute.inOrderManag.next(false);
+    this.approute.inProdManag.next(true);
     this.getProducts();
     this.approute.showAdd.subscribe(
       value => {
@@ -298,6 +305,24 @@ export class AdminComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  filter(){
+    this.productservice.getProductById(this.searchform.value.id).subscribe(
+      data => {
+        this.products = new Array(data);
+        this.searchError = '';
+        this.searchform.reset();
+      }, 
+      err => {
+        console.log(err)
+        this.searchError = 'ID does not exist.';
+      }
+    )
+  }
+
+  clearFilter(){
+    this.getProducts();
   }
 
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { User } from '../model/User';
+import { ApprouteService } from '../services/approute.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -13,8 +15,9 @@ export class PasswordComponent implements OnInit {
   form:any;
   id:string;
   message:string;
+  profile:User;
 
-  constructor(private formBuilder:FormBuilder, private userservice:UserService) {
+  constructor(private formBuilder:FormBuilder, private userservice:UserService, private approute:ApprouteService, private authservice:AuthenticationService) {
     this.form = this.formBuilder.group({
       oldPassword: new FormControl('',Validators.required),
       newPassword: new FormControl('',Validators.required),
@@ -23,21 +26,43 @@ export class PasswordComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.id = sessionStorage.getItem('userId');
+    this.userservice.getUserByUsername(sessionStorage.getItem('username')).subscribe(
+      data => {
+        this.profile = data;
+        console.log(this.profile.password);
+      },
+      err => {
+        console.log(err);
+        console.log(sessionStorage.getItem('username'));
+      }
+    )
   }
 
   onSubmit(){
-    let profile:User; 
-    this.userservice.getUserById(this.id).subscribe(
+    this.authservice.authenticate(sessionStorage.getItem('username'), this.form.value.oldPassword).subscribe(
       data => {
-        profile = data;
-      },
-    );
-    if((profile.password == this.form.value.oldPassword)&&(this.form.value.newPassword == this.form.value.confirmPassword)){
-      profile.password = this.form.value.newPassword;
-    } else {
-      this.message = 'Password Incorrect';
-    }
+        if(this.form.value.newPassword == this.form.value.confirmPassword){
+          this.profile.password = this.form.value.newPassword;
+          console.log(this.profile.password);
+          this.authservice.logOut();
+          this.userservice.updatePassword(this.profile).subscribe(
+            data => {
+              this.message = "Password Updated";
+              this.approute.openLogin();
+            }, 
+            err => {
+              this.message = "Update failed";
+            }
+          );
+        } else {
+          this.message = "Passwords do not match";
+        }
+      }, 
+      err => {
+        this.message = 'Password Incorrect';
+      }
+    )
+  
   }
 
 }

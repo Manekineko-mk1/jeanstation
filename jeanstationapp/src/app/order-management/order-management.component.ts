@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { $ } from 'protractor';
 import { Order } from '../model/Order';
 import { ApprouteService } from '../services/approute.service';
 import { OrderService } from '../services/order.service';
@@ -18,10 +19,15 @@ export class OrderManagementComponent implements OnInit {
   status:boolean = false;
   closeModal: string;
   orderToUpdate:Order;
+  searchform;
+  searchError;
 
   constructor(private formBuilder:FormBuilder, private orderService:OrderService, private modalService: NgbModal, private approute:ApprouteService) { 
     this.form = this.formBuilder.group({
       status: new FormControl('', Validators.required)
+    })
+    this.searchform = this.formBuilder.group({
+      id : new FormControl('', Validators.required)
     })
   }
 
@@ -37,7 +43,8 @@ export class OrderManagementComponent implements OnInit {
     // some.userId = "45";
     // this.orders.push(some);
     this.getOrders();
-    sessionStorage.setItem('inOrderManag', 'true');
+    this.approute.inOrderManag.next(true);
+    this.approute.inProdManag.next(false);
   }
 
   getOrders(){
@@ -50,7 +57,14 @@ export class OrderManagementComponent implements OnInit {
 
   updateStatus(){
     this.orderToUpdate.status = this.form.value.status;
-    this.orderService.updateOrder(this.orderToUpdate).subscribe();
+    this.orderService.updateOrder(this.orderToUpdate).subscribe(
+      data => {
+        this.message = "Update Successful";
+      },
+      err => {
+        this.message = "Update Failed";
+      }
+    );
   }
 
   changeStatus(){
@@ -74,6 +88,23 @@ export class OrderManagementComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  filter(){
+    this.orderService.getOrderById(this.searchform.value.id).subscribe(
+      data => {
+        this.orders = new Array(data);
+        this.searchError = '';
+        this.searchform.reset();
+      }, 
+      err => {
+        this.searchError = 'ID does not exist.';
+      }
+    )
+  }
+
+  clearFilter(){
+    this.getOrders();
   }
 
 }

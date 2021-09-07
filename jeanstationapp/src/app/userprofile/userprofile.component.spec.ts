@@ -57,15 +57,10 @@ describe('UserprofileComponent', () => {
     expect(component.ngOnInit).toBeTruthy();
   });
 
-  it('ngOnInit() should call getUser', () => {
+  it('ngOnInit() should call userservice.getUserByUsername', () => {
+    spyOn(userservice, 'getUserByUsername').and.returnValue(of(user1));
     component.ngOnInit();
-    expect(component.getUser).toHaveBeenCalled();
-  });
-
-  it('getUser() should return user', () => {
-    spyOn(userservice, 'getUserById').and.returnValue(of(user1));
-    component.getUser();
-    expect(userservice.getUserById).toHaveBeenCalled();
+    expect(userservice.getUserByUsername).toHaveBeenCalled();
   });
 
   it('should have showUpdate()', () => {
@@ -74,7 +69,7 @@ describe('UserprofileComponent', () => {
 
   it('showUpdate should set update', () => {
     component.showUpdate();
-    expect(component.update).toBeTrue();
+    expect(component.update).toBe(true);
   });
 
   it('should have updateUser()', () => {

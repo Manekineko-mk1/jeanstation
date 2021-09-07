@@ -22,7 +22,8 @@ import static org.apache.commons.codec.binary.Base64.encodeBase64String;
 
 @RestController
 @RequestMapping(value = "/api/v1/product")
-@CrossOrigin()
+@Slf4j
+//@CrossOrigin()
 public class ProductController {
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     private ProductService productService;
@@ -110,7 +111,7 @@ public class ProductController {
 
         logger.info("Query to get a product | Product ID: {} | Timestamp: {}", productId, timeStamp);
 
-        return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.FOUND);
+        return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.OK);
     }
 
     /**

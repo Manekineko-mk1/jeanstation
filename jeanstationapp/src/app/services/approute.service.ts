@@ -11,6 +11,7 @@ export class ApprouteService {
   public isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public showAdd: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public inOrderManag: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public inProdManag: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private router:Router) { }
 
@@ -48,6 +49,14 @@ export class ApprouteService {
 
   openRegistration(){
     this.router.navigate(['registration']);
+  }
+
+  openProfile(){
+    this.router.navigate(['profile']);
+  }
+
+  openOrder(){
+    this.router.navigate(['myorder']);
   }
 
 }

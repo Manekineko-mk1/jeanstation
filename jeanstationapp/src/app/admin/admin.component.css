@@ -22,7 +22,7 @@
       display: inline-block;
     }
 
-    input[type=submit] {
+    #add input[type=submit],#update input[type=submit] {
         background-color: #3a4468;
         color: white;
         padding: 12px 20px;
@@ -32,13 +32,13 @@
         float: right;
       }
       
-      input[type=submit]:hover {
+      #add input[type=submit]:hover,#update input[type=submit]:hover {
         background-color: #45a049;
       }
     
     .container {
       border-radius: 5px;
-      width: 95%;
+      width: 100%;
       padding-top: 1rem;
     }
     
@@ -152,7 +152,7 @@
       width: 100%;
   }
     
-  /* #products button {
+  .modal-header button, .modal-footer button {
       background-color: #3a4468;
       color: white;
       padding: 12px 20px;
@@ -162,9 +162,9 @@
       margin: 2%;
   }
 
-  #products button:hover {
+  .modal-header button:hover, .modal-footer button:hover {
     background-color: #45a049;
-  } */
+  }
 
   .clear {
     clear: both;
@@ -193,3 +193,25 @@
   #discount {
     color: red;
   }
+
+  /* .card-body button{
+    background-color: #3a4468;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin: 2px;
+    width: auto;
+  } */
+
+  .row {
+    width: 100%;
+  }
+
+  .col-md-2 .filter{
+    padding-top: 1rem;
+  }
+
+  

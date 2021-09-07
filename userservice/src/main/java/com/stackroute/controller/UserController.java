@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@CrossOrigin()
+//@CrossOrigin()
 @RestController
 @RequestMapping(value = "/api/v1/user")
 @Slf4j
@@ -58,7 +58,7 @@ public class UserController {
         return new ResponseEntity<>(userService.findUserById(userId), HttpStatus.FOUND);
     }
 
-    @GetMapping("user/username/{username}")
+    @GetMapping("username/{username}")
     @ApiOperation(value = "GET a User by Username", notes = "GET a User entry from the users collection " +
             "by a provided User Name. Returns a User object if found.", response = ResponseEntity.class)
     public ResponseEntity<Users> loadUserByUsername(@PathVariable("username") String username){
@@ -66,7 +66,7 @@ public class UserController {
         String timeStamp = zonedDateTimeNow.format(formatter);
         log.info("Query to get a user | User Name: {} | Timestamp: {}" ,username ,timeStamp);
 
-        return new ResponseEntity<>(userService.loadUserByUsername(username), HttpStatus.FOUND);
+        return new ResponseEntity<>(userService.loadUserByUsername(username), HttpStatus.OK);
     }
 
     /**

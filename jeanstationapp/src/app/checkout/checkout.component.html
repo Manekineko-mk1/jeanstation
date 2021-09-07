@@ -70,7 +70,7 @@
           <!-- Bottom row: Continue shopping & Checkout section -->
           <div class="ibox-content">
             <!-- TODO: Show payment view -->
-            <button class="btn btn-primary pull-right" (click)="checkout()"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
+            <button class="btn btn-primary pull-right" (click)="checkout(modalData)"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
 
             <!-- Redirect back to product list view -->
             <a class="btn btn-white" href="../product" routerLink="../product"><i class="fa fa-arrow-left"></i> Continue shopping</a>
@@ -94,7 +94,7 @@
             <span class="text-muted small">*Sales tax will be applied if applicable</span>
             <div class="m-t-sm">
               <div class="btn-group">
-                <button class="btn btn-primary btn-sm" (click)="checkout()"><i class="fa fa-shopping-cart"></i> Checkout</button>
+                <button class="btn btn-primary btn-sm" (click)="checkout(modalData)"><i class="fa fa-shopping-cart"></i> Checkout</button>
               </div>
             </div>
           </div>
@@ -112,4 +112,22 @@
       </div>
     </div>
   </div>
+
+
+  <ng-template #modalData let-modal>
+    <div class="modal-header">
+      <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+     <h1>Order Submitted Successfully!!!</h1>
+     <button type="button" (click)="viewOrder()">View Orders</button>
+    </div>
+    <div class="modal-footer">
+      <button (click)="modal.close('Save click')" class="btn" type="button">Close</button>
+    </div>
+  </ng-template>
 </div>
+
+
