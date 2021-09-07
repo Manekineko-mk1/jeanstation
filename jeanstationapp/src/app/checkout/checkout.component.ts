@@ -8,6 +8,7 @@ import { MessengerService } from 'src/app/services/messenger.service';
 import { ApprouteService } from 'src/app/services/approute.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderService } from '../services/order.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-checkout',
@@ -26,7 +27,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private cookieService: CookieService, private cartService:CartService,
               private orderService:OrderService, private msg: MessengerService, private appRouter: ApprouteService,
-              private modalService:NgbModal) { }
+              private modalService:NgbModal, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.cartId = this.cookieService.get("cartId");
@@ -139,7 +140,21 @@ export class CheckoutComponent implements OnInit {
         console.log(data);
       });
 
-      // 3. Redirect to Orders page
+      // 3. Update product quantity
+      for(let item of this.cartItems){
+        this.productService.getProductById(item.id).subscribe(
+          data => {
+            let quantityTotal = data.quantity;
+            item.quantity = quantityTotal - item.quantity;
+            this.productService.updateProduct(item).subscribe();
+          }, 
+          err=> {
+            console.log(err);
+          }
+        );
+      }
+
+      // 4. Redirect to Orders page
       this.emptyCart();
       this.cookieService.removeAll();
       this.triggerModal(content);
@@ -170,5 +185,31 @@ export class CheckoutComponent implements OnInit {
   viewOrder(){
     this.appRouter.openOrder();
     this.modalService.dismissAll();
+  }
+
+  plus(item){
+    this.cart.cartItems.filter(
+      value => {
+        if(value.id === item.id){
+          value.quantity = value.quantity+1;
+        }
+      }
+    );
+    this.cartService.updateCart(this.cart).subscribe();
+    this.calculateTotal();
+  }
+
+  minus(item){
+    this.cart.cartItems.filter(
+      value => {
+        if((value.id === item.id) && (value.quantity!=1)){
+          value.quantity = value.quantity-1;
+        } else if ((value.id === item.id) && (value.quantity===1)){
+          this.removeItemFromCart(item);
+        }
+      }
+    );
+    this.cartService.updateCart(this.cart).subscribe();
+    this.calculateTotal();
   }
 }

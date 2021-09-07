@@ -72,8 +72,9 @@ export class CartComponent implements OnInit {
     }
 
     if(!ifProductExist) {
-      product.quantity = 1;
-      this.cartItems.push(product);
+      let newProduct = JSON.parse(JSON.stringify(product));
+      newProduct.quantity = 1;
+      this.cartItems.push(newProduct);
     }
 
     this.cart.cartItems = this.cartItems;
