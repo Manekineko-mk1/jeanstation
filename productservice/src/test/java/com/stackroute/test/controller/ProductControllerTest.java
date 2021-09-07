@@ -65,13 +65,13 @@ public class ProductControllerTest {
 
     @AfterEach
     public void tearDown() {
-       product = null;
+        product = null;
     }
 
     @Test
     public void givenProductToSaveThenShouldReturnSavedProduct() throws Exception {
         when(productService.saveProduct(any())).thenReturn(product);
-        mockMvc.perform(post("/api/v1/product")
+        mockMvc.perform(post("/api/v1/product/product")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(product)))
                 .andExpect(status().isCreated())
@@ -82,18 +82,17 @@ public class ProductControllerTest {
     @Test
     public void givenGetAllProductsThenShouldReturnListOfAllProducts() throws Exception {
         when(productService.findAllProducts()).thenReturn(productList);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/products")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/product/products")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(product)))
                 .andDo(MockMvcResultHandlers.print());
         verify(productService).findAllProducts();
         verify(productService, times(1)).findAllProducts();
-
     }
 
     @Test
     void givenProductIdThenShouldReturnRespectiveProduct() throws Exception {
         when(productService.findProductById(product.getId())).thenReturn(product);
-        mockMvc.perform(get("/api/v1/product/1l"))
+        mockMvc.perform(get("/api/v1/product/product/1l"))
                .andExpect(MockMvcResultMatchers.status().isFound())
                .andDo(MockMvcResultHandlers.print());
     }
@@ -101,7 +100,7 @@ public class ProductControllerTest {
     @Test
     public void givenProductIdToDeleteThenShouldNotReturnDeletedProduct() throws Exception {
         when(productService.deleteProductById(product.getId())).thenReturn(product);
-        mockMvc.perform(delete("/api/v1/product/1l"))
+        mockMvc.perform(delete("/api/v1/product/product/1l"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
@@ -109,7 +108,7 @@ public class ProductControllerTest {
     @Test
     public void givenProductToUpdateThenShouldReturnUpdatedProduct() throws Exception {
         when(productService.updateProduct(any())).thenReturn(product);
-        mockMvc.perform(put("/api/v1/product")
+        mockMvc.perform(put("/api/v1/product/product")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(product)))
                 .andExpect(status().isOk())
@@ -124,7 +123,7 @@ public class ProductControllerTest {
     public void givenProductAlreadyExistThenTryToSaveThenShouldThrowException() throws Exception {
         when(productService.saveProduct(any())).thenThrow(ProductAlreadyExistsException.class);
 
-        mockMvc.perform(post("/api/v1/product")
+        mockMvc.perform(post("/api/v1/product/product")
                .contentType(MediaType.APPLICATION_JSON)
                .content(asJsonString(product)))
                .andExpect(status().isConflict())
@@ -139,7 +138,7 @@ public class ProductControllerTest {
     public void givenNoProductExistThenGetProductByIDShouldThrowException() throws Exception {
         when(productService.findProductById(any())).thenThrow(ProductNotFoundException.class);
 
-        mockMvc.perform(get("/api/v1/product/1l"))
+        mockMvc.perform(get("/api/v1/product/product/1l"))
                .andExpect(MockMvcResultMatchers.status().isNotFound())
                .andDo(MockMvcResultHandlers.print());
     }
@@ -152,7 +151,7 @@ public class ProductControllerTest {
     public void givenNoProductExistThenDeleteProductByIDShouldThrowException() throws Exception {
         when(productService.deleteProductById(any())).thenThrow(ProductNotFoundException.class);
 
-        mockMvc.perform(delete("/api/v1/product/1l"))
+        mockMvc.perform(delete("/api/v1/product/product/1l"))
                .andExpect(MockMvcResultMatchers.status().isNotFound())
                .andDo(MockMvcResultHandlers.print());
     }
@@ -164,7 +163,7 @@ public class ProductControllerTest {
     @Test
     public void givenNoProductExistThenUpdateProductShouldThrowException() throws Exception {
         when(productService.updateProduct(any())).thenThrow(ProductNotFoundException.class);
-        mockMvc.perform(put("/api/v1/product")
+        mockMvc.perform(put("/api/v1/product/product")
                .contentType(MediaType.APPLICATION_JSON)
                .content(asJsonString(product)))
                .andExpect(status().isNotFound())
@@ -178,6 +177,5 @@ public class ProductControllerTest {
             throw new RuntimeException(e);
         }
     }
-    
 }
 

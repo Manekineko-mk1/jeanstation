@@ -1,0 +1,72 @@
+2021-09-03 15:06:09.003  INFO 22228 --- [main] c.s.e.EurekaserviceApplication           : Starting EurekaserviceApplication using Java 11.0.11 on CA-LH77FR73 with PID 22228 (C:\Users\jia.mo\Documents\Exercise\Capstone\jeanstation\eurekaservice\target\classes started by jia.mo in C:\Users\jia.mo\Documents\Exercise\Capstone\jeanstation)
+2021-09-03 15:06:09.014  INFO 22228 --- [main] c.s.e.EurekaserviceApplication           : No active profile set, falling back to default profiles: default
+2021-09-03 15:06:13.233  INFO 22228 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=ef967bf6-f509-352b-a6f8-67343078c4a2
+2021-09-03 15:06:16.914  INFO 22228 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8761 (http)
+2021-09-03 15:06:16.963  INFO 22228 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-09-03 15:06:16.963  INFO 22228 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.52]
+2021-09-03 15:06:17.836  INFO 22228 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-09-03 15:06:17.838  INFO 22228 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8575 ms
+2021-09-03 15:06:20.179  INFO 22228 --- [main] c.s.j.s.i.a.WebApplicationImpl           : Initiating Jersey application, version 'Jersey: 1.19.4 05/24/2017 03:20 PM'
+2021-09-03 15:06:20.446  INFO 22228 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2021-09-03 15:06:20.451  INFO 22228 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2021-09-03 15:06:21.254  INFO 22228 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2021-09-03 15:06:21.256  INFO 22228 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2021-09-03 15:06:32.670  INFO 22228 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses Jersey
+2021-09-03 15:06:32.894  WARN 22228 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-09-03 15:06:32.965  INFO 22228 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2021-09-03 15:06:33.104  INFO 22228 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2021-09-03 15:06:33.105  INFO 22228 --- [main] com.netflix.discovery.DiscoveryClient    : Client configured to neither register nor query for data.
+2021-09-03 15:06:33.152  INFO 22228 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1630695993147 with initial instances count: 0
+2021-09-03 15:06:33.300  INFO 22228 --- [main] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
+2021-09-03 15:06:33.308  INFO 22228 --- [main] c.n.eureka.cluster.PeerEurekaNodes       : Adding new peer nodes [http://localhost:8761/eureka/]
+2021-09-03 15:06:34.306  INFO 22228 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2021-09-03 15:06:34.306  INFO 22228 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2021-09-03 15:06:34.306  INFO 22228 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2021-09-03 15:06:34.306  INFO 22228 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2021-09-03 15:06:34.625  INFO 22228 --- [main] c.n.eureka.cluster.PeerEurekaNodes       : Replica node URL:  http://localhost:8761/eureka/
+2021-09-03 15:06:34.659  INFO 22228 --- [main] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
+2021-09-03 15:06:34.660  INFO 22228 --- [main] c.n.eureka.DefaultEurekaServerContext    : Initialized
+2021-09-03 15:06:34.691  INFO 22228 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-09-03 15:06:34.770  INFO 22228 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application EUREKA with eureka with status UP
+2021-09-03 15:06:34.780  INFO 22228 --- [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : Setting the eureka configuration..
+2021-09-03 15:06:34.817  INFO 22228 --- [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
+2021-09-03 15:06:34.819  INFO 22228 --- [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
+2021-09-03 15:06:34.820  INFO 22228 --- [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
+2021-09-03 15:06:34.820  INFO 22228 --- [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
+2021-09-03 15:06:34.820  INFO 22228 --- [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
+2021-09-03 15:06:34.851  INFO 22228 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8761 (http) with context path ''
+2021-09-03 15:06:34.853  INFO 22228 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8761
+2021-09-03 15:06:34.857  INFO 22228 --- [Thread-9] e.s.EurekaServerInitializerConfiguration : Started Eureka Server
+2021-09-03 15:06:38.491  INFO 22228 --- [main] c.s.e.EurekaserviceApplication           : Started EurekaserviceApplication in 36.695 seconds (JVM running for 40.486)
+2021-09-03 15:07:34.838  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2021-09-03 15:08:28.007  INFO 22228 --- [http-nio-8761-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-09-03 15:08:28.007  INFO 22228 --- [http-nio-8761-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-09-03 15:08:28.018  INFO 22228 --- [http-nio-8761-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-09-03 15:08:28.790  INFO 22228 --- [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance APIGATEWAY-SERVICE/CA-LH77FR73.groupinfra.com:apigateway-service with status UP (replication=false)
+2021-09-03 15:08:29.653  INFO 22228 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance APIGATEWAY-SERVICE/CA-LH77FR73.groupinfra.com:apigateway-service with status UP (replication=true)
+2021-09-03 15:08:34.859  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 20ms
+2021-09-03 15:09:34.880  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 20ms
+2021-09-03 15:10:34.887  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2021-09-03 15:11:34.899  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2021-09-03 15:12:34.914  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2021-09-03 15:13:34.931  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 16ms
+2021-09-03 15:14:34.934  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2021-09-03 15:15:14.300  INFO 22228 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance CART/CA-LH77FR73.groupinfra.com:cart:8081 with status UP (replication=false)
+2021-09-03 15:15:14.816  INFO 22228 --- [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance CART/CA-LH77FR73.groupinfra.com:cart:8081 with status UP (replication=true)
+2021-09-03 15:15:34.938  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2021-09-03 15:16:34.938  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2021-09-03 15:17:34.946  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2021-09-03 15:18:34.966  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 20ms
+2021-09-03 15:18:52.971  INFO 22228 --- [http-nio-8761-exec-10] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER/CA-LH77FR73.groupinfra.com:order:8082 with status UP (replication=false)
+2021-09-03 15:18:53.487  INFO 22228 --- [http-nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance ORDER/CA-LH77FR73.groupinfra.com:order:8082 with status UP (replication=true)
+2021-09-03 15:19:34.974  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2021-09-03 15:20:34.990  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 15ms
+2021-09-03 15:21:34.673  INFO 22228 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 6
+2021-09-03 15:21:35.002  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2021-09-03 15:21:39.070  INFO 22228 --- [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance USER/CA-LH77FR73.groupinfra.com:user:8084 with status UP (replication=false)
+2021-09-03 15:21:39.611  INFO 22228 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance USER/CA-LH77FR73.groupinfra.com:user:8084 with status UP (replication=true)
+2021-09-03 15:22:35.017  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 15ms
+2021-09-03 15:23:35.023  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2021-09-03 15:24:35.025  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2021-09-03 15:25:35.032  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2021-09-03 15:26:35.033  INFO 22228 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms

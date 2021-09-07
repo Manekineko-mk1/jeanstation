@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@SpringBootApplication(scanBasePackages = "com.stackroute")
+// @SpringBootApplication(scanBasePackages = "com.stackroute")
 @Getter
 @Setter
 @NoArgsConstructor

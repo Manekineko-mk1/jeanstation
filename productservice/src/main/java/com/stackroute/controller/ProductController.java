@@ -3,7 +3,9 @@ package com.stackroute.controller;
 import com.stackroute.domain.Product;
 import com.stackroute.service.ProductService;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,7 @@ import static org.apache.commons.codec.binary.Base64.encodeBase64String;
 @Slf4j
 //@CrossOrigin()
 public class ProductController {
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     private ProductService productService;
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/uuuu - HH:mm:ss z");
     private byte[] bytes;
@@ -48,8 +51,8 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-//        log.info("Added a product to products collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
-//                savedProduct.getId(), savedProduct.getName(), timeStamp);
+        logger.info("Added a product to products collection | Product ID: {} | Product name: {} | Timestamp(EST): {}",
+                savedProduct.getId(), savedProduct.getName(), timeStamp);
 
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
@@ -67,7 +70,7 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Added the list of products to the products collection | Timestamp(EST): {}", timeStamp);
+        logger.info("Added the list of products to the products collection | Timestamp(EST): {}", timeStamp);
 
         return new ResponseEntity<>(savedProducts, HttpStatus.CREATED);
     }
@@ -90,7 +93,7 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Query to get all product entries | Timestamp: {}", timeStamp);
+        logger.info("Query to get all product entries | Timestamp: {}", timeStamp);
 
         return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
     }
@@ -106,7 +109,7 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Query to get a product | Product ID: {} | Timestamp: {}", productId, timeStamp);
+        logger.info("Query to get a product | Product ID: {} | Timestamp: {}", productId, timeStamp);
 
         return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.OK);
     }
@@ -123,7 +126,7 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-        log.info("Request to DELETE a product | Product ID: {} | Timestamp: {}", productId, timeStamp);
+        logger.info("Request to DELETE a product | Product ID: {} | Timestamp: {}", productId, timeStamp);
 
         return new ResponseEntity<>(productService.deleteProductById(productId), HttpStatus.OK);
     }
@@ -145,8 +148,8 @@ public class ProductController {
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("America/Montreal"));
         String timeStamp = zonedDateTimeNow.format(formatter);
 
-//        log.info("Request to UPDATE a product | Product Name: {} | Product ID: {} | Timestamp: {}",
-//                updatedProduct.getName(), updatedProduct.getId(), timeStamp);
+        logger.info("Request to UPDATE a product | Product Name: {} | Product ID: {} | Timestamp: {}",
+                updatedProduct.getName(), updatedProduct.getId(), timeStamp);
 
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }

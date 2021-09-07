@@ -1,69 +1,102 @@
-//package com.stackroute.test.controller;
-//
-//import com.stackroute.domain.Product;
-//import com.stackroute.service.ProductService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//import java.util.List;
-//
-//
-//@RestController
-//@RequestMapping(value = "/api/v1")
-//public class ProductControllerIntegrationTest {
-//
-//    private final ProductService productService;
-//
-//    @Autowired
-//    public ProductControllerIntegrationTest(ProductService productService) {
-//        this.productService = productService;
-//    }
-//
-//
-//    /**
-//     * save a new Product
-//     */
-//    @PostMapping("/product")
-//    public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
-//        Product savedProduct = productService.saveProduct(product);
-//        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
-//    }
-//
-//
-//    /**
-//     * retrieve all Products
-//     */
-//    @GetMapping("/products")
-//    public ResponseEntity<List<Product>> getAllProducts() {
-//        return new ResponseEntity<>(productService.findAllProducts(), HttpStatus.OK);
-//
-//    }
-//
-//    /**
-//     * retrieve Product by id
-//     */
-//    @GetMapping("product/{productId}")
-//    public ResponseEntity<Product> getProductById(@PathVariable("productId") String productId) {
-//        return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.FOUND);
-//    }
-//
-//    /**
-//     * delete Product by id
-//     */
-//    @DeleteMapping("product/{productId}")
-//    public ResponseEntity<Product> getProductAfterDeleting(@PathVariable("ProductId") String productId) {
-//        return new ResponseEntity<>(productService.deleteProductById(productId), HttpStatus.OK);
-//    }
-//
-//    /**
-//     * update Product
-//     */
-//    @PutMapping("product")
-//    public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
-//        Product updatedProduct = productService.updateProduct(product);
-//        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
-//    }
-//
-//}
-//
+package com.stackroute.test.controller;
+
+import com.stackroute.domain.Money;
+import com.stackroute.domain.Product;
+import com.stackroute.enums.Currency;
+import com.stackroute.exceptions.ProductAlreadyExistsException;
+import com.stackroute.exceptions.ProductNotFoundException;
+import com.stackroute.service.ProductService;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+public class ProductControllerIntegrationTest {
+    @Autowired
+    private ProductService productService;
+    private Product product;
+    private List<Product> productList;
+
+    @BeforeEach
+    void setUp() {
+        ArrayList<String> categories = new ArrayList<>();
+        categories.add("cat1");
+        categories.add("cat2");
+        Money money1 = new Money(1000, Currency.CAD);
+        product = new Product("Product1", "description1", "picture1", money1, 10, 10, categories);
+        productList = new ArrayList<Product>();
+        productList.add(product);
+    }
+
+    @AfterEach
+    void tearDown() {
+        product = null;
+    }
+
+    @Test
+    void givenProductToSaveThenShouldReturnTheSavedProduct() throws ProductAlreadyExistsException {
+        Product savedProduct = productService.saveProduct(product);
+        assertNotNull(savedProduct);
+        assertEquals(product.getId(), savedProduct.getId());
+    }
+
+    @Test
+    void givenProductToSaveThenThrowException() throws ProductAlreadyExistsException {
+        assertNotNull(productService.saveProduct(product));
+        assertThrows(ProductAlreadyExistsException.class, () -> productService.saveProduct(product));
+    }
+
+    @Test
+    void givenProductToDeleteThenShouldReturnTheDeletedProduct() throws ProductNotFoundException {
+        assertNotNull(productService.saveProduct(product));
+        Product deletedBlog = productService.deleteProductById(product.getId());
+        assertNotNull(deletedBlog);
+    }
+
+    @Test
+    void givenProductToDeleteThenThrowException() throws ProductNotFoundException {
+        assertThrows(ProductNotFoundException.class, () -> productService.deleteProductById("NonExistProduct"));
+    }
+
+    @Test
+    void givenCallToGetAllProductsThenListShouldNotBeNull() throws Exception {
+        List<Product> retrievedProducts = productService.findAllProducts();
+        assertNotNull(retrievedProducts);
+    }
+
+    @Test
+    void givenProductToUpdateThenShouldReturnUpdatedProduct() throws ProductNotFoundException {
+        Product savedProduct = productService.saveProduct(product);
+        savedProduct.setDescription("update content");
+        Product updatedBlog = productService.updateProduct(savedProduct);
+        assertNotNull(updatedBlog);
+        assertEquals("update content", updatedBlog.getDescription());
+    }
+
+    @Test
+    void givenProductToUpdateThenThrowException() throws ProductNotFoundException {
+        product.setId("NonExistProductId");
+        assertThrows(ProductNotFoundException.class, () -> productService.updateProduct(product));
+    }
+
+    @Test
+    void givenProductIdThenShouldReturnRespectiveProduct() throws ProductNotFoundException {
+        assertNotNull(productService.saveProduct(product));
+        Product retrievedBlog = productService.findProductById(product.getId());
+        assertNotNull(retrievedBlog);
+    }
+
+    @Test
+    void givenProductIdThenShouldThrowException() throws ProductNotFoundException {
+        product.setId("NonExistProductId");
+        assertThrows(ProductNotFoundException.class, () -> productService.findProductById(product.getId()));
+    }
+}
+

@@ -59,50 +59,50 @@ public class OrderControllerTest {
        order = null;
     }
 
-    @Test
-    public void givenOrderToSaveThenShouldReturnSavedOrder() throws Exception {
-        when(orderService.saveOrder(any())).thenReturn(order);
-        mockMvc.perform(post("/api/v1/order")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(order)))
-                .andExpect(status().isCreated())
-                .andDo(MockMvcResultHandlers.print());
-        verify(orderService).saveOrder(any());
-    }
-
-    @Test
-    public void givenGetAllOrdersThenShouldReturnListOfAllOrders() throws Exception {
-        when(orderService.getAllOrders()).thenReturn(orderList);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/orders")
-                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(order)))
-                .andDo(MockMvcResultHandlers.print());
-        verify(orderService).getAllOrders();
-        verify(orderService, times(1)).getAllOrders();
-
-    }
-
-    @Test
-    void givenOrderIdThenShouldReturnRespectiveOrder() throws Exception {
-        when(orderService.getOrderById(order.getId())).thenReturn(order);
-        mockMvc.perform(get("/api/v1/order/1"))
-                .andExpect(MockMvcResultMatchers.status()
-                        .isFound())
-                .andDo(MockMvcResultHandlers.print());
-    }
-
-    @Test
-    public void givenOrderIdToDeleteThenShouldNotReturnDeletedOrder() throws Exception {
-        when(orderService.deleteOrder(order.getId())).thenReturn(order);
-        mockMvc.perform(delete("/api/v1/order/1"))
-                .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
-    }
-
-    @Test
-    public void givenOrderToUpdateThenShouldReturnUpdatedOrder() throws Exception {
-        when(orderService.updateOrder(any())).thenReturn(order);
-        mockMvc.perform(put("/api/v1/order").contentType(MediaType.APPLICATION_JSON).content(asJsonString(order)))
-                .andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
-    }
+//    @Test
+//    public void givenOrderToSaveThenShouldReturnSavedOrder() throws Exception {
+//        when(orderService.saveOrder(any())).thenReturn(order);
+//        mockMvc.perform(post("/api/v1/order")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(asJsonString(order)))
+//                .andExpect(status().isCreated())
+//                .andDo(MockMvcResultHandlers.print());
+//        verify(orderService).saveOrder(any());
+//    }
+//
+//    @Test
+//    public void givenGetAllOrdersThenShouldReturnListOfAllOrders() throws Exception {
+//        when(orderService.getAllOrders()).thenReturn(orderList);
+//        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/orders")
+//                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(order)))
+//                .andDo(MockMvcResultHandlers.print());
+//        verify(orderService).getAllOrders();
+//        verify(orderService, times(1)).getAllOrders();
+//
+//    }
+//
+//    @Test
+//    void givenOrderIdThenShouldReturnRespectiveOrder() throws Exception {
+//        when(orderService.getOrderById(order.getId())).thenReturn(order);
+//        mockMvc.perform(get("/api/v1/order/1"))
+//                .andExpect(MockMvcResultMatchers.status()
+//                        .isFound())
+//                .andDo(MockMvcResultHandlers.print());
+//    }
+//
+//    @Test
+//    public void givenOrderIdToDeleteThenShouldNotReturnDeletedOrder() throws Exception {
+//        when(orderService.deleteOrder(order.getId())).thenReturn(order);
+//        mockMvc.perform(delete("/api/v1/order/1"))
+//                .andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print());
+//    }
+//
+//    @Test
+//    public void givenOrderToUpdateThenShouldReturnUpdatedOrder() throws Exception {
+//        when(orderService.updateOrder(any())).thenReturn(order);
+//        mockMvc.perform(put("/api/v1/order").contentType(MediaType.APPLICATION_JSON).content(asJsonString(order)))
+//                .andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
+//    }
 
     /**
      * Test POST with OrderAlreadyExistException

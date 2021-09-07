@@ -1,36 +1,104 @@
 version: "3.9"
 
 services:
-  mymongo:
+  cart-mongo:
     image: mongo:latest
-    container_name: "mymongo"
+    container_name: cart-mongo
     ports:
-    - 27017:27017
+    - '27017:27017'
+
+  order-mongo:
+    image: mongo:latest
+    container_name: user-mongo
+    command: mongod --port 27016
+    ports:
+      - '27016:27017'
+
+  product-mongo:
+    image: mongo
+    container_name: product-mongo
+    command: mongod --port 27015
+    ports:
+      - '27015:27017'
+
+  user-mongo:
+    image: mongo
+    container_name: user-mongo
+    command: mongod --port 27014
+    ports:
+      - '27014:27017'
+
+  discovery:
+    image: eureka-server
+    container_name: eurekaservice
+    ports:
+      - 8761:8761
+    environment:
+      eureka.instance.hostname: springboot-eureka-server
+      eureka.client.serviceUrl.defaultZone: http://eurekaservice:8761/eureka
+
   cartservice:
     image: cartservice:1.0
     container_name: cartservice
     ports:
       - 8081:8081
+    environment:
+      eureka.instance.preferIpAddress: "true"
+      eureka.client.registerWithEureka: "true"
+      eureka.client.fetchRegistry: "true"
+      eureka.client.serviceUrl.defaultZone: http://eurekaservice:8761/eureka
     links:
-      - mymongo
+      - cart-mongo
+
   orderservice:
     image: orderservice:1.0
     container_name: orderservice
     ports:
       - 8082:8082
+    environment:
+      eureka.instance.preferIpAddress: "true"
+      eureka.client.registerWithEureka: "true"
+      eureka.client.fetchRegistry: "true"
+      eureka.client.serviceUrl.defaultZone: http://eurekaservice:8761/eureka
     links:
-      - mymongo
+      - order-mongo
+
   productservice:
     image: productservice:1.0
     container_name: productservice
     ports:
     - 8083:8083
+    environment:
+      eureka.instance.preferIpAddress: "true"
+      eureka.client.registerWithEureka: "true"
+      eureka.client.fetchRegistry: "true"
+      eureka.client.serviceUrl.defaultZone: http://eurekaservice:8761/eureka
+#    depends_on:
+#      - discovery
     links:
-      - mymongo
+      - product-mongo
+
   userservice:
     image: userservice:1.0
     container_name: userservice
     ports:
       - 8084:8084
+    environment:
+      eureka.instance.preferIpAddress: "true"
+      eureka.client.registerWithEureka: "true"
+      eureka.client.fetchRegistry: "true"
+      eureka.client.serviceUrl.defaultZone: http://eurekaservice:8761/eureka
     links:
-      - mymongo
+      - user-mongo
+
+  #Front end
+  jeanstationapp:
+    container_name: jeanstationapp
+    build: ./jeanstationapp
+#      context: ./jeanstationapp
+#      dockerfile: Dockerfile
+    volumes:
+      - '.:/jeanstationapp/app'
+      - '/jeanstationapp/app/node_modules'
+    ports:
+      - '4200:4200'
