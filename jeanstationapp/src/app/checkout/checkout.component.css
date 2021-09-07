@@ -111,3 +111,12 @@ table.shopping-cart-table tr td:last-child {
 .container {
   height:75vh;
 }
+
+#quantity {
+  display: inline-flex;
+  color: blue;
+}
+
+#quantity input {
+  width: 30px;
+}

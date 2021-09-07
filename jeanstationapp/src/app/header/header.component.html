@@ -6,10 +6,10 @@
       <a href="../login" routerLink="login">Login</a>
     </li>
     <li *ngIf="isLoggedIn">
-      <a href="../login" routerLink="login">Logout</a>
+      <a (click)="logout()" href="../login" routerLink="login" >Logout</a>
     </li>
     <li *ngIf="isLoggedIn">
-      <a href="../userprofile" routerLink="profile">Profile</a>
+      <a (click)="goToProfile()" href="../userprofile" routerLink="profile">Profile</a>
     </li>
     <li *ngIf="isLoggedIn&&!isAdmin">
       <a href="../myorder" routerLink="myorder">My Order</a>
@@ -21,13 +21,13 @@
       <a href="../product" routerLink="product">Products</a>
     </li>
     <li *ngIf="isAdmin&&!inProdManag">
-      <a href="../admin" routerLink="admin">Product Management</a>
+      <a (click)="goToProduct()" href="../admin" routerLink="admin">Product Management</a>
     </li>
     <li *ngIf="isAdmin&&!inOrderManag">
-      <a href="../order-management" routerLink="order-management">Order Management</a>
+      <a (click)="goToOrder()" href="../order-management" routerLink="order-management">Order Management</a>
     </li>
     <li>
-      <a href="../home" routerLink="">Home</a>
+      <a (click)="goToHome()" href="../home" routerLink="">Home</a>
     </li>
   </ul>
 

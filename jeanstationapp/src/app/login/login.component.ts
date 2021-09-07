@@ -41,7 +41,9 @@ export class LoginComponent implements OnInit {
         this.approute.isLoggedIn.next(true);
         this.approute.isAdmin.next(true);
         // sessionStorage.setItem('isLoggedIn', 'true');
-        // sessionStorage.setItem('isAdmin', 'true');
+        sessionStorage.setItem('isAdmin', 'true');
+        sessionStorage.setItem('inOrderManag', 'false');
+        sessionStorage.setItem('inProdManag', 'true');
         this.approute.openAdmin();
       } else {
         this.authservice.authenticate(this.form.value.username, this.form.value.password).subscribe(

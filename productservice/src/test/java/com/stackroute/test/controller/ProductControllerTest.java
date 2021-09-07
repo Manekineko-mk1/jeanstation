@@ -93,7 +93,7 @@ public class ProductControllerTest {
     void givenProductIdThenShouldReturnRespectiveProduct() throws Exception {
         when(productService.findProductById(product.getId())).thenReturn(product);
         mockMvc.perform(get("/api/v1/product/product/1l"))
-               .andExpect(MockMvcResultMatchers.status().isFound())
+               .andExpect(MockMvcResultMatchers.status().isOk())
                .andDo(MockMvcResultHandlers.print());
     }
 

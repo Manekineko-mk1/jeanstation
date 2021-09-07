@@ -52,8 +52,10 @@
                       <td>{{ item.finalPrice.amount/100 | currency:'CAD' }}</td>
                     </span>
 
-                    <td width="65">
-                      <input type="text" class="form-control" value="{{ item.quantity }}">
+                    <td id="quantity" width="65">
+                      <button class="btn btn-sm btn-primary product-btn" (click)="minus(item)">-</button>
+                      <input type="number" ng-model="item.quantity" placeholder="{{item.quantity}}">
+                      <button class="btn btn-sm btn-primary product-btn" (click)="plus(item)">+</button>
                     </td>
 
                     <!-- Item subtotal (bold text) -->
