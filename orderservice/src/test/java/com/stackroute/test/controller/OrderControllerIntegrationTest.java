@@ -1,69 +1,107 @@
 package com.stackroute.test.controller;
 
+import com.stackroute.domain.Money;
 import com.stackroute.domain.Order;
+import com.stackroute.domain.Product;
+import com.stackroute.enums.Currency;
+import com.stackroute.exceptions.OrderAlreadyExistException;
+import com.stackroute.exceptions.OrderNotFoundException;
 import com.stackroute.service.OrderService;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-@RestController
-@RequestMapping(value = "/api/v1")
+@SpringBootTest
 public class OrderControllerIntegrationTest {
-
-    private final OrderService orderService;
-
     @Autowired
-    public OrderControllerIntegrationTest(OrderService orderService) {
-        this.orderService = orderService;
+    private OrderService orderService;
+    private Order order;
+    private List<Order> orderList;
+
+    @BeforeEach
+    void setUp() {
+        order = new Order();
+        order.setId("orderId123");
+        order.setUserId("userId123");
+        order.setPriceTotalBeforeTax(1000);
+        order.setPriceTotalAfterTax(2000);
+        ArrayList<Product> orderItems = new ArrayList<>();
+        orderItems.add(new Product());
+        orderItems.add(new Product());
+        order.setOrderItems(orderItems);
     }
 
+    @AfterEach
+    void tearDown() {
+        order = null;
+    }
 
-    /**
-     * save a new Order
-     */
-    @PostMapping("/order")
-    public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
+//    @Test
+//    void givenProductToSaveThenShouldReturnTheSavedProduct() throws OrderAlreadyExistException {
+//        Order savedOrder = orderService.saveOrder(order);
+//        assertNotNull(savedOrder);
+//        assertEquals(order.getId(), savedOrder.getId());
+//    }
+//
+//    @Test
+//    void givenProductToSaveThenThrowException() throws OrderAlreadyExistException {
+//        assertNotNull(orderService.saveOrder(order));
+//        assertThrows(OrderAlreadyExistException.class, () -> orderService.saveOrder(order));
+//    }
+//
+//    @Test
+//    void givenProductToDeleteThenShouldReturnTheDeletedProduct() throws OrderNotFoundException {
+//        assertNotNull(orderService.saveOrder(order));
+//        Order deletedOrder = orderService.deleteOrder(order.getId());
+//        assertNotNull(deletedOrder);
+//    }
+
+    @Test
+    void givenProductToDeleteThenThrowException() throws OrderNotFoundException {
+        assertThrows(OrderNotFoundException.class, () -> orderService.deleteOrder("NonExistProduct"));
+    }
+
+    @Test
+    void givenCallToGetAllProductsThenListShouldNotBeNull() throws Exception {
+        List<Order> retrievedOrders = orderService.getAllOrders();
+        assertNotNull(retrievedOrders);
+    }
+
+    @Test
+    void givenProductToUpdateThenShouldReturnUpdatedProduct() throws OrderNotFoundException {
         Order savedOrder = orderService.saveOrder(order);
-        return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
+        savedOrder.setPriceTotalBeforeTax(1234);
+        savedOrder.setPriceTotalAfterTax(5678);
+        Order updatedOrder = orderService.updateOrder(savedOrder);
+        assertNotNull(updatedOrder);
+        assertEquals(1234, updatedOrder.getPriceTotalBeforeTax());
+        assertEquals(5678, updatedOrder.getPriceTotalAfterTax());
     }
 
-
-    /**
-     * retrieve all Orders
-     */
-    @GetMapping("/orders")
-    public ResponseEntity<List<Order>> getAllOrders() {
-        return new ResponseEntity<>(orderService.getAllOrders(), HttpStatus.OK);
-
+    @Test
+    void givenProductToUpdateThenThrowException() throws OrderNotFoundException {
+        order.setId("NonExistProductId");
+        assertThrows(OrderNotFoundException.class, () -> orderService.updateOrder(order));
     }
 
-    /**
-     * retrieve Order by id
-     */
-    @GetMapping("order/{orderId}")
-    public ResponseEntity<Order> getOrderById(@PathVariable("orderId") String orderId) {
-        return new ResponseEntity<>(orderService.getOrderById(orderId), HttpStatus.FOUND);
-    }
+//    @Test
+//    void givenProductIdThenShouldReturnRespectiveProduct() throws OrderNotFoundException {
+//        assertNotNull(orderService.saveOrder(order));
+//        Order retrievedOrder = orderService.getOrderById(order.getId());
+//        assertNotNull(retrievedOrder);
+//    }
 
-    /**
-     * delete Order by id
-     */
-    @DeleteMapping("order/{orderId}")
-    public ResponseEntity<Order> getOrderAfterDeleting(@PathVariable("OrderId") String orderId) {
-        return new ResponseEntity<>(orderService.deleteOrder(orderId), HttpStatus.OK);
+    @Test
+    void givenProductIdThenShouldThrowException() throws OrderNotFoundException {
+        order.setId("NonExistProductId");
+        assertThrows(OrderNotFoundException.class, () -> orderService.getOrderById(order.getId()));
     }
-
-    /**
-     * update Order
-     */
-    @PutMapping("order")
-    public ResponseEntity<Order> updateOrder(@RequestBody Order order) {
-        Order updatedOrder = orderService.updateOrder(order);
-        return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
-    }
-    
 }
 

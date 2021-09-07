@@ -15,7 +15,14 @@ export class UserGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(sessionStorage.getItem('isLoggedIn')=='true'){
+      // if(sessionStorage.getItem('isLoggedIn')=='true'){
+      //   return true;
+      // } else {
+      //   alert('Access Denied');
+      //   this.approute.openLogin();
+      //   return false;
+      // }
+      if(this.approute.isLoggedIn.getValue()){
         return true;
       } else {
         alert('Access Denied');

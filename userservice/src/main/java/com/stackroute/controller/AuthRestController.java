@@ -7,6 +7,8 @@ import com.stackroute.service.UserService;
 import com.stackroute.util.JwtUtil;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value = "/api/v1/user/")
+@RequestMapping(value = "/api/v1/user")
 @Slf4j
 public class AuthRestController {
 
@@ -56,7 +60,9 @@ public class AuthRestController {
 
 
 			String token = jwtUtil.generateToken(user.getId());
-			responseEntity = new ResponseEntity<>(token, HttpStatus.OK);
+			Map<String, String> jwttoken = new HashMap<>();
+			jwttoken.put("token", token);
+			responseEntity = new ResponseEntity<>(jwttoken, HttpStatus.OK);
 
 		} catch (UserNotFoundException e) {
 			responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);

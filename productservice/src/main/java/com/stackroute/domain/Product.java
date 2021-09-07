@@ -1,14 +1,10 @@
 package com.stackroute.domain;
 
-import com.stackroute.enums.ProductColor;
-import com.stackroute.enums.ProductSize;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j

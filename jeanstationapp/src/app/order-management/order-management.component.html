@@ -6,7 +6,8 @@
                 <div class="card" (click)="viewDetails()">
                   <div class="card-body">
                     <h4 class="card-title">ID: {{order.id}}</h4>
-                    <p class="card-text">Total Price: ${{order.priceTotal}}</p>
+                    <p class="card-text">Total Price (Before Tax): ${{order.priceTotalBeforeTax}}</p>
+                    <p class="card-text">Total Price (After Tax): ${{order.priceTotalAfterTax}}</p>
                     <p class="card-text">User: {{order.userId}}</p>
                     <p class="card-text">Delivery Date: {{order.deliveryDate}}</p>
                     <p class="card-text">Creation Date: {{order.creationDate}}</p>

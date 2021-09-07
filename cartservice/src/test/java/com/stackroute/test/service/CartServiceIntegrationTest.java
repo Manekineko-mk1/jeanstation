@@ -60,9 +60,9 @@ public class CartServiceIntegrationTest {
         assertEquals(cart1.getId(), savedCart.getId());
     }
 
-//    @Test
-//    public void givenGetAllCartsThenShouldReturnListOfAllCarts() {
-//        List<Cart> cartList = (List<Cart>) cartRepository.findAll();
-//        assertNotNull(cartList);
-//    }
+    @Test
+    public void givenGetAllCartsThenShouldReturnListOfAllCarts() {
+        List<Cart> cartList = (List<Cart>) cartRepository.findAll();
+        assertNotNull(cartList);
+    }
 }

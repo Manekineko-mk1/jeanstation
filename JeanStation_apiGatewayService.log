@@ -1,0 +1,63 @@
+2021-09-03 15:08:04.017  INFO 13648 --- [main] c.s.apigateway.ApiGatewayApplication     : Starting ApiGatewayApplication using Java 11.0.11 on CA-LH77FR73 with PID 13648 (C:\Users\jia.mo\Documents\Exercise\Capstone\jeanstation\api-gateway-service\target\classes started by jia.mo in C:\Users\jia.mo\Documents\Exercise\Capstone\jeanstation)
+2021-09-03 15:08:04.027  INFO 13648 --- [main] c.s.apigateway.ApiGatewayApplication     : No active profile set, falling back to default profiles: default
+2021-09-03 15:08:07.628  INFO 13648 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=2668c766-832a-35cb-994e-776fe1438d69
+2021-09-03 15:08:08.029  INFO 13648 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-09-03 15:08:08.031  INFO 13648 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-09-03 15:08:08.039  INFO 13648 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-09-03 15:08:08.948  WARN 13648 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2021-09-03 15:08:08.950  INFO 13648 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-09-03 15:08:08.971  WARN 13648 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2021-09-03 15:08:08.971  INFO 13648 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-09-03 15:08:16.820  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
+2021-09-03 15:08:16.820  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
+2021-09-03 15:08:16.820  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
+2021-09-03 15:08:16.820  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
+2021-09-03 15:08:16.831  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
+2021-09-03 15:08:16.831  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
+2021-09-03 15:08:16.831  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
+2021-09-03 15:08:16.831  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
+2021-09-03 15:08:16.831  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
+2021-09-03 15:08:16.831  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
+2021-09-03 15:08:16.831  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
+2021-09-03 15:08:16.831  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
+2021-09-03 15:08:16.831  INFO 13648 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2021-09-03 15:08:17.623  INFO 13648 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses Jersey
+2021-09-03 15:08:24.885  WARN 13648 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-09-03 15:08:24.977  INFO 13648 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2021-09-03 15:08:25.338  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2021-09-03 15:08:26.049  INFO 13648 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2021-09-03 15:08:26.049  INFO 13648 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2021-09-03 15:08:26.728  INFO 13648 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2021-09-03 15:08:26.728  INFO 13648 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2021-09-03 15:08:27.408  INFO 13648 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-09-03 15:08:27.480  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2021-09-03 15:08:27.480  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2021-09-03 15:08:27.480  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2021-09-03 15:08:27.480  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2021-09-03 15:08:27.480  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2021-09-03 15:08:27.480  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2021-09-03 15:08:27.480  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2021-09-03 15:08:28.286  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2021-09-03 15:08:28.296  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2021-09-03 15:08:28.296  INFO 13648 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2021-09-03 15:08:28.317  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1630696108315 with initial instances count: 0
+2021-09-03 15:08:28.325  INFO 13648 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application APIGATEWAY-SERVICE with eureka with status UP
+2021-09-03 15:08:28.325  INFO 13648 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1630696108325, current=UP, previous=STARTING]
+2021-09-03 15:08:28.337  INFO 13648 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_APIGATEWAY-SERVICE/CA-LH77FR73.groupinfra.com:apigateway-service: registering service...
+2021-09-03 15:08:28.809  INFO 13648 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_APIGATEWAY-SERVICE/CA-LH77FR73.groupinfra.com:apigateway-service - registration status: 204
+2021-09-03 15:08:33.485  INFO 13648 --- [main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080
+2021-09-03 15:08:33.485  INFO 13648 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8080
+2021-09-03 15:08:40.301  INFO 13648 --- [main] c.s.apigateway.ApiGatewayApplication     : Started ApiGatewayApplication in 42.117 seconds (JVM running for 44.783)
+2021-09-03 15:08:40.312  INFO 13648 --- [main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2021-09-03 15:08:40.322  INFO 13648 --- [main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2021-09-03 15:08:58.298  INFO 13648 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2021-09-03 15:08:58.300  INFO 13648 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2021-09-03 15:08:58.302  INFO 13648 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2021-09-03 15:08:58.302  INFO 13648 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2021-09-03 15:08:58.303  INFO 13648 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2021-09-03 15:08:58.304  INFO 13648 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
+2021-09-03 15:08:58.304  INFO 13648 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2021-09-03 15:08:58.453  INFO 13648 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2021-09-03 15:13:27.501  INFO 13648 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-09-03 15:18:27.506  INFO 13648 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-09-03 15:23:27.522  INFO 13648 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

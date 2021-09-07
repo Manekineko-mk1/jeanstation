@@ -5,7 +5,8 @@ import { Product } from '../model/Product';
 import { Cart } from '../model/Cart';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}),
+  mode: 'cors'
 };
 
 @Injectable({
