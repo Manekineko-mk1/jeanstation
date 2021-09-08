@@ -123,8 +123,14 @@
       </button>
     </div>
     <div class="modal-body">
+      <div class="login" *ngIf="showLogin">
+        <h1>Please Login!</h1>
+        <button type="button" (click)="goLogin()">Go To Login</button>
+      </div>
+      <div class="order" *ngIf="!showLogin">
      <h1>Order Submitted Successfully!!!</h1>
      <button type="button" (click)="viewOrder()">View Orders</button>
+    </div>
     </div>
     <div class="modal-footer">
       <button (click)="modal.close('Save click')" class="btn" type="button">Close</button>

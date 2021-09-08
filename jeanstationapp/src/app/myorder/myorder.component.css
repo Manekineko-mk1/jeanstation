@@ -81,7 +81,7 @@ button:hover {
 #progressbar {
     margin-bottom: 3vh;
     overflow: hidden;
-    color: blue;
+    color: #3a4468;
     padding-left: 0px;
     margin-top: 3vh
 }
@@ -93,12 +93,12 @@ button:hover {
     float: left;
     position: relative;
     font-weight: 400;
-    color: blue
+    color: #3a4468
 }
 
 #progressbar #step1:before {
     content: "";
-    color: blue;
+    color: #3a4468;
     width: 20px;
     height: 20px;
     margin-left: 0px !important
@@ -175,7 +175,7 @@ button:hover {
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-    background: blue
+    background: #3a4468
 }
 
 #three {

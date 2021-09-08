@@ -318,7 +318,7 @@
                 <br />
                 <strong>Quantity: {{ productItem.quantity }}</strong>
                 <br />
-                <strong *ngIf="productItem.discount > 0">Discount: {{ productItem.discount }}</strong>
+                <strong *ngIf="productItem.discount>0" style="color:red;">Discount: {{ productItem.discount }}%</strong>
               </p>
               <p class="card-text">{{ productItem.description | slice: 0:50 }}...</p>
               <div class="d-flex justify-content-between align-items-center">
@@ -350,7 +350,7 @@
   
     <ng-template #modalData let-modal>
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">{{showProduct.id}}</h4>
+        <h4 class="modal-title" id="modal-basic-title">ID: {{showProduct.id}}</h4>
         <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
           <span aria-hidden="true">×</span>
         </button>

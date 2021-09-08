@@ -19,3 +19,13 @@
 .description {
     font-size: small;
 }
+
+.modal-body #discount {
+    color:red;
+}
+
+.modal-footer button {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}

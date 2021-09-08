@@ -19,6 +19,7 @@ export class RegistrationComponent implements OnInit {
     this.form = this.formBuilder.group({
       username: new FormControl('',Validators.required),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      confirmPassword: new FormControl('', Validators.required),
       name: new FormControl('',Validators.required),
       doornumber: new FormControl('',Validators.required),
       street: new FormControl('',Validators.required),
@@ -35,31 +36,36 @@ export class RegistrationComponent implements OnInit {
   onSubmit(){
 
     if(this.form.valid){
-      let address:Address = new Address();
-      address.doorNumber = this.form.value.doornumber;
-      address.street = this.form.value.street;
-      address.city = this.form.value.city;
-      address.country = this.form.value.country;
-      address.postalCode = this.form.value.postalcode;
+      if(this.form.value.password !== this.form.value.confirmPassword){
+        this.message = 'Passwords do not match';
+      } else {
+        let address:Address = new Address();
+        address.doorNumber = this.form.value.doornumber;
+        address.street = this.form.value.street;
+        address.city = this.form.value.city;
+        address.country = this.form.value.country;
+        address.postalCode = this.form.value.postalcode;
 
-      let user:User = new User();
-      user.username = this.form.value.username;
-      user.password = this.form.value.password;
-      user.realName = this.form.value.name;
-      user.creationDate = (new Date()).getDate().toString();
-      user.userRole = 'USER';
-      user.userStatus = 'ACTIVE';
-      user.telephone = this.form.value.telephone;
-      user.address = address;
+        let user:User = new User();
+        user.username = this.form.value.username;
+        user.password = this.form.value.password;
+        user.realName = this.form.value.name;
+        user.creationDate = (new Date()).getDate().toString();
+        user.userRole = 'USER';
+        user.userStatus = 'ACTIVE';
+        user.telephone = this.form.value.telephone;
+        user.address = address;
 
-      this.userservice.addUser(user).subscribe(
-        data => {
-          this.approute.openLogin();
-        },
-        err => {
-          this.message = 'Registration failed!';
-        }
-      );
+        this.userservice.addUser(user).subscribe(
+          data => {
+            this.approute.openLogin();
+          },
+          err => {
+            this.message = 'Registration failed!';
+          }
+        );
+      }
+      
     } else {
       this.message = 'Fields cannot be empty! Please verify provided information'
     }

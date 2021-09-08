@@ -97,3 +97,7 @@ button:hover {
       margin-top: 0;
     }
 }
+
+.card-body input {
+    width:100%;
+}

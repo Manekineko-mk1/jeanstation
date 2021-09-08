@@ -1,7 +1,7 @@
 #userprofile {
   padding-top: 1rem;
-  padding-bottom: 9rem;
-  height:75vh;
+  padding-bottom: 1rem;
+  height:120vh;
 }
 
 #userprofile h1{
@@ -9,9 +9,11 @@
 }
 
 .container {
-  background-color: #f1f1f1;
+  background-color: rgb(209, 214, 245);
   margin-top: 2rem;
+  margin-bottom: 5rem;
   padding: 5rem;
+  border-radius: 5px;
 }
 
 .container button {

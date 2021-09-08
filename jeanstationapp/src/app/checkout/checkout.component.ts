@@ -24,12 +24,14 @@ export class CheckoutComponent implements OnInit {
   priceTotalBeforeTax: number = 0;
   priceTotalAfterTax: number = 0;
   closeModal;
+  showLogin;
 
   constructor(private cookieService: CookieService, private cartService:CartService,
               private orderService:OrderService, private msg: MessengerService, private appRouter: ApprouteService,
               private modalService:NgbModal, private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.showLogin = false;
     this.cartId = this.cookieService.get("cartId");
 
     // Retrieve Cart from cartID exists in cookie ELSE create a new Cart
@@ -122,9 +124,9 @@ export class CheckoutComponent implements OnInit {
 
     if(this.userId == null) {
       console.log("UserId not found. Redirect to login page");
-      // redirect to login page
-      // TODO: Re-enable this once userId login is persistent
-      this.appRouter.openLogin();
+      
+      this.showLogin = true;
+      this.triggerModal(content);
 
       // Testing only
       this.userId = "userId";
@@ -184,6 +186,11 @@ export class CheckoutComponent implements OnInit {
 
   viewOrder(){
     this.appRouter.openOrder();
+    this.modalService.dismissAll();
+  }
+
+  goLogin(){
+    this.appRouter.openLogin();
     this.modalService.dismissAll();
   }
 

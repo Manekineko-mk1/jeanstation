@@ -21,7 +21,6 @@ export class UserprofileComponent implements OnInit {
 
   constructor(private userService:UserService, private approute:ApprouteService, private formBuilder:FormBuilder) {
     this.form = this.formBuilder.group({
-      username: new FormControl('',Validators.required),
       name: new FormControl('',Validators.required),
       doornumber: new FormControl('',Validators.required),
       street: new FormControl('',Validators.required),
@@ -71,7 +70,6 @@ export class UserprofileComponent implements OnInit {
 
   showUpdate(){
     this.update = true;
-    this.form.get('username').setValue(this.user.username);
     this.form.get('name').setValue(this.user.realName);
     this.form.get('doornumber').setValue(this.user.address.doorNumber);
     this.form.get('street').setValue(this.user.address.street);
@@ -90,7 +88,6 @@ export class UserprofileComponent implements OnInit {
       address.city = this.form.value.city;
       address.country = this.form.value.country;
       address.postalCode = this.form.value.postalcode;
-      this.user.username = this.form.value.username;
       this.user.address = address;
       this.user.realName = this.form.value.name;
       this.user.telephone = this.form.value.telephone;
