@@ -59,10 +59,10 @@
                     <label>Inactive</label>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="!isAdmin">
                 <h4>Address</h4>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="!isAdmin">
                 <div class="col-25">
                     <label>Door number</label>
                 </div>
@@ -70,7 +70,7 @@
                     <input formControlName="doornumber" type="number" placeholder="Enter your door number">
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="!isAdmin">
                 <div class="col-25">
                     <label>Street Name</label>
                 </div>
@@ -78,7 +78,7 @@
                     <input formControlName="street" type="text" placeholder="Enter your street name">
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="!isAdmin">
                 <div class="col-25">
                     <label>City</label>
                 </div>
@@ -86,7 +86,7 @@
                     <input formControlName="city" type="text" placeholder="Enter your city">
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="!isAdmin">
                 <div class="col-25">
                     <label>Country</label>
                 </div>
@@ -94,7 +94,7 @@
                     <input formControlName="country" type="text" placeholder="Enter your Country">
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="!isAdmin">
                 <div class="col-25">
                     <label>Postal Code</label>
                 </div>
@@ -102,10 +102,10 @@
                     <input formControlName="postalcode" type="text" placeholder="Enter your postal code">
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="!isAdmin">
                 <h4>Contact</h4>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="!isAdmin">
                 <div class="col-25">
                     <label>Phone Number</label>
                 </div>

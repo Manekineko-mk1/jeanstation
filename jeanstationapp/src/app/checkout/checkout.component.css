@@ -1,6 +1,7 @@
 
 body{margin-top:20px;
     background:#eee;
+    height: 100vh;
 }
 h3 {
     font-size: 16px;
@@ -109,7 +110,7 @@ table.shopping-cart-table tr td:last-child {
 }
 
 .container {
-  height:100vh;
+  height:120vh;
 }
 
 #quantity {
@@ -120,3 +121,4 @@ table.shopping-cart-table tr td:last-child {
 #quantity input {
   width: 30px;
 }
+
